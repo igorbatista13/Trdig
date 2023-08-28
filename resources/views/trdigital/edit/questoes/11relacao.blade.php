@@ -25,6 +25,7 @@
                           <table class="table datatable">
                               <thead>
                                   <tr>
+                                      <th>Status</th>
                                       <th>Natureza</th>
                                       <th>Especificação</th>
                                       <th>Unidade</th>
@@ -40,6 +41,19 @@
 
                               @foreach ($obras_equipamento as $obras_equipamentos)
                                   <tr>
+                                    <td>
+                                        @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == '')
+                                            <span class="badge bg-primary">
+                                                <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                        @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
+                                            <span class="badge bg-success">
+                                                <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                        @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 0)
+                                            <span
+                                                class="badge bg-warning text-dark">
+                                                <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                        @endif
+                                    </td>
                                       <td>{{ $obras_equipamentos->Natureza_id }} </td>
                                       <td>{{ $obras_equipamentos->Especificacao }} </td>
                                       <td>{{ $obras_equipamentos->Unidade }} </td>

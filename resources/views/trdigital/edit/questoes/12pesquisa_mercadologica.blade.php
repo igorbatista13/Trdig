@@ -25,9 +25,10 @@
                                          'route' => ['trdigital.pesquisa_mercadologica_destroy', $pesquisa->id],
                                          'method' => 'delete',
                                      ]) !!}
-                                     <button type="submit" class="btn btn-danger position-absolute top-0 end-0"> <i
+
+                                     {{-- <button type="submit" class="btn btn-danger position-absolute top-0 end-0"> <i
                                              class="bi bi-trash me-1">
-                                         </i></span></button>
+                                         </i></span></button> --}}
                                      {!! Form::close() !!}
                                      {{-- <a
                                 href="{{ route('trdigital.edit', $pesquisa->id) }}">
@@ -42,6 +43,7 @@
                                          $numRegistros = count($pesquisa->pesquisa_mercadologica_pivots); // Obtém o número total de registros
                                      @endphp
                                      @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
+
                                          <h5 class="card-subtitle mb-2 text-dark"><i class="bi bi-building">
                                              </i> <i> <b class="text-primary"> <small>Empresa: </small>
                                                      {{ $pivot->Empresa ?? '' }} </i> </b></h5>

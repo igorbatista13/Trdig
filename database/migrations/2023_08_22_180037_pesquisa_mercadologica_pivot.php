@@ -22,6 +22,11 @@ return new class extends Migration
                 $table->decimal('Valor')->nullable();
                 $table->string('Anexo')->nullable();           
                                    
+                    
+            $table->string('Correcao_pesquisa_sit')->nullable();
+            $table->string('Obs_pesquisa')->nullable();
+
+
                 $table->timestamps();
                 $table->foreign('pesquisa_mercadologica_id')->references('id')->on('pesquisa_mercadologica')->onDelete('cascade');
 

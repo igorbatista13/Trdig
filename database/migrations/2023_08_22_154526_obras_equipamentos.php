@@ -26,7 +26,9 @@ return new class extends Migration
             $table->string('Local_destino')->nullable();
             $table->string('Propriedade')->nullable();
            
-
+                
+            $table->string('Correcao_obras_equipamentos_sit')->nullable();
+            $table->string('Obs_obras_equipamentos')->nullable();
             $table->timestamps();
         
             $table->foreign('n_processo_id')->references('id')->on('n_processo')->onDelete('cascade');

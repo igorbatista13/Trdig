@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('fonte')->nullable();
             $table->string('valor_desembolso')->nullable();
            
+            $table->string('cronograma_desembolso_sit')->nullable();
+            $table->string('Obs_cronograma_desembolso')->nullable();
+
 
             $table->timestamps();
         

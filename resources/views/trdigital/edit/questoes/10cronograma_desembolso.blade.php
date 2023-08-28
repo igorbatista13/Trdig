@@ -25,6 +25,7 @@
                           <table class="table datatable">
                               <thead>
                                   <tr>
+                                      <th>Status</th>
                                       <th>Meta</th>
                                       <th>Ano</th>
                                       <th>Mês</th>
@@ -38,7 +39,20 @@
                               </thead>
                               @foreach ($cronograma_desembolso as $cronograma_desembolsos)
                               <tr>
-                                
+                                <tr>
+                                    <td>
+                                        @if ($cronograma_desembolsos->cronograma_desembolso_sit == '')
+                                            <span class="badge bg-primary">
+                                                <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                        @elseif ($cronograma_desembolsos->cronograma_desembolso_sit == 1)
+                                            <span class="badge bg-success">
+                                                <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                        @elseif ($cronograma_desembolsos->cronograma_desembolso_sit == 0)
+                                            <span
+                                                class="badge bg-warning text-dark">
+                                                <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                        @endif
+                                    </td>
                                   <td>{{ $cronograma_desembolsos->metas_id }} <big>{{$cronograma_desembolsos->Metas->Especificacao_metas ?? 'ERROOORRRR 404'}} </td>
                                   <td>{{ $cronograma_desembolsos->ano }} </td>
                                   <td>{{ $cronograma_desembolsos->mes }} </td>
