@@ -576,7 +576,7 @@
                                     <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                             @endif
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo3_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3_sit == 1, [
+                        {!! Form::radio('Doc_Anexo2_Anexo11_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -585,7 +585,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo3_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3_sit == 0, [
+                        {!! Form::radio('Doc_Anexo2_Anexo11_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}

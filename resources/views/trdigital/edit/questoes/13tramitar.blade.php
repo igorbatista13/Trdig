@@ -28,7 +28,6 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="card mb-3">
@@ -36,7 +35,7 @@
                     <div class="col-md-4">
                         <img src="{{ asset('images/brasao_mt.png') }}" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{ $n_processo->Orgaos->Sigla }} - {{ $n_processo->Orgaos->Nome }}</h5>
                             <small>
@@ -48,15 +47,24 @@
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center align-items-center">
+                        <br>
                         <form method="post" action="{{ url('trdigital/tramitado/' . $n_processo->id) }}">
                             @csrf
                             @method('PUT')
                             <!-- Ou 'PATCH', dependendo da configuração do seu sistema -->
+                            <br>
+                            
+                            <button type="button" class="btn btn-danger text-light" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="bi bi-x-circle-fill me-1"></i>
+                                Cancelar
+                            </button>
 
                             <button type="submit" class="btn btn-success text-light">
                                 <i class="bi bi-check-circle me-1"></i>
                                 FINALIZAR E TRAMITAR
                             </button>
+
+                       
                         </form>
                     </div>
                 </div>

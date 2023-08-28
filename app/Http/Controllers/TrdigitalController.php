@@ -1092,8 +1092,8 @@ class TrdigitalController extends Controller
         $projeto->Titulo_Projeto_Conteudo_sit = $Titulo_Projeto_Conteudo;
         $projeto->save();
 
-        $Objeto_Projeto_Conteudo_sit = $request->input('Objeto_Projeto_Conteudo_sit_sit');
-        $projeto->Objeto_Projeto_Conteudo_sit_sit = $Objeto_Projeto_Conteudo_sit;
+        $Objeto_Projeto_Conteudo_sit = $request->input('Objeto_Projeto_Conteudo_sit');
+        $projeto->Objeto_Projeto_Conteudo_sit = $Objeto_Projeto_Conteudo_sit;
         $projeto->save();
 
 

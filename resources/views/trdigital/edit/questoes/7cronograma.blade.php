@@ -37,7 +37,15 @@
 
                                       <div class="card ">
                                           <div class="card-body text-primary">
-
+                                            @if ($meta->Correcao_metas_sit == '')
+                                            @elseif ($meta->Correcao_metas_sit == 1)
+                                                       <span class="badge bg-success position-absolute top-0 end-0">
+                                                                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                            @elseif ($meta->Correcao_metas_sit == 0)
+                            
+                                                                            <span class="badge bg-warning position-absolute top-0 end-0 text-dark">
+                                                                                <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                            @endif
                                               <h6 class="card-title text-center text-primary"> <b> METAS </b></a></h6>
 
                                               <b>Especificação: </b>
@@ -84,6 +92,17 @@
                                       @foreach ($meta->etapas as $etapa)
                                           <div class="card text-dark">
                                               <div class="card-body">
+                                                @if ($etapa->Correcao_etapas_sit == '')
+                                                @elseif ($etapa->Correcao_etapas_sit == 1)
+                                                           <span class="badge bg-success position-absolute top-0 end-0">
+                                                                                        <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                                @elseif ($etapa->Correcao_etapas_sit == 0)
+                                
+                                                                                <span class="badge bg-warning position-absolute top-0 end-0 text-dark">
+                                                                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                                @endif
+                                
+                            
 
                                                   <h6 class="card-title text-center text-success"> <b> <u> ETAPAS </u> </b></h6>
                                                  <h6> <b> Especificação: </b>  {{ $etapa->Especificacao_etapa ?? ' nao informada' }} </b><br>

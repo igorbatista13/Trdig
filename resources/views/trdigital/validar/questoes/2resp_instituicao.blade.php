@@ -203,7 +203,7 @@
                             {!! Form::file('Anexo2_Resp_Instituicao', ['class' => 'form-control']) !!}
                             <label for="floatingZip">Anexar Comprovante de Endereço</label>
                         </div>
-                        {!! Form::radio('Anexo2_Resp_Instituicao', '1', $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao == 1, [
+                        {!! Form::radio('Anexo2_Resp_Instituicao_sit', '1', $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -211,7 +211,7 @@
                             <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Validado</span>
                         </label>
 
-                        {!! Form::radio('Anexo2_Resp_Instituicao', '0', $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao == 0, [
+                        {!! Form::radio('Anexo2_Resp_Instituicao_sit', '0', $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}

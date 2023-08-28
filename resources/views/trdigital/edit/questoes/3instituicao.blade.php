@@ -12,7 +12,15 @@
                       <div class="col-md-12">
                           <div class="form-floating">
                             {!! Form::text('Nome_Instituicao', $n_processo->instituicao->Nome_Instituicao, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingName']) !!}
-                              <label for="floatingName">Nome da Instituição</label>
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Nome_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Nome_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Nome_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
+                            <label for="floatingName">Nome da Instituição</label>
                           </div>
                       <br></div>
                       
@@ -20,6 +28,14 @@
                       <div class="col-md-6">
                           <div class="form-floating">
                             {!! Form::number('CNPJ_Instituicao', $n_processo->instituicao->CNPJ_Instituicao, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingName']) !!}
+                            @if ($n_processo->instituicao && $n_processo->instituicao->CNPJ_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->CNPJ_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->CNPJ_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
                             <label for="floatingName"></label>
                               <label for="floatingEmail">CNPJ</label>
                           </div>
@@ -27,6 +43,14 @@
                       <div class="col-md-6">
                           <div class="form-floating">
                             {!! Form::number('Telefone_Instituicao', $n_processo->instituicao->Telefone_Instituicao, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingName']) !!}
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Telefone_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Telefone_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Telefone_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
                             <label for="floatingName"></label>
                               <label for="floatingEmail">Telefone</label>
                           </div>
@@ -37,8 +61,15 @@
 
                       <div class="col-12">
                           <div class="form-floating">
-                            {!! Form::textarea('Endereco_Instituicao', $n_processo->instituicao->Endereco_Instituicao, ['placeholder'=> 'a', 'class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
-
+                            {!! Form::text('Endereco_Instituicao', $n_processo->instituicao->Endereco_Instituicao, ['placeholder'=> 'a', 'class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Endereco_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Endereco_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Endereco_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
                               <label
                                   for="floatingTextarea">Endereço</label>
                           </div><br>
@@ -48,6 +79,14 @@
                           <div class="col-md-12">
                               <div class="form-floating">
                                 {!! Form::text('Cidade_Instituicao', $n_processo->instituicao->Cidade_Instituicao, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingCity']) !!}                                                                                      
+                                @if ($n_processo->instituicao && $n_processo->instituicao->Cidade_Instituicao_sit == '')
+                                @elseif ($n_processo->instituicao && $n_processo->instituicao->Cidade_Instituicao_sit == 1)
+                                    <span class="badge bg-success">
+                                        <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                @elseif ($n_processo->instituicao && $n_processo->instituicao->Cidade_Instituicao_sit == 0)
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                @endif
                                 <label for="floatingCity">Cidade</label>
                               </div>
                           </div>
@@ -86,7 +125,14 @@
                                 <option value="Tocantins" {{ $n_processo->instituicao->Estado_Instituicao == 'Tocantins' ? 'selected' : '' }}>Tocantins (TO)</option>
             
                             </select>
-                            
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Estado_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Estado_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Estado_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
                               <label
                                   for="floatingSelect">Estado</label>
                           </div>
@@ -94,7 +140,15 @@
                       <div class="col-md-4">
                           <div class="form-floating">
                             {!! Form::text('Cep_Instituicao', $n_processo->instituicao->Cep_Instituicao, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingZip']) !!}                                                                                                                                                                                                                                                         
-                              <label for="floatingZip">CEP</label>
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Cep_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Cep_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Cep_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
+                            <label for="floatingZip">CEP</label>
                           </div>
                           
                       </div>
@@ -103,6 +157,14 @@
                       <div class="col-md-6">
                           <div class="form-floating">
                             {!! Form::file('Anexo1_Instituicao', ['placeholder'=> 'a','class' => 'form-control', 'id' => 'formFile']) !!}
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
                             <label for="floatingZip">Anexar Comprovante de Endereço</label>
                           </div>
                           @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao)
@@ -124,6 +186,14 @@
                       <div class="col-md-6">
                           <div class="form-floating">
                             {!! Form::file('Anexo2_Instituicao', ['placeholder'=> 'a','class' => 'form-control', 'id' => 'formFile']) !!}
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao_sit == '')
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao_sit == 1)
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                            @elseif ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao_sit == 0)
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                            @endif
                             <label for="floatingZip">Anexar Cartão CNPJ </label>
                           </div>
                           @if ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao)

@@ -135,7 +135,7 @@
                                                                 $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -163,7 +163,7 @@
                                                                 $n_processo->instituicao->Anexo2_Instituicao)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -189,7 +189,7 @@
                                                                 $n_processo->Resp_projeto->Cep_Resp_projeto)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -218,7 +218,7 @@
                                                                 $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -256,7 +256,7 @@
                                                                 $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -275,7 +275,7 @@
                                                         @if ($n_processo->Metas)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -292,7 +292,7 @@
                                                         @if ($n_processo->Plano_consolidado && $n_processo->Plano_consolidado->Natureza)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -308,10 +308,10 @@
                                                         aria-controls="list-detalhado">
                                                         <b> <big> 9. </big> </b> Plano de Aplicação Detalhado - <b> (Memória
                                                             de Cálculo) </b>
-                                                            @if ($n_processo->Plano_detalhado && $n_processo->Plano_detalhado->Natureza_id)
+                                                        @if ($n_processo->Plano_detalhado && $n_processo->Plano_detalhado->Natureza_id)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light">                                                                </i>
+                                                                <i class="bi bi-check me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
@@ -327,33 +327,34 @@
                                                         aria-controls="list-desembolso">
                                                         <b> <big> 10. </big> </b>Cronograma de Desembolso
                                                         @if ($n_processo->Cronograma_desembolso && $n_processo->Cronograma_desembolso->metas_id)
-                                                        <span
-                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                            <i class="bi bi-check me-1 text-light">                                                            </i>
-                                                        </span>
-                                                    @else
-                                                        <span
-                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                            <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
-                                                        </span>
-                                                    @endif</a>
+                                                            <span
+                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                            </span>
+                                                        @else
+                                                            <span
+                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                            </span>
+                                                        @endif
+                                                    </a>
 
                                                     <a class="list-group-item list-group-item-action"
                                                         id="list-projeto-relacao" data-bs-toggle="list"
                                                         href="#list-relacao" role="tab" aria-controls="list-relacao">
                                                         <b> <big> 11. </big> </b>Relação de Obras e Equipamentos / Material
                                                         Permanente
-                                                        @if ($n_processo->Obras_equipamento)
-                                                        <span
-                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                            <i class="bi bi-check me-1 text-light">                                                            </i>
-                                                        </span>
-                                                    @else
-                                                        <span
-                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                            <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
-                                                        </span>
-                                                    @endif
+                                                        @if ($n_processo->Obras_equipamento()->exists())
+                                                            <span
+                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                            </span>
+                                                        @else
+                                                            <span
+                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                            </span>
+                                                        @endif
                                                     </a>
 
                                                     <a class="list-group-item list-group-item-action"
@@ -361,24 +362,27 @@
                                                         href="#list-pesquisa" role="tab"
                                                         aria-controls="list-pesquisa">
                                                         <b> <big> 12. </big> </b> Pesquisa Mercadológica
-                                                        @if ($n_processo->Pesquisa_mercadologica && $n_processo->Descricao_bem)
-                                                        <span
-                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                            <i class="bi bi-check me-1 text-light">                                                            </i>
-                                                        </span>
-                                                    @else
-                                                        <span
-                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                            <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
-                                                        </span>
-                                                    @endif
+                                                        @if ($n_processo->Pesquisa_mercadologica && $n_processo->Pesquisa_mercadologica->Descricao_bem)
+                                                            <span
+                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                            </span>
+                                                        @else
+                                                            <span
+                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                            </span>
+                                                        @endif
                                                     </a>
 
                                                     <a class="list-group-item list-group-item-action"
                                                         id="list-projeto-tramitar" data-bs-toggle="list"
                                                         href="#list-tramitar" role="tab"
                                                         aria-controls="list-tramitar">
-                                                        <h5> <b> <big> 13. </big>  Finalizar </b> </h5></a>
+                                                        <h5> <b> <big> 13. </big> Finalizar <i
+                                                                    class="bi bi-arrow-right-circle-fill me-2 text-primary">
+                                                                </i></b></h5>
+                                                    </a>
 
                                                 </div>
                                             </div>

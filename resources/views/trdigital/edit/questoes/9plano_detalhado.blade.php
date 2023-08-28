@@ -26,6 +26,7 @@
                           <table class="table datatable">
                               <thead>
                                   <tr>
+                                      <th>Status</th>
                                       <th>Natureza</th>
                                       <th> Produto ou Serviço</th>
                                       <th>Unid. Medida</th>
@@ -40,6 +41,19 @@
                               <tbody>
                                   @foreach ($planodetalhado as $planodetalhados)
                                       <tr>
+                                        <td>
+                                            @if ($planodetalhados->plano_detalhado_sit == '')
+                                                <span class="badge bg-primary">
+                                                    <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                            @elseif ($planodetalhados->plano_detalhado_sit == 1)
+                                                <span class="badge bg-success">
+                                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                            @elseif ($planodetalhados->plano_detalhado_sit == 0)
+                                                <span
+                                                    class="badge bg-warning text-dark">
+                                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                            @endif
+                                        </td>
                                           <td>{{ $planodetalhados->Plano_consolidado->Natureza }} </td>
                                           <td>{{ $planodetalhados->Produto_Servico_detalhado }} </td>
                                           <td>{{ $planodetalhados->Unidade_medida_detalhado }} </td>

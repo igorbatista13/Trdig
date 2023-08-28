@@ -65,15 +65,13 @@ class N_processo extends Model
       public function Cronograma_desembolso() {
         return $this->hasOne(Cronograma_desembolso::class, 'n_processo_id', 'id');
     }
-      public function Pesquisa_mercadologica() {
-        // return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id');
-        return $this->hasMany(Pesquisa_mercadologica::class, 'n_processo_id');
-
+    public function Obras_equipamento() {
+      // return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id');
+      return $this->hasOne(Obras_equipamento::class, 'n_processo_id', 'id', );     
     }
-      public function Obras_equipamento() {
-        // return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id');
-        return $this->hasMany(Obras_equipamento::class, 'n_processo_id', 'Especificacao', );
-
+    public function Pesquisa_mercadologica() {
+      // return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id');
+      return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id'); 
     }
 
 }
