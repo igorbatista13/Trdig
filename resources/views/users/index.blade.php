@@ -53,7 +53,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                         <table class="table datatable">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th></th>
                             <th>Nome</th>
                             <th>E-mail</th>
                             <th>Perfil de Acesso</th>
@@ -68,8 +68,9 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                         @foreach ($data as $key => $user)
                         <tr>
                
-                           <td>{{ ++$i }}</td>
-
+                            <td> <img src="{{ asset('images/user.png') }}" width="40px" class="img-fluid rounded-start"
+                                alt="...">
+                        </td>
                            <td>{{$user->name?? 'Sem registros'  }}</td>
                            
                            <td>{{$user->email ?? 'Sem registros'}}</td>

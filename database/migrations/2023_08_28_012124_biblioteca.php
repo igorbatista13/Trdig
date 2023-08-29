@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->string('Nome')->nullable();
             $table->string('Descricao')->nullable();
+            $table->string('Tipo')->nullable();
             $table->string('Status')->nullable();
             $table->string('Anexo')->nullable();
             $table->string('Link')->nullable();

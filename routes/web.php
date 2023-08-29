@@ -7,29 +7,18 @@ use App\Models\Trdigital;
 use App\Http\Controllers\{
 
   APIController,
-  RoleController,
-  UserController,
-  CalendarController,
+  
   ObjetosController,
-  SiteController,
 
-  // Formulario Master Chefe
-  Categoria_ingredientesController,
-  CidadeController,
-  EstadoController,
-  EscolaController,
-  DreController,
-  PessoaController,
-  CatingredientesController,
-  InsumoController,
-  ReciboController,
-  PainelGerencialController,
+// Painel Gerencial do Sistema
+  RoleController,   UserController,   CalendarController,   CidadeController,   EstadoController,
+  OrgaosController,   PessoaController,   PainelGerencialController,
 
-  // TR GITIAL
+  // TR DGITIAL
+  TrdigitalController, QuestoesController, MetasController, BibliotecaController
 
-  TrdigitalController,   QuestoesController, MetasController
+
 };
-use App\Models\Biblioteca;
 
 Route::patch('/trdigital/metasstore/{id}',  [TrdigitalController::class, 'metasstore'])->name('trdigital.metasstore');
 Route::delete('/trdigital/metasstore/{id}', [TrdigitalController::class, 'metasstoredestroy'])->name('trdigital.metasstoredestroy');
@@ -82,8 +71,13 @@ Route::get('/trdigital/corrigir/{id}',      [TrdigitalController::class, 'corrig
 Route::get('/trdigital/aguardando_andamento/{id}',      [TrdigitalController::class, 'aguardando_andamento']);
 Route::get('/trdigital/finalizado/{id}',      [TrdigitalController::class, 'finalizado']);
 Route::put('trdigital/tramitado/{id}', [TrdigitalController::class, 'tramitado'])->name('trdigital.tramitado');
+Route::get('trdigital/tramitados', [TrdigitalController::class, 'minha_caixa_entrada'])->name('trdigital.minha_caixa_entrada');
+Route::get('trdigital/aguardando', [TrdigitalController::class, 'tr_aguardando'])->name('trdigital.tr_aguardando');
+Route::get('trdigital/corrigir', [TrdigitalController::class, 'tr_corrigir'])->name('trdigital.tr_corrigir');
+Route::get('trdigital/finalizadas', [TrdigitalController::class, 'tr_finalizada'])->name('trdigital.tr_finalizada');
 // Route::get('/trdigital/trgerada/{id}',      [TrdigitalController::class, 'trgerada']);
 
+Route::get('biblioteca/biblioteca', [BibliotecaController::class, 'biblioteca'])->name('biblioteca.biblioteca');
 
 // Route::get('/trdigital/validar/ava/{id}',     [TrdigitalController::class, 'avaliar_update']);
 
@@ -105,6 +99,7 @@ Route::resource('pessoa',                    PessoaController::class);
 Route::resource('dre',                       DreController::class);
 Route::resource('questoes',                  QuestoesController::class);
 Route::resource('estado',                    EstadoController::class);
+Route::resource('orgaos',                    OrgaosController::class);
 Route::resource('cidade',                    CidadeController::class);
 Route::resource('cat_ingrediente',           Categoria_ingredientesController::class);
 Route::resource('catingrediente',            CatingredientesController::class);

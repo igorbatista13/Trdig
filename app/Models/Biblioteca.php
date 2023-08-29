@@ -9,5 +9,5 @@ class Biblioteca extends Model
 {
     use HasFactory;
     protected $table = 'biblioteca';
-    protected $fillable = ['Nome', 'Descricao','Status','Anexo','Link'
+    protected $fillable = ['Nome', 'Descricao','Status','Anexo','Link', 'Tipo', 
      ];}

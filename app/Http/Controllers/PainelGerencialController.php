@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Cidade;
 use App\Models\Estado;
 use App\Models\N_processo;
-use App\Models\Produto;
 use App\Models\Instituicao;
-use App\Models\Dre;
 use App\Models\User;
+use App\Models\Orgaos;
 use App\Models\Like;
 
 
@@ -31,7 +30,7 @@ class PainelGerencialController extends Controller
         $processoCount_aguardando  =  N_processo::where('user_id', '=', auth()->id())->where('Status', '=', 'AGUARDANDO')->count();
         $processoCount_tramitada  =  N_processo::where('user_id', '=', auth()->id())->where('Status', '=', 'TRAMITADA')->count();
         $processoCount_nao_finalizada  =  N_processo::where('user_id', '=', auth()->id())->where('Status', '=', '')->count();
-
+        
         $nProcessos  =  N_processo::with([
             'Doc_anexo1',
             'Doc_anexo2',
@@ -40,27 +39,38 @@ class PainelGerencialController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('user_id', '=', auth()->id())->orderby('id', 'DESC')->get();
+            ])->where('user_id', '=', auth()->id())->orderby('id', 'DESC')->get();
+        $count_tr_tramitada  =  N_processo::where('Status', '=', 'TRAMITADA')->count();
+        $count_tr_aguardando  =  N_processo::where('Status', '=', 'AGUARDANDO')->count();
+        $count_tr_corrigir  =  N_processo::where('Status', '=', 'CORRIGIR')->count();
+        $count_tr_finalizado  =  N_processo::where('Status', '=', 'FINALIZADO')->count();
+        
+        $count_tr_total  =  N_processo::count();
+        $count_caixa_entrada  =  N_processo::where('Orgao_Concedente', '=', '1')->count();
+        
+        // Count User
+        $count_usuarios  =  User::count();
+        // Count Orgaos
+        $count_orgaos  =  Orgaos::count();
+
+        
         $cidade = Cidade::count();
         $estado = Estado::count();
+
         session()->put('processoCount', $processoCount);
         session()->put('processoCount_corrigir', $processoCount_corrigir);
         session()->put('processoCount_finalizado', $processoCount_finalizado);
         session()->put('processoCount_aguardando', $processoCount_aguardando);
         session()->put('processoCount_tramitada', $processoCount_tramitada);
         session()->put('processoCount_nao_finalizada', $processoCount_nao_finalizada);
-
+ 
 
         return view('painel.painel-dashboard', compact(
-            'cidade',
-            'estado',
-            'processoCount',
-            'nProcessos',
-            'processoCount_corrigir',
-            'processoCount_finalizado',
-            'processoCount_aguardando',
-            'processoCount_tramitada',
-            'processoCount_nao_finalizada',
+            'cidade', 'estado', 'processoCount', 'nProcessos', 'processoCount_corrigir',
+            'processoCount_finalizado', 'processoCount_aguardando', 'processoCount_tramitada',
+            'processoCount_nao_finalizada', 'count_tr_tramitada', 'count_tr_aguardando',
+            'count_tr_corrigir', 'count_caixa_entrada', 'count_tr_total','count_tr_finalizado',
+            'count_usuarios','count_orgaos'
 
         ));
     }
@@ -70,7 +80,6 @@ class PainelGerencialController extends Controller
 
         return view('painel.index');
     }
-
 
 
     public function consulta_aluno()

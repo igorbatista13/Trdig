@@ -26,6 +26,7 @@ use App\Models\Instituicao;
 use App\Models\Resp_projeto;
 use App\Models\Projeto_conteudo;
 use App\Exports\ReciboExport;
+use App\Models\Biblioteca;
 use App\Models\Cronograma_desembolso;
 use App\Models\Doc_anexo1;
 use App\Models\Doc_anexo2;
@@ -67,6 +68,71 @@ class TrdigitalController extends Controller
 
         return view('trdigital.index', compact('nProcessos'));
     }
+
+    public function minha_caixa_entrada()
+    {
+        $nProcessos = N_processo::with([
+            'Doc_anexo1',
+            'Doc_anexo2',
+            'instituicao',
+            'Doc_anexo2',
+            'Projeto_conteudo',
+            'Resp_projeto',
+            'Orgaos'
+        ])->where('Orgao_Concedente','1')->get();
+
+        return view('trdigital.tr', compact('nProcessos'));
+    }
+    public function tr_aguardando()
+    {
+        $nProcessos = N_processo::with([
+            'Doc_anexo1',
+            'Doc_anexo2',
+            'instituicao',
+            'Doc_anexo2',
+            'Projeto_conteudo',
+            'Resp_projeto',
+            'Orgaos'
+   ])->where('Status', '=', 'AGUARDANDO')
+      ->where('Orgao_Concedente', '=', 1)
+      ->get();
+
+        return view('trdigital.tr', compact('nProcessos'));
+    }
+    public function tr_corrigir()
+    {
+        $nProcessos = N_processo::with([
+            'Doc_anexo1',
+            'Doc_anexo2',
+            'instituicao',
+            'Doc_anexo2',
+            'Projeto_conteudo',
+            'Resp_projeto',
+            'Orgaos'
+        ])->where('Status','CORRIGIR')
+        ->where('Orgao_Concedente', '=', 1)
+        ->get();
+
+        return view('trdigital.tr', compact('nProcessos'));
+    }
+
+    public function tr_finalizada()
+    {
+        $nProcessos = N_processo::with([
+            'Doc_anexo1',
+            'Doc_anexo2',
+            'instituicao',
+            'Doc_anexo2',
+            'Projeto_conteudo',
+            'Resp_projeto',
+            'Orgaos'
+        ])->where('Status','FINALIZADO')
+        ->where('Orgao_Concedente', '=', 1)
+        ->get();
+
+        return view('trdigital.tr', compact('nProcessos'));
+    }
+    
 
     public function proponente()
     {
@@ -625,8 +691,10 @@ class TrdigitalController extends Controller
             'Resp_projeto',
             'Orgaos'
         ])->find($id);
+
+    $biblioteca = Biblioteca::get();
         
-        return view('trdigital.trgerada', compact('n_processo'));
+        return view('trdigital.trgerada', compact('n_processo','biblioteca'));
     }
 
     public function edit(N_processo $n_processo, $id)

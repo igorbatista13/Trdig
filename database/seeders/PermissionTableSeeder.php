@@ -36,67 +36,36 @@ class PermissionTableSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',      
+            //Biblioteca - Arquivos e Links
+            'biblioteca-list',
+            'biblioteca-create',
+            'biblioteca-edit',
+            'biblioteca-delete',      
             //Usuários
             'user-list',
             'user-create',
             'user-edit',
-            'user-delete',             
-            //escola
-            'escola-list',
-            'escola-create',
-            'escola-edit',
-            'escola-delete',
-            //aluno
-            'aluno-list',
-            'aluno-create',
-            'aluno-edit',
-            'aluno-delete',
-            // //inscricao
-            // 'inscricao-list',
-            // 'inscricao-create',
-            // 'inscricao-edit',
-            // 'inscricao-delete',
-            //dre
-            'dre-list',
-            'dre-create',
-            'dre-edit',
-            'dre-delete',
+            'user-delete',                     
+     
+  
             //estado
             'estado-list',
             'estado-create',
             'estado-edit',
             'estado-delete',
+            //orgaos
+            'orgaos-list',
+            'orgaos-create',
+            'orgaos-edit',
+            'orgaos-delete',
             //cidade
             'cidade-list',
             'cidade-create',
             'cidade-edit',
             'cidade-delete',
-            //catingrediente
-            'catingrediente-list',
-            'catingrediente-create',
-            'catingrediente-edit',
-            'catingrediente-delete',
-            // //ingrediente
-            // 'ingrediente-list',
-            // 'ingrediente-create',
-            // 'ingrediente-edit',
-            // 'ingrediente-delete',
-            //insumo
-            'insumo-list',
-            'insumo-create',
-            'insumo-edit',
-            'insumo-delete',            
-            //produto
-            'produto-list',
-            'produto-create',
-            'produto-edit',
-            'produto-delete',
-             ///recibos  são as incrições 
-             'recibo-list',
-             'recibo-create',
-             'recibo-edit',
-             'recibo-delete',
-             'recibo-invoice',
+
+         
+  
         
 
 

@@ -249,20 +249,25 @@
             </a>
           </li>
           <li>
-            <a href="{{asset('/trdigital')}}">
+            <a href="{{asset('/trdigital/tramitados')}}">
               <i class="bi bi-circle"></i><span>  Minha Caixa de Entrada  </span>
             </a>
           </li>
      
           <li>
-            <a class="text-success" href="{{asset('/inscricao/classificados')}}">
-              <i class="bi bi-circle"></i><span>    Finalizadas  </span>
+            <a class="text-primary" href="{{asset('/trdigital/aguardando')}}">
+              <i class="bi bi-circle"></i><span>    Aguardando    </span>
+            </a>
+          </li>
+          <li>
+            <a class="text-warning" href="{{asset('/trdigital/corrigir')}}">
+              <i class="bi bi-circle"></i><span>    Corrigir    </span>
             </a>
           </li>
 
           <li>
-            <a class="text-danger" href="{{asset('/trdigital/devolvidas')}}">
-              <i class="bi bi-circle"></i><span>    Corrigir    </span>
+            <a class="text-success" href="{{asset('/trdigital/finalizadas')}}">
+              <i class="bi bi-circle"></i><span>    Finalizadas  </span>
             </a>
           </li>
 
@@ -272,12 +277,12 @@
         <a class="nav-link collapsed" data-bs-target="#components-nav-dre" data-bs-toggle="collapse" href="#">
           <i class="bi bi-file-earmark-text"></i><span>TR DIGITAL <br> <small class="text-warning"> Proponente </small> </span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav-dre" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-        
+        <ul id="components-nav-dre" class="nav-content collapse " data-bs-parent="#sidebar-nav">      
+          
           <li>
             <a href="{{asset('/trdigital/create')}}">
-              <i class="bi bi-circle"></i><span>  Criar Nova TR  </span>
+              <i class="bi bi-circle"></i><span class="text-success">  Criar Nova TR 
+                 </span>
             </a>
           </li>
 
@@ -287,7 +292,7 @@
             </a>
           </li>
     
-          <li>
+          {{-- <li>
             <a class="text-warning" href="{{asset('/trdigital/corrigir')}}">
               <i class="bi bi-circle"></i> Pendendente de Regularização 
             </a>
@@ -297,7 +302,7 @@
               <i class="bi bi-circle"></i><span> <b> Finalizadas </b> </span>
             </a>
           </li>
-        
+         --}}
 
 
 
@@ -346,7 +351,7 @@
     
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{asset('/suporte')}}">
+        <a class="nav-link collapsed" href="{{asset('/biblioteca/biblioteca')}}">
           <i class="bi bi-question-circle"></i>
           <span>Biblioteca / Links </span>
         </a>

@@ -15,11 +15,13 @@ class Orgaos extends Model
         'Email','Horario_funcionamento','Site','Outras_info','cidade_id'
      ];
 
-          public function recibo()
-      {
-          return $this->belongsTo(N_processo::class);
-      }
-
-
+     public function n_processo()
+    {
+        return $this->belongsTo(N_Processo::class, 'n_processo_id');
+    }
+    public function cidade()
+    {
+        return $this->belongsTo(Cidade::class, 'id');
+    }
       
     }

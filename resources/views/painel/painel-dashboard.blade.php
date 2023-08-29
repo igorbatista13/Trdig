@@ -34,7 +34,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
 
                                 <div class="card-body">
-                                    <h5 class="card-title">TR DIGITAL - Total <span></span></h5>
+                                    <h5 class="card-title">Total <span></span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
@@ -42,7 +42,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6> 23 </h6>
+                                            <h6> {{$count_tr_total}}</h6>
                                             <span class="text-success small pt-1 fw-bold">Total Recebidas </span>
 
                                         </div>
@@ -57,7 +57,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
 
                                 <div class="card-body">
-                                    <h5 class="card-title">TR DIGITAL - Para a sua secretaria <span></span></h5>
+                                    <h5 class="card-title">Caixa de Entrada <span></span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
@@ -65,8 +65,8 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6> 23 </h6>
-                                            <span class="text-success small pt-1 fw-bold">Total Recebidas </span>
+                                            <h6> {{$count_caixa_entrada}} </h6>
+                                            <span class="text-success small pt-1 fw-bold">Total Recebidas p/ a sua secretaria </span>
 
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
 
                                 <div class="card-body">
-                                    <h5 class="card-title">TR DIGITAL<span></span></h5>
+                                    <h5 class="card-title">Corrigir<span></span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
@@ -90,7 +90,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>233</h6>
+                                            <h6>{{$count_tr_corrigir}}</h6>
                                             <span class="text-danger small pt-1 fw-bold">A corrigir</span>
 
                                         </div>
@@ -107,7 +107,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
 
                                 <div class="card-body">
-                                    <h5 class="card-title">TR DIGITAL - Finalizadas <span></span></h5>
+                                    <h5 class="card-title">Finalizadas <span></span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
@@ -115,7 +115,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bx bxs-school"></i>
                                         </div>
                                         <div class="ps-3 ">
-                                            <h6 class="text-success"> 234</h6>
+                                            <h6 class="text-success"> {{$count_tr_finalizado}}</h6>
                                             <span class="text-success small pt-1 fw-bold">Finalizadas</span>
 
                                         </div>
@@ -139,7 +139,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-people"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>23</h6>
+                                            <h6>{{$count_usuarios}}</h6>
                                             <span class="text-dark small pt-1 fw-bold">Qtd. Cadastrados</span>
 
                                         </div>
@@ -170,8 +170,8 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                          
 
                                       <div class="ps-3">
-                                        <h6>23</h6>
-                                        <span class="text-success small pt-1 fw-bold">Contabilizados</span>
+                                        <h6>{{$count_orgaos}}</h6>
+                                        <span class="text-success small pt-1 fw-bold">Cadastradas</span>
 
                                     </div>
                                   </div>

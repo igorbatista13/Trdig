@@ -25,7 +25,16 @@
                                          'route' => ['trdigital.pesquisa_mercadologica_destroy', $pesquisa->id],
                                          'method' => 'delete',
                                      ]) !!}
-
+                                     @if ($pesquisa->Correcao_metas_sit == '')
+                                         <span class="badge bg-primary position-absolute top-0 end-0">
+                                             <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                     @elseif ($pesquisa->Correcao_metas_sit == 1)
+                                         <span class="badge bg-success position-absolute top-0 end-0">
+                                             <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                     @elseif ($pesquisa->Correcao_metas_sit == 0)
+                                         <span class="badge bg-warning text-dark position-absolute top-0 end-0">
+                                             <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                     @endif
                                      {{-- <button type="submit" class="btn btn-danger position-absolute top-0 end-0"> <i
                                              class="bi bi-trash me-1">
                                          </i></span></button> --}}
@@ -43,10 +52,20 @@
                                          $numRegistros = count($pesquisa->pesquisa_mercadologica_pivots); // Obtém o número total de registros
                                      @endphp
                                      @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
-
-                                         <h5 class="card-subtitle mb-2 text-dark"><i class="bi bi-building">
-                                             </i> <i> <b class="text-primary"> <small>Empresa: </small>
-                                                     {{ $pivot->Empresa ?? '' }} </i> </b></h5>
+                                         <h5 class="card-subtitle mb-2 text-dark"><i class="bi bi-building"> </i> 
+                                            <i><b class="text-primary"><small>Empresa: </small>
+                                                     {{ $pivot->Empresa ?? '' }} </i> </b>
+                                                     @if ($pivot->Correcao_pesquisa_sit == '')
+                                                     <span class="badge bg-primary ">
+                                                         <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                                 @elseif ($pivot->Correcao_pesquisa_sit == 1)
+                                                     <span class="badge bg-success ">
+                                                         <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                                 @elseif ($pivot->Correcao_pesquisa_sit == 0)
+                                                     <span class="badge bg-warning text-dark ">
+                                                         <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                                 @endif</h5>
+                                      
 
                                          <h6 class="card-subtitle mb-2 text-primary"><small>Valor Unid.: </small> <b
                                                  class="text-danger">R$ {{ $pivot->Valor ?? '' }}</small></b></h6>

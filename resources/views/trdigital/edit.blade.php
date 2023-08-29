@@ -106,12 +106,12 @@
                                                         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio && $n_processo->Doc_anexo1->Comp_Assinado)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -135,12 +135,12 @@
                                                                 $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -163,12 +163,12 @@
                                                                 $n_processo->instituicao->Anexo2_Instituicao)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -189,12 +189,12 @@
                                                                 $n_processo->Resp_projeto->Cep_Resp_projeto)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -218,12 +218,12 @@
                                                                 $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -256,12 +256,12 @@
                                                                 $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -275,12 +275,12 @@
                                                         @if ($n_processo->Metas)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -292,12 +292,12 @@
                                                         @if ($n_processo->Plano_consolidado && $n_processo->Plano_consolidado->Natureza)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -311,12 +311,12 @@
                                                         @if ($n_processo->Plano_detalhado && $n_processo->Plano_detalhado->Natureza_id)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -329,12 +329,12 @@
                                                         @if ($n_processo->Cronograma_desembolso && $n_processo->Cronograma_desembolso->metas_id)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -347,12 +347,12 @@
                                                         @if ($n_processo->Obras_equipamento()->exists())
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
@@ -365,12 +365,12 @@
                                                         @if ($n_processo->Pesquisa_mercadologica && $n_processo->Pesquisa_mercadologica->Descricao_bem)
                                                             <span
                                                                 class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-check me-1 text-light"> </i>
+                                                                <i class="bi bi-pencil me-1 text-light"> </i>
                                                             </span>
                                                         @else
                                                             <span
                                                                 class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-exclamation-triangle me-1 text-dark"></i>
+                                                                <i class="bi bi-pencil me-1 text-dark"></i>
                                                             </span>
                                                         @endif
                                                     </a>
