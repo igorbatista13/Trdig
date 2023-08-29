@@ -1,13 +1,13 @@
 @extends('base.novabase')
 @section('content')
-<?php 
-$processoCount = session()->get('processoCount'); 
-$processoCount_corrigir = session()->get('processoCount_corrigir'); 
-$processoCount_finalizado = session()->get('processoCount_finalizado'); 
-$processoCount_aguardando = session()->get('processoCount_aguardando'); 
-$processoCount_tramitada = session()->get('processoCount_tramitada'); 
-$processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada'); 
-?>
+    <?php
+    $processoCount = session()->get('processoCount');
+    $processoCount_corrigir = session()->get('processoCount_corrigir');
+    $processoCount_finalizado = session()->get('processoCount_finalizado');
+    $processoCount_aguardando = session()->get('processoCount_aguardando');
+    $processoCount_tramitada = session()->get('processoCount_tramitada');
+    $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
+    ?>
     <main id="main" class="main">
 
         <div class="pagetitle">
@@ -27,30 +27,30 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                 <div class="col-lg-12">
                     <div class="row">
 
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
                         <!-- Sales Card -->
                         <div class="col-xxl-3 col-md-3">
                             <div class="card info-card sales-card">
 
+                                    <div class="card-body">
+                                        <h5 class="card-title">Total <span></span></h5>
 
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-file-text"></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h6> {{ $count_tr_total }}</h6>
+                                                <span class="text-success small pt-1 fw-bold">Total Recebidas </span>
 
-                                <div class="card-body">
-                                    <h5 class="card-title">Total <span></span></h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-file-text"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6> {{$count_tr_total}}</h6>
-                                            <span class="text-success small pt-1 fw-bold">Total Recebidas </span>
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div><!-- End Sales Card -->
+                           
 
-                            </div>
-                        </div><!-- End Sales Card -->
                         <div class="col-xxl-3 col-md-3">
                             <div class="card info-card revenue-card">
 
@@ -65,8 +65,9 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6> {{$count_caixa_entrada}} </h6>
-                                            <span class="text-success small pt-1 fw-bold">Recebidas p/ a sua secretaria </span>
+                                            <h6> {{ $count_caixa_entrada }} </h6>
+                                            <span class="text-success small pt-1 fw-bold">Recebidas p/ a sua secretaria
+                                            </span>
 
                                         </div>
                                     </div>
@@ -90,7 +91,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{$count_tr_corrigir}}</h6>
+                                            <h6>{{ $count_tr_corrigir }}</h6>
                                             <span class="text-danger small pt-1 fw-bold">A corrigir</span>
 
                                         </div>
@@ -115,7 +116,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3 ">
-                                            <h6 class="text-success"> {{$count_tr_finalizado}}</h6>
+                                            <h6 class="text-success"> {{ $count_tr_finalizado }}</h6>
                                             <span class="text-success small pt-1 fw-bold">Finalizadas</span>
 
                                         </div>
@@ -139,7 +140,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <i class="bi bi-people"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{$count_usuarios}}</h6>
+                                            <h6>{{ $count_usuarios }}</h6>
                                             <span class="text-dark small pt-1 fw-bold">Qtd. Cadastrados</span>
 
                                         </div>
@@ -150,126 +151,169 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
                         </div><!-- End Customers Card -->
 
-                        
+
 
                         <div class="col-xxl-4 col-xl-4">
-                          <div class="card info-card revenue-card">
-                              <div class="card-body">
-                                  <h5 class="card-title">ÓRGÃOS / SECRETARIAS <span></span></h5>
-                                  <div class="d-flex align-items-center">
-                                      <div
-                                          class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                          <i class="bx bxs-school"></i>
-                                      </div>                        
-                                      <div class="ps-3">
-                                        <h6>{{$count_orgaos}}</h6>
-                                        <span class="text-success small pt-1 fw-bold">Cadastradas</span>
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">ÓRGÃOS / SECRETARIAS <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bx bxs-school"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{ $count_orgaos }}</h6>
+                                            <span class="text-success small pt-1 fw-bold">Cadastradas</span>
+                                        </div>
                                     </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Customers Card -->
-                       
-                      <div class="col-xxl-4 col-xl-4">
-                          <div class="card info-card revenue-card">
-                              <div class="card-body">
-                                  <h5 class="card-title">BIBLIOTECA <span></span></h5>
-                                  <div class="d-flex align-items-center">
-                                      <div
-                                          class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                          <i class="bx bxs-book"></i>
-                                      </div>                        
-                                      <div class="ps-3">
-                                        <h6>{{$count_biblioteca}}</h6>
-                                        <span class="text-success small pt-1 fw-bold">Cadastradas</span>
-                                    </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Customers Card -->
-
-                      <div class="col-xxl-4 col-xl-4">
-                          <div class="card info-card revenue-card">
-                              <div class="card-body">
-                                  <h5 class="card-title">CIDADES<span></span></h5>
-                                  <div class="d-flex align-items-center">
-                                      <div
-                                          class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                          <i class="bi bi-pin-map "></i>
-                                      </div>                        
-                                      <div class="ps-3">
-                                        <h6>{{$cidade}}</h6>
-                                        <span class="text-success small pt-1 fw-bold">Cadastradas</span>
-                                    </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div><!-- End Customers Card -->
-
-                      @if (Auth::check() && Auth::user()->hasRole('Admin'))
-
-                        <div class="col-xxl-4 col-xl-4">
-
-                        
-                            
+                                </div>
+                            </div>
                         </div><!-- End Customers Card -->
+
+                        <div class="col-xxl-4 col-xl-4">
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">BIBLIOTECA <span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bx bxs-book"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{ $count_biblioteca }}</h6>
+                                            <span class="text-success small pt-1 fw-bold">Cadastradas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End Customers Card -->
+
+                        <div class="col-xxl-4 col-xl-4">
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">CIDADES<span></span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-pin-map "></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{ $cidade }}</h6>
+                                            <span class="text-success small pt-1 fw-bold">Cadastradas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End Customers Card -->
+                        @endif
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                            <div class="col-xxl-4 col-xl-4">
+
+
+
+                            </div><!-- End Customers Card -->
                         @endif
 
                         <!-- Reports -->
                         <!-- End Reports -->
 
                         <!-- Recent Sales -->
-                        @if (Auth::check() && Auth::user()->hasRole('seduc'))
-
-                        <div class="col-12">
-                            <div class="card recent-sales overflow-auto">
-
-
-                                <div class="card-body ">
-                                    <h5 class="card-title">Lista de Votos<span></span></h5>
-
-                                    <table class="table table-borderless datatable">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Nome</th>
-                                                <th scope="col">DRE</th>
-                                                <th scope="col">Escola</th>
-                                                <th scope="col">Votos</th>
-                                            </tr>
-                                        </thead>
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                            <div class="col-12">
+                                <div class="card recent-sales overflow-auto">
 
 
-                                        <tbody>
-                                            @foreach ($recibos as $recibo)
+                                    <div class="card-body ">
+                                        <h5 class="card-title">Últimas 5 TR Recebidas<span></span></h5>
+
+                                        <table class="table table-borderless datatable">
+                                            <thead>
                                                 <tr>
-
-                                                    <th scope="row"><a href="{{asset('/inscricao/'.$recibo->id)}}">{{ $recibo->id }}</a></th>
-                                                    <td>{{ $recibo->Nome }}</td>
-                                                    <td><a href="{{asset('/inscricao/'.$recibo->id)}}" class="text-primary">{{ $recibo->dre->Nome }}</a>
-                                                    </td>
-                                                    <td><a href="{{asset('/inscricao/'.$recibo->id)}}"
-                                                            class="text-primary">{{ $recibo->escola->EscolaNome }}</a></td>
-
-                                                    <td> <button type="button" class="btn btn-success mb-2">
-                                                            {{ $recibo->likes->count() }}
-                                                        </button> </td>
-
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Nome</th>
+                                                    <th scope="col">DRE</th>
+                                                    <th scope="col">Escola</th>
+                                                    <th scope="col">Votos</th>
                                                 </tr>
-                                            @endforeach
+                                            </thead>
 
-                                        </tbody>
-                                    </table>
+
+                                            <tbody>
+                                                    <tr>
+
+                                                        <th scope="row"><a>
+                                                              </a>
+                                                        </th>
+                                                        <td>aaaa</td>
+                                                        <td><a href=""
+                                                                class="text-primary">bbbb</a>
+                                                        </td>
+                                                        <td><a href=""
+                                                                class="text-primary">cccc</a>
+                                                        </td>
+
+                                                        <td> <button type="button" class="btn btn-success mb-2">
+                                                              
+                                                            </button> </td>
+
+                                                    </tr>
+                                                
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
 
                                 </div>
-
-                            </div>
-                        </div><!-- End Recent Sales -->
+                            </div><!-- End Recent Sales -->
                         @endif
 
 
                     </div>
-                </div><!-- End Left side columns -->
+                </div>
+                <div class="col-xxl-3 col-md-3">
+                    <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Total <span></span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-file-text"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6> {{ $processoCount }}</h6>
+                                        <span class="text-success small pt-1 fw-bold">Minhas TR </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-xxl-3 col-md-3">
+                    <div class="card info-card customers-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Corrigir <span></span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-file-text"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6> {{ $processoCount_corrigir }}</h6>
+                                        <span class="text-danger small pt-1 fw-bold">TR - A corrigir</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- End Sales Card --><!-- End Left side columns -->
 
                 <!-- Right side columns -->
 
