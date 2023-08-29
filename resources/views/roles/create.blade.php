@@ -8,6 +8,8 @@ $processoCount_aguardando = session()->get('processoCount_aguardando');
 $processoCount_tramitada = session()->get('processoCount_tramitada'); 
 $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada'); 
 ?>
+<main id="main" class="main">
+
 <div class="main-content container-fluid">
     <div class="page-title">
         <div class="row">
