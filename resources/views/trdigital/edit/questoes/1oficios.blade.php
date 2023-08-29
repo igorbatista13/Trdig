@@ -87,6 +87,7 @@
     <span class="badge bg-warning text-dark">
         <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
 @endif
+
                 </div>
             </div>
 

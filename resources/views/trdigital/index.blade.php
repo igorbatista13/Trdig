@@ -71,6 +71,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <th>Concedente</th>
                                             <th>Validar</th>
                                             <th>Status</th>
+                                            <th>Imprimir</th>
 
                                         </tr>
                                     </thead>
@@ -213,8 +214,14 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                             </ul>
                                                           </td>
 
+                                                 
+
                                                     </div>
                                                 @endswitch
+                                                <td> <a button type="button" class="btn btn-outline-success"
+                                                    href="{{ asset('trdigital/imprimir/' . $n_processo->id) }}">
+                                                    <i class="bi bi-ui-checks me-1"> Imprimir</i>
+                                                </a> </td>
                                             </tr>
                                         @endforeach
 

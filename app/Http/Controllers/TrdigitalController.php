@@ -1228,6 +1228,43 @@ class TrdigitalController extends Controller
         // return redirect()->view('trdigital/proponente');
     }
 
+    
+    public function imprimir($id)
+    {
+        $n_processo = N_processo::with([
+            'Doc_anexo1',
+            'Doc_anexo2',
+            'instituicao',
+            'Resp_instituicao',
+            'Projeto_conteudo',
+            'Resp_projeto',
+            'Orgaos',
+            'Metas',
+            'Plano_consolidado',
+            'Plano_detalhado',
+            'Cronograma_desembolso',
+            'Obras_equipamento',
+            'Pesquisa_mercadologica',
+        ])->find($id);
+
+        $biblioteca = Biblioteca::get();
+        $metas = Metas::where('n_processo_id', $id)->get();
+        $etapas = Metas::with('etapas')->get();
+        $planoconsolidado = Plano_consolidado::with(['Metas'])->where('n_processo_id', $id,)->get();
+        $planodetalhado = Plano_detalhado::with('Plano_consolidado')->where('n_processo_id', $id,)->get();
+        $cronograma_desembolso = Cronograma_desembolso::where('n_processo_id', $id,)->get();
+        $obras_equipamento = Obras_equipamento::where('n_processo_id', $id,)->get();
+
+       // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
+        $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
+
+        
+        return view('trdigital.imprimir', 
+        compact('n_processo','biblioteca','metas','etapas','planoconsolidado',
+        'planodetalhado','cronograma_desembolso','obras_equipamento','pesquisa_mercadologica'
+    
+    ));
+    }
 
 
     public function destroy($id)

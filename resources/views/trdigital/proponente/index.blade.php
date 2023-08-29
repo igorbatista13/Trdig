@@ -222,6 +222,13 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                                                                 <i
                                                                                                     class="bi bi-pen me-1"></i>
                                                                                                 EDITAR </a> </center>
+                                                                                                <br>
+                                                                                        <center> <a
+                                                                                                class="btn bg-warning text-white"
+                                                                                                href="{{ route('trdigital.imprimir', $n_processo->id) }}"target="_blank">
+                                                                                                <i
+                                                                                                    class="bi bi-print me-1"></i>
+                                                                                                IMPRIMIR </a> </center>
                                                                                     @endif
 
 

@@ -78,6 +78,7 @@ Route::get('trdigital/finalizadas', [TrdigitalController::class, 'tr_finalizada'
 // Route::get('/trdigital/trgerada/{id}',      [TrdigitalController::class, 'trgerada']);
 
 Route::get('biblioteca/biblioteca', [BibliotecaController::class, 'biblioteca'])->name('biblioteca.biblioteca');
+Route::get('trdigital/imprimir/{id}', [TrdigitalController::class, 'imprimir'])->name('trdigital.imprimir');
 
 // Route::get('/trdigital/validar/ava/{id}',     [TrdigitalController::class, 'avaliar_update']);
 
