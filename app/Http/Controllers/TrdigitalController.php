@@ -635,36 +635,34 @@ class TrdigitalController extends Controller
     
 
     public function pesquisa_mercadologica_update(Request $request, $id)
-{
-    $pesquisa_mercadologica = Pesquisa_mercadologica::create([
-        'n_processo_id' => $id,
-        'Descricao_bem' => $request->Descricao_bem,
-        'Qtd' => $request->Qtd,
-    ]);
+    {
+        $pesquisa_mercadologica = Pesquisa_mercadologica::findOrFail($id);
+    
+        $pesquisa_mercadologica->update([
+            'Descricao_bem' => $request->Descricao_bem,
+            'Qtd' => $request->Qtd,
+        ]);
+    
+        foreach ($pesquisa_mercadologica->pesquisa_mercadologica_pivots as $key => $pivot) {
+            $pivotData = [
+                'Empresa' => $request->Empresa[$key],
+                'Valor' => $request->Valor[$key],
+            ];
+    
+            if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
+                $file = $request->file('Anexo')[$key];
+                $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
+                $pivotData['Anexo'] = $filePath;
+            }
 
-    foreach ($request->Empresa as $key => $empresa) {
-        $pivotData = [
-            'Empresa' => $empresa,
-            'Valor' => $request->Valor[$key],
-        ];
-
-        if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
-            $file = $request->file('Anexo')[$key];
-            $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
-            $pivotData['Anexo'] = $filePath;
-        } else {
-            $pivotData['Anexo'] = null; // Valor padrão se não houver anexo
+            dd($request);
+            $pivot->update($pivotData);
         }
-
-        $pivot = $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->create($pivotData);
-
-        // Pode ser útil se você desejar adicionar algo mais para o pivot, como associar com outros modelos
-        // Exemplo: $pivot->outraRelacao()->associate($outraRelacao);
-        // $pivot->save();
+    
+        return redirect()->back();
     }
+    
 
-    return redirect()->back();
-}
 
     public function pesquisa_mercadologica_destroy($pivotId)
     {

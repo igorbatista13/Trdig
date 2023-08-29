@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Roles;
+use Spatie\Permission\Models\Role;
+
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -44,9 +47,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        // ])->givePermissionTo('usuario');
 
-        event(new Registered($user));
+        $basicRole = Role::where('name', 'Proponente')->first(); // Substitua 'basic' pelo nome do papel básico real
+        if ($basicRole) {
+            $user->assignRole($basicRole);
+        }
+
+      //  event(new Registered($user));
 
         Auth::login($user);
 

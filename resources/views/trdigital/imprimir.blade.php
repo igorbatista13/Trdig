@@ -87,13 +87,7 @@
                             @include('trdigital.imprimir.11relacao')
                             @include('trdigital.imprimir.12pesquisa_mercadologica')
                             @include('trdigital.imprimir.assinaturas')
-
-                            
-                         
-                    
-
-
-
+                        
                 </div>
 
             </section>
@@ -103,11 +97,5 @@
     </main>
 
     <script src="{{ asset('/js/pages/form-editor.js') }}"></script>
-    <script>
-        // Função para abrir a janela de impressão ao carregar a página
-        window.onload = function() {
-            window.print();
-        };
-    </script>
-
+    
     @endsection
