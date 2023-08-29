@@ -65,10 +65,15 @@
                         </tr>
                     </thead>
                     @foreach ($biblioteca as $bibliotecas)
-                        <td>  @if ($bibliotecas->Tipo == 'PDF')
+                        <td>
+                              @if ($bibliotecas->Tipo == 'PDF')
                             <img src="{{ asset('images/pdf.png') }}"  width="40px" class="img-fluid rounded-start">
                             @elseif ($bibliotecas->Tipo == 'Excel')
                             <img src="{{ asset('images/excel.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Imagem')
+                            <img src="{{ asset('images/imagem_logo.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Video')
+                            <img src="{{ asset('images/video_logo.png') }}"  width="40px" class="img-fluid rounded-start">
                             @elseif ($bibliotecas->Tipo == 'Word')
                             <img src="{{ asset('images/word.png') }}"  width="40px" class="img-fluid rounded-start">
                             @elseif ($bibliotecas->Tipo == 'Outros')
@@ -81,7 +86,7 @@
                         <td><b>{{ $bibliotecas->Nome ?? 'Não Informado' }} </td>
                         <td> {{ $bibliotecas->Descricao ?? 'Não Informado' }} </td>
                         <td> {{ $bibliotecas->Status ?? 'Não Informado' }}</td>
-                        <td> <a href="{{ $bibliotecas->Link }}" target="_blank">{{ $bibliotecas->Link }}</a>
+                        <td> <a href="{{ $bibliotecas->Link }}" target="_blank">{{ $bibliotecas->Link }}</a></a>
                         </td>
                         <td>
                             @if ($bibliotecas->Anexo)

@@ -26,7 +26,7 @@
 
                             
                         {{-- <img src="{{images/favicon.svg')}}" height="48" class='mb-4'> --}}
-                        <h2> <center> <b> TR - ONLINE </b> </center> </h2>
+                        <h2> <center> <b> TR - DIGITAL </b> </center> </h2>
                         <p>Por favor, faça o login para acessar o sistema.</p> </center>
                     </div>
 

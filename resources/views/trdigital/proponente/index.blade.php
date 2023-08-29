@@ -73,7 +73,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                         <div class="card mb-4">
                                                             <div class="row g-0">
                                                                 <div class="col-md-4 position-relative">
-                                                                    <img src="https://www.soup.io/wp-content/uploads/2022/02/How-These-Products-Can-Help-Business-Professionals.png"
+                                                                    <img src="{{asset('images/samples/trproponente.jpg')}}"
                                                                         class="img-fluid rounded card-img-top"
                                                                         alt="...">
                                                                     @if ($n_processo->Status == 'CORRIGIR')

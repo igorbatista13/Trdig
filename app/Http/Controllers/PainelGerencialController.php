@@ -8,6 +8,7 @@ use App\Models\N_processo;
 use App\Models\Instituicao;
 use App\Models\User;
 use App\Models\Orgaos;
+use App\Models\Biblioteca;
 use App\Models\Like;
 
 
@@ -52,6 +53,8 @@ class PainelGerencialController extends Controller
         $count_usuarios  =  User::count();
         // Count Orgaos
         $count_orgaos  =  Orgaos::count();
+        // Count Biblioteca
+        $count_biblioteca  =  Biblioteca::count();
 
         
         $cidade = Cidade::count();
@@ -70,7 +73,7 @@ class PainelGerencialController extends Controller
             'processoCount_finalizado', 'processoCount_aguardando', 'processoCount_tramitada',
             'processoCount_nao_finalizada', 'count_tr_tramitada', 'count_tr_aguardando',
             'count_tr_corrigir', 'count_caixa_entrada', 'count_tr_total','count_tr_finalizado',
-            'count_usuarios','count_orgaos'
+            'count_usuarios','count_orgaos','count_biblioteca'
 
         ));
     }

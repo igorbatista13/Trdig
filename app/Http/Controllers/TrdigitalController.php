@@ -716,6 +716,8 @@ class TrdigitalController extends Controller
             'Pesquisa_mercadologica',
         ])->find($id);
 
+        $biblioteca = Biblioteca::all();
+
         $n_processo = N_processo::findOrFail($id);
         $metas = Metas::where('n_processo_id', $id)->get();
         $etapas = Metas::with('etapas')->get();
@@ -747,6 +749,7 @@ class TrdigitalController extends Controller
             'cronograma_desembolso',
             'obras_equipamento',
             'pesquisa_mercadologica',
+            'biblioteca'
             
         ));
     }

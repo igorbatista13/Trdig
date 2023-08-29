@@ -48,7 +48,7 @@
                                         </div>
 
                                         <div class="col-md-4 col-6">
-                                            <b> <label for="first-name-column">Nome do Arquivo ou Link</label> </b>
+                                            <b> <label for="first-name-column">Tipo de Arquivo</label> </b>
                                             {!! Form::select(
                                                 'Tipo',
                                                 [
@@ -57,6 +57,8 @@
                                                     'Word' => 'Word',
                                                     'Excel' => 'Excel',
                                                     'PDF' => 'PDF',
+                                                    'Imagem' => 'Imagem',
+                                                    'Video' => 'Video',
                                                     'Outros' => 'Outros',
                                                 ],
                                                 null,

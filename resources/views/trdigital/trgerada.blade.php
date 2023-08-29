@@ -133,16 +133,34 @@
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
+                                        
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            {{ $bibliotecas->Nome }}
+                                            @if ($bibliotecas->Tipo == 'PDF')
+                                            <img src="{{ asset('images/pdf.png') }}"  width="40px" class="img-fluid rounded-start">
+                                            @elseif ($bibliotecas->Tipo == 'Excel')
+                                            <img src="{{ asset('images/excel.png') }}"  width="40px" class="img-fluid rounded-start">
+                                            @elseif ($bibliotecas->Tipo == 'Word')
+                                            <img src="{{ asset('images/word.png') }}"  width="40px" class="img-fluid rounded-start">
+                                            @elseif ($bibliotecas->Tipo == 'Outros')
+                                            <img src="{{ asset('images/biblioteca-ico.png') }}"  width="40px" class="img-fluid rounded-start">
+                                            @elseif ($bibliotecas->Tipo == 'Link')
+                                            <img src="{{ asset('images/link.png') }}"  width="40px" class="img-fluid rounded-start">
+                                                 @else
+                                             @endif
+                                                   {{ $bibliotecas->Nome }}
                                         </button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                         Sobre:   <strong> {{ $bibliotecas->Descricao }} </strong><br>
-                                         Link: <strong> {{ $bibliotecas->Link }} </strong> <br>
+                                            @if ($bibliotecas->Descricao)                                         Sobre:   <strong> {{ $bibliotecas->Descricao }} </strong><br>
+                                         @else
+                                         @endif
+                                         @if ($bibliotecas->Link)
+                                         Link: <strong> <a href="{{ $bibliotecas->Link }}" target="_blank">{{ $bibliotecas->Link }}</a> </strong> <br>
+                                         @else
+                                         @endif
                                          @if ($bibliotecas->Anexo)
                                         Anexo: <a class="btn btn-primary" href="{{ asset('storage/' . $bibliotecas->Anexo) }}"
                                              target="_blank"> <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo </a>

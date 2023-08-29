@@ -41,7 +41,7 @@
 
                                                 <div class="row">
 
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-12">
                                                         {!! Form::model($n_processo, [
                                                             'method' => 'PATCH',
                                                             'route' => ['trdigital.update', $n_processo->id],
@@ -54,7 +54,7 @@
                                                         @endif
 
                                                         <div class="row">
-                                                            <div class="col-10">
+                                                            <div class="col-lg-4">
                                                                 <div class="list-group" id="list-tab" role="tablist">
                                                                     <a class="list-group-item list-group-item-action active"
                                                                         id="list-home-list" data-bs-toggle="list"
@@ -65,10 +65,15 @@
 
                                                                 </div>
                                                             </div>
+
+
+
                                                         </div>
+
+                                                        
                                                         <!-- Seu código HTML do select -->
                                                         <div class="row">
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-4">
                                                                 <select name="Orgao_Concedente" id="Orgao_Concedente"
                                                                     class="form-control custom-select" required>
                                                                     Selecione o Orgão Concedente
@@ -79,6 +84,94 @@
                                                                         {{ $n_processo->Orgaos->Nome }}
                                                                     </option>
                                                                 </select>
+
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                               
+
+                                                            </div>
+                                                            <div class="col-lg-2">
+
+                                                                
+                
+                <!-- Basic Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">                    
+                    Ajuda <i class="bx bx-help-circle"></i>
+              </button>
+              <div class="modal fade" id="basicModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-primary">Ajuda, Links, Documentos</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xl-12">
+
+                            @foreach ($biblioteca as $bibliotecas)
+                            <!-- Default Accordion -->
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            @if ($bibliotecas->Tipo == 'PDF')
+                            <img src="{{ asset('images/pdf.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Excel')
+                            <img src="{{ asset('images/excel.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Imagem')
+                            <img src="{{ asset('images/imagem_logo.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Video')
+                            <img src="{{ asset('images/video_logo.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Word')
+                            <img src="{{ asset('images/word.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Outros')
+                            <img src="{{ asset('images/biblioteca-ico.png') }}"  width="40px" class="img-fluid rounded-start">
+                            @elseif ($bibliotecas->Tipo == 'Link')
+                            <img src="{{ asset('images/link.png') }}"  width="40px" class="img-fluid rounded-start">
+                                 @else
+                             @endif
+                                                   {{ $bibliotecas->Nome }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            @if ($bibliotecas->Descricao)
+                                            Sobre:   <strong> {{ $bibliotecas->Descricao }} </strong><br>
+                                         @else
+                                         @endif
+                                         @if ($bibliotecas->Link)
+                                         Link: <strong> <a href="{{ $bibliotecas->Link }}" target="_blank">{{ $bibliotecas->Link }}</a> </strong> <br>
+                                         @else
+                                         @endif
+                                         @if ($bibliotecas->Anexo)
+                                        <a class="btn btn-primary" href="{{ asset('storage/' . $bibliotecas->Anexo) }}"
+                                             target="_blank"> <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo </a>
+                                             @else
+                                         @endif
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div><!-- End Default Accordion Example -->
+                        @endforeach
+                  
+                          </div>                    </div>
+                    <div class="modal-footer">
+           
+                      <button type="button" class="btn btn-primary"   data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Basic Modal-->
+
+          </div>
+
 
                                                             </div>
                                                         </div>

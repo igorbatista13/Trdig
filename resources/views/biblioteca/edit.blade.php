@@ -57,6 +57,8 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                     'Word' => 'Word',
                                                     'Excel' => 'Excel',
                                                     'PDF' => 'PDF',
+                                                    'Imagem' => 'Imagem',
+                                                    'Video' => 'Video',
                                                     'Outros' => 'Outros',
                                                 ],
                                                 null,

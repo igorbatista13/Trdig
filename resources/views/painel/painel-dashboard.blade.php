@@ -66,7 +66,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                         </div>
                                         <div class="ps-3">
                                             <h6> {{$count_caixa_entrada}} </h6>
-                                            <span class="text-success small pt-1 fw-bold">Total Recebidas p/ a sua secretaria </span>
+                                            <span class="text-success small pt-1 fw-bold">Recebidas p/ a sua secretaria </span>
 
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bx bxs-school"></i>
+                                            <i class="bi bi-file-text"></i>
                                         </div>
                                         <div class="ps-3 ">
                                             <h6 class="text-success"> {{$count_tr_finalizado}}</h6>
@@ -153,63 +153,64 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                         
 
                         <div class="col-xxl-4 col-xl-4">
-
                           <div class="card info-card revenue-card">
-
-
                               <div class="card-body">
-                                  <h5 class="card-title"> SECRETARIAS <span></span></h5>
-
+                                  <h5 class="card-title">ÓRGÃOS / SECRETARIAS <span></span></h5>
                                   <div class="d-flex align-items-center">
                                       <div
                                           class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                           <i class="bx bxs-school"></i>
-
-                                      </div>
-
-                         
-
+                                      </div>                        
                                       <div class="ps-3">
                                         <h6>{{$count_orgaos}}</h6>
                                         <span class="text-success small pt-1 fw-bold">Cadastradas</span>
-
                                     </div>
                                   </div>
-
                               </div>
                           </div>
+                      </div><!-- End Customers Card -->
+                       
+                      <div class="col-xxl-4 col-xl-4">
+                          <div class="card info-card revenue-card">
+                              <div class="card-body">
+                                  <h5 class="card-title">BIBLIOTECA <span></span></h5>
+                                  <div class="d-flex align-items-center">
+                                      <div
+                                          class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="bx bxs-book"></i>
+                                      </div>                        
+                                      <div class="ps-3">
+                                        <h6>{{$count_biblioteca}}</h6>
+                                        <span class="text-success small pt-1 fw-bold">Cadastradas</span>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div><!-- End Customers Card -->
 
+                      <div class="col-xxl-4 col-xl-4">
+                          <div class="card info-card revenue-card">
+                              <div class="card-body">
+                                  <h5 class="card-title">CIDADES<span></span></h5>
+                                  <div class="d-flex align-items-center">
+                                      <div
+                                          class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="bi bi-pin-map "></i>
+                                      </div>                        
+                                      <div class="ps-3">
+                                        <h6>{{$cidade}}</h6>
+                                        <span class="text-success small pt-1 fw-bold">Cadastradas</span>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
                       </div><!-- End Customers Card -->
 
                       @if (Auth::check() && Auth::user()->hasRole('Admin'))
 
                         <div class="col-xxl-4 col-xl-4">
 
-                          <div class="card info-card customers-card">
-
-
-                              <div class="card-body">
-                                  <h5 class="card-title"> N° da Inscrição Vencedora <span></span></h5>
-
-                                  <div class="d-flex align-items-center">
-                                      <div
-                                          class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                          <i class="bx bxs-trophy"> </i>
-
-                                      </div>
-                                      <div class="ps-3">
-                                        {{-- @foreach ($result as $item)
-                                        <h6>Recibo ID: {{ $item->recibo_id }}</h6>
-                                    @endforeach --}}
-                                    <hr>
-                                    <span class="text-success small pt-1 fw-bold">
-                                        <h6>Votos:<span>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
+                        
                             
                         </div><!-- End Customers Card -->
                         @endif
