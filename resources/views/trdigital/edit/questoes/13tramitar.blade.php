@@ -37,11 +37,12 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
+                            <h4>Você está tramitando para:</h4>
                             <h5 class="card-title">{{ $n_processo->Orgaos->Sigla }} - {{ $n_processo->Orgaos->Nome }}</h5>
                             <small>
-                                <a href="{{ asset('/trdigital/tramitado/') }}" class="">
+                                <a href="{{ asset('/trdigital/proponente/') }}" class="">
                                     Após enviar a sua TR Digital, você pode acompanhar o progresso em:
-                                    <b> TR DIGITAL - Minhas TR </b>
+                                    <br><b> TR DIGITAL - Minhas TR </b>
                                 </a>
                             </small>
                         </div>
