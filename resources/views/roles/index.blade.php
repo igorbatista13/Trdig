@@ -20,6 +20,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
           </ol>
         </nav>
       </div><!-- End Page Title -->
+      <a class="btn btn-primary" href="{{ route('roles.create') }}">Criar novo perfil</a>
 
     <section class="section">
         <div class="card">
@@ -48,6 +49,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                            <td>{{ $role->name }}</td>
                           <td>
             @can('role-edit')
+                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
                 <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
             @endcan
             @can('role-delete')
