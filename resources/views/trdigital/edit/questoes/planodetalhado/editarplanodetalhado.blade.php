@@ -5,7 +5,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-exclamation-octagon me-1 text-warning"></i> Editar Registro Plano Detalhado - <b> Memória de Cálculo </b> </h5>
+                <h5 class="modal-title"><i class="bi bi-exclamation-octagon me-1 text-warning"></i> Editar Registro Plano
+                    Detalhado - <b> Memória de Cálculo </b> </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -17,48 +18,34 @@
                         <div class="form-floating">
 
 
-                            <select name="Natureza_id" id="Natureza_id"
-                            class="form-control custom-select" required>
-                            <option value="" disabled selected>Selecione a Natureza
-                            </option>
-                            @foreach ($planoconsolidado as $planoDetalhados)
-                                <option value="{{ $planoDetalhados->id }}">
-                                    {{ $planoDetalhados->Natureza }}
-                                </option>
-                            @endforeach
-                        </select>
+     
 
 
+                            <select name="Natureza_id" id="Natureza_id" class="form-control custom-select" required>
+                                <option value="" disabled>Selecione a Natureza</option>
+                                @foreach ($planoconsolidado as $planoDetalhados)
+                                    <option value="{{ $planoDetalhados->id }}"
+                                        {{ $planoDetalhados->id == $planodetalhados->Plano_consolidado->Natureza ? 'selected' : '' }}>
+                                        {{ $planoDetalhados->Natureza }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            
 
                             <label for="floatingName">Natureza</label>
                         </div>
                         <br>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-floating">
-
-                                {!! Form::text('Produto_Servico_detalhado', $planodetalhados->Produto_Servico_detalhado, [
-                                    'placeholder' => 'Produto ou Serviço',
-                                    'class' => 'form-control',
-                                    'id' => 'floatingName',
-                                ]) !!}
-
-                                <label for="floatingName"></label>
-                                <label for="floatingEmail">Produto ou Serviço</label>
-                            </div>
-                        </div>
-
-
-                    </div>
+          
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating">
 
-                        
+
                                 {!! Form::select(
-                                    'ass',
+                                    'Unidade_medida_detalhado',
                                     [
                                         'Ano.' => 'Ano',
                                         'Atendidos' => 'Atendidos',
@@ -84,10 +71,11 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 {!! Form::number('Quantidade_detalhado', $planodetalhados->Quantidade_detalhado, [
-                                    'placeholder' => '',
-                                    'class' => 'form-control',
-                                    'id' => 'floatingName',
-                                ]) !!}
+                                                              'placeholder' => '',
+                                                              'class' => 'form-control',
+                                                              'max' => '999999999999',
+
+                                                          ]) !!}
                                 <label for="floatingName"></label>
                                 <label for="floatingEmail">Quantidade</label>
                             </div>
@@ -100,11 +88,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    {!! Form::number('Valor_unit_detalhado', $planodetalhados->Valor_unit_detalhado, [
+                                    {!! Form::text('Valor_unit_detalhado', number_format($planodetalhados->Valor_unit_detalhado, 2, ',', '.')
+                                    , [
                                         'placeholder' => 'a',
                                         'class' => 'form-control',
-                                        'id' => 'floatingCity',
+                                        'maxlength' => '15',
+                                    
+                                        'oninput' => 'aplicarMascara(this)',
+                                        'onkeypress' => 'return validarValor(this, event)',
                                     ]) !!}
+
                                     <label for="floatingCity">Valor Unit.</label>
                                     {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
                                 </div>

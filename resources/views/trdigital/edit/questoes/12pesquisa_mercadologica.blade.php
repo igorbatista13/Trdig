@@ -92,12 +92,13 @@
                                              <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                  data-bs-target="#editar_pesquisamercadologica{{ $pivot->id ?? '' }}Editar"
                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                 Editar
-                                             </button>
+                                                 <i class="bi bi-pencil-square"></i>
+                                                </button>
                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                  data-bs-target="#excluir_pesquisamercadologica{{ $pesquisa->id }}"
                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                 Excluir
+                                                 <i class="bi bi-x-square"></i>
+
                                              </button>
                                              <hr>
                                      @endforeach

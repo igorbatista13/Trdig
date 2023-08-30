@@ -1,6 +1,5 @@
       {{-- ITEM 7 --}}
       <div class="tab-pane fade" id="list-consolidado" role="tabpanel" aria-labelledby="list-consolidado">
-
           {{-- {!! Form::open(['route' => 'metas.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} --}}
 
           <div class="card">
@@ -23,7 +22,6 @@
                           <table class="table datatable">
                               <thead>
                                   <tr>
-                                      <th><small>Status</small></th>
                                       <th><small>Natureza </small></th>
                                       <th><small>Discriminação </small></th>
                                       <th><small> Valor Conc.</small></th>
@@ -37,7 +35,8 @@
                               <tbody>
                                   @foreach ($planoconsolidado as $planos)
                                       <tr>
-                                          <td>
+
+                                          <td><b>{{ $planos->Natureza }} - {{ $planos->OutrosNatureza }} </h5> </b><br>
                                               @if ($planos->plano_consolidado_sit == '')
                                                   <span class="badge bg-primary">
                                                       <i class="bi bi-clock me-1"></i> Aguardando análise</span>
@@ -45,21 +44,36 @@
                                                   <span class="badge bg-success">
                                                       <i class="bi bi-check-circle me-1"></i> Validado</span>
                                               @elseif ($planos->plano_consolidado_sit == 0)
-                                                  <span
-                                                      class="badge bg-warning text-dark">
+                                                  <span class="badge bg-warning text-dark">
                                                       <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
                                               @endif
                                           </td>
-                                          <td>{{ $planos->Natureza }} - {{ $planos->OutrosNatureza }}</td>
-                                          <td>{{ $planos->Metas->Especificacao_metas }} </td>
-                                          <td>R$ {{ $planos->Valor_concedente }} </td>
-                                          <td>R$ {{ $planos->Valor_proponente_financeira }} </td>
-                                          <td>R${{ $planos->Valor_proponente_nao_financeira }} </td>
+                                          <td>
+                                              <h5> <span class="badge bg-success">
+                                                      {{ $planos->Metas->Especificacao_metas }} </span> </h5>
+                                          </td>
+                                          <td>
+                                              <h5> <span
+                                                      class="badge bg-warning text-dark">R$ {{ number_format($planos->Valor_concedente, 2, ',', '.') }}</span>
+                                              </h5>
+                                          </td>
+                                          <td>
+                                              <h5><span class="badge bg-success">
+                                                      R$ {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }} <br>
+                                                      R$ {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }}
+ <span></h5>
+                                          </td>
+                                          <td>
+                                              <h5><span
+                                                      class="badge bg-dark">R$ {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
+                                              </h5>
+                                          </td>
                                           <td>
                                               <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                   data-bs-target="#editarplano{{ $planos->id }}Editar"
                                                   data-bs-meta-id="{{ $planos->id }}">
-                                                  Editar
+                                                  <i class="bi bi-pencil-square"></i>
+
                                               </button>
                                           </td>
 
@@ -67,7 +81,7 @@
                                               <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                   data-bs-target="#excluirplano{{ $planos->id }}"
                                                   data-bs-meta-id="{{ $planos->id }}">
-                                                  Excluir
+                                                  <i class="bi bi-x-square"></i>
                                               </button>
                                           </td>
                                       </tr>
@@ -166,10 +180,12 @@
                                       <div class="row">
                                           <div class="col-md-6">
                                               <div class="form-floating">
-                                                  {!! Form::number('Valor_concedente', null, [
+                                                  {!! Form::text('Valor_concedente', null, [
                                                       'placeholder' => 'Complemento',
                                                       'class' => 'form-control',
-                                                      'id' => 'floatingName',
+                                                      'maxlength' => '15',
+                                                      'oninput' => 'aplicarMascara(this)',
+                                                      'onkeypress' => 'return validarValor(this, event)',
                                                   ]) !!}
 
                                                   <label for="floatingName"></label>
@@ -180,10 +196,12 @@
                                           </div>
                                           <div class="col-md-6">
                                               <div class="form-floating">
-                                                  {!! Form::number('Valor_proponente_financeira', null, [
+                                                  {!! Form::text('Valor_proponente_financeira', null, [
                                                       'placeholder' => '',
                                                       'class' => 'form-control',
-                                                      'id' => 'floatingName',
+                                                      'maxlength' => '15',
+                                                      'oninput' => 'aplicarMascara(this)',
+                                                      'onkeypress' => 'return validarValor(this, event)',
                                                   ]) !!}
                                                   <label for="floatingName"></label>
                                                   <label for="floatingCity">Valor Proponente</label>
@@ -198,10 +216,12 @@
                                           <div class="row">
                                               <div class="col-md-6">
                                                   <div class="form-floating">
-                                                      {!! Form::number('Valor_proponente_nao_financeira', null, [
+                                                      {!! Form::text('Valor_proponente_nao_financeira', null, [
                                                           'placeholder' => 'a',
                                                           'class' => 'form-control',
-                                                          'id' => 'floatingCity',
+                                                          'maxlength' => '15',
+                                                          'oninput' => 'aplicarMascara(this)',
+                                                          'onkeypress' => 'return validarValor(this, event)',
                                                       ]) !!}
                                                       <label for="floatingCity">Valor Proponente</label>
                                                       <small class="text-primary"> (Contrapartida Não Financeira)

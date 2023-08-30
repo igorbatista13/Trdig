@@ -34,10 +34,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-floating">
-                                {!! Form::number('Telefone_Resp_projeto', $n_processo->Resp_projeto->Telefone_Resp_projeto, [
+                                {!! Form::text('Telefone_Resp_projeto', $n_processo->Resp_projeto->Telefone_Resp_projeto, [
                                     'placeholder' => 'a',
                                     'class' => 'form-control',
-                                    'id' => 'floatingName',
+                                    'oninput' => 'mascaraTelefone(this)',
+                                    'maxlength' => '14',
                                 ]) !!}
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == 1)
@@ -53,11 +54,13 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating">
-                                {!! Form::number('CPF_Resp_projeto', $n_processo->Resp_projeto->CPF_Resp_projeto, [
-                                    'placeholder' => 'a',
+                                {!! Form::text('CPF_Resp_projeto', $n_processo->Resp_projeto->CPF_Resp_projeto, [
+                                    'placeholder' => 'CPF',
                                     'class' => 'form-control',
-                                    'id' => 'floatingName',
+                                    'oninput' => 'mascaraCpfCnpj(this)',
+                                    'maxlength' => '14',
                                 ]) !!}
+
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->CPF_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->CPF_Resp_projeto_sit == 1)
                                     <span class="badge bg-success">
@@ -72,10 +75,10 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating">
-                                {!! Form::number('RG_Resp_projeto', $n_processo->Resp_projeto->RG_Resp_projeto, [
+                                {!! Form::text('RG_Resp_projeto', $n_processo->Resp_projeto->RG_Resp_projeto, [
                                     'placeholder' => 'a',
                                     'class' => 'form-control',
-                                    'id' => 'floatingName',
+                                    'id' => 'rg',
                                 ]) !!}
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->RG_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->RG_Resp_projeto_sit == 1)
@@ -232,12 +235,15 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-floating">
+                                <div class="form-floating" oninput="">
                                     {!! Form::text('Cep_Resp_projeto', $n_processo->Resp_projeto->Cep_Resp_projeto, [
                                         'placeholder' => 'a',
                                         'class' => 'form-control',
-                                        'id' => 'floatingZip',
+                                        'oninput' => 'mascaraCep(this)',
+                                        'maxlength' => '9',
                                     ]) !!}
+
+
                                     @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cep_Resp_projeto_sit == '')
                                     @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cep_Resp_projeto_sit == 1)
                                         <span class="badge bg-success">

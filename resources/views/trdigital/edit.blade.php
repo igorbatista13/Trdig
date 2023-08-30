@@ -536,5 +536,143 @@
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js'></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="{{ asset('js/step-by-step/script.js') }}"></script>
+    {{-- <script src="{{ asset('js/step-by-step/script.js') }}"></script> --}}
 @endsection
+{{-- 
+@push('scripts')
+
+<script>
+    $(document).ready(function() {
+        // Aplicar a máscara de CPF ao campo
+        $('#tel').mask('(00) 0000-0000', { placeholder: "(00) 0000-0000" });
+        $('#tel2').mask('(00) 0000-0000', { placeholder: "(00) 0000-0000" });
+        $('#cpfInput').mask('000.000.000-00', { reverse: true });
+        $('#rg').mask('000.0000-0');    // Máscara para RG<br/>
+        $('#cepInput').mask('00000-000');
+        $('#cep2').mask('00000-000');
+        $('#cnpjInput').mask('00.000.000/0000-00');
+        $('#valorInput').inputmask('currency', {
+            prefix: 'R$ ',
+            alias: 'currency',
+            radixPoint: '.',
+            groupSeparator: ',',
+            digits: 2,
+            autoGroup: true,
+            rightAlign: false,
+            unmaskAsNumber: true
+        });
+
+    });
+</script>
+@endpush --}}
+
+<script>
+    function mascaraCpfCnpj(input) {
+    var value = input.value;
+    // Remove tudo que não é dígito
+    value = value.replace(/\D/g, '');
+    if (value.length <= 11) { // CPF
+        // Coloca a máscara do CPF (XXX.XXX.XXX-XX)
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    } else { // CNPJ
+        // Coloca a máscara do CNPJ (XX.XXX.XXX/XXXX-XX)
+        value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+        value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+        value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+        value = value.replace(/(\d{4})(\d)/, '$1-$2');
+    }
+    input.value = value;
+}
+
+function mascaraTelefone(input) {
+    var value = input.value;
+    // Remove tudo que não é dígito
+    value = value.replace(/\D/g, '');
+    if (value.length === 11) { // Celular
+        // Coloca a máscara do telefone celular (DDD 9XXXX-XXXX)
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    } else if (value.length === 10) { // Telefone fixo
+        // Coloca a máscara do telefone fixo (DDD XXXX-XXXX)
+        value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+    }
+    input.value = value;
+}
+
+function mascaraCep(i) {
+
+    var valor = i.value;
+
+    if (isNaN(valor[valor.length - 1])) { //Não deixa a pessoa incluir letras
+        i.value = valor.substring(0, valor.length - 1);
+        return;
+    }
+
+    i.setAttribute("maxlength", "9");
+    if (valor.length == 5) i.value += "-";
+}
+<script>
+    function validarValor(input, event) {
+        const keyCode = event.which || event.keyCode;
+        const currentValue = input.value.replace(/[^\d,]/g, '');
+        const newValue = currentValue + String.fromCharCode(keyCode);
+
+        if (parseFloat(newValue.replace(',', '.')) > 1000000000) {
+            event.preventDefault();
+            return false;
+        }
+
+        return true;
+    }
+
+    function aplicarMascara(input) {
+        const valor = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        const valorFormatado = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+        input.value = 'R$ ' + valorFormatado;
+    }
+</script>
+
+// function moeda2(input) {
+//     let value = input.value;
+    
+//     // Remove todos os caracteres não numéricos, exceto ponto e vírgula
+//     value = value.replace(/[^\d,.]/g, '');
+    
+//     // Substitui a vírgula pelo ponto para representar o separador decimal
+//     value = value.replace(',', '.');
+    
+//     // Remove a formatação "R$ " (se presente)
+//     value = value.replace('R$ ', '');
+    
+//     // Formata o valor
+//     if (value === '') {
+//         input.value = '';
+//     } else {
+//         const formattedValue = parseFloat(value).toFixed(2);
+//         input.value = 'R$ ' + formattedValue;
+//     }
+// }
+// }
+</script>
+<script>
+    function aplicarMascara(input) {
+        const valor = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        const valorFormatado = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        input.value = valorFormatado;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const valorInputs = document.querySelectorAll('.valor-monetario');
+        valorInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                const valorSemPontos = this.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                const valorSemDecimais = valorSemPontos.split('.')[0]; // Remove a parte decimal
+                const valorDecimal = parseFloat(valorSemDecimais.replace(',', '.')); // Substitui a vírgula por ponto (caso haja)
+                this.value = valorDecimal.toFixed(2); // Formata o valor com duas casas decimais
+            });
+        });
+    });
+</script>
+

@@ -18,4 +18,9 @@ class Cronograma_desembolso extends Model
     {
         return $this->belongsTo(N_Processo::class, 'n_processo_id');
     }
+
+    public function Metas()
+    {
+        return $this->belongsTo(Metas::class, 'metas_id');
+    }
 }

@@ -19,7 +19,9 @@ return new class extends Migration
                 $table->unsignedBigInteger('pesquisa_mercadologica_id');
 
                 $table->string('Empresa')->nullable();
-                $table->decimal('Valor')->nullable();
+              //  $table->decimal('Valor')->nullable();
+                $table->decimal('Valor', 20, 2)->nullable();
+
                 $table->string('Anexo')->nullable();           
                                    
                     

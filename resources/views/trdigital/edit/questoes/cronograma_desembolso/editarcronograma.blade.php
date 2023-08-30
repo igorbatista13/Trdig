@@ -18,17 +18,18 @@
                     <div class="col-md-12">
                         <div class="form-floating">
 
-                          <select name="metas_id" id="metas_id"
-                          class="form-control custom-select" required>
-                          <option value="" disabled selected>
-                              Selecione a Meta</option>
-                          @foreach ($metas as $meta)
-                              <option value="{{ $meta->id }}">
-                                  {{ $meta->Especificacao_metas }}
-                              </option>
-                          @endforeach
-
+                  
+                          <select name="metas_id" id="metas_id" class="form-control custom-select" required>
+                            <option value="" disabled selected>Selecione a Meta</option>
+                            @foreach ($metas as $meta)
+                                <option value="{{ $meta->id }}" {{ $cronograma_desembolsos->Metas->id == $meta->id ? 'selected' : '' }}>
+                                    {{ $meta->Especificacao_metas }}
+                                </option>
+                            @endforeach
+                        
+                        
                       </select>
+                      
                             <label for="floatingName">Meta</label>
                         </div>
                         <br>
@@ -96,26 +97,35 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                  <div class="form-check">
-                                      {!! Form::radio('fonte', 'Concedente', false, ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
-                                      <label class="form-check-label" for="radioOpcao1">Concedente</label>
-                                  </div>
-                                  
-                                  <div class="form-check">
-                                      {!! Form::radio('fonte', 'Contrapartida', false, ['class' => 'form-check-input', 'id' => 'radioOpcao2']) !!}
-                                      <label class="form-check-label" for="radioOpcao2">Contrapartida</label>
-                                  </div>
+                                    <h5> Fonte:</h5>
 
+                                    <div class="form-check">
+                                        {!! Form::radio('fonte', 'Concedente', $cronograma_desembolsos->fonte === 'Concedente', ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
+                                        <label class="form-check-label" for="radioOpcao1">Concedente</label>
+                                    </div>
+                                    
+                                    <div class="form-check">
+                                        {!! Form::radio('fonte', 'Contrapartida', $cronograma_desembolsos->fonte === 'Contrapartida', ['class' => 'form-check-input', 'id' => 'radioOpcao2']) !!}
+                                        <label class="form-check-label" for="radioOpcao2">Contrapartida</label>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    {!! Form::number('valor_desembolso', $cronograma_desembolsos->valor_desembolso, [
+                                <div class="form-floating">                                    
+
+                                    {!! Form::text('valor_desembolso', number_format($cronograma_desembolsos->valor_desembolso, 2, ',', '.'), [
                                         'placeholder' => 'a',
                                         'class' => 'form-control',
-                                        'id' => 'floatingZip',
+                                        'class' => 'form-control',
+                                        'maxlength' => '15',
+                                        
+                                        'oninput' => 'aplicarMascara(this)',
+                                        'onkeypress' => 'return validarValor(this, event)',
                                     ]) !!}
+
                                     <label for="floatingZip">Valor</label>
                                 </div>
                             </div>

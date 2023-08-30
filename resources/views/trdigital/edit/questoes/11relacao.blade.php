@@ -25,57 +25,61 @@
                           <table class="table datatable">
                               <thead>
                                   <tr>
-                                      <th>Status</th>
-                                      <th>Natureza</th>
-                                      <th>Especificação</th>
+                                      <th>Natureza|Especificação</th>
                                       <th>Unidade</th>
                                       <th>Qtd.</th>
                                       <th>Valor</th>
                                       <th>Total</th>
                                       <th>Local de Destino</th>
                                       <th>Propriedade</th>
+                                      <th>Ações</th>
                                       <th></th>
+                                  
 
                                   </tr>
                               </thead>
 
                               @foreach ($obras_equipamento as $obras_equipamentos)
                                   <tr>
-                                    <td>
+                                  
+                                      <td>{{ $obras_equipamentos->planoConsolidado->Natureza }} - {{ $obras_equipamentos->Especificacao }} <br>
                                         @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == '')
-                                            <span class="badge bg-primary">
-                                                <i class="bi bi-clock me-1"></i> Aguardando análise</span>
-                                        @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
-                                            <span class="badge bg-success">
-                                                <i class="bi bi-check-circle me-1"></i> Validado</span>
-                                        @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 0)
-                                            <span
-                                                class="badge bg-warning text-dark">
-                                                <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                        <span class="badge bg-primary">
+                                            <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                    @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                    @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 0)
+                                        <span
+                                            class="badge bg-warning text-dark">
+                                            <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                    @endif
+                                 </td>
+                                      <td> <h5> <span class="badge bg-success">{{ $obras_equipamentos->Unidade }} </span></h5> </td>
+                                      <td>  <span class="badge bg-success">{{ $obras_equipamentos->Qtd }} </span> </td>
+                                      <td> <span class="badge bg-primary"> R$ {{ number_format($obras_equipamentos->Valor_unit, 2, ',', '.') }}
+                                         </span></td>
+                                      <td> <h5> <span class="badge bg-danger">
+                                        R$ {{ number_format($obras_equipamentos->Valor_unit * $obras_equipamentos->Qtd, 2, ',', '.') }} </td>
+                                      <td> <span class="badge bg-warning text-success">{{ $obras_equipamentos->cidade->Nome }} </span> </td>
+                                    
+                                      @if ($obras_equipamentos->Propriedade == 'Concedente')
+                                      <td> <h5> <span class="badge bg-warning">{{ $obras_equipamentos->Propriedade }} </span></h5></td>
+                                      @else
+                                      <td> <h5> <span class="badge bg-success">{{ $obras_equipamentos->Propriedade }} </span></h5></td>
                                         @endif
-                                    </td>
-                                      <td>{{ $obras_equipamentos->Natureza_id }} </td>
-                                      <td>{{ $obras_equipamentos->Especificacao }} </td>
-                                      <td>{{ $obras_equipamentos->Unidade }} </td>
-                                      <td>{{ $obras_equipamentos->Qtd }} </td>
-                                      <td>R$ {{ $obras_equipamentos->Valor_unit }} </td>
-                                      <td class="text-danger"> R$
-                                          {{ $obras_equipamentos->Valor_unit * $obras_equipamentos->Qtd }} </td>
-                                      <td>{{ $obras_equipamentos->Local_destino }} </td>
-                                      <td>{{ $obras_equipamentos->Propriedade }} </td>
-
                                       <td>
                                           <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                               data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
                                               data-bs-meta-id="{{ $obras_equipamentos->id }}">
-                                              Editar
-                                          </button>
-                                      </td>
+                                              <i class="bi bi-pencil-square"></i>
+                                            </button>
                                       <td>
                                           <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                               data-bs-target="#excluir_cronograma{{ $obras_equipamentos->id }}"
                                               data-bs-meta-id="{{ $obras_equipamentos->id }}">
-                                              Excluir
+                                              <i class="bi bi-x-square"></i>
+
                                           </button>
                                       </td>
                                   </tr>
@@ -170,7 +174,7 @@
                                                               {!! Form::number('Qtd', null, [
                                                                   'placeholder' => 'Quantidade',
                                                                   'class' => 'form-control',
-                                                                  'id' => 'floatingCity',
+                                                                  'max' => '999999999999',
                                                               ]) !!}
                                                               <label for="floatingCity">Quantidade</label>
                                                           </div>
@@ -178,10 +182,12 @@
 
                                                       <div class="col-md-6">
                                                           <div class="form-floating">
-                                                              {!! Form::number('Valor_unit', null, [
+                                                              {!! Form::text('Valor_unit', null, [
                                                                   'placeholder' => 'Valor',
                                                                   'class' => 'form-control',
-                                                                  'id' => 'floatingZip',
+                                                                  'maxlength' => '15',
+                                                                  'oninput' => 'aplicarMascara(this)',
+                                                                  'onkeypress' => 'return validarValor(this, event)',
                                                               ]) !!}
                                                               <label for="floatingZip">Valor</label>
                                                           </div>

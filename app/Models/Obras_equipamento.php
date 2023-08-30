@@ -20,4 +20,16 @@ class Obras_equipamento extends Model
         return $this->belongsTo(N_Processo::class, 'n_processo_id');
     }
 
+    public function planoConsolidado()
+    {
+        return $this->belongsTo(Plano_consolidado::class, 'Natureza_id');
+    }
+    
+    public function cidade()
+    {
+        return $this->belongsTo(Cidade::class, 'Cidade_id');
+    }
+
+
+
 }

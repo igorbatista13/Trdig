@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('n_processo_id');
             $table->string('Descricao_bem')->nullable();                  
-            $table->string('Qtd')->nullable();                  
+            $table->decimal('Qtd', 20, 2)->nullable();
+                 
             $table->timestamps();
         
             $table->foreign('n_processo_id')->references('id')->on('n_processo')->onDelete('cascade');

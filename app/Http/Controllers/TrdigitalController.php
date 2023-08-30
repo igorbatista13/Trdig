@@ -374,6 +374,10 @@ class TrdigitalController extends Controller
 
     public function planoconsolidado(Request $request, $id)
     {
+ // Remove caracteres não numéricos e transforma vírgulas em pontos
+ $valorConcedente = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_concedente')));
+ $valorProponenteFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_financeira')));
+ $valorProponenteNaoFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_nao_financeira')));
 
         $data = [
             'n_processo_id' => $id,
@@ -384,9 +388,9 @@ class TrdigitalController extends Controller
             'Complemento' => $request->input('Complemento'),
             'Discriminacao_outros' => $request->input('Discriminacao_outros'),
             'Complemento' => $request->input('Complemento'),
-            'Valor_concedente' => $request->input('Valor_concedente'),
-            'Valor_proponente_financeira' => $request->input('Valor_proponente_financeira'),
-            'Valor_proponente_nao_financeira' => $request->input('Valor_proponente_nao_financeira'),
+            'Valor_concedente' => $valorConcedente,
+            'Valor_proponente_financeira' => $valorProponenteFinanceira,
+            'Valor_proponente_nao_financeira' => $valorProponenteNaoFinanceira,
         ];
 
         Plano_consolidado::create($data);
@@ -398,7 +402,12 @@ class TrdigitalController extends Controller
 
     public function planodetalhado(Request $request, $id)
     {
-
+        // Remove caracteres não numéricos
+        $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit_detalhado'));
+    
+        // Converte para valor decimal
+        $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
+    
         $data = [
             'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
@@ -407,36 +416,45 @@ class TrdigitalController extends Controller
             'Produto_Servico_detalhado' => $request->input('Produto_Servico_detalhado'),
             'Unidade_medida_detalhado' => $request->input('Unidade_medida_detalhado'),
             'Quantidade_detalhado' => $request->input('Quantidade_detalhado'),
-            'Valor_unit_detalhado' => $request->input('Valor_unit_detalhado'),
-
+            'Valor_unit_detalhado' => $valorDecimal,
         ];
-
+    
         Plano_detalhado::create($data);
-
+    
         return redirect()->back();
     }
+    
 
     public function planodetalhado_update(Request $request, $id)
     {
-
         $data = [
-          //  'n_processo_id' => $id,
             'Natureza_id' => $request->input('Natureza_id'),
             'Natureza_detalhado' => $request->input('Natureza_detalhado'),
             'Produto_Servico_detalhado' => $request->input('Produto_Servico_detalhado'),
-            'ass' => $request->input('Unidade_medida_detalhado'),
+            'Unidade_medida_detalhado' => $request->input('Unidade_medida_detalhado'),
             'Quantidade_detalhado' => $request->input('Quantidade_detalhado'),
-            'Valor_unit_detalhado' => $request->input('Valor_unit_detalhado'),
+            'Valor_unit_detalhado' => $this->parseValorInput($request->input('Valor_unit_detalhado')),
         ];
-        //  $meta->update($data);
-        // dd($data);
+    
         Plano_detalhado::findOrFail($request->id)->update($data);
-        //  dd($data); 
+    
         return redirect()->back();
     }
+    
+    private function parseValorInput($inputValue) {
+        $cleanValue = preg_replace('/[^\d,]/', '', $inputValue);
+        $parsedValue = str_replace(',', '.', $cleanValue);
+        
+        return $parsedValue;
+    }
+    
     public function planoconsolidadoupdate(Request $request, $id)
     {
-    
+       // Remove caracteres não numéricos e transforma vírgulas em pontos
+       $valorConcedente = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_concedente')));
+       $valorProponenteFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_financeira')));
+       $valorProponenteNaoFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_nao_financeira')));
+   
         $data = [
            // 'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
@@ -446,9 +464,9 @@ class TrdigitalController extends Controller
             'Complemento' => $request->input('Complemento'),
             'Discriminacao_outros' => $request->input('Discriminacao_outros'),
             'Complemento' => $request->input('Complemento'),
-            'Valor_concedente' => $request->input('Valor_concedente'),
-            'Valor_proponente_financeira' => $request->input('Valor_proponente_financeira'),
-            'Valor_proponente_nao_financeira' => $request->input('Valor_proponente_nao_financeira'),
+            'Valor_concedente' => $valorConcedente,
+            'Valor_proponente_financeira' => $valorProponenteFinanceira,
+            'Valor_proponente_nao_financeira' => $valorProponenteNaoFinanceira,
         ];
 
         Plano_consolidado::findOrFail($request->id)->update($data);
@@ -503,35 +521,49 @@ class TrdigitalController extends Controller
     }
     public function cronograma_store(Request $request, $id)
     {
-
+        // Remove caracteres não numéricos
+        $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('valor_desembolso'));
+    
+        // Converte para valor decimal
+        $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
+    
         $etapas = [
             'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
             'ano' => $request->input('ano'),
             'mes' => $request->input('mes'),
             'fonte' => $request->input('fonte'),
-            'valor_desembolso' => $request->input('valor_desembolso'),
+            'valor_desembolso' => $valorDecimal,
         ];
+    
         Cronograma_desembolso::create($etapas);
+    
         return redirect()->back();
     }
+    
+
+
     public function cronograma_update(Request $request, $id)
     {
-
+        // Remove caracteres não numéricos
+        $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('valor_desembolso'));
+    
+        // Converte para valor decimal
+        $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
+    
         $data = [
-         //   'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
             'ano' => $request->input('ano'),
             'mes' => $request->input('mes'),
             'fonte' => $request->input('fonte'),
-            'valor_desembolso' => $request->input('valor_desembolso'),
+            'valor_desembolso' => $valorDecimal,
         ];
-
+    
         Cronograma_desembolso::findOrFail($request->id)->update($data);
-
+    
         return redirect()->back();
     }
-
+    
 
     public function cronograma_destroy($id)
     {
@@ -548,6 +580,11 @@ class TrdigitalController extends Controller
 
     public function obras_equipamento(Request $request, $id)
     {
+    // Remove caracteres não numéricos
+    $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit'));
+    
+    // Converte para valor decimal
+    $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
 
         $data = [
             'n_processo_id' => $id,
@@ -556,7 +593,7 @@ class TrdigitalController extends Controller
             'Especificacao' => $request->input('Especificacao'),
             'Unidade' => $request->input('Unidade'),
             'Qtd' => $request->input('Qtd'),
-            'Valor_unit' => $request->input('Valor_unit'),
+            'Valor_unit' => $valorDecimal,
             'Local_destino' => $request->input('Local_destino'),
             'Propriedade' => $request->input('Propriedade'),
         ];
@@ -567,6 +604,11 @@ class TrdigitalController extends Controller
     }
     public function obras_equipamento_update(Request $request, $id)
     {
+    // Remove caracteres não numéricos
+    $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit'));
+
+    // Converte para valor decimal
+    $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
 
         $data = [
        //     'n_processo_id' => $id,
@@ -575,7 +617,7 @@ class TrdigitalController extends Controller
             'Especificacao' => $request->input('Especificacao'),
             'Unidade' => $request->input('Unidade'),
             'Qtd' => $request->input('Qtd'),
-            'Valor_unit' => $request->input('Valor_unit'),
+            'Valor_unit' => $valorDecimal,
             'Local_destino' => $request->input('Local_destino'),
             'Propriedade' => $request->input('Propriedade'),
         ];

@@ -26,9 +26,8 @@
                           <table class="table datatable">
                               <thead>
                                   <tr>
-                                      <th>Status</th>
                                       <th>Natureza</th>
-                                      <th> Produto ou Serviço</th>
+                                      <th> Produto/Serviço </th>
                                       <th>Unid. Medida</th>
                                       <th>Qtd.</th>
                                       <th>Valor Unit.</th>
@@ -41,33 +40,54 @@
                               <tbody>
                                   @foreach ($planodetalhado as $planodetalhados)
                                       <tr>
-                                        <td>
-                                            @if ($planodetalhados->plano_detalhado_sit == '')
-                                                <span class="badge bg-primary">
-                                                    <i class="bi bi-clock me-1"></i> Aguardando análise</span>
-                                            @elseif ($planodetalhados->plano_detalhado_sit == 1)
-                                                <span class="badge bg-success">
-                                                    <i class="bi bi-check-circle me-1"></i> Validado</span>
-                                            @elseif ($planodetalhados->plano_detalhado_sit == 0)
-                                                <span
-                                                    class="badge bg-warning text-dark">
-                                                    <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
-                                            @endif
-                                        </td>
-                                          <td>{{ $planodetalhados->Plano_consolidado->Natureza }} </td>
-                                          <td>{{ $planodetalhados->Produto_Servico_detalhado }} </td>
-                                          <td>{{ $planodetalhados->Unidade_medida_detalhado }} </td>
-                                          <td>{{ $planodetalhados->Quantidade_detalhado }} </td>
-                                          <td class="text-success">R$ {{ $planodetalhados->Valor_unit_detalhado }} </td>
-                                          <td> <b class="text-danger"> R$
-                                                  {{ $planodetalhados->Quantidade_detalhado * $planodetalhados->Valor_unit_detalhado }}
-                                              </b> </td>
+
+                                          <td><b>{{ $planodetalhados->Plano_consolidado->Natureza }}</b><br>
+                                              @if ($planodetalhados->plano_detalhado_sit == '')
+                                                  <span class="badge bg-primary">
+                                                      <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                              @elseif ($planodetalhados->plano_detalhado_sit == 1)
+                                                  <span class="badge bg-success">
+                                                      <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                              @elseif ($planodetalhados->plano_detalhado_sit == 0)
+                                                  <span class="badge bg-warning text-dark">
+                                                      <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                              @endif
+                                          </td>
                                           <td>
-                                          
+                                              {{ $planodetalhados->Produto_Servico_detalhado }} </td>
+                                          <td>
+                                              <span class="badge bg-success">
+                                                      {{ $planodetalhados->Unidade_medida_detalhado }}</span> </h5>
+                                          </td>
+                                          <td>
+                                             
+                                                  <span
+                                                      class="badge bg-success">{{ number_format($planodetalhados->Quantidade_detalhado, 0, ',', '.') }}
+                                                  </span>
+                                              </h5>
+                                          </td>
+
+                                          <td>
+                                             <span class="badge bg-primary">
+                                                      R$ {{ $planodetalhados->Valor_unit_detalhado }}</span></h5>
+                                          </td>
+                                          <td>
+                                             
+                                                  @php
+                                                      $quantidade = floatval($planodetalhados->Quantidade_detalhado);
+                                                      $valorUnitario = floatval($planodetalhados->Valor_unit_detalhado);
+                                                      $valorTotal = $quantidade * $valorUnitario;
+                                                  @endphp
+                                                  <span class="badge bg-danger"> <h5>
+                                                      R$ {{ number_format($valorTotal, 2, ',', '.') }}
+                                              </h5></span>
+                                          </td>
+
+                                          <td>
                                               <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                   data-bs-target="#editarplanodetalhado{{ $planodetalhados->id }}Editar"
                                                   data-bs-meta-id="{{ $planodetalhados->id }}">
-                                                  Editar
+                                                  <i class="bi bi-pencil-square"></i>
                                               </button>
                                           </td>
 
@@ -75,7 +95,7 @@
                                               <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                   data-bs-target="#excluirmemoria{{ $planodetalhados->id }}"
                                                   data-bs-meta-id="{{ $planodetalhados->id }}">
-                                                  Excluir
+                                                  <i class="bi bi-x-square"></i>
                                               </button>
                                           </td>
                                       </tr>
@@ -90,7 +110,8 @@
                               <div class="modal-dialog modal-dialog-centered modal-lg">
                                   <div class="modal-content">
                                       <div class="modal-header">
-                                          <h5 class="modal-title"><i class="bi bi-check me-1 text-success"> <b>  Novo Registro - Memória de Cálculo </i> </b></h5>
+                                          <h5 class="modal-title"><i class="bi bi-check me-1 text-success"> <b> Novo
+                                                      Registro - Memória de Cálculo </i> </b></h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal"
                                               aria-label="Close"></button>
                                       </div>
@@ -108,7 +129,6 @@
                                                               <option value="{{ $planoDetalhados->id }}">
                                                                   {{ $planoDetalhados->Natureza }}
                                                               </option>
-                                                              
                                                           @endforeach
                                                       </select>
 
@@ -138,11 +158,11 @@
                                                   <div class="col-md-6">
                                                       <div class="form-floating">
 
-                                                
-                                                           {!! Form::select(
-                                                            'Unidade_medida_detalhado',
-                                                            [
-                                                                'Ano.' => 'Ano',
+
+                                                          {!! Form::select(
+                                                              'Unidade_medida_detalhado',
+                                                              [
+                                                                  'Ano.' => 'Ano',
                                                                   'Atendidos' => 'Atendidos',
                                                                   'Atendimentos' => 'Atendimentos',
                                                                   'Dias' => 'Dias',
@@ -151,15 +171,15 @@
                                                                   'Porcentagem' => 'Porcentagem',
                                                                   'Unidade' => 'Unidade',
                                                                   'Quantidade' => 'Quantidade',
-                                                            ],
-                                                            null,
-                                                            [
-                                                                'placeholder' => '',
-                                                                'class' => 'form-select', // Usamos 'form-select' para um estilo de dropdown do Bootstrap
-                                                                'id' => 'floatingName',
-                                                            ],
-                                                        ) !!}
-                        
+                                                              ],
+                                                              null,
+                                                              [
+                                                                  'placeholder' => '',
+                                                                  'class' => 'form-select', // Usamos 'form-select' para um estilo de dropdown do Bootstrap
+                                                                  'id' => 'floatingName',
+                                                              ],
+                                                          ) !!}
+
 
 
 
@@ -169,10 +189,11 @@
                                                   </div>
                                                   <div class="col-md-6">
                                                       <div class="form-floating">
+
                                                           {!! Form::number('Quantidade_detalhado', null, [
                                                               'placeholder' => '',
                                                               'class' => 'form-control',
-                                                              'id' => 'floatingName',
+                                                              'max' => '999999999999',
                                                           ]) !!}
                                                           <label for="floatingName"></label>
                                                           <label for="floatingEmail">Quantidade</label>
@@ -186,10 +207,12 @@
                                                   <div class="row">
                                                       <div class="col-md-6">
                                                           <div class="form-floating">
-                                                              {!! Form::number('Valor_unit_detalhado', null, [
+                                                              {!! Form::text('Valor_unit_detalhado', null, [
                                                                   'placeholder' => 'a',
                                                                   'class' => 'form-control',
-                                                                  'id' => 'floatingCity',
+                                                                  'maxlength' => '15',
+                                                                  'oninput' => 'aplicarMascara(this)',
+                                                                  'onkeypress' => 'return validarValor(this, event)',
                                                               ]) !!}
                                                               <label for="floatingCity">Valor Unit.</label>
                                                               {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
@@ -221,13 +244,15 @@
                           {{-- Modais de Edição e Exclusão --}}
                           @foreach ($planodetalhado as $planodetalhados)
                               {{-- Editar memoria de calculo  --}}
-                               @include('trdigital.edit.questoes.planodetalhado.editarplanodetalhado')
+                              @include('trdigital.edit.questoes.planodetalhado.editarplanodetalhado')
                               <!-- Modal excluir plano consolidado -->
                               <div class="modal fade" id="excluirmemoria{{ $planodetalhados->id }}" tabindex="-1">
                                   <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title"> <i class="bi bi-check-circle me-1 text-danger"><b>  Confirmar Exclusão </b> </i></h5>
+                                              <h5 class="modal-title"> <i
+                                                      class="bi bi-check-circle me-1 text-danger"><b> Confirmar Exclusão
+                                                      </b> </i></h5>
                                               <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                   aria-label="Close"></button>
                                           </div>

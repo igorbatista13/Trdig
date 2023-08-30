@@ -32,10 +32,12 @@
                   <div class="row">
                       <div class="col-md-4">
                           <div class="form-floating">
-                              {!! Form::number('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
+                              {!! Form::text('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
                                   'placeholder' => 'a',
                                   'class' => 'form-control',
-                                  'id' => 'floatingName',
+                                  'id' => 'tel',
+                                  'oninput' => 'mascaraTelefone(this)',
+                                  'maxlength' => '14',
                               ]) !!}
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == '')
                               @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Telefone_Resp_Instituicao_sit == 1)
@@ -234,8 +236,10 @@
                                   {!! Form::text('Cep_Resp_Instituicao', $n_processo->Resp_instituicao->Cep_Resp_Instituicao, [
                                       'placeholder' => 'a',
                                       'class' => 'form-control',
-                                      'id' => 'floatingZip',
+                                      'oninput' => 'mascaraCep(this)',
+                                      'maxlength' => '9',
                                   ]) !!}
+
                                   @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cep_Resp_Instituicao_sit == '')
                                   @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cep_Resp_Instituicao_sit == 1)
                                       <span class="badge bg-success">

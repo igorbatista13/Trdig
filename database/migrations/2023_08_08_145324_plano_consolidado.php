@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('Discriminacao')->nullable();
             $table->string('Discriminacao_outros')->nullable();
             $table->string('Complemento')->nullable();
-            $table->string('Valor_concedente')->nullable();
-            $table->string('Valor_proponente_financeira')->nullable();
-            $table->string('Valor_proponente_nao_financeira')->nullable();
+            $table->decimal('Valor_concedente', 20, 2)->nullable();
+            $table->decimal('Valor_proponente_financeira', 20, 2)->nullable();
+            $table->decimal('Valor_proponente_nao_financeira', 20, 2)->nullable();
 
             $table->string('plano_consolidado_sit')->nullable();
             $table->string('plano_consolidado_obs')->nullable();

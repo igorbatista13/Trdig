@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('Especificacao')->nullable();
             $table->string('Unidade')->nullable();
             $table->string('Qtd')->nullable();
-            $table->string('Valor_unit')->nullable();
+          //  $table->string('Valor_unit')->nullable();
+            $table->decimal('Valor_unit', 20, 2)->nullable();
+
             $table->string('Local_destino')->nullable();
             $table->string('Propriedade')->nullable();
            

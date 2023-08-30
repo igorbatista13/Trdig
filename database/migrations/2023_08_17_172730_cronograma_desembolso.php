@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('ano')->nullable();
             $table->string('mes')->nullable();
             $table->string('fonte')->nullable();
-            $table->string('valor_desembolso')->nullable();
+         //   $table->string('valor_desembolso')->nullable();
+            $table->decimal('valor_desembolso', 20, 2)->nullable();
+
            
             $table->string('cronograma_desembolso_sit')->nullable();
             $table->string('Obs_cronograma_desembolso')->nullable();

@@ -6,7 +6,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-exclamation-octagon me-1 text-warning"></i> <b> CADASTRO DE OBRAS E EQUIPAMENTOS / MATERIAL PERMANENTE </b>
+                <h5 class="modal-title"><i class="bi bi-exclamation-octagon me-1 text-warning"></i> <b> CADASTRO DE OBRAS
+                        E EQUIPAMENTOS / MATERIAL PERMANENTE </b>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -18,15 +19,19 @@
                     <div class="col-md-12">
                         <div class="form-floating">
 
+                          
+
                             <select name="Natureza_id" id="Natureza_id" class="form-control custom-select" required>
-                                <option value="" disabled selected>Selecione a Natureza
-                                </option>
-                                @foreach ($planoconsolidado as $planoDetalhados)
-                                    <option value="{{ $planoDetalhados->id }}">
-                                        {{ $planoDetalhados->Natureza }}
+                                <option value="" disabled>Selecione a Natureza</option>
+                                @foreach ($planoconsolidado as $planoconsolidados)
+                                    <option value="{{ $planoDetalhados->id }}"
+                                        {{ $planoconsolidados->id == $planoconsolidados->Natureza_id ? 'selected' : '' }}>
+                                        {{ $planoconsolidados->Natureza }}
                                     </option>
                                 @endforeach
                             </select>
+
+
                             <label for="floatingName">Natureza</label>
                         </div>
                         <br>
@@ -84,7 +89,7 @@
                                     {!! Form::number('Qtd', $obras_equipamentos->Qtd, [
                                         'placeholder' => 'Quantidade',
                                         'class' => 'form-control',
-                                        'id' => 'floatingCity',
+                                        'max' => '999999999999',
                                     ]) !!}
                                     <label for="floatingCity">Quantidade</label>
                                 </div>
@@ -92,10 +97,12 @@
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    {!! Form::number('Valor_unit', $obras_equipamentos->Valor_unit, [
+                                    {!! Form::text('Valor_unit', $obras_equipamentos->Valor_unit, [
                                         'placeholder' => 'Valor',
                                         'class' => 'form-control',
-                                        'id' => 'floatingZip',
+                                        'maxlength' => '15',
+                                        'oninput' => 'aplicarMascara(this)',
+                                        'onkeypress' => 'return validarValor(this, event)',
                                     ]) !!}
                                     <label for="floatingZip">Valor</label>
                                 </div>
@@ -104,15 +111,14 @@
                                 <div class="form-floating">
 
                                     <select name="Cidade_id" id="Cidade_id" class="form-control custom-select" required>
-                                        <option value="" disabled selected>Selecione o
-                                            Local de destino
-                                        </option>
+                                        <option value="" disabled selected>Selecione o Local de destino</option>
                                         @foreach ($cidade as $cidades)
-                                            <option value="{{ $cidades->id }}">
+                                            <option value="{{ $cidades->id }}" {{ $obras_equipamentos->Cidade_id == $cidades->id ? 'selected' : '' }}>
                                                 {{ $cidades->Nome }}
                                             </option>
                                         @endforeach
                                     </select>
+                                    
 
                                     <label for="floatingZip">Local de destino</label>
                                 </div>
@@ -120,15 +126,15 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <div class="form-check">
-                                        {!! Form::radio('Propriedade', 'Concedente', false, ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
+                                        {!! Form::radio('Propriedade', 'Concedente', $obras_equipamentos->Propriedade == 'Concedente', ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
                                         <label class="form-check-label" for="radioOpcao1">Concedente</label>
                                     </div>
-
+                                    
                                     <div class="form-check">
-                                        {!! Form::radio('Propriedade', 'Contrapartida', false, ['class' => 'form-check-input', 'id' => 'radioOpcao2']) !!}
+                                        {!! Form::radio('Propriedade', 'Contrapartida', $obras_equipamentos->Propriedade == 'Contrapartida', ['class' => 'form-check-input', 'id' => 'radioOpcao2']) !!}
                                         <label class="form-check-label" for="radioOpcao2">Contrapartida</label>
-
                                     </div>
+                                    
 
 
 

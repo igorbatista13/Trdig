@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('Natureza_detalhado')->nullable();
             $table->string('Produto_Servico_detalhado')->nullable();
             $table->string('Unidade_medida_detalhado')->nullable();
-            $table->string('Quantidade_detalhado')->nullable();
-            $table->string('Valor_unit_detalhado')->nullable();
+            
+            $table->decimal('Quantidade_detalhado', 20, 2)->nullable();
+            $table->decimal('Valor_unit_detalhado', 20, 2)->nullable();
 
             $table->string('plano_detalhado_sit')->nullable();
             $table->string('plano_detalhado_obs')->nullable();
