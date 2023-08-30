@@ -108,6 +108,7 @@
                                                               <option value="{{ $planoDetalhados->id }}">
                                                                   {{ $planoDetalhados->Natureza }}
                                                               </option>
+                                                              
                                                           @endforeach
                                                       </select>
 

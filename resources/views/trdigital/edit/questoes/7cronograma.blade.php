@@ -34,6 +34,7 @@
                               </thead>
                               @foreach ($metas as $meta)
                                   <td>
+                                    {{-- Criar Metas --}} @include('trdigital.edit.questoes.cronograma.metas.criarmetas')
 
                                       <div class="card ">
                                           <div class="card-body text-primary">
@@ -80,7 +81,6 @@
                                             </div>
                                         </div>
                                     </td>
-                                    {{-- Criar Metas --}} @include('trdigital.edit.questoes.cronograma.metas.criarmetas')
                                     {{-- Criar Etapas --}} @include('trdigital.edit.questoes.cronograma.etapas.criaretapas')
                                   {{-- Editar Metas --}} @include('trdigital.edit.questoes.cronograma.metas.editarmetas')
                                   {{-- Excluir Metas --}} @include('trdigital.edit.questoes.cronograma.metas.excluirmetas')
