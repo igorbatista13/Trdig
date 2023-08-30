@@ -49,8 +49,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                            <td>{{ $role->name }}</td>
                           <td>
             @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Editar</a>
+                <a class="btn btn-warning" href="{{ route('roles.edit',$role->id) }}">Editar</a>
             @endcan
             @can('role-delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}

@@ -197,8 +197,8 @@
               <br>
             <div class="row">
 
-              <label for="inputNumber" class="col-sm-1 col-form-label"><b>Início:</b></label>
-              <div class="col-sm-2">
+              <div class="col-sm-4">
+              <label for="inputNumber" class=""><b>Início:</b></label>
                 {!! Form::date('Inicio_Projeto_Conteudo', $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
                 @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo_sit == '')
                 @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo_sit == 1)
@@ -210,8 +210,8 @@
                 @endif
               </div>
 
-              <label for="inputNumber" class="col-sm-1 col-form-label"><b>Término:</b></label>
-              <div class="col-sm-2">
+              <div class="col-sm-4">
+              <label for="inputNumber" class=""><b>Término:</b></label>
                 {!! Form::date('Fim_Projeto_Conteudo', $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
                 @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo == '')
                 @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo == 1)
@@ -228,7 +228,7 @@
 
               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Informa Emenda n° Parlamentar:</b></label>
               <div class="col-sm-10">
-                {!! Form::textarea('N_Emenda_Projeto_Conteudo', $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
+                {!! Form::text('N_Emenda_Projeto_Conteudo', $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
                 @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo_sit == '')
                 @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo_sit == 1)
                     <span class="badge bg-success">
@@ -239,9 +239,9 @@
                 @endif
               </div>
 
-              <label for="inputNumber" class="col-sm-2 col-form-label"><b>Informa Emenda nome do  Autor:</b></label>
+              <label for="inputNumber" class="col-sm-4 col-form-label"><b>Informa Emenda nome do  Autor:</b></label>
               <div class="col-sm-10">
-                {!! Form::textarea('Nome_Autor_Emenda_Projeto_Conteudo', $n_processo->Projeto_conteudo->Nome_Autor_Emenda_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
+                {!! Form::text('Nome_Autor_Emenda_Projeto_Conteudo', $n_processo->Projeto_conteudo->Nome_Autor_Emenda_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
                 @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Nome_Autor_Emenda_Projeto_Conteudo_sit == '')
                 @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Nome_Autor_Emenda_Projeto_Conteudo_sit == 1)
                     <span class="badge bg-success">
@@ -254,7 +254,7 @@
               <br>
 <div class="row">
               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Valor de Repasse:</b> </label>
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 {!! Form::number('Valor_Repasse_Projeto_Conteudo', $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
                 @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo_sit == '')
                 @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo_sit == 1)
@@ -267,7 +267,7 @@
               </div>
 
               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Valor de Contrapartida: </b> </label>
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 {!! Form::number('Valor_Contrapartida_Projeto_Conteudo', $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo, ['class' => 'form-control', 'id'=> 'floatingTextarea']) !!}
                 @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo_sit == '')
                 @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo_sit == 1)

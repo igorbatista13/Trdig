@@ -62,7 +62,6 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                         <img src="{{asset('/images/search-student.png')}}" height="48" class='mb-4'>
                         <h3>Editar Perfil</h3>
                     </div>
-
                 </div>
 
 
