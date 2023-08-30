@@ -41,6 +41,17 @@ class PainelGerencialController extends Controller
             'Resp_projeto',
             'Orgaos'
             ])->where('user_id', '=', auth()->id())->orderby('id', 'DESC')->get();
+        
+        $nProcessos  =  N_processo::with([
+            'Doc_anexo1',
+            'Doc_anexo2',
+            'instituicao',
+            'Doc_anexo2',
+            'Projeto_conteudo',
+            'Resp_projeto',
+            'Orgaos'
+            ])->orderBy('id', 'DESC')->limit(5)->get();
+
         $count_tr_tramitada  =  N_processo::where('Status', '=', 'TRAMITADA')->count();
         $count_tr_aguardando  =  N_processo::where('Status', '=', 'AGUARDANDO')->count();
         $count_tr_corrigir  =  N_processo::where('Status', '=', 'CORRIGIR')->count();
@@ -53,12 +64,16 @@ class PainelGerencialController extends Controller
         $count_usuarios  =  User::count();
         // Count Orgaos
         $count_orgaos  =  Orgaos::count();
-        // Count Biblioteca
+        
+        //Biblioteca
         $count_biblioteca  =  Biblioteca::count();
+        $biblioteca  =  Biblioteca::limit(5)->get();
 
         
         $cidade = Cidade::count();
         $estado = Estado::count();
+
+        
 
         session()->put('processoCount', $processoCount);
         session()->put('processoCount_corrigir', $processoCount_corrigir);
@@ -73,7 +88,7 @@ class PainelGerencialController extends Controller
             'processoCount_finalizado', 'processoCount_aguardando', 'processoCount_tramitada',
             'processoCount_nao_finalizada', 'count_tr_tramitada', 'count_tr_aguardando',
             'count_tr_corrigir', 'count_caixa_entrada', 'count_tr_total','count_tr_finalizado',
-            'count_usuarios','count_orgaos','count_biblioteca'
+            'count_usuarios','count_orgaos','count_biblioteca','biblioteca'
 
         ));
     }

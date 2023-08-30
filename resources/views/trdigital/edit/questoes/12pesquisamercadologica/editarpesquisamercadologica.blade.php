@@ -15,8 +15,12 @@
             </div>
             <div class="modal-body">
 
-                      {!! Form::open(['method' => 'PUT', 'route' => ['trdigital.pesquisa_mercadologica_update', $pesquisa->id]]) !!} 
-
+                {!! Form::open([
+                    'method' => 'PUT',
+                    'route' => ['trdigital.pesquisa_mercadologica_update', $pesquisa->id],
+                    'enctype' => 'multipart/form-data', // Adicionando o enctype
+                ]) !!}
+                
 
                 <br>
 

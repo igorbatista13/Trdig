@@ -50,6 +50,7 @@ Route::put('/trdigital/pesquisa_mercadologica/{id}',  [TrdigitalController::clas
 
 Route::delete('/trdigital/pesquisa_mercadologica/{id}',  [TrdigitalController::class, 'pesquisa_mercadologica_destroy'])->name('trdigital.pesquisa_mercadologica_destroy');
 
+Route::put('/trdigital/anexo_sigcon/{id}',  [TrdigitalController::class, 'anexo_sigcon'])->name('trdigital.anexo_sigcon');
 
 
 

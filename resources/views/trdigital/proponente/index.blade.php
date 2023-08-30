@@ -1,14 +1,14 @@
 @extends('base.novabase')
 @section('content')
-<?php 
-$processoCount = session()->get('processoCount'); 
-$processoCount_corrigir = session()->get('processoCount_corrigir'); 
-$processoCount_finalizado = session()->get('processoCount_finalizado'); 
-$processoCount_aguardando = session()->get('processoCount_aguardando'); 
-$processoCount_tramitada = session()->get('processoCount_tramitada'); 
-$processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada'); 
-?>
- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <?php
+    $processoCount = session()->get('processoCount');
+    $processoCount_corrigir = session()->get('processoCount_corrigir');
+    $processoCount_finalizado = session()->get('processoCount_finalizado');
+    $processoCount_aguardando = session()->get('processoCount_aguardando');
+    $processoCount_tramitada = session()->get('processoCount_tramitada');
+    $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
+    ?>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <style>
         /* Estilo personalizado para o badge */
         .custom-badge {
@@ -33,17 +33,17 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>{{ $message }}</strong> 
+                        <strong>{{ $message }}</strong>
                     </div>
                 @elseif ($message = Session::get('edit'))
                     <div class="alert alert-warning alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>{{ $message }}</strong> 
+                        <strong>{{ $message }}</strong>
                     </div>
                 @elseif ($message = Session::get('delete'))
                     <div class="alert alert-danger alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>{{ $message }}</strong> 
+                        <strong>{{ $message }}</strong>
                     </div>
                 @endif
 
@@ -70,12 +70,20 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             @foreach ($nProcessos as $n_processo)
                                                 <tr>
                                                     <td>
-                                                        <div class="card mb-4">
-                                                            <div class="row g-0">
-                                                                <div class="col-md-4 position-relative">
-                                                                    <img src="{{asset('images/samples/trproponente.jpg')}}"
+
+                                                        <div class="row">
+
+
+                                                            {{-- <div class="row g-0">
+                                                                <div class="col-md-4 position-relative"> --}}
+                                                            {{-- <img src="{{ asset('images/samples/trproponente.jpg') }}"
                                                                         class="img-fluid rounded card-img-top"
-                                                                        alt="...">
+                                                                        alt="..."> --}}
+
+
+
+                                                            <div class="col-md-6">
+                                                                <div class="card">
                                                                     @if ($n_processo->Status == 'CORRIGIR')
                                                                         <a
                                                                             href="{{ route('trdigital.edit', $n_processo->id) }}">
@@ -117,137 +125,241 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
                                                                             <span
                                                                                 class="badge bg-danger custom-badge position-absolute top-0 end-0">
-                                                                                <i class="bi bi-arrow-90deg-right me-1">Não tramitado
+                                                                                <i class="bi bi-arrow-90deg-right me-1">Não
+                                                                                    tramitado
                                                                                 </i></span>
 
                                                                         </center>
                                                                     @endif
-
-
-                                                                </div>
-
-
-                                                                <div class="col-md-6">
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">
-                                                                            <div class="alert border-primary alert-dismissible fade show"
-                                                                                role="alert">
-
-                                                                                @if ($n_processo->Status == 'CORRIGIR')
-                                                                                    <div class="alert text-center alert-warning alert-dismissible fade show"
-                                                                                        role="alert">
-                                                                                        <i
-                                                                                            class="bi bi-exclamation-triangle me-1"></i>
-                                                                                        Você precisa realizar <b> correções
-                                                                                        </b> em seu documento.
-
-                                                                                        <button type="button"
-                                                                                            class="btn-close"
-                                                                                            data-bs-dismiss="alert"
-                                                                                            aria-label="Close"></button>
-                                                                                    </div>
-                                                                                @endif
-
-                                                                                @if ($n_processo->Status == '')
-                                                                                    <div class="alert text-center alert-danger alert-dismissible fade show"
-                                                                                        role="alert">
-                                                                                        <i
-                                                                                            class="bi bi-exclamation-triangle me-1"></i>
-                                                                                        Finalize as informações em seu
-                                                                                        documento.
-
-                                                                                        <button type="button"
-                                                                                            class="btn-close"
-                                                                                            data-bs-dismiss="alert"
-                                                                                            aria-label="Close"></button>
-                                                                                    </div>
-                                                                                @endif
 
 
-                                                                                <h4 class="text-center"> N° da TR: <b>
+                                                                            @if ($n_processo->Status == 'CORRIGIR')
+                                                                                <div class="alert border-warning text-center alert-warning alert-dismissible fade show"
+                                                                                    role="alert">
+                                                                                    <i
+                                                                                        class="bi bi-exclamation-triangle me-1"></i>
+                                                                                    Você precisa realizar <b>
+                                                                                        correções
+                                                                                    </b> em seu documento.
 
-                                                                                        {{ $n_processo->id }}
-                                                                                    </b><br><br>
-                                                                               
+                                                                                    <button type="button" class="btn-close"
+                                                                                        data-bs-dismiss="alert"
+                                                                                        aria-label="Close"></button>
+                                                                                </div>
+                                                                            @endif
 
-                                                                                    <center>
-                                                                                        <small> <a class="text-dark"> Tramitado para: </a></small> <br> 
-                                                                                        <p class="card-text text-primary">
-                                                                                           
-                                                                                                <img src="{{ asset('images/brasao_mt.png') }}"
-                                                                                                    class="img-fluid rounded"
-                                                                                                    width="30px">
+                                                                            @if ($n_processo->Status == '')
+                                                                                <div class="alert text-center alert-danger alert-dismissible fade show"
+                                                                                    role="alert">
+                                                                                    <i
+                                                                                        class="bi bi-exclamation-triangle me-1"></i>
+                                                                                    Finalize as informações em
+                                                                                    seu
+                                                                                    documento.
 
-                                                                                                <b> {{ $n_processo->Orgaos->Sigla ?? 'Não informado' }}
-                                                                                                    - </b> 
-                                                                                            <i> <small>
-                                                                                                    {{ $n_processo->Orgaos->Nome ?? ('Não informado' ?? 'Não informado') }}
-                                                                                                </small>
-                                                                                                <br>
-                                                                                                <i
-                                                                                                class="bi bi-calendar-event me-1"></i>  <small>   {{ $n_processo->created_at->format('m/d/Y') ?? 'Não informado' }} </small>
+                                                                                    <button type="button" class="btn-close"
+                                                                                        data-bs-dismiss="alert"
+                                                                                        aria-label="Close"></button>
+                                                                                </div>
+                                                                            @endif
+                                                                            <h4 class="text-center"> N° da TR:
+                                                                                <b> {{ $n_processo->id }}
+                                                                                </b><br><br>
+                                                                                <center>
+                                                                                    <small> <a class="text-dark">
+                                                                                            Tramitado para:
+                                                                                        </a></small>
+                                                                                    <br>
+                                                                                    <p class="card-text text-primary">
 
+                                                                                        <img src="{{ asset('images/brasao_mt.png') }}"
+                                                                                            class="img-fluid rounded"
+                                                                                            width="30px">
 
-                                                                                            </i>
-                                                                                        </p>
-                                                                                    </center>
-                                                                                    <hr>
-                                                                                    <p class="card-text">
-                                                                                        <i class="bi bi-building me-1"></i>
-                                                                                        {{ $n_processo->instituicao->Nome_Instituicao ?? 'Não informado' }}
-
-                                                                                        <br>
-                                                                                        <small>
-                                                                                            <i class="bi bi-person-fill me-1"></i>                                                                                         
-                                                                                                {{ $n_processo->Resp_Instituicao->Nome_Resp_Instituicao ?? 'Não informado' }}<br>
-                                                                                            <i
-                                                                                                class="bi bi-telephone-fill me-1"></i>
-                                                                                            {{ $n_processo->Resp_Instituicao->Telefone_Instituicao ?? 'Não informado' }}
+                                                                                        <b> {{ $n_processo->Orgaos->Sigla ?? 'Não informado' }}
+                                                                                            - </b>
+                                                                                        <i> <small>
+                                                                                                {{ $n_processo->Orgaos->Nome ?? ('Não informado' ?? 'Não informado') }}
+                                                                                            </small>
                                                                                             <br>
+                                                                                            <i
+                                                                                                class="bi bi-calendar-event me-1"></i>
+                                                                                            <small>
+                                                                                                {{ $n_processo->created_at->format('m/d/Y') ?? 'Não informado' }}
+                                                                                            </small>
 
-                                                                                        </small>
+
+                                                                                        </i>
                                                                                     </p>
-                                                                                    @if ($n_processo->Status == 'CORRIGIR')
-                                                                                        <center> <a
-                                                                                                class="btn bg-warning text-white"
-                                                                                                href="{{ route('trdigital.edit', $n_processo->id) }}">
-                                                                                                <i
-                                                                                                    class="bi bi-exclamation-triangle me-1"></i>
-                                                                                                CORRIGIR</a> </center>
-                                                                                    @endif
-                                                                                    @if ($n_processo->Status == '')
-                                                                                        <center> <a
-                                                                                                class="btn bg-warning text-white"
-                                                                                                href="{{ route('trdigital.edit', $n_processo->id) }}">
-                                                                                                <i
-                                                                                                    class="bi bi-pen me-1"></i>
-                                                                                                EDITAR </a> </center>
-                                                                                                <br>
-                                                                                        <center> <a
-                                                                                                class="btn bg-warning text-white"
-                                                                                                href="{{ route('trdigital.imprimir', $n_processo->id) }}"media="print" >
-                                                                                                <i
-                                                                                                    class="bi bi-print me-1"></i>
-                                                                                                IMPRIMIR </a> </center>
-                                                                                    @endif
+                                                                                </center>
+                                                                                <hr>
+                                                                                <p class="card-text">
+                                                                                    <i class="bi bi-building me-1"></i>
+                                                                                    {{ $n_processo->instituicao->Nome_Instituicao ?? 'Não informado' }}
 
+                                                                                    <br>
+                                                                                    <small>
+                                                                                        <i
+                                                                                            class="bi bi-person-fill me-1"></i>
+                                                                                        {{ $n_processo->Resp_Instituicao->Nome_Resp_Instituicao ?? 'Não informado' }}<br>
+                                                                                        <i
+                                                                                            class="bi bi-telephone-fill me-1"></i>
+                                                                                        {{ $n_processo->Resp_Instituicao->Telefone_Instituicao ?? 'Não informado' }}
+                                                                                        <br>
 
-
-                                                                            </div>
+                                                                                    </small>
+                                                                                </p>
+                                                                                @if ($n_processo->Status == 'CORRIGIR')
+                                                                                    <center> <a
+                                                                                            class="btn bg-warning text-white"
+                                                                                            href="{{ route('trdigital.edit', $n_processo->id) }}">
+                                                                                            <i
+                                                                                                class="bi bi-exclamation-triangle me-1"></i>
+                                                                                            CORRIGIR</a>
+                                                                                    </center>
+                                                                                @endif
+                                                                                @if ($n_processo->Status == '')
+                                                                                    <center> <a
+                                                                                            class="btn bg-warning text-white"
+                                                                                            href="{{ route('trdigital.edit', $n_processo->id) }}">
+                                                                                            <i class="bi bi-pen me-1"></i>
+                                                                                            EDITAR </a>
+                                                                                    </center>
+                                                                                    <br>
+                                                                                @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+
+
+                                                            @if ($n_processo->Status == 'FINALIZADO')
+                                                                <div class="col-md-6">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <h5 class="card-title"> Anexar os documentos
+                                                                                do SIGCON aqui:
+                                                                                <br>
+                                                                                <br>
+
+                                                                                {!! Form::open([
+                                                                                    'method' => 'POST',
+                                                                                    'route' => ['trdigital.anexo_sigcon', $n_processo->id],
+                                                                                    'enctype' => 'multipart/form-data',
+                                                                                ]) !!}
+                                                                                @method('PUT')
+                                                                                <!-- Resto do seu formulário -->
+
+                                                                                <small>
+                                                                                    <label>Anexo I: cadastro de Órgãos ou
+                                                                                        Entidades Dirigentes </label>
+                                                                                        @if ($n_processo->Anexo_sigcon && $n_processo->Anexo_sigcon->anexo1 == '')
+                                                                                        <span
+                                                                                            class="badge bg-danger custom-badge position-absolute">
+                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
+                                                                                        </span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge bg-success custom-badge position-absolute">
+                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                    {!! Form::file('anexo1', ['class' => 'form-control']) !!}
+                                                                                    
+                                                                                    <label> Anexo II: Dados do
+                                                                                        Projeto</label>
+                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo2 == '')
+                                                                                        <span class="badge bg-danger custom-badge position-absolute">
+                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
+                                                                                        </span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge bg-success custom-badge position-absolute">
+                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                    {!! Form::file('anexo2', ['class' => 'form-control']) !!}
+
+
+                                                                                    <label> Anexo III: Cronograma de
+                                                                                        Execução Física de Plano de
+                                                                                        Aplicação de Recursos</label>
+                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo3 == '')
+                                                                                        <span class="badge bg-danger custom-badge position-absolute">
+                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
+                                                                                        </span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge bg-success custom-badge position-absolute">
+                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                    {!! Form::file('anexo3', ['class' => 'form-control']) !!}
+
+
+                                                                                    <label> Anexo IV: Cronograma de
+                                                                                        Desembolso</label>
+                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo4 == '')
+                                                                                        <span class="badge bg-danger custom-badge position-absolute">
+                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
+                                                                                        </span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge bg-success custom-badge position-absolute">
+                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                    {!! Form::file('anexo4', ['class' => 'form-control']) !!}
+
+
+                                                                                    <label> Anexo V: Relação de Equipamentos
+                                                                                        e Material Permanente</label>
+                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo5 == '')
+                                                                                        <span class="badge bg-danger custom-badge position-absolute">
+                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
+                                                                                        </span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge bg-success custom-badge position-absolute">
+                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                    {!! Form::file('anexo5', ['class' => 'form-control']) !!}
+                                                                            
+                                                                                    <br>
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary"> Enviar
+                                                                                        Anexos</button>
+                                                                                    {!! Form::close() !!}
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+
+
+
+
+
+                                                        </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
+            </td>
+            </tr>
+            @endforeach
+            </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
         </div>
     </main>
 @endsection

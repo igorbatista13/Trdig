@@ -235,6 +235,7 @@
       </li><!-- End Dashboard Nav -->
 
       
+      @if (Auth::check() && Auth::user()->hasRole('Admin'))
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -242,12 +243,13 @@
         </a>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          
+          @if (Auth::check() && Auth::user()->hasRole('Admin'))
            <li>
             <a href="{{asset('/trdigital')}}">
               <i class="bi bi-circle"></i><span>  Ver Todas  <small class="text-primary"> Apenas Admin </small>  </span>
             </a>
           </li>
+          @endif
           <li>
             <a href="{{asset('/trdigital/tramitados')}}">
               <i class="bi bi-circle"></i><span>  Minha Caixa de Entrada  </span>
@@ -273,6 +275,8 @@
 
         </ul>
       </li>
+@endif
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav-dre" data-bs-toggle="collapse" href="#">
           <i class="bi bi-file-earmark-text"></i><span>TR DIGITAL <br> <small class="text-warning"> Proponente </small> </span><i class="bi bi-chevron-down ms-auto"></i>
@@ -290,32 +294,13 @@
             <a href="{{asset('/trdigital/proponente')}}">
               <i class="bi bi-circle"></i><span>  Minhas TR  </span>
             </a>
-          </li>
-    
-          {{-- <li>
-            <a class="text-warning" href="{{asset('/trdigital/corrigir')}}">
-              <i class="bi bi-circle"></i> Pendendente de Regularização 
-            </a>
-          </li>
-          <li>
-            <a class="text-success" href="{{asset('/trdigital/finalizadas')}}">
-              <i class="bi bi-circle"></i><span> <b> Finalizadas </b> </span>
-            </a>
-          </li>
-         --}}
-
-
-
+          </li>  
         </ul>
       </li>
       <!-- End Components Nav -->
-
-
-
     
       </li><!-- End Icons Nav -->
-
-      
+      @if (Auth::check() && Auth::user()->hasRole('Admin'))
       <li class="nav-heading">Conf. Sistema</li>
       <li class="nav-item">
         <a class="nav-link " href="{{asset('/painel/index')}}">
@@ -347,7 +332,7 @@
          
         </ul>
       </li><!-- End Forms Nav -->
-
+@endif
     
 
       <li class="nav-item">
@@ -363,53 +348,6 @@
           <span>Suporte</span>
         </a>
       </li>
-
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" >
-          <i class="bi bi-question-circle"></i>
-          <span>Usuários online:</span>
-          {{-- @foreach ($user as $users_logado)
-        <small> <ul>
-          <li> {{$users_logado->name}} </li> </small>
-          @endforeach --}}
-        {{-- </a>
-      </li>  --}}
-      <!-- End F.A.Q Page Nav -->
-
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
-        </a>
-      </li><!-- End Error 404 Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li><!-- End Blank Page Nav --> --}}
 
     </ul>
 

@@ -43,22 +43,12 @@
                                         <i data-feather="user"></i>
                                     </div>
 
-
-                                {{-- <input type="text" class="form-control" id="username" for="email" :value="__('Email')">
-                                <div class="form-control-icon">
-                                    <i data-feather="user"></i>
-                                </div> --}}
                              </div> 
                  
 
                         
                         <div class="form-group position-relative has-icon-left">
-                            {{-- <div class="clearfix">
-                                {{-- <label for="password">Password</label> --}}
-                                {{-- <a href="{{ __('esqueci-senha') }}" class='float-end'>
-                                    <small>Esqueceu a senha?</small>
-                                </a>
-                            </div> --}}
+               
                             <div class="position-relative">
                                  <!-- Password -->
         
@@ -71,10 +61,7 @@
         <div class="form-control-icon">
             <i data-feather="lock"></i>
         </div>
-                                {{-- <input type="password" class="form-control" for="password" :value="__('Password')" >
-                                <div class="form-control-icon">
-                                    <i data-feather="lock"></i>
-                                </div> --}}
+                
                             </div>
                         </div>
 
@@ -83,9 +70,7 @@
                                 <input type="checkbox" id="checkbox1" class='form-check-input' >
                                 <label for="checkbox1">{{ __('Lembrar') }}</label>
                             </div>
-                            {{-- <div class="float-end">
-                                <a href="{{ __('registrar') }}">Não possui cadastro?</a>
-                            </div> --}}
+                      
                         </div>
                         <div class="clearfix">
                             <button class="btn btn-primary float-end"> {{ __('Entrar') }}</button>
@@ -96,10 +81,8 @@
                         <div class="col-sm-12">
                             <button class="btn btn-block mb-2 btn-primary"><i data-feather="link"></i> </button>
                         </div>
-                        <center><h6> Desenvolvido por:
-                        {{-- <div class="col-sm-6">
-                            <button class="btn btn-block mb-2 btn-secondary"><i data-feather="github"></i> Github</button>
-                        </div> --}}
+                        <center><h6> Não possui acesso? <a href="{{asset('/registrar')}}">Faça o registro aqui </a> </h6></center> 
+                      
                     </div>
                 </div>
             </div>

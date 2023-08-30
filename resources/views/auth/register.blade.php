@@ -20,13 +20,14 @@
             <div class="card pt-4">
                 <div class="card-body">
                     <div class="text-center mb-5">
-                        <img src="{{asset('images/favicon.svg')}}" height="48" class='mb-4'>
-                        <h3>Cadastre - se</h3>
+                        {{-- <img src="{{asset('images/favicon.svg')}}" height="48" class='mb-4'> --}}
+                        <h2> <center> <b> TR - DIGITAL </b> </center> </h2>
+                        
+                        {{-- <h4>Cadastre - se</h4> --}}
                         <p>Por favor, preecha o formulário para acessar o sistema.</p>
                     </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                    {{-- <form action="index.html"> --}}
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
@@ -37,8 +38,7 @@
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                                     
-                                    {{-- <label for="first-name-column">First Name</label>
-                                    <input type="text" id="first-name-column" class="form-control"  name="fname-column"> --}}
+                              
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
@@ -69,9 +69,7 @@
 
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
-                                    {{-- <label for="username-column">Username</label>
-                                    <input type="text" id="username-column" class="form-control" name="username-column">
-                                 --}}
+                             
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
@@ -87,28 +85,26 @@
 
                                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     </div>
-                                    {{-- <label for="country-floating">Country</label>
-                                    <input type="text" id="country-floating" class="form-control" name="country-floating">
-                                --}}
+                         
                                 </div>
                             </div>
                             
                         </diV>
 
-                                <a href="{{ route('login') }}">Você já possui conta? Faça o Login.</a>
+                        Você já possui conta?  <a href="{{ route('login') }}">Entrar</a>
                         <div class="clearfix">
-                            <button class="btn btn-primary float-end">Registrar</button>
+                            <button class="btn btn-primary float-end">Criar o meu Registro</button>
                         </div>
                     </form>
                     <div class="divider">
-                        <div class="divider-text">OU</div>
+                        <div class="divider-text"></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <button class="btn btn-block mb-2 btn-primary"><i data-feather="facebook"></i> Facebook</button>
+                            <button class="btn btn-block mb-2 btn-primary"><i data-feather="facebook"></i> Acesso ao Site</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-block mb-2 btn-secondary"><i data-feather="github"></i> Github</button>
+                            <button class="btn btn-block mb-2 btn-secondary"><i data-feather="github"></i> Sobre o projeto TR DIGITAL</button>
                         </div>
                     </div>
                 </div>

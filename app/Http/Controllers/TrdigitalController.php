@@ -38,6 +38,7 @@ use App\Models\Obras_equipamento;
 use App\Models\Pesquisa_mercadologica;
 use App\Models\Pesquisa_mercadologica_pivot;
 
+use App\Models\Anexo_sigcon;
 class TrdigitalController extends Controller
 {
     /**
@@ -139,6 +140,7 @@ class TrdigitalController extends Controller
 
         $processoCount  =  N_processo::where('user_id', '=', auth()->id())
             ->count();
+            
         $nProcessos  =  N_processo::with([
             'Doc_anexo1',
             'Doc_anexo2',
@@ -146,21 +148,11 @@ class TrdigitalController extends Controller
             'Doc_anexo2',
             'Projeto_conteudo',
             'Resp_projeto',
-            'Orgaos'
+            'Orgaos',
+            'anexo_sigcon'
+            
+            
         ])->where('user_id', '=', auth()->id())->orderby('id', 'DESC')->get();
-
-
-        // $nProcessos = N_processo::with([
-        //     'Doc_anexo1',
-        //     'Doc_anexo2',
-        //     'instituicao',
-        //     'Doc_anexo2',
-        //     'Projeto_conteudo',
-        //     'Resp_projeto',
-        //     'Orgaos'
-        // ])->get();
-
-
 
         return view('trdigital.proponente.index', compact('nProcessos'));
     }
@@ -655,7 +647,7 @@ class TrdigitalController extends Controller
                 $pivotData['Anexo'] = $filePath;
             }
 
-            dd($request);
+     //       dd($request);
             $pivot->update($pivotData);
         }
     
@@ -978,9 +970,40 @@ class TrdigitalController extends Controller
             ['N_processo_id' => $nProcesso->id],
             $projeto_conteudo
         );
+
+       
+        
         return back();
     }
 
+    public function anexo_sigcon (Request $request, $id)
+    {
+        $anexo_sigcon = [
+            'n_processo_id' => $id
+        ];
+
+        if ($request->hasFile('anexo1')) {
+            $anexo_sigcon['anexo1'] = $request->file('anexo1')->store('pdfs/anexo_sigcon', 'public');
+        }
+        if ($request->hasFile('anexo2')) {
+            $anexo_sigcon['anexo2'] = $request->file('anexo2')->store('pdfs/anexo_sigcon', 'public');
+        }
+        if ($request->hasFile('anexo3')) {
+            $anexo_sigcon['anexo3'] = $request->file('anexo3')->store('pdfs/anexo_sigcon', 'public');
+        }
+        if ($request->hasFile('anexo4')) {
+            $anexo_sigcon['anexo4'] = $request->file('anexo4')->store('pdfs/anexo_sigcon', 'public');
+        }
+        if ($request->hasFile('anexo5')) {
+            $anexo_sigcon['anexo5'] = $request->file('anexo5')->store('pdfs/anexo_sigcon', 'public');
+        }
+        Anexo_sigcon::updateOrCreate(
+            ['N_processo_id' => $id],
+            $anexo_sigcon
+        );
+        
+        return back();
+    }
     public function oficio(Request $request, $id)
     {
         $oficio = Doc_anexo1::findOrFail($id);

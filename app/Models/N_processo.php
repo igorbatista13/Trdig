@@ -73,5 +73,9 @@ class N_processo extends Model
       // return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id');
       return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id'); 
     }
+    public function Anexo_sigcon() {
+      // return $this->hasOne(Pesquisa_mercadologica::class, 'n_processo_id', 'id');
+      return $this->hasOne(Anexo_sigcon::class, 'n_processo_id', 'id'); 
+    }
 
 }
