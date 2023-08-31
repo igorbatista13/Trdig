@@ -190,7 +190,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <div class="list-group" id="list-tab" role="tablist">
                                                     <a class="list-group-item list-group-item-action active"
                                                         id="list-home-list" data-bs-toggle="list" href="#list-home"
@@ -480,7 +480,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-8">
+                                            <div class="col-9">
                                                 <div class="tab-content" id="nav-tabContent">
                                                     {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
@@ -538,33 +538,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     {{-- <script src="{{ asset('js/step-by-step/script.js') }}"></script> --}}
 @endsection
-{{-- 
-@push('scripts')
-
-<script>
-    $(document).ready(function() {
-        // Aplicar a máscara de CPF ao campo
-        $('#tel').mask('(00) 0000-0000', { placeholder: "(00) 0000-0000" });
-        $('#tel2').mask('(00) 0000-0000', { placeholder: "(00) 0000-0000" });
-        $('#cpfInput').mask('000.000.000-00', { reverse: true });
-        $('#rg').mask('000.0000-0');    // Máscara para RG<br/>
-        $('#cepInput').mask('00000-000');
-        $('#cep2').mask('00000-000');
-        $('#cnpjInput').mask('00.000.000/0000-00');
-        $('#valorInput').inputmask('currency', {
-            prefix: 'R$ ',
-            alias: 'currency',
-            radixPoint: '.',
-            groupSeparator: ',',
-            digits: 2,
-            autoGroup: true,
-            rightAlign: false,
-            unmaskAsNumber: true
-        });
-
-    });
-</script>
-@endpush --}}
 
 <script>
     function mascaraCpfCnpj(input) {
@@ -583,7 +556,7 @@
         value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
         value = value.replace(/(\d{4})(\d)/, '$1-$2');
     }
-    input.value = value;
+    input.value = value;
 }
 
 function mascaraTelefone(input) {
@@ -612,6 +585,7 @@ function mascaraCep(i) {
     i.setAttribute("maxlength", "9");
     if (valor.length == 5) i.value += "-";
 }
+</script>
 <script>
     function validarValor(input, event) {
         const keyCode = event.which || event.keyCode;
@@ -634,28 +608,6 @@ function mascaraCep(i) {
     }
 </script>
 
-// function moeda2(input) {
-//     let value = input.value;
-    
-//     // Remove todos os caracteres não numéricos, exceto ponto e vírgula
-//     value = value.replace(/[^\d,.]/g, '');
-    
-//     // Substitui a vírgula pelo ponto para representar o separador decimal
-//     value = value.replace(',', '.');
-    
-//     // Remove a formatação "R$ " (se presente)
-//     value = value.replace('R$ ', '');
-    
-//     // Formata o valor
-//     if (value === '') {
-//         input.value = '';
-//     } else {
-//         const formattedValue = parseFloat(value).toFixed(2);
-//         input.value = 'R$ ' + formattedValue;
-//     }
-// }
-// }
-</script>
 <script>
     function aplicarMascara(input) {
         const valor = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
@@ -675,4 +627,3 @@ function mascaraCep(i) {
         });
     });
 </script>
-

@@ -1,7 +1,7 @@
 {!! Form::close() !!}
 @foreach ($pesquisa_mercadologica as $pesquisa)
     @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
-        <div class="modal fade" id="excluir_pesquisamercadologica{{ $pesquisa->id }}" tabindex="-1">
+        <div class="modal fade" id="excluir_pesquisamercadologica{{ $pivot->id ?? '' }}Excluir" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -11,9 +11,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Tem certeza de que deseja excluir este registro <b> Pesquisa
-                            Mercadológica? </b>
-                            <br> <a class="text-primary"> {{ $pivot->Empresa ?? '' }} </a>
+                        Tem certeza de que deseja excluir este registro <b> {{ $pivot->Empresa ?? '' }} </b>
+                            <div class="card">
+                                <div class="card-body">
+
+                            <br> <a class="text-primary"> <i
+                                class="bi bi-building"> </i>  </a>{{ $pivot->Empresa ?? '' }}
+                                <h6 class="card-subtitle mb-2 text-primary"><small>Valor Unid.:
+                                </small> <b class="text-danger">R$
+                                    {{ $pivot->Valor ?? '' }}</small></b></h6>
+                            <h6 class="card-subtitle mb-2 text-primary">
+                                <small>Quantidade:</small> <b
+                                    class="text-dark">{{ $pesquisa->Qtd ?? '' }}</b>
+                            </h6>
+                            <h6 class="card-subtitle mb-2 text-primary">
+                                <small>Total:</small> <b class="text-danger">R$
+                                    {{ $pivot->Valor * $pesquisa->Qtd }} </b>
+                            </h6>
+                                </div></div>
+                       
                         {{-- {{ $planodetalhados->id }} --}}
                     </div>
                     <div class="modal-footer">

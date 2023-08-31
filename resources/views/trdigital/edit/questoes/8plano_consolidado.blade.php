@@ -59,9 +59,7 @@
                                           </td>
                                           <td>
                                               <h5><span class="badge bg-success">
-                                                      R$ {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }} <br>
-                                                      R$ {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }}
- <span></h5>
+                                                      R$ {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }} <br> <span></h5>
                                           </td>
                                           <td>
                                               <h5><span

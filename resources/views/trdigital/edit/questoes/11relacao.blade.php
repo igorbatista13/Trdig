@@ -34,46 +34,61 @@
                                       <th>Propriedade</th>
                                       <th>Ações</th>
                                       <th></th>
-                                  
+
 
                                   </tr>
                               </thead>
 
                               @foreach ($obras_equipamento as $obras_equipamentos)
                                   <tr>
-                                  
-                                      <td>{{ $obras_equipamentos->planoConsolidado->Natureza }} - {{ $obras_equipamentos->Especificacao }} <br>
-                                        @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == '')
-                                        <span class="badge bg-primary">
-                                            <i class="bi bi-clock me-1"></i> Aguardando análise</span>
-                                    @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
-                                        <span class="badge bg-success">
-                                            <i class="bi bi-check-circle me-1"></i> Validado</span>
-                                    @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 0)
-                                        <span
-                                            class="badge bg-warning text-dark">
-                                            <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
-                                    @endif
-                                 </td>
-                                      <td> <h5> <span class="badge bg-success">{{ $obras_equipamentos->Unidade }} </span></h5> </td>
-                                      <td>  <span class="badge bg-success">{{ $obras_equipamentos->Qtd }} </span> </td>
-                                      <td> <span class="badge bg-primary"> R$ {{ number_format($obras_equipamentos->Valor_unit, 2, ',', '.') }}
-                                         </span></td>
-                                      <td> <h5> <span class="badge bg-danger">
-                                        R$ {{ number_format($obras_equipamentos->Valor_unit * $obras_equipamentos->Qtd, 2, ',', '.') }} </td>
-                                      <td> <span class="badge bg-warning text-success">{{ $obras_equipamentos->cidade->Nome }} </span> </td>
-                                    
+
+                                      <td>{{ $obras_equipamentos->planoConsolidado->Natureza }} -
+                                          {{ $obras_equipamentos->Especificacao }} <br>
+                                          @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == '')
+                                              <span class="badge bg-primary">
+                                                  <i class="bi bi-clock me-1"></i> Aguardando análise</span>
+                                          @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
+                                              <span class="badge bg-success">
+                                                  <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                          @elseif ($obras_equipamentos->Correcao_obras_equipamentos_sit == 0)
+                                              <span class="badge bg-warning text-dark">
+                                                  <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                          @endif
+                                      </td>
+                                      <td>
+                                          <h5> <span class="badge bg-success">{{ $obras_equipamentos->Unidade }} </span>
+                                          </h5>
+                                      </td>
+                                      <td> <span class="badge bg-success">{{ $obras_equipamentos->Qtd }} </span> </td>
+                                      <td> <span class="badge bg-primary"> R$
+                                              {{ number_format($obras_equipamentos->Valor_unit, 2, ',', '.') }}
+                                          </span></td>
+                                      <td>
+                                          <h5> <span class="badge bg-danger">
+                                                  R$
+                                                  {{ number_format($obras_equipamentos->Valor_unit * $obras_equipamentos->Qtd, 2, ',', '.') }}
+                                      </td>
+                                      <td> <span
+                                              class="badge bg-warning text-success">{{ $obras_equipamentos->cidade->Nome }}
+                                          </span> </td>
+
                                       @if ($obras_equipamentos->Propriedade == 'Concedente')
-                                      <td> <h5> <span class="badge bg-warning">{{ $obras_equipamentos->Propriedade }} </span></h5></td>
+                                          <td>
+                                              <h5> <span class="badge bg-warning">{{ $obras_equipamentos->Propriedade }}
+                                                  </span></h5>
+                                          </td>
                                       @else
-                                      <td> <h5> <span class="badge bg-success">{{ $obras_equipamentos->Propriedade }} </span></h5></td>
-                                        @endif
+                                          <td>
+                                              <h5> <span class="badge bg-success">{{ $obras_equipamentos->Propriedade }}
+                                                  </span></h5>
+                                          </td>
+                                      @endif
                                       <td>
                                           <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                               data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
                                               data-bs-meta-id="{{ $obras_equipamentos->id }}">
                                               <i class="bi bi-pencil-square"></i>
-                                            </button>
+                                          </button>
                                       <td>
                                           <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                               data-bs-target="#excluir_cronograma{{ $obras_equipamentos->id }}"

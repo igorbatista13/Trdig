@@ -35,7 +35,6 @@
                               {!! Form::text('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
                                   'placeholder' => 'a',
                                   'class' => 'form-control',
-                                  'id' => 'tel',
                                   'oninput' => 'mascaraTelefone(this)',
                                   'maxlength' => '14',
                               ]) !!}

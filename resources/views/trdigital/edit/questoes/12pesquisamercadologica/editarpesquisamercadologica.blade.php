@@ -43,6 +43,8 @@
                                                 'placeholder' => 'Descrição do item',
                                                 'class' => 'form-control',
                                                 'id' => 'floatingName',
+                                                // 'readonly' => 'true',
+                                                
                                             ]) !!}
                                             <label for="floatingName">Descrição do item</label>
                                         </div>

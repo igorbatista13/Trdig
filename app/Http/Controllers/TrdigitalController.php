@@ -710,6 +710,19 @@ class TrdigitalController extends Controller
     
         return redirect()->back(); // Ou redirecionar para qualquer outra página desejada após a exclusão
     }
+
+    public function pesquisa_nome_mercadologica_destroy($pivotId)
+    {
+        $pesquisa_mercadologica = Pesquisa_mercadologica::find($pivotId);
+    
+        if (!$pesquisa_mercadologica) {
+            // Lógica de tratamento se o item do pivot não for encontrado
+        }
+    
+        $pesquisa_mercadologica->delete();
+    
+        return redirect()->back(); // Ou redirecionar para qualquer outra página desejada após a exclusão
+    }
     
 
     public function show($id)
