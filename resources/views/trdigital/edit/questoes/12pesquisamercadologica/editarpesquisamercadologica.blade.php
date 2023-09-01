@@ -1,18 +1,20 @@
-<!-- Vertically centered Modal -->
 {!! Form::close() !!}
-@foreach ($pesquisa_mercadologica as $pesquisa)
-@foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
+
+{{-- @foreach ($pesquisa_mercadologica as $pesquisa)
+    @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot) --}}
 
 <div class="modal fade" id="editar_pesquisamercadologica{{ $pivot->id ?? '' }}Editar" tabindex="-1">
-
     <div class="modal-dialog modal-dialog-centered modal-lg">
-
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">CADASTRO DE PESQUISA MERCADOLÓGICA</h5>
+
+                <h5 class="modal-title">EDITAR DE PESQUISA MERCADOLÓGICA {{ $pivot->id ?? '' }}</h5>
+                <br> {{ $pesquisa->id ?? '' }}
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            
             <div class="modal-body">
 
                 {!! Form::open([
@@ -20,10 +22,9 @@
                     'route' => ['trdigital.pesquisa_mercadologica_update', $pesquisa->id],
                     'enctype' => 'multipart/form-data', // Adicionando o enctype
                 ]) !!}
-                
 
                 <br>
-
+                
                 <div class="card-body">
                     <table class="table" id="products_table">
                         <thead>
@@ -33,17 +34,17 @@
                         </thead>
 
                         <tbody>
-                            <tr id="product0">
+                            <tr id="product20">
 
                                 <div class="row g-3">
 
-                                    <div class="col-md-8">
+                                    {{-- <div class="col-md-8">
                                         <div class="form-floating">
                                             {!! Form::text('Descricao_bem', $pesquisa->Descricao_bem, [
                                                 'placeholder' => 'Descrição do item',
                                                 'class' => 'form-control',
                                                 'id' => 'floatingName',
-                                                // 'readonly' => 'true',
+                                                 'readonly' => 'true',
                                                 
                                             ]) !!}
                                             <label for="floatingName">Descrição do item</label>
@@ -57,9 +58,11 @@
                                                 'placeholder' => 'Quantidade',
                                                 'class' => 'form-control',
                                                 'id' => 'floatingCity',
+                                                'readonly' => 'true',
+
                                             ]) !!}
                                             <label for="floatingName">Quantidade</label>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                     <td>
@@ -91,15 +94,12 @@
 
                                                 </div>
 
-
-
                                                 <div class="row">
 
                                                     <div class="col-md-12">
                                                         <div class="form-floating">
 
                                                             {!! Form::file('Anexo[]', ['placeholder' => 'Anexo', 'class' => 'form-control', 'id' => 'formFile']) !!}
-
 
                                                             <label for="floatingZip">Anexar o
                                                                 Comprovante</label>
@@ -126,14 +126,16 @@
 
                         </tbody>
                     </table>
+                    <input type="hidden" name="n_processo_id" value="{{ $pivot->id }}">
+
+                </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
-                    </div>
              
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endforeach
-@endforeach
+{{-- @endforeach
+@endforeach --}}

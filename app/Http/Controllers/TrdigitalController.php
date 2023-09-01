@@ -668,18 +668,21 @@ class TrdigitalController extends Controller
     }
     
 
-    public function pesquisa_mercadologica_update(Request $request, $id)
+    public function pesquisa_mercadologica_update(Request $request, $pivotId)
     {
-        $pesquisa_mercadologica = Pesquisa_mercadologica::findOrFail($id);
+        // Localize o registro existente pelo ID
+        $pesquisa_mercadologica = Pesquisa_mercadologica::findOrFail($pivotId);
     
+        // Atualize os campos desejados com os novos valores
         $pesquisa_mercadologica->update([
             'Descricao_bem' => $request->Descricao_bem,
             'Qtd' => $request->Qtd,
         ]);
     
-        foreach ($pesquisa_mercadologica->pesquisa_mercadologica_pivots as $key => $pivot) {
+        // Repita o processo para atualizar os registros relacionados, se necessário
+        foreach ($request->Empresa as $key => $empresa) {
             $pivotData = [
-                'Empresa' => $request->Empresa[$key],
+                'Empresa' => $empresa,
                 'Valor' => $request->Valor[$key],
             ];
     
@@ -687,12 +690,15 @@ class TrdigitalController extends Controller
                 $file = $request->file('Anexo')[$key];
                 $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
                 $pivotData['Anexo'] = $filePath;
+            } else {
+                $pivotData['Anexo'] = null; // Valor padrão se não houver anexo
             }
-
-     //       dd($request);
-            $pivot->update($pivotData);
+            
+            // Localize o registro relacionado pelo ID e atualize os campos desejados
+            // $pesquisa_mercadologica->pesquisa_mercadologica_pivots[$key]->update($pivotData);
         }
-    
+        $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->update($pivotData);
+        
         return redirect()->back();
     }
     

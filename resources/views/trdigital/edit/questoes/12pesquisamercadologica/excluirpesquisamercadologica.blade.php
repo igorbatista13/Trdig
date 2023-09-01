@@ -12,24 +12,26 @@
                     </div>
                     <div class="modal-body">
                         Tem certeza de que deseja excluir este registro <b> {{ $pivot->Empresa ?? '' }} </b>
-                            <div class="card">
-                                <div class="card-body">
+                        <div class="card">
+                            <div class="card-body">
 
-                            <br> <a class="text-primary"> <i
-                                class="bi bi-building"> </i>  </a>{{ $pivot->Empresa ?? '' }}
+                                <br> <a class="text-primary"> <i class="bi bi-building"> </i>
+                                </a>{{ $pivot->Empresa ?? '' }}
                                 <h6 class="card-subtitle mb-2 text-primary"><small>Valor Unid.:
-                                </small> <b class="text-danger">R$
-                                    {{ $pivot->Valor ?? '' }}</small></b></h6>
-                            <h6 class="card-subtitle mb-2 text-primary">
-                                <small>Quantidade:</small> <b
-                                    class="text-dark">{{ $pesquisa->Qtd ?? '' }}</b>
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-primary">
-                                <small>Total:</small> <b class="text-danger">R$
-                                    {{ $pivot->Valor * $pesquisa->Qtd }} </b>
-                            </h6>
-                                </div></div>
-                       
+                                    </small> <b class="text-danger">R$
+                                        {{ $pivot->Valor ?? '' }}</small></b></h6>
+
+                                <h6 class="card-subtitle mb-2 text-primary">
+                                    <small>Quantidade:</small> <b class="text-dark">{{ $pesquisa->Qtd ?? '' }}</b>
+                                </h6>
+
+                                <h6 class="card-subtitle mb-2 text-primary">
+                                    <small>Total:</small> <b class="text-danger">R$
+                                        {{ $pivot->Valor * $pesquisa->Qtd }} </b>
+                                </h6>
+                            </div>
+                        </div>
+
                         {{-- {{ $planodetalhados->id }} --}}
                     </div>
                     <div class="modal-footer">
@@ -37,7 +39,7 @@
                         {!! Form::open([
                             'route' => ['trdigital.pesquisa_mercadologica_destroy', $pivot->id],
                             'method' => 'delete',
-                        ]) !!}
+                        ]) !!}                        
                         <button type="submit" class="btn btn-danger">Excluir</button>
                         {!! Form::close() !!}
                     </div>

@@ -390,9 +390,9 @@
   <script src="{{asset('/assets/vendor/php-email-form/validate.js')}}"></script>
   <script src="{{asset('/assets/js/main.js')}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
-
+{{-- 
  <script src="{{ asset('/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('/jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script>
+  <script src="{{ asset('/jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script> --}}
 
   {{-- <script src="assets/vendor/apexcharts/apexcharts.min.js"></script> --}}
   {{-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}

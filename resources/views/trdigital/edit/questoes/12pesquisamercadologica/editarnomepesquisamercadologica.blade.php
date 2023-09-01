@@ -80,4 +80,38 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        let row_number = 1;
+        $("#add_row").click(function(e) {
+            e.preventDefault();
+            let new_row_number = row_number - 1;
+            $('#product' + row_number).html($('#product' + new_row_number).html());
+            $('#products_table').append('<tr id="product' + (row_number + 1) + '"></tr>');
+
+            // Atualize os IDs e nomes dos campos duplicados
+            $('#product' + row_number).find('[id]').each(function() {
+                let new_id = $(this).attr('id').replace(new RegExp(new_row_number, 'g'),
+                    row_number);
+                $(this).attr('id', new_id);
+            });
+
+            $('#product' + row_number).find('[name]').each(function() {
+                let new_name = $(this).attr('name').replace(new RegExp(new_row_number, 'g'),
+                    row_number);
+                $(this).attr('name', new_name);
+            });
+
+            row_number++;
+        });
+
+        $("#delete_row").click(function(e) {
+            e.preventDefault();
+            if (row_number > 1) {
+                $("#product" + (row_number - 1)).html('');
+                row_number--;
+            }
+        });
+    });
+</script>
 @endforeach
