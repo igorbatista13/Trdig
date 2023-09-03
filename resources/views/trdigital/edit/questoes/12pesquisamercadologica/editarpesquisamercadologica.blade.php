@@ -1,141 +1,43 @@
-{!! Form::close() !!}
-
-{{-- @foreach ($pesquisa_mercadologica as $pesquisa)
-    @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot) --}}
-
-<div class="modal fade" id="editar_pesquisamercadologica{{ $pivot->id ?? '' }}Editar" tabindex="-1">
+<!-- Modal de Edição da Pesquisa Mercadológica -->
+<div class="modal fade" id="editar_pesquisa_mercadologica{{ $pivot->id }}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-
         <div class="modal-content">
             <div class="modal-header">
-
-                <h5 class="modal-title">EDITAR DE PESQUISA MERCADOLÓGICA {{ $pivot->id ?? '' }}</h5>
-                <br> {{ $pesquisa->id ?? '' }}
+                <h5 class="modal-title text-warning" id="modalLabel">Editar Pesquisa Mercadológica: <b> {{$pivot->Empresa}} </b> </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            
             <div class="modal-body">
-
                 {!! Form::open([
                     'method' => 'PUT',
-                    'route' => ['trdigital.pesquisa_mercadologica_update', $pesquisa->id],
-                    'enctype' => 'multipart/form-data', // Adicionando o enctype
+                    'route' => ['trdigital.pesquisa_mercadologica_update', $pivot->id],
+                    'enctype' => 'multipart/form-data',
                 ]) !!}
 
-                <br>
-                
-                <div class="card-body">
-                    <table class="table" id="products_table">
-                        <thead>
-                            <tr>
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-                            <tr id="product20">
-
-                                <div class="row g-3">
-
-                                    {{-- <div class="col-md-8">
-                                        <div class="form-floating">
-                                            {!! Form::text('Descricao_bem', $pesquisa->Descricao_bem, [
-                                                'placeholder' => 'Descrição do item',
-                                                'class' => 'form-control',
-                                                'id' => 'floatingName',
-                                                 'readonly' => 'true',
-                                                
-                                            ]) !!}
-                                            <label for="floatingName">Descrição do item</label>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            {!! Form::number('Qtd', $pesquisa->Qtd, [
-                                                'placeholder' => 'Quantidade',
-                                                'class' => 'form-control',
-                                                'id' => 'floatingCity',
-                                                'readonly' => 'true',
-
-                                            ]) !!}
-                                            <label for="floatingName">Quantidade</label>
-                                        </div> --}}
-
-                                    </div>
-                                    <td>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="form-floating">
-                                                            {!! Form::text('Empresa[]', $pivot->Empresa, [
-                                                                'placeholder' => 'Empresa',
-                                                                'class' => 'form-control',
-                                                                'id' => 'floatingName',
-                                                            ]) !!}
-                                                            <label for="floatingName"></label>
-                                                            <label for="floatingEmail">Nome da
-                                                                Empresa</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-floating">
-                                                            {!! Form::number('Valor[]', $pivot->Valor, [
-                                                                'placeholder' => 'Valor',
-                                                                'class' => 'form-control',
-                                                                'id' => 'floatingZip',
-                                                            ]) !!}
-                                                            <label for="floatingZip">Valor</label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-
-                                                    <div class="col-md-12">
-                                                        <div class="form-floating">
-
-                                                            {!! Form::file('Anexo[]', ['placeholder' => 'Anexo', 'class' => 'form-control', 'id' => 'formFile']) !!}
-
-                                                            <label for="floatingZip">Anexar o
-                                                                Comprovante</label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <nav class="d-flex justify-content-center">
-                                                        <ol class="breadcrumb">
-                                                            <li class="breadcrumb-item active">
-                                                                <a>Informações individuais da
-                                                                    Empresa</a>
-                                                            </li>
-                                                        </ol>
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </div>
-                            </tr>
-                            <tr id="product1"></tr>
-
-                        </tbody>
-                    </table>
-                    <input type="hidden" name="n_processo_id" value="{{ $pivot->id }}">
-
+    
+                <div class="mb-3">
+                    <label for="empresa" class="form-label">Nome da Empresa</label>
+                    {!! Form::text('Empresa', $pivot->Empresa, [
+                        'class' => 'form-control',
+                        'id' => 'empresa',
+                    ]) !!}
                 </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
-             
+                <div class="mb-3">
+                    <label for="valor" class="form-label">Valor</label>
+                    {!! Form::number('Valor', $pivot->Valor, [
+                        'class' => 'form-control',
+                        'id' => 'valor',
+                    ]) !!}
                 </div>
+                <div class="mb-3">
+                    <label for="anexo" class="form-label">Anexar o Comprovante</label>
+                    {!! Form::file('Anexo', ['class' => 'form-control', 'id' => 'anexo']) !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
 </div>
-{{-- @endforeach
-@endforeach --}}

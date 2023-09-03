@@ -668,40 +668,109 @@ class TrdigitalController extends Controller
     }
     
 
-    public function pesquisa_mercadologica_update(Request $request, $pivotId)
+    public function pesquisa_nome_mercadologica_update(Request $request, $id)
     {
-        // Localize o registro existente pelo ID
-        $pesquisa_mercadologica = Pesquisa_mercadologica::findOrFail($pivotId);
-    
-        // Atualize os campos desejados com os novos valores
+        $pesquisa_mercadologica = Pesquisa_mercadologica::findOrFail($id);
+
         $pesquisa_mercadologica->update([
             'Descricao_bem' => $request->Descricao_bem,
             'Qtd' => $request->Qtd,
         ]);
+
+        //    $pesquisa_mercadologica->update($pivotData);
+
+      return redirect()->back();
+    }
     
-        // Repita o processo para atualizar os registros relacionados, se necessário
+
+
+
+
+
+
+
+
+
+
+
+    public function pesquisa_mercadologica_update(Request $request, $pivotid)
+{
+    // Encontre o registro existente de Pesquisa_mercadologica a ser atualizado
+    $pesquisa_mercadologica = Pesquisa_mercadologica_pivot::findOrFail($pivotid);
+
+    // Atualize os campos principais de Pesquisa_mercadologica
+    // $pesquisa_mercadologica->update([
+    //     'Descricao_bem' => $request->Descricao_bem,
+    //     'Qtd' => $request->Qtd,
+    // ]);
+
+        
+    if (is_array($request->Empresa)) {
         foreach ($request->Empresa as $key => $empresa) {
             $pivotData = [
                 'Empresa' => $empresa,
                 'Valor' => $request->Valor[$key],
             ];
     
-            if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
-                $file = $request->file('Anexo')[$key];
-                $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
-                $pivotData['Anexo'] = $filePath;
-            } else {
-                $pivotData['Anexo'] = null; // Valor padrão se não houver anexo
-            }
-            
-            // Localize o registro relacionado pelo ID e atualize os campos desejados
-            // $pesquisa_mercadologica->pesquisa_mercadologica_pivots[$key]->update($pivotData);
+            // Resto do seu código de processamento aqui...
         }
-        $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->update($pivotData);
-        
-        return redirect()->back();
+    } else {
+        // Se $request->Empresa não for um array, trate-o como um único valor
+        $pivotData = [
+            'Empresa' => $request->Empresa,
+            'Valor' => $request->Valor, // Sem a necessidade de [$key] aqui
+        ];
+    
+        // Resto do seu código de processamento aqui...
     }
     
+    // Itere sobre os relacionamentos Pesquisa_mercadologica_pivot existentes
+    // foreach ($pesquisa_mercadologica->pesquisa_mercadologica_pivots as $key => $pivot) {
+    //     $pivotData = [
+    //         'Empresa' => $request->Empresa,
+    //         'Valor' => $request->Valor[$key],
+    //     ];
+
+        // if (isset($request->Empresa[$key])) {
+        //     // Acesse $request->Empresa[$key]
+        // }
+        
+        // if (isset($request->Valor[$key])) {
+        //     // Acesse $request->Valor[$key]
+        // }
+        if ($request->hasFile('Anexo') && $request->file('Anexo')->isValid()) {
+            $file = $request->file('Anexo');
+            $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
+            $pivotData['Anexo'] = $filePath;
+        }
+        
+        // // Verifique se um novo arquivo foi enviado e atualize o campo Anexo
+        // if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
+        //     $file = $request->file('Anexo')[$key];
+        //     $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
+        //     $pivotData['Anexo'] = $filePath;
+        // }
+
+        // Atualize o registro de pivot
+       // $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->update($pivotData);
+
+        $pesquisa_mercadologica->update($pivotData);
+      return redirect()->back();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function pesquisa_mercadologica_destroy($pivotId)

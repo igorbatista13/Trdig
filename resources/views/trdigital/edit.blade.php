@@ -70,7 +70,7 @@
 
                                                         </div>
 
-                                                        
+
                                                         <!-- Seu código HTML do select -->
                                                         <div class="row">
                                                             <div class="col-lg-4">
@@ -87,424 +87,461 @@
 
                                                             </div>
                                                             <div class="col-lg-6">
-                                               
 
                                                             </div>
                                                             <div class="col-lg-2">
 
-                                                                
-                
-                <!-- Basic Modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">                    
-                    Ajuda <i class="bx bx-help-circle"></i>
-              </button>
-              <div class="modal fade" id="basicModal" tabindex="-1">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-primary">Ajuda, Links, Documentos</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-xl-12">
+                                                                <!-- Basic Modal -->
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-toggle="modal" data-bs-target="#basicModal">
+                                                                    Ajuda <i class="bx bx-help-circle"></i>
+                                                                </button>
+                                                                <div class="modal fade" id="basicModal" tabindex="-1">
+                                                                    <div class="modal-dialog modal-lg">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title text-primary">Ajuda,
+                                                                                    Links, Documentos</h5>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="col-xl-12">
 
-                            @foreach ($biblioteca as $bibliotecas)
-                            <!-- Default Accordion -->
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            @if ($bibliotecas->Tipo == 'PDF')
-                            <img src="{{ asset('images/pdf.png') }}"  width="40px" class="img-fluid rounded-start">
-                            @elseif ($bibliotecas->Tipo == 'Excel')
-                            <img src="{{ asset('images/excel.png') }}"  width="40px" class="img-fluid rounded-start">
-                            @elseif ($bibliotecas->Tipo == 'Imagem')
-                            <img src="{{ asset('images/imagem_logo.png') }}"  width="40px" class="img-fluid rounded-start">
-                            @elseif ($bibliotecas->Tipo == 'Video')
-                            <img src="{{ asset('images/video_logo.png') }}"  width="40px" class="img-fluid rounded-start">
-                            @elseif ($bibliotecas->Tipo == 'Word')
-                            <img src="{{ asset('images/word.png') }}"  width="40px" class="img-fluid rounded-start">
-                            @elseif ($bibliotecas->Tipo == 'Outros')
-                            <img src="{{ asset('images/biblioteca-ico.png') }}"  width="40px" class="img-fluid rounded-start">
-                            @elseif ($bibliotecas->Tipo == 'Link')
-                            <img src="{{ asset('images/link.png') }}"  width="40px" class="img-fluid rounded-start">
-                                 @else
-                             @endif
-                                                   {{ $bibliotecas->Nome }}
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            @if ($bibliotecas->Descricao)
-                                            Sobre:   <strong> {{ $bibliotecas->Descricao }} </strong><br>
-                                         @else
-                                         @endif
-                                         @if ($bibliotecas->Link)
-                                         Link: <strong> <a href="{{ $bibliotecas->Link }}" target="_blank">{{ $bibliotecas->Link }}</a> </strong> <br>
-                                         @else
-                                         @endif
-                                         @if ($bibliotecas->Anexo)
-                                        <a class="btn btn-primary" href="{{ asset('storage/' . $bibliotecas->Anexo) }}"
-                                             target="_blank"> <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo </a>
-                                             @else
-                                         @endif
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+                                                                                    @foreach ($biblioteca as $bibliotecas)
+                                                                                        <!-- Default Accordion -->
+                                                                                        <div class="accordion"
+                                                                                            id="accordionExample">
+                                                                                            <div class="accordion-item">
+                                                                                                <h2 class="accordion-header"
+                                                                                                    id="headingOne">
+
+                                                                                                    <button
+                                                                                                        class="accordion-button"
+                                                                                                        type="button"
+                                                                                                        data-bs-toggle="collapse"
+                                                                                                        data-bs-target="#collapseOne"
+                                                                                                        aria-expanded="true"
+                                                                                                        aria-controls="collapseOne">
+                                                                                                        @if ($bibliotecas->Tipo == 'PDF')
+                                                                                                            <img src="{{ asset('images/pdf.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                                
+                                                                                                            @elseif ($bibliotecas->Tipo == 'Excel')
+                                                                                                            <img src="{{ asset('images/excel.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                            @elseif ($bibliotecas->Tipo == 'Imagem')
+                                                                                                            <img src="{{ asset('images/imagem_logo.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                            @elseif ($bibliotecas->Tipo == 'Video')
+                                                                                                            <img src="{{ asset('images/video_logo.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                            @elseif ($bibliotecas->Tipo == 'Word')
+                                                                                                            <img src="{{ asset('images/word.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                            @elseif ($bibliotecas->Tipo == 'Outros')
+                                                                                                            <img src="{{ asset('images/biblioteca-ico.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                            @elseif ($bibliotecas->Tipo == 'Link')
+                                                                                                            <img src="{{ asset('images/link.png') }}"
+                                                                                                                width="40px"
+                                                                                                                class="img-fluid rounded-start">
+                                                                                                        @else
+                                                                                                        @endif
+                                                                                                        {{ $bibliotecas->Nome }}
+                                                                                                    </button>
+                                                                                                </h2>
+                                                                                                <div id="collapseOne"
+                                                                                                    class="accordion-collapse collapse show"
+                                                                                                    aria-labelledby="headingOne"
+                                                                                                    data-bs-parent="#accordionExample">
+                                                                                                    <div
+                                                                                                        class="accordion-body">
+                                                                                                        @if ($bibliotecas->Descricao)
+                                                                                                            Sobre: <strong>
+                                                                                                                {{ $bibliotecas->Descricao }}
+                                                                                                            </strong><br>
+                                                                                                        @else
+                                                                                                        @endif
+                                                                                                        @if ($bibliotecas->Link)
+                                                                                                            Link: <strong>
+                                                                                                                <a href="{{ $bibliotecas->Link }}"
+                                                                                                                    target="_blank">{{ $bibliotecas->Link }}</a>
+                                                                                                            </strong> <br>
+                                                                                                        @else
+                                                                                                        @endif
+                                                                                                        @if ($bibliotecas->Anexo)
+                                                                                                            <a class="btn btn-primary"
+                                                                                                                href="{{ asset('storage/' . $bibliotecas->Anexo) }}"
+                                                                                                                target="_blank">
+                                                                                                                <i
+                                                                                                                    class="bi bi-file-earmark-pdf-fill"></i>
+                                                                                                                Ver arquivo
+                                                                                                            </a>
+                                                                                                        @else
+                                                                                                        @endif
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
 
 
 
-                            </div><!-- End Default Accordion Example -->
-                        @endforeach
-                  
-                          </div>                    </div>
-                    <div class="modal-footer">
-           
-                      <button type="button" class="btn btn-primary"   data-bs-dismiss="modal">Fechar</button>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End Basic Modal-->
+                                                                                        </div>
+                                                                                        <!-- End Default Accordion Example -->
+                                                                                    @endforeach
 
-          </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
 
+                                                                                <button type="button"
+                                                                                    class="btn btn-primary"
+                                                                                    data-bs-dismiss="modal">Fechar</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div><!-- End Basic Modal-->
 
                                                             </div>
+
+
                                                         </div>
-
-
-
                                                     </div>
 
 
 
-
-
                                                 </div>
-                                            </div>
 
+
+
+
+
+                                            </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <div class="list-group" id="list-tab" role="tablist">
-                                                    <a class="list-group-item list-group-item-action active"
-                                                        id="list-home-list" data-bs-toggle="list" href="#list-home"
-                                                        role="tab" aria-controls="list-home"><big><b> 1. </b></big>
-                                                        Ofícios
-                                                        @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio && $n_processo->Doc_anexo1->Comp_Assinado)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                    </div>
 
-                                                    <a class="list-group-item list-group-item-action" id="list-profile-list"
-                                                        data-bs-toggle="list" href="#list-profile" role="tab"
-                                                        aria-controls="list-profile"><big><b> 2. </b> </big>
-                                                        Identificação do Responsável
-                                                        pela Instituição </b>
-                                                        @if (
-                                                            $n_processo->Resp_instituicao &&
-                                                                $n_processo->Resp_instituicao->Nome_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Telefone_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Email_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Cargo_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Cidade_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Estado_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Cep_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->End_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao &&
-                                                                $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-messages-list" data-bs-toggle="list" href="#list-messages"
-                                                        role="tab" aria-controls="list-messages"><big><b> 3.</b> </big>
-                                                        Identificação da
-                                                        Instituição
-                                                        Proponente </b>
-                                                        @if (
-                                                            $n_processo->instituicao &&
-                                                                $n_processo->instituicao->Nome_Instituicao &&
-                                                                $n_processo->instituicao->CNPJ_Instituicao &&
-                                                                $n_processo->instituicao->Telefone_Instituicao &&
-                                                                $n_processo->instituicao->Endereco_Instituicao &&
-                                                                $n_processo->instituicao->Cidade_Instituicao &&
-                                                                $n_processo->instituicao->Estado_Instituicao &&
-                                                                $n_processo->instituicao->Cep_Instituicao &&
-                                                                $n_processo->instituicao->Anexo1_Instituicao &&
-                                                                $n_processo->instituicao->Anexo2_Instituicao)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-settings-list" data-bs-toggle="list" href="#list-settings"
-                                                        role="tab" aria-controls="list-settings"><big><b> 4. </b> </big>
-                                                        Identificação do
-                                                        Responsável pelo Projeto </b>
-                                                        @if (
-                                                            $n_processo->Resp_projeto &&
-                                                                $n_processo->Resp_projeto->Nome_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->Telefone_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->CPF_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->RG_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->Endereco_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->Cidade_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->Estado_Resp_projeto &&
-                                                                $n_processo->Resp_projeto->Cep_Resp_projeto)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
-                                                    <a class="list-group-item list-group-item-action" id="list-atas-list"
-                                                        data-bs-toggle="list" href="#list-atas" role="tab"
-                                                        aria-controls="list-atas"><big> <b> 5. </b> </big></b> Atas,
-                                                        Certidões,
-                                                        Comprovantes e Declarações
-                                                        @if (
-                                                            $n_processo->Doc_Anexo2 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo4 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10 &&
-                                                                $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
-                                                    <a class="list-group-item list-group-item-action" id="list-projeto-list"
-                                                        data-bs-toggle="list" href="#list-projeto" role="tab"
-                                                        aria-controls="list-projeto"> <b> <big> 6. </big> </b>
-                                                        Identificação
-                                                        do
-                                                        Projeto
-                                                        @if (
-                                                            $n_processo->Projeto_conteudo &&
-                                                                $n_processo->Projeto_conteudo->Titulo_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Obj_especifico_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Justificativa_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Contextualizacao_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Diagnostico_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Importancia_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Caracterizacao_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Publico_Alvo_Interno_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Publico_Alvo_Externo_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Problemas_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Resultados_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Nome_Autor_Emenda_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo &&
-                                                                $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="list-group" id="list-tab" role="tablist">
+                                                <a class="list-group-item list-group-item-action active"
+                                                    id="list-home-list" data-bs-toggle="list" href="#list-home"
+                                                    role="tab" aria-controls="list-home"><big><b> 1. </b></big>
+                                                    Ofícios
+                                                    @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio && $n_processo->Doc_anexo1->Comp_Assinado)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-Cronograma" data-bs-toggle="list"
-                                                        href="#list-Cronograma" role="tab"
-                                                        aria-controls="list-Cronograma">
-                                                        <b> <big> 7. </big> </b> Cronograma de Execução - <b> (Metas e
-                                                            Etapas) </b>
-                                                        @if ($n_processo->Metas)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-consolidado" data-bs-toggle="list"
-                                                        href="#list-consolidado" role="tab"
-                                                        aria-controls="list-consolidado">
-                                                        <b> <big> 8. </big> </b> Plano de Aplicação Consolidado
-                                                        @if ($n_processo->Plano_consolidado && $n_processo->Plano_consolidado->Natureza)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                                <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                                    data-bs-toggle="list" href="#list-profile" role="tab"
+                                                    aria-controls="list-profile"><big><b> 2. </b> </big>
+                                                    Identificação do Responsável
+                                                    pela Instituição </b>
+                                                    @if (
+                                                        $n_processo->Resp_instituicao &&
+                                                            $n_processo->Resp_instituicao->Nome_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Telefone_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Email_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Cargo_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Cidade_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Estado_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Cep_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->End_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao &&
+                                                            $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
+                                                <a class="list-group-item list-group-item-action" id="list-messages-list"
+                                                    data-bs-toggle="list" href="#list-messages" role="tab"
+                                                    aria-controls="list-messages"><big><b> 3.</b> </big>
+                                                    Identificação da
+                                                    Instituição
+                                                    Proponente </b>
+                                                    @if (
+                                                        $n_processo->instituicao &&
+                                                            $n_processo->instituicao->Nome_Instituicao &&
+                                                            $n_processo->instituicao->CNPJ_Instituicao &&
+                                                            $n_processo->instituicao->Telefone_Instituicao &&
+                                                            $n_processo->instituicao->Endereco_Instituicao &&
+                                                            $n_processo->instituicao->Cidade_Instituicao &&
+                                                            $n_processo->instituicao->Estado_Instituicao &&
+                                                            $n_processo->instituicao->Cep_Instituicao &&
+                                                            $n_processo->instituicao->Anexo1_Instituicao &&
+                                                            $n_processo->instituicao->Anexo2_Instituicao)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
+                                                <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                                    data-bs-toggle="list" href="#list-settings" role="tab"
+                                                    aria-controls="list-settings"><big><b> 4. </b> </big>
+                                                    Identificação do
+                                                    Responsável pelo Projeto </b>
+                                                    @if (
+                                                        $n_processo->Resp_projeto &&
+                                                            $n_processo->Resp_projeto->Nome_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->Telefone_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->CPF_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->RG_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->Endereco_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->Cidade_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->Estado_Resp_projeto &&
+                                                            $n_processo->Resp_projeto->Cep_Resp_projeto)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
+                                                <a class="list-group-item list-group-item-action" id="list-atas-list"
+                                                    data-bs-toggle="list" href="#list-atas" role="tab"
+                                                    aria-controls="list-atas"><big> <b> 5. </b> </big></b> Atas,
+                                                    Certidões,
+                                                    Comprovantes e Declarações
+                                                    @if (
+                                                        $n_processo->Doc_Anexo2 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo4 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10 &&
+                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
+                                                <a class="list-group-item list-group-item-action" id="list-projeto-list"
+                                                    data-bs-toggle="list" href="#list-projeto" role="tab"
+                                                    aria-controls="list-projeto"> <b> <big> 6. </big> </b>
+                                                    Identificação
+                                                    do
+                                                    Projeto
+                                                    @if (
+                                                        $n_processo->Projeto_conteudo &&
+                                                            $n_processo->Projeto_conteudo->Titulo_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Obj_especifico_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Justificativa_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Contextualizacao_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Diagnostico_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Importancia_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Caracterizacao_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Publico_Alvo_Interno_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Publico_Alvo_Externo_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Problemas_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Resultados_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Nome_Autor_Emenda_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo &&
+                                                            $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-detalhado" data-bs-toggle="list"
-                                                        href="#list-detalhado" role="tab"
-                                                        aria-controls="list-detalhado">
-                                                        <b> <big> 9. </big> </b> Plano de Aplicação Detalhado - <b> (Memória
-                                                            de Cálculo) </b>
-                                                        @if ($n_processo->Plano_detalhado && $n_processo->Plano_detalhado->Natureza_id)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-Cronograma" data-bs-toggle="list"
+                                                    href="#list-Cronograma" role="tab"
+                                                    aria-controls="list-Cronograma">
+                                                    <b> <big> 7. </big> </b> Cronograma de Execução - <b> (Metas e
+                                                        Etapas) </b>
+                                                    @if ($n_processo->Metas)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-consolidado" data-bs-toggle="list"
+                                                    href="#list-consolidado" role="tab"
+                                                    aria-controls="list-consolidado">
+                                                    <b> <big> 8. </big> </b> Plano de Aplicação Consolidado
+                                                    @if ($n_processo->Plano_consolidado && $n_processo->Plano_consolidado->Natureza)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-detalhado" data-bs-toggle="list"
-                                                        href="#list-desembolso" role="tab"
-                                                        aria-controls="list-desembolso">
-                                                        <b> <big> 10. </big> </b>Cronograma de Desembolso
-                                                        @if ($n_processo->Cronograma_desembolso && $n_processo->Cronograma_desembolso->metas_id)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-detalhado" data-bs-toggle="list"
+                                                    href="#list-detalhado" role="tab" aria-controls="list-detalhado">
+                                                    <b> <big> 9. </big> </b> Plano de Aplicação Detalhado - <b> (Memória
+                                                        de Cálculo) </b>
+                                                    @if ($n_processo->Plano_detalhado && $n_processo->Plano_detalhado->Natureza_id)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-relacao" data-bs-toggle="list"
-                                                        href="#list-relacao" role="tab" aria-controls="list-relacao">
-                                                        <b> <big> 11. </big> </b>Relação de Obras e Equipamentos / Material
-                                                        Permanente
-                                                        @if ($n_processo->Obras_equipamento()->exists())
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-detalhado" data-bs-toggle="list"
+                                                    href="#list-desembolso" role="tab"
+                                                    aria-controls="list-desembolso">
+                                                    <b> <big> 10. </big> </b>Cronograma de Desembolso
+                                                    @if ($n_processo->Cronograma_desembolso && $n_processo->Cronograma_desembolso->metas_id)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-pesquisa" data-bs-toggle="list"
-                                                        href="#list-pesquisa" role="tab"
-                                                        aria-controls="list-pesquisa">
-                                                        <b> <big> 12. </big> </b> Pesquisa Mercadológica
-                                                        @if ($n_processo->Pesquisa_mercadologica && $n_processo->Pesquisa_mercadologica->Descricao_bem)
-                                                            <span
-                                                                class="badge bg-success custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-light"> </i>
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="badge bg-warning custom-badge position-absolute top-0 end-0">
-                                                                <i class="bi bi-pencil me-1 text-dark"></i>
-                                                            </span>
-                                                        @endif
-                                                    </a>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-relacao" data-bs-toggle="list" href="#list-relacao"
+                                                    role="tab" aria-controls="list-relacao">
+                                                    <b> <big> 11. </big> </b>Relação de Obras e Equipamentos / Material
+                                                    Permanente
+                                                    @if ($n_processo->Obras_equipamento()->exists())
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                    <a class="list-group-item list-group-item-action"
-                                                        id="list-projeto-tramitar" data-bs-toggle="list"
-                                                        href="#list-tramitar" role="tab"
-                                                        aria-controls="list-tramitar">
-                                                        <h5> <b> <big> 13. </big> Finalizar <i
-                                                                    class="bi bi-arrow-right-circle-fill me-2 text-primary">
-                                                                </i></b></h5>
-                                                    </a>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-pesquisa" data-bs-toggle="list"
+                                                    href="#list-pesquisa" role="tab" aria-controls="list-pesquisa">
+                                                    <b> <big> 12. </big> </b> Pesquisa Mercadológica
+                                                    @if ($n_processo->Pesquisa_mercadologica && $n_processo->Pesquisa_mercadologica->Descricao_bem)
+                                                        <span
+                                                            class="badge bg-success custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge bg-warning custom-badge position-absolute top-0 end-0">
+                                                            <i class="bi bi-pencil me-1 text-dark"></i>
+                                                        </span>
+                                                    @endif
+                                                </a>
 
-                                                </div>
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-tramitar" data-bs-toggle="list"
+                                                    href="#list-tramitar" role="tab" aria-controls="list-tramitar">
+                                                    <h5> <b> <big> 13. </big> Finalizar <i
+                                                                class="bi bi-arrow-right-circle-fill me-2 text-primary">
+                                                            </i></b></h5>
+                                                </a>
+
                                             </div>
+                                        </div>
 
-                                            <div class="col-9">
-                                                <div class="tab-content" id="nav-tabContent">
-                                                    {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                        <div class="col-9">
+                                            <div class="tab-content" id="nav-tabContent">
+                                                {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
-                                                    @include('trdigital.edit.questoes.1oficios')
-                                                    @include('trdigital.edit.questoes.2resp_instituicao')
-                                                    @include('trdigital.edit.questoes.3instituicao')
-                                                    @include('trdigital.edit.questoes.4resp_projeto')
-                                                    @include('trdigital.edit.questoes.5doc_anexos2')
-                                                    @include('trdigital.edit.questoes.6projeto')
-                                                    @include('trdigital.edit.questoes.7cronograma')
-                                                    @include('trdigital.edit.questoes.8plano_consolidado')
-                                                    @include('trdigital.edit.questoes.9plano_detalhado')
-                                                    @include('trdigital.edit.questoes.10cronograma_desembolso')
-                                                    @include('trdigital.edit.questoes.11relacao')
-                                                    @include('trdigital.edit.questoes.12pesquisa_mercadologica')
-                                                    @include('trdigital.edit.questoes.13tramitar')
+                                                @include('trdigital.edit.questoes.1oficios')
+                                                @include('trdigital.edit.questoes.2resp_instituicao')
+                                                @include('trdigital.edit.questoes.3instituicao')
+                                                @include('trdigital.edit.questoes.4resp_projeto')
+                                                @include('trdigital.edit.questoes.5doc_anexos2')
+                                                @include('trdigital.edit.questoes.6projeto')
+                                                @include('trdigital.edit.questoes.7cronograma')
+                                                @include('trdigital.edit.questoes.8plano_consolidado')
+                                                @include('trdigital.edit.questoes.9plano_detalhado')
+                                                @include('trdigital.edit.questoes.10cronograma_desembolso')
+                                                @include('trdigital.edit.questoes.11relacao')
+                                                @include('trdigital.edit.questoes.12pesquisa_mercadologica')
+                                                @include('trdigital.edit.questoes.13tramitar')
 
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                             </div>
+                        </div>
 
-                            </section>
+                        </section>
     </main>
     <script>
         $(document).ready(function() {
@@ -541,50 +578,50 @@
 
 <script>
     function mascaraCpfCnpj(input) {
-    var value = input.value;
-    // Remove tudo que não é dígito
-    value = value.replace(/\D/g, '');
-    if (value.length <= 11) { // CPF
-        // Coloca a máscara do CPF (XXX.XXX.XXX-XX)
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    } else { // CNPJ
-        // Coloca a máscara do CNPJ (XX.XXX.XXX/XXXX-XX)
-        value = value.replace(/^(\d{2})(\d)/, '$1.$2');
-        value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-        value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
-        value = value.replace(/(\d{4})(\d)/, '$1-$2');
-    }
-    input.value = value;
-}
-
-function mascaraTelefone(input) {
-    var value = input.value;
-    // Remove tudo que não é dígito
-    value = value.replace(/\D/g, '');
-    if (value.length === 11) { // Celular
-        // Coloca a máscara do telefone celular (DDD 9XXXX-XXXX)
-        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-    } else if (value.length === 10) { // Telefone fixo
-        // Coloca a máscara do telefone fixo (DDD XXXX-XXXX)
-        value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
-    }
-    input.value = value;
-}
-
-function mascaraCep(i) {
-
-    var valor = i.value;
-
-    if (isNaN(valor[valor.length - 1])) { //Não deixa a pessoa incluir letras
-        i.value = valor.substring(0, valor.length - 1);
-        return;
+        var value = input.value;
+        // Remove tudo que não é dígito
+        value = value.replace(/\D/g, '');
+        if (value.length <= 11) { // CPF
+            // Coloca a máscara do CPF (XXX.XXX.XXX-XX)
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        } else { // CNPJ
+            // Coloca a máscara do CNPJ (XX.XXX.XXX/XXXX-XX)
+            value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+            value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+            value = value.replace(/(\d{4})(\d)/, '$1-$2');
+        }
+        input.value = value;
     }
 
-    i.setAttribute("maxlength", "9");
-    if (valor.length == 5) i.value += "-";
-}
+    function mascaraTelefone(input) {
+        var value = input.value;
+        // Remove tudo que não é dígito
+        value = value.replace(/\D/g, '');
+        if (value.length === 11) { // Celular
+            // Coloca a máscara do telefone celular (DDD 9XXXX-XXXX)
+            value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+        } else if (value.length === 10) { // Telefone fixo
+            // Coloca a máscara do telefone fixo (DDD XXXX-XXXX)
+            value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+        }
+        input.value = value;
+    }
+
+    function mascaraCep(i) {
+
+        var valor = i.value;
+
+        if (isNaN(valor[valor.length - 1])) { //Não deixa a pessoa incluir letras
+            i.value = valor.substring(0, valor.length - 1);
+            return;
+        }
+
+        i.setAttribute("maxlength", "9");
+        if (valor.length == 5) i.value += "-";
+    }
 </script>
 <script>
     function validarValor(input, event) {
@@ -619,9 +656,11 @@ function mascaraCep(i) {
         const valorInputs = document.querySelectorAll('.valor-monetario');
         valorInputs.forEach(input => {
             input.addEventListener('blur', function() {
-                const valorSemPontos = this.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                const valorSemPontos = this.value.replace(/\D/g,
+                    ''); // Remove todos os caracteres não numéricos
                 const valorSemDecimais = valorSemPontos.split('.')[0]; // Remove a parte decimal
-                const valorDecimal = parseFloat(valorSemDecimais.replace(',', '.')); // Substitui a vírgula por ponto (caso haja)
+                const valorDecimal = parseFloat(valorSemDecimais.replace(',',
+                    '.')); // Substitui a vírgula por ponto (caso haja)
                 this.value = valorDecimal.toFixed(2); // Formata o valor com duas casas decimais
             });
         });

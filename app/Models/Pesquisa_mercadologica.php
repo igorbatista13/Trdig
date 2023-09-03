@@ -11,7 +11,7 @@ class Pesquisa_mercadologica extends Model
 
     protected $fillable = ['n_processo_id', 'Descricao_bem', 'Qtd'];
 
-    public function pesquisa_mercadologica_pivots ()
+    public function pesquisa_mercadologica_pivots()
     {
         return $this->hasMany(Pesquisa_mercadologica_pivot::class, 'pesquisa_mercadologica_id');
     }

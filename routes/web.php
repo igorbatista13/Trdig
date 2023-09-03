@@ -47,6 +47,8 @@ Route::delete('/trdigital/obras_equipamento/{id}',  [TrdigitalController::class,
 
 Route::patch('/trdigital/pesquisa_mercadologica/{id}',  [TrdigitalController::class, 'pesquisa_mercadologica'])->name('trdigital.pesquisa_mercadologica');
 Route::put('/trdigital/pesquisa_mercadologica/{id}',  [TrdigitalController::class, 'pesquisa_mercadologica_update'])->name('trdigital.pesquisa_mercadologica_update');
+Route::put('/trdigital/pesquisa_mercadologica/{id}',  [TrdigitalController::class, 'pesquisa_mercadologica_update'])->name('trdigital.pesquisa_mercadologica_update');
+Route::put('/trdigital/pesquisa_mercadologicaa/{id}',  [TrdigitalController::class, 'pesquisa_nome_mercadologica_update'])->name('trdigital.pesquisa_nome_mercadologica_update');
 
 Route::delete('/trdigital/pesquisa_mercadologica/{id}',  [TrdigitalController::class, 'pesquisa_mercadologica_destroy'])->name('trdigital.pesquisa_mercadologica_destroy');
 Route::delete('/trdigital/pesquisa_mercadologicaa{id}',  [TrdigitalController::class, 'pesquisa_nome_mercadologica_destroy'])->name('trdigital.pesquisa_nome_mercadologica_destroy');

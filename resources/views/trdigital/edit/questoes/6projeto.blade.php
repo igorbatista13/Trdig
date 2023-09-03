@@ -278,7 +278,7 @@
 
 
 
-               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Informa Emenda n° Parlamentar:</b></label>
+               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Informa n° da Emenda Parlamentar:</b></label>
                <div class="col-sm-10">
                    {!! Form::text('N_Emenda_Projeto_Conteudo', $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo, [
                        'class' => 'form-control',
@@ -294,7 +294,7 @@
                    @endif
                </div>
 
-               <label for="inputNumber" class="col-sm-4 col-form-label"><b>Informa Emenda nome do Autor:</b></label>
+               <label for="inputNumber" class="col-sm-4 col-form-label"><b>Informa nome do Autor da Emenda Parlamentar:</b></label>
                <div class="col-sm-10">
                    {!! Form::text(
                        'Nome_Autor_Emenda_Projeto_Conteudo',
