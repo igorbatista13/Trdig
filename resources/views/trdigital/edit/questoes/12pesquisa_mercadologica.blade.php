@@ -56,7 +56,7 @@
                                              <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                                  data-bs-target="#editar_pesquisanomemercadologica{{ $pesquisa->id }}"
                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                 <i class="bi bi-x-square"><b>Editar me </b></i>
+                                                 <i class="bi bi-x-square"><b>Editar </b></i>
                                              </button>
                                              @include('trdigital.edit.questoes.12pesquisamercadologica.editarnomepesquisamercadologica')
                                              </button>
@@ -79,7 +79,7 @@
                                                          $numRegistros = count($pesquisa->pesquisa_mercadologica_pivots); // Obtém o número total de registros
                                                      @endphp
                                                      @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
-                                                         <h5 class="card-subtitle mb-2 text-dark"><i
+                                                         <br> <h5 class="card-subtitle mb-2 text-dark"><i
                                                                  class="bi bi-building"> </i>
                                                              <i><b class="text-primary"><small>Empresa: </small>
                                                                      {{ $pivot->Empresa ?? '' }} </i> </b>
