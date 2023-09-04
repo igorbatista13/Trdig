@@ -19,7 +19,7 @@
                     <div class="col-md-12">
                         <div class="form-floating">
 
-                          
+
 
                             <select name="Natureza_id" id="Natureza_id" class="form-control custom-select" required>
                                 <option value="" disabled>Selecione a Natureza</option>
@@ -98,11 +98,11 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     {!! Form::text('Valor_unit', $obras_equipamentos->Valor_unit, [
-                                        'placeholder' => 'Valor',
+                                        'placeholder' => '',
                                         'class' => 'form-control',
                                         'maxlength' => '15',
+                                    
                                         'oninput' => 'aplicarMascara(this)',
-                                        'onkeypress' => 'return validarValor(this, event)',
                                     ]) !!}
                                     <label for="floatingZip">Valor</label>
                                 </div>
@@ -113,12 +113,13 @@
                                     <select name="Cidade_id" id="Cidade_id" class="form-control custom-select" required>
                                         <option value="" disabled selected>Selecione o Local de destino</option>
                                         @foreach ($cidade as $cidades)
-                                            <option value="{{ $cidades->id }}" {{ $obras_equipamentos->Cidade_id == $cidades->id ? 'selected' : '' }}>
+                                            <option value="{{ $cidades->id }}"
+                                                {{ $obras_equipamentos->Cidade_id == $cidades->id ? 'selected' : '' }}>
                                                 {{ $cidades->Nome }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    
+
 
                                     <label for="floatingZip">Local de destino</label>
                                 </div>
@@ -126,15 +127,21 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <div class="form-check">
-                                        {!! Form::radio('Propriedade', 'Concedente', $obras_equipamentos->Propriedade == 'Concedente', ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
+                                        {!! Form::radio('Propriedade', 'Concedente', $obras_equipamentos->Propriedade == 'Concedente', [
+                                            'class' => 'form-check-input',
+                                            'id' => 'radioOpcao1',
+                                        ]) !!}
                                         <label class="form-check-label" for="radioOpcao1">Concedente</label>
                                     </div>
-                                    
+
                                     <div class="form-check">
-                                        {!! Form::radio('Propriedade', 'Contrapartida', $obras_equipamentos->Propriedade == 'Contrapartida', ['class' => 'form-check-input', 'id' => 'radioOpcao2']) !!}
+                                        {!! Form::radio('Propriedade', 'Contrapartida', $obras_equipamentos->Propriedade == 'Contrapartida', [
+                                            'class' => 'form-check-input',
+                                            'id' => 'radioOpcao2',
+                                        ]) !!}
                                         <label class="form-check-label" for="radioOpcao2">Contrapartida</label>
                                     </div>
-                                    
+
 
 
 
@@ -142,15 +149,15 @@
                                     <!-- End floating Labels Form -->
 
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
-                                </div>
-
-                                {!! Form::close() !!}
-
-                                <!-- End floating Labels Form -->
-
                             </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                            </div>
+
+                            {!! Form::close() !!}
+
+                            <!-- End floating Labels Form -->
+
                         </div>
                     </div>
 

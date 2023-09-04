@@ -18,7 +18,7 @@
                         <div class="form-floating">
 
 
-     
+
 
 
                             <select name="Natureza_id" id="Natureza_id" class="form-control custom-select" required>
@@ -31,14 +31,14 @@
                                 @endforeach
                             </select>
 
-                            
+
 
                             <label for="floatingName">Natureza</label>
                         </div>
                         <br>
                     </div>
 
-          
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating">
@@ -71,11 +71,10 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 {!! Form::number('Quantidade_detalhado', $planodetalhados->Quantidade_detalhado, [
-                                                              'placeholder' => '',
-                                                              'class' => 'form-control',
-                                                              'max' => '999999999999',
-
-                                                          ]) !!}
+                                    'placeholder' => '',
+                                    'class' => 'form-control',
+                                    'max' => '999999999999',
+                                ]) !!}
                                 <label for="floatingName"></label>
                                 <label for="floatingEmail">Quantidade</label>
                             </div>
@@ -84,21 +83,25 @@
                     </div>
                     <br>
 
+                    <div class="row">
                     <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    {!! Form::text('Valor_unit_detalhado', number_format($planodetalhados->Valor_unit_detalhado, 2, ',', '.')
-                                    , [
-                                        'placeholder' => 'a',
-                                        'class' => 'form-control',
-                                        'maxlength' => '15',
-                                    
-                                        'oninput' => 'aplicarMascara(this)',
-                                        'onkeypress' => 'return validarValor(this, event)',
-                                    ]) !!}
+                            <label for="floatingZip">Valor Unit.</label>
+                            <div class="form-floating">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">R$</span>
 
-                                    <label for="floatingCity">Valor Unit.</label>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            {!! Form::text('Valor_unit_detalhado', number_format($planodetalhados->Valor_unit_detalhado, 2, ',', '.'), [
+                                                'placeholder' => 'a',
+                                                'class' => 'form-control',
+                                                'maxlength' => '15',
+                                            
+                                                'oninput' => 'aplicarMascara(this)',
+                                                'onkeypress' => 'return validarValor(this, event)',
+                                            ]) !!}
+                                        </div>
+                                    </div>
                                     {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
                                 </div>
                             </div>

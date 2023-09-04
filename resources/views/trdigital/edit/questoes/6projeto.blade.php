@@ -278,7 +278,8 @@
 
 
 
-               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Informa n° da Emenda Parlamentar:</b></label>
+               <label for="inputNumber" class="col-sm-2 col-form-label"><b>Informa n° da Emenda
+                       Parlamentar:</b></label>
                <div class="col-sm-10">
                    {!! Form::text('N_Emenda_Projeto_Conteudo', $n_processo->Projeto_conteudo->N_Emenda_Projeto_Conteudo, [
                        'class' => 'form-control',
@@ -294,7 +295,8 @@
                    @endif
                </div>
 
-               <label for="inputNumber" class="col-sm-4 col-form-label"><b>Informa nome do Autor da Emenda Parlamentar:</b></label>
+               <label for="inputNumber" class="col-sm-4 col-form-label"><b>Informa nome do Autor da Emenda
+                       Parlamentar:</b></label>
                <div class="col-sm-10">
                    {!! Form::text(
                        'Nome_Autor_Emenda_Projeto_Conteudo',
@@ -314,12 +316,14 @@
                <div class="row">
                    <label for="inputNumber" class="col-sm-2 col-form-label"><b>Valor de Repasse:</b> </label>
                    <div class="col-sm-4">
-                       {!! Form::text(
-                           'Valor_Repasse_Projeto_Conteudo',
-                           $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo,
-                           ['class' => 'form-control',
-                           'onkeypress' => "return moeda(this, ' . ', ', ', event)"],
-                       ) !!}
+                    <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">R$</span>
+                       {!! Form::text('Valor_Repasse_Projeto_Conteudo', $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo, [
+                           'class' => 'form-control',
+                           'maxlength' => '15',
+                           'oninput' => 'aplicarMascara(this)',
+                       ]) !!}
+                    </div>
                        @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo_sit == '')
                        @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Repasse_Projeto_Conteudo_sit == 1)
                            <span class="badge bg-success">
@@ -332,12 +336,19 @@
 
                    <label for="inputNumber" class="col-sm-2 col-form-label"><b>Valor de Contrapartida: </b> </label>
                    <div class="col-sm-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">R$</span>
+
                        {!! Form::text(
                            'Valor_Contrapartida_Projeto_Conteudo',
                            $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo,
-                           ['class' => 'form-control',
-                           'onkeypress' => "return moeda(this, ' . ', ', ', event)"],
+                           [
+                               'class' => 'form-control',
+                               'maxlength' => '15',
+                               'oninput' => 'aplicarMascara(this)',
+                           ],
                        ) !!}
+                    </div>
                        @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo_sit == '')
                        @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Valor_Contrapartida_Projeto_Conteudo_sit == 1)
                            <span class="badge bg-success">

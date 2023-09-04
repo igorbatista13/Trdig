@@ -341,7 +341,7 @@
                                                             $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1 &&
                                                             $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2 &&
                                                             $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3 &&
-                                                            $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo4 &&
+                                                            // $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo4 &&
                                                             $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5 &&
                                                             $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6 &&
                                                             $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7 &&

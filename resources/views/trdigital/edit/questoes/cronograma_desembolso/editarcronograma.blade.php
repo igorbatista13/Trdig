@@ -114,8 +114,11 @@
                             </div>
 
                             <div class="col-md-6">
+                                <label for="floatingZip">Valor</label>
                                 <div class="form-floating">                                    
-
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">R$</span>
+                
                                     {!! Form::text('valor_desembolso', number_format($cronograma_desembolsos->valor_desembolso, 2, ',', '.'), [
                                         'placeholder' => 'a',
                                         'class' => 'form-control',
@@ -125,9 +128,8 @@
                                         'oninput' => 'aplicarMascara(this)',
                                         'onkeypress' => 'return validarValor(this, event)',
                                     ]) !!}
-
-                                    <label for="floatingZip">Valor</label>
                                 </div>
+                            </div>
                             </div>
 
 

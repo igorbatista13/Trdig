@@ -110,8 +110,8 @@
                                                              <td>
                                                                  <a class="card-subtitle mb-2 text-dark"><i
                                                                          class="bi bi-building"> </i>
-                                                                     <i><b class="text-primary"><small>Empresa: </small>
-                                                                             {{ $pivot->Empresa ?? '' }} </i> </b>
+                                                                     <i><b class="text-primary">
+                                                                             {{ $pivot->Empresa ?? '' }} </b> </i>
                                                                      @if ($pivot->Correcao_pesquisa_sit == 1)
                                                                          <span class="badge bg-success ">
                                                                              <i class="bi bi-check-circle me-1"></i>
@@ -126,8 +126,8 @@
                                                                  </a>
                                                              </td>
 
-                                                             <td> <a class="card-subtitle mb-2 text-primary">
-                                                                     <b class="text-danger">R$
+                                                             <td> <a class="card-subtitle mb-2">
+                                                                     <b class="text-success">R$
                                                                          {{ number_format($pivot->Valor, 2, ',', '.') }}
                                                                          </small></b></a> </td>
                                                              {{-- <h6 class="card-subtitle mb-2 text-primary">
@@ -188,25 +188,29 @@
 
                                                              </tr>
                                                          @endforeach
-                                                     </table> 
-                                                    </div>
-                                                    </div>
-                                                    </div>
-                                                     @php
-                                                         if ($numRegistros > 0) {
-                                                             $valorTotalMedio = $valorTotal / $numRegistros;
-                                                         } else {
-                                                             $valorTotalMedio = 0; // Defina um valor padrão ou outro valor apropriado
-                                                         }
-                                                     @endphp
-            
-                                                     <td> <a class="card-subtitle mb-2 text-primary">Valor Total
-                                                             Médio: <b class="text-danger"> R$
-                                                                 {{ number_format($valorTotalMedio, 2) }} </b>
-                                                         </a>
-                                                     </td>
+                                                     </table>
                                                  </div>
+
+
+                                                 @php
+                                                     if ($numRegistros > 0) {
+                                                         $valorTotalMedio = $valorTotal / $numRegistros;
+                                                     } else {
+                                                         $valorTotalMedio = 0; // Defina um valor padrão ou outro valor apropriado
+                                                     }
+                                                 @endphp
+
+                                                 <td> <a class="card-subtitle mb-2 text-primary">
+                                                    Valor Total Médio: <b class="text-danger"> R$ {{ number_format($valorTotalMedio, 2) }} </b>
+                                                     </a>
+                                                 </td>
+
                                              </div>
+                                         </div>
+
+
+                                     </div>
+                                 </div>
                      @endforeach
 
                  </div>
@@ -221,14 +225,10 @@
 
 
  </div>
+ </div>
+ </div>
 
- </div>
 
- </div>
- </div>
- </div>
- </div>
- </div>
  <script>
      $(document).ready(function() {
          let row_number = 1;

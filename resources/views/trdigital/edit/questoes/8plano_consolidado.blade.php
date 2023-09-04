@@ -53,17 +53,19 @@
                                                       {{ $planos->Metas->Especificacao_metas }} </span> </h5>
                                           </td>
                                           <td>
-                                              <h5> <span
-                                                      class="badge bg-warning text-dark">R$ {{ number_format($planos->Valor_concedente, 2, ',', '.') }}</span>
+                                              <h5> <span class="badge bg-warning text-dark">R$
+                                                      {{ number_format($planos->Valor_concedente, 2, ',', '.') }}</span>
                                               </h5>
                                           </td>
                                           <td>
                                               <h5><span class="badge bg-success">
-                                                      R$ {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }} <br> <span></h5>
+                                                      R$
+                                                      {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }}
+                                                      <br> <span></h5>
                                           </td>
                                           <td>
-                                              <h5><span
-                                                      class="badge bg-dark">R$ {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
+                                              <h5><span class="badge bg-dark">R$
+                                                      {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
                                               </h5>
                                           </td>
                                           <td>
@@ -177,55 +179,60 @@
                                       </div>
                                       <div class="row">
                                           <div class="col-md-6">
+                                              <label for="floatingEmail">Valor - Concedente</label>
+                                              <small class="text-primary"> (Recurso Financeiro) </small>
                                               <div class="form-floating">
-                                                  {!! Form::text('Valor_concedente', null, [
-                                                      'placeholder' => 'Complemento',
-                                                      'class' => 'form-control',
-                                                      'maxlength' => '15',
-                                                      'oninput' => 'aplicarMascara(this)',
-                                                      'onkeypress' => 'return validarValor(this, event)',
-                                                  ]) !!}
-
-                                                  <label for="floatingName"></label>
-                                                  <label for="floatingEmail">Valor - Concedente</label>
-                                                  <small class="text-primary"> (Recurso Financeiro) </small>
-
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-floating">
-                                                  {!! Form::text('Valor_proponente_financeira', null, [
-                                                      'placeholder' => '',
-                                                      'class' => 'form-control',
-                                                      'maxlength' => '15',
-                                                      'oninput' => 'aplicarMascara(this)',
-                                                      'onkeypress' => 'return validarValor(this, event)',
-                                                  ]) !!}
-                                                  <label for="floatingName"></label>
-                                                  <label for="floatingCity">Valor Proponente</label>
-                                                  <small class="text-primary"> (Contrapartida Financeira) </small>
-                                              </div>
-                                          </div>
-
-                                      </div>
-                                      <br>
-
-                                      <div class="col-12">
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-floating">
-                                                      {!! Form::text('Valor_proponente_nao_financeira', null, [
-                                                          'placeholder' => 'a',
+                                                  <div class="input-group mb-3">
+                                                      <span class="input-group-text" id="basic-addon1">R$</span>
+                                                      {!! Form::text('Valor_concedente', null, [
+                                                          'placeholder' => '',
                                                           'class' => 'form-control',
                                                           'maxlength' => '15',
                                                           'oninput' => 'aplicarMascara(this)',
                                                           'onkeypress' => 'return validarValor(this, event)',
                                                       ]) !!}
-                                                      <label for="floatingCity">Valor Proponente</label>
-                                                      <small class="text-primary"> (Contrapartida Não Financeira)
-                                                      </small>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <label for="floatingCity">Valor Proponente</label>
+                                              <small class="text-primary"> (Contrapartida Financeira) </small>
+                                              <div class="form-floating">
+                                                  <div class="input-group mb-3">
+                                                      <span class="input-group-text" id="basic-addon1">R$</span>
+                                                      {!! Form::text('Valor_proponente_financeira', null, [
+                                                          'placeholder' => '',
+                                                          'class' => 'form-control',
+                                                          'maxlength' => '15',
+                                                          'oninput' => 'aplicarMascara(this)',
+                                                          'onkeypress' => 'return validarValor(this, event)',
+                                                      ]) !!}
+                                                  </div>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                      <br>
+
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                <label for="floatingCity">Valor Proponente</label>
+                                                <small class="text-primary"> (Contrapartida Não Financeira) </small>
+                                                <div class="form-floating">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1">R$</span>
+                                                                      {!! Form::text('Valor_proponente_nao_financeira', null, [
+                                                          'placeholder' => '',
+                                                          'class' => 'form-control',
+                                                          'maxlength' => '15',
+                                                          'oninput' => 'aplicarMascara(this)',
+                                                          'onkeypress' => 'return validarValor(this, event)',
+                                                      ]) !!}
 
                                                       {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
+                                                  </div>
+                                                  </div>
                                                   </div>
                                               </div>
 
@@ -242,7 +249,6 @@
                                       </div>
                                   </div>
 
-                              </div>
 
 
                               {!! Form::close() !!}
@@ -285,7 +291,6 @@
               </div>
 
           </div>
-      </div>
 
       <script>
           document.addEventListener("DOMContentLoaded", function() {

@@ -52,12 +52,12 @@
                                           @endif
                                       </td>
 
-                                      
-                                      <td><span class="badge bg-success"> 
+
+                                      <td><span class="badge bg-success">
                                               <big>{{ $cronograma_desembolsos->Metas->Especificacao_metas }}
                                               </big></span> </td>
 
-                                              
+
                                       <td> <span class="badge bg-primary">
                                               {{ $cronograma_desembolsos->ano }} | {{ $cronograma_desembolsos->mes }}
                                           </span></td>
@@ -81,7 +81,7 @@
                                               data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
                                               data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
                                               <i class="bi bi-pencil-square"></i>
-                                            </button>
+                                          </button>
                                       </td>
 
                                       <td>
@@ -89,7 +89,7 @@
                                               data-bs-target="#excluir_cronograma{{ $cronograma_desembolsos->id }}"
                                               data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
                                               <i class="bi bi-x-square"></i>
-                                            </button>
+                                          </button>
                                       </td>
                                   </tr>
                               @endforeach
@@ -201,7 +201,7 @@
                                                   <div class="row">
                                                       <div class="col-md-6">
                                                           <div class="form-floating">
-                                                            <h5> Fonte:</h5>
+                                                              <h5> Fonte:</h5>
                                                               <div class="form-check">
                                                                   {!! Form::radio('fonte', 'Concedente', false, ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
                                                                   <label class="form-check-label"
@@ -218,70 +218,75 @@
                                                       </div>
 
                                                       <div class="col-md-6">
+                                                          <label for="floatingZip">Valor</label>
                                                           <div class="form-floating">
-                                                              {!! Form::text('valor_desembolso', null, [
-                                                                  'placeholder' => 'a',
-                                                                  'class' => 'form-control',
-                                                                  'class' => 'form-control',
-                                                                  'maxlength' => '15',
-                                                              
-                                                                  'oninput' => 'aplicarMascara(this)',
-                                                                  'onkeypress' => 'return validarValor(this, event)',
-                                                              ]) !!}
-                                                              <label for="floatingZip">Valor</label>
+                                                              <div class="input-group mb-3">
+                                                                  <span class="input-group-text"
+                                                                      id="basic-addon1">R$</span>
+
+                                                                  {!! Form::text('valor_desembolso', null, [
+                                                                      'placeholder' => 'R$',
+                                                                      'class' => 'form-control',
+                                                                      'maxlength' => '15',
+                                                                  
+                                                                      'oninput' => 'aplicarMascara(this)',
+                                                                      'onkeypress' => 'return validarValor(this, event)',
+                                                                  ]) !!}
+                                                              </div>
                                                           </div>
+
+
+
+
+                                                          <!-- End floating Labels Form -->
+
                                                       </div>
-
-
-
-
-                                                      <!-- End floating Labels Form -->
-
                                                   </div>
                                               </div>
+
                                           </div>
-
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div><!-- End Vertically centered Modal-->
-                      </div>
-
-                      @foreach ($cronograma_desembolso as $cronograma_desembolsos)
-                          {{-- Editar memoria de calculo  --}} @include('trdigital.edit.questoes.cronograma_desembolso.editarcronograma')
-
-                          <div class="modal fade" id="excluir_cronograma{{ $cronograma_desembolsos->id }}"
-                              tabindex="-1">
-                              <div class="modal-dialog modal-dialog-centered">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title"> <i class="bi bi-check-circle me-1 text-danger"><b>
-                                                      Confirmar Exclusão </b> </i> </h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                              aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                          Tem certeza de que deseja excluir este <b> Cronograma de Desembolso? </b>
-
-
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary"
-                                              data-bs-dismiss="modal">Cancelar</button>
-                                          {!! Form::open(['route' => ['trdigital.cronograma_destroy', $cronograma_desembolsos->id], 'method' => 'delete']) !!}
-                                          <button type="submit" class="btn btn-danger">Excluir</button>
-                                          {!! Form::close() !!}
+                                          <div class="modal-footer">
+                                              <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                                          </div>
                                       </div>
                                   </div>
-                              </div>
+                              </div><!-- End Vertically centered Modal-->
                           </div>
-                      @endforeach
 
+                          @foreach ($cronograma_desembolso as $cronograma_desembolsos)
+                              {{-- Editar memoria de calculo  --}} @include('trdigital.edit.questoes.cronograma_desembolso.editarcronograma')
+
+                              <div class="modal fade" id="excluir_cronograma{{ $cronograma_desembolsos->id }}"
+                                  tabindex="-1">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title"> <i
+                                                      class="bi bi-check-circle me-1 text-danger"><b>
+                                                          Confirmar Exclusão </b> </i> </h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                  aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                              Tem certeza de que deseja excluir este <b> Cronograma de Desembolso? </b>
+
+
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary"
+                                                  data-bs-dismiss="modal">Cancelar</button>
+                                              {!! Form::open(['route' => ['trdigital.cronograma_destroy', $cronograma_desembolsos->id], 'method' => 'delete']) !!}
+                                              <button type="submit" class="btn btn-danger">Excluir</button>
+                                              {!! Form::close() !!}
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          @endforeach
+
+                      </div>
                   </div>
-              </div>
 
+              </div>
           </div>
       </div>

@@ -202,9 +202,14 @@
 
                                               </div>
                                               <br>
-
+                                              
                                               <div class="col-12">
                                                   <div class="row">
+                                                      <label for="floatingZip">Valor Unit.</label>
+                                                      <div class="form-floating">                                    
+                                                          <div class="input-group mb-3">
+                                                              <span class="input-group-text" id="basic-addon1">R$</span>
+                                                    
                                                       <div class="col-md-6">
                                                           <div class="form-floating">
                                                               {!! Form::text('Valor_unit_detalhado', null, [
@@ -214,9 +219,10 @@
                                                                   'oninput' => 'aplicarMascara(this)',
                                                                   'onkeypress' => 'return validarValor(this, event)',
                                                               ]) !!}
-                                                              <label for="floatingCity">Valor Unit.</label>
+                                                          </div>
                                                               {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
                                                           </div>
+                                                      </div>
                                                       </div>
 
 
