@@ -72,13 +72,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
+                                                        <label for="floatingZip">Valor</label>
                                                         <div class="form-floating">
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text" id="basic-addon1">R$</span>
                                                             {!! Form::number('Valor[]', null, [
                                                                 'placeholder' => 'Valor',
                                                                 'class' => 'form-control',
                                                                 'id' => 'floatingZip',
                                                             ]) !!}
-                                                            <label for="floatingZip">Valor</label>
+                                                        </div>
                                                         </div>
                                                     </div>
 
@@ -132,6 +135,7 @@
                                 Remover Empresa</button>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

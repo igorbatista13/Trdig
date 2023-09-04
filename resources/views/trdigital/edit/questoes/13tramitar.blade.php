@@ -38,13 +38,19 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4>Você está tramitando para:</h4>
-                            <h5 class="card-title">{{ $n_processo->Orgaos->Sigla }} - {{ $n_processo->Orgaos->Nome }}</h5>
+                            <h5 class="card-title">{{ $n_processo->Orgaos->Sigla }} - {{ $n_processo->Orgaos->Nome }}
+                            </h5>
                             <small>
                                 <a href="{{ asset('/trdigital/proponente/') }}" class="">
                                     Após enviar a sua TR Digital, você pode acompanhar o progresso em:
                                     <br><b> TR DIGITAL - Minhas TR </b>
                                 </a>
                             </small>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
+                                <label class="form-check-label" for="gridCheck2">
+                                    DEclaro que o documento acima é de responsabilidade bla bla bla </label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center align-items-center">
@@ -54,8 +60,9 @@
                             @method('PUT')
                             <!-- Ou 'PATCH', dependendo da configuração do seu sistema -->
                             <br>
-                            
-                            <button type="button" class="btn btn-danger text-light" data-bs-dismiss="modal" aria-label="Close">
+
+                            <button type="button" class="btn btn-danger text-light" data-bs-dismiss="modal"
+                                aria-label="Close">
                                 <i class="bi bi-x-circle-fill me-1"></i>
                                 Cancelar
                             </button>
@@ -65,7 +72,8 @@
                                 FINALIZAR E TRAMITAR
                             </button>
 
-                       
+
+
                         </form>
                     </div>
                 </div>
@@ -73,4 +81,3 @@
         </div>
     </div>
 </div>
-

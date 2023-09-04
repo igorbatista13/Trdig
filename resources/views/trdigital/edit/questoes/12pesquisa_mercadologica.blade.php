@@ -68,22 +68,6 @@
                                              @include('trdigital.edit.questoes.12pesquisamercadologica.editarnomepesquisamercadologica')
                                              @include('trdigital.edit.questoes.12pesquisamercadologica.excluirnomepesquisamercadologica')
 
-                                             {{-- <button type="button" class="btn btn-warning btn-sm"
-                                                 data-bs-toggle="modal"
-                                                 data-bs-target="#editar_pesquisanomemercadologica{{ $pesquisa->id }}"
-                                                 data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                 <i class="bi bi-x-square"><b>Editar </b></i>
-                                             </button> --}}
-                                             {{-- </button> --}}
-                                             {{-- 
-                                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                 data-bs-target="#excluir_pesquisanomemercadologica{{ $pesquisa->id }}"
-                                                 data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                 <i class="bi bi-x-square"><b> Excluir</b></i>
-                                             </button> --}}
-                                             {{-- </button> --}}
-
-
                                              <div id="collapseOne{{ $pesquisa->id }}"
                                                  class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                                  data-bs-parent="#accordionExample">
@@ -201,7 +185,8 @@
                                                  @endphp
 
                                                  <td> <a class="card-subtitle mb-2 text-primary">
-                                                    Valor Total Médio: <b class="text-danger"> R$ {{ number_format($valorTotalMedio, 2) }} </b>
+                                                         Valor Total Médio: <b class="text-danger"> R$
+                                                             {{ number_format($valorTotalMedio, 2) }} </b>
                                                      </a>
                                                  </td>
 
@@ -211,17 +196,13 @@
 
                                      </div>
                                  </div>
-                     @endforeach
-
-                 </div>
-
-             </div>
+                                 
+                                </div>
+                                
+                            </div>
+                            @endforeach
          </div>
      </div>
-
-     <!-- End Card with titles, buttons, and links -->
-
-     {{-- @include('trdigital.edit.questoes.12pesquisamercadologica.editarpesquisamercadologica') --}}
 
 
  </div>

@@ -23,11 +23,13 @@
                 </div>
                 <div class="mb-3">
                     <label for="valor" class="form-label">Valor</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">R$</span>
                     {!! Form::number('Valor', $pivot->Valor, [
                         'class' => 'form-control',
                         'id' => 'valor',
                     ]) !!}
-                </div>
+                </div></div>
                 <div class="mb-3">
                     <label for="anexo" class="form-label">Anexar o Comprovante</label>
                     {!! Form::file('Anexo', ['class' => 'form-control', 'id' => 'anexo']) !!}
