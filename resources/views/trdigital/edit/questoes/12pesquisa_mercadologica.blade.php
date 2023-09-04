@@ -23,13 +23,14 @@
                                  <div class="card-body">
 
 
-                                     <div class="accordion{{$pesquisa->id}}" id="accordionExample">
+                                     <div class="accordion{{ $pesquisa->id }}" id="accordionExample">
                                          <div class="accordion-item">
 
                                              <h2 class="accordion-header" id="headingOne">
 
                                                  <button class="accordion-button" type="button"
-                                                     data-bs-toggle="collapse" data-bs-target="#collapseOne{{$pesquisa->id}}"
+                                                     data-bs-toggle="collapse"
+                                                     data-bs-target="#collapseOne{{ $pesquisa->id }}"
                                                      aria-expanded="true" aria-controls="collapseOne">
 
                                                      @if ($pesquisa->Correcao_metas_sit == '')
@@ -48,114 +49,149 @@
                                                      @endif
 
                                                      <a class="card-title text-center"><b>
-                                                        Descrição do bem: {{ $pesquisa->Descricao_bem ?? '' }} <br> </b>
-                                                          Qtd. <small>{{ $pesquisa->Qtd ?? '' }}  
-                                                        </a>
-                                             </h2>
+                                                             Descrição do bem:</b> {{ $pesquisa->Descricao_bem ?? '' }}
+                                                         <br>
+                                                         <b>Qtd.</b> <small>{{ $pesquisa->Qtd ?? '' }}<br>
 
-                                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                                             <span class="badge bg-warning" data-bs-toggle="modal"
+                                                                 data-bs-target="#editar_pesquisanomemercadologica{{ $pesquisa->id }}"
+                                                                 data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
+                                                                 <i class="bi bi-pencil-square text-dark"></i></span>
+
+                                                             <span class="badge bg-danger" data-bs-toggle="modal"
+                                                                 data-bs-target="#excluir_pesquisanomemercadologica{{ $pesquisa->id }}"
+                                                                 data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
+                                                                 <i class="bi bi-x-square text-light"></i></span>
+                                                     </a>
+
+                                             </h2>
+                                             @include('trdigital.edit.questoes.12pesquisamercadologica.editarnomepesquisamercadologica')
+                                             @include('trdigital.edit.questoes.12pesquisamercadologica.excluirnomepesquisamercadologica')
+
+                                             {{-- <button type="button" class="btn btn-warning btn-sm"
+                                                 data-bs-toggle="modal"
                                                  data-bs-target="#editar_pesquisanomemercadologica{{ $pesquisa->id }}"
                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
                                                  <i class="bi bi-x-square"><b>Editar </b></i>
-                                             </button>
-                                             @include('trdigital.edit.questoes.12pesquisamercadologica.editarnomepesquisamercadologica')
-                                             </button>
-
+                                             </button> --}}
+                                             {{-- </button> --}}
+                                             {{-- 
                                              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                  data-bs-target="#excluir_pesquisanomemercadologica{{ $pesquisa->id }}"
                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
                                                  <i class="bi bi-x-square"><b> Excluir</b></i>
-                                             </button>
-                                             @include('trdigital.edit.questoes.12pesquisamercadologica.excluirnomepesquisamercadologica')
-                                             </button>
+                                             </button> --}}
+                                             {{-- </button> --}}
 
 
-                                             <div id="collapseOne{{$pesquisa->id}}" class="accordion-collapse collapse show"
-                                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                             <div id="collapseOne{{ $pesquisa->id }}"
+                                                 class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                                 data-bs-parent="#accordionExample">
                                                  <div class="accordion-body">
 
-                                                     @php
-                                                         $valorTotal = 0; // Inicializa o valor total
-                                                         $numRegistros = count($pesquisa->pesquisa_mercadologica_pivots); // Obtém o número total de registros
-                                                     @endphp
-                                                     @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
-                                                         <br> <h5 class="card-subtitle mb-2 text-dark"><i
-                                                                 class="bi bi-building"> </i>
-                                                             <i><b class="text-primary"><small>Empresa: </small>
-                                                                     {{ $pivot->Empresa ?? '' }} </i> </b>
-                                                             @if ($pivot->Correcao_pesquisa_sit == 1)
-                                                                 <span class="badge bg-success ">
-                                                                     <i class="bi bi-check-circle me-1"></i>
-                                                                     Validado</span>
-                                                                 @if ($pivot->Correcao_pesquisa_sit == 0)
-                                                                     <span class="badge bg-warning text-dark ">
-                                                                         <i class="bi bi-exclamation-triangle me-1"></i>
-                                                                         Corrigir</span>
-                                                                 @endif
-                                                             @endif
-                                                         </h5>
+                                                     <table class="table datatable">
+                                                         <thead>
+                                                             <tr>
+                                                                 <th> Empresa </th>
+                                                                 <th> Valor Unid. </th>
+                                                                 <th> Total </th>
+                                                                 <th> Comprovante </th>
+                                                                 <th> Editar </th>
+                                                                 <th> Excluir </th>
+                                                             </tr>
+                                                         </thead>
 
+                                                         @php
+                                                             $valorTotal = 0; // Inicializa o valor total
+                                                             $numRegistros = count($pesquisa->pesquisa_mercadologica_pivots); // Obtém o número total de registros
+                                                         @endphp
 
-                                                         <h6 class="card-subtitle mb-2 text-primary"><small>Valor Unid.:
-                                                             </small> <b class="text-danger">R$
-                                                                 {{ number_format($pivot->Valor, 2, ',', '.') }}
-                                                                 </small></b></h6>
-                                                         {{-- <h6 class="card-subtitle mb-2 text-primary">
+                                                         @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)
+                                                             <td>
+                                                                 <a class="card-subtitle mb-2 text-dark"><i
+                                                                         class="bi bi-building"> </i>
+                                                                     <i><b class="text-primary"><small>Empresa: </small>
+                                                                             {{ $pivot->Empresa ?? '' }} </i> </b>
+                                                                     @if ($pivot->Correcao_pesquisa_sit == 1)
+                                                                         <span class="badge bg-success ">
+                                                                             <i class="bi bi-check-circle me-1"></i>
+                                                                             Validado</span>
+                                                                         @if ($pivot->Correcao_pesquisa_sit == 0)
+                                                                             <span class="badge bg-warning text-dark ">
+                                                                                 <i
+                                                                                     class="bi bi-exclamation-triangle me-1"></i>
+                                                                                 Corrigir</span>
+                                                                         @endif
+                                                                     @endif
+                                                                 </a>
+                                                             </td>
+
+                                                             <td> <a class="card-subtitle mb-2 text-primary">
+                                                                     <b class="text-danger">R$
+                                                                         {{ number_format($pivot->Valor, 2, ',', '.') }}
+                                                                         </small></b></a> </td>
+                                                             {{-- <h6 class="card-subtitle mb-2 text-primary">
                                                              <small>Quantidade:</small> <b class="text-dark">
                                                                  {{ number_format($pesquisa->Qtd, 2, ',', '.') }}
                                                              </b>
                                                          </h6> --}}
-                                                         <h6 class="card-subtitle mb-2 text-primary">
-                                                             <small>Total:</small> <b class="text-danger">R$
-                                                                 {{ number_format($pivot->Valor * $pesquisa->Qtd, 2, ',', '.') }}
-                                                             </b>
-                                                         </h6>
-                                                         @php
-                                                             $valorTotal += $pivot->Valor * $pesquisa->Qtd; // Adiciona o valor total atual
-                                                         @endphp
-                                                         <h6 class="card-subtitle mb-2 text-primary"><small>Comprovante:
-                                                             </small>
-                                                             @if ($pivot->Anexo == '')
-                                                                 <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
-                                                                 <a class="text-danger"> Documento não enviado </a>
-                                                             @else
-                                                                 <i
-                                                                     class="bi bi-file-earmark-pdf-fill text-success"></i>
-                                                                 <a class="text-success"> Documento enviado </a>
-                                                                 <a class="btn btn-primary btn-sm"
-                                                                     href="{{ asset('storage/' . $pivot->Anexo) }}"
-                                                                     target="_blank">
-                                                                     <i class="bi bi-file-earmark-pdf-fill"></i> Ver
-                                                                     anexo
-                                                                 </a>
-                                                             @endif
-                                                             <br>
-                                                             
-                                                             
-                                                             
-                                                             <button type="button" class="btn btn-warning"
-                                                                 data-bs-toggle="modal"
-                                                                 data-bs-target="#editar_pesquisa_mercadologica{{ $pivot->id }}"
-                                                                 data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                                 <i class="bi bi-pencil-square"></i>
-                                                             </button>
+                                                             <td> <a class="card-subtitle mb-2 text-primary">
+                                                                     <small></small> <b class="text-danger">R$
+                                                                         {{ number_format($pivot->Valor * $pesquisa->Qtd, 2, ',', '.') }}
+                                                                     </b>
+                                                                 </a> </td>
+                                                             @php
+                                                                 $valorTotal += $pivot->Valor * $pesquisa->Qtd; // Adiciona o valor total atual
+                                                             @endphp
+                                                             <td> <a class="card-subtitle mb-2 text-primary">
+                                                                     @if ($pivot->Anexo == '')
+                                                                         <i
+                                                                             class="bi bi-file-earmark-pdf-fill text-danger"></i>
+                                                                         <a class="text-danger"> Documento não enviado
+                                                                         </a>
+                                                                     @else
+                                                                         <i
+                                                                             class="bi bi-file-earmark-pdf-fill text-success"></i>
+                                                                         <a class="text-success"> Documento enviado </a>
+                                                                         <a class="btn btn-primary btn-sm"
+                                                                             href="{{ asset('storage/' . $pivot->Anexo) }}"
+                                                                             target="_blank">
+                                                                             <i class="bi bi-file-earmark-pdf-fill"></i>
+                                                                             Ver
+                                                                             anexo
+                                                                         </a>
+                                                                     @endif
+                                                                 </a> </td>
 
 
-                                                             @include('trdigital.edit.questoes.12pesquisamercadologica.editarpesquisamercadologica')
 
-                                                             <button type="button" class="btn btn-danger"
-                                                                 data-bs-toggle="modal"
-                                                                 data-bs-target="#excluir_pesquisamercadologica{{ $pivot->id ?? '' }}Excluir"
-                                                                 data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
-                                                                 <i class="bi bi-x-square"></i>
+                                                             <td> <button type="button" class="btn btn-warning"
+                                                                     data-bs-toggle="modal"
+                                                                     data-bs-target="#editar_pesquisa_mercadologica{{ $pivot->id }}"
+                                                                     data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
+                                                                     <i class="bi bi-pencil-square"></i>
+                                                                 </button>
 
-                                                             </button>
 
-                                                             @include('trdigital.edit.questoes.12pesquisamercadologica.excluirpesquisamercadologica')
+                                                                 @include('trdigital.edit.questoes.12pesquisamercadologica.editarpesquisamercadologica')
+                                                             </td>
+                                                             <td> <button type="button" class="btn btn-danger"
+                                                                     data-bs-toggle="modal"
+                                                                     data-bs-target="#excluir_pesquisamercadologica{{ $pivot->id ?? '' }}Excluir"
+                                                                     data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
+                                                                     <i class="bi bi-x-square"></i>
 
-                                                             <hr>
-                                                     @endforeach
+                                                                 </button>
 
+                                                                 @include('trdigital.edit.questoes.12pesquisamercadologica.excluirpesquisamercadologica')
+                                                             </td>
+
+                                                             </tr>
+                                                         @endforeach
+                                                     </table> 
+                                                    </div>
+                                                    </div>
+                                                    </div>
                                                      @php
                                                          if ($numRegistros > 0) {
                                                              $valorTotalMedio = $valorTotal / $numRegistros;
@@ -163,28 +199,33 @@
                                                              $valorTotalMedio = 0; // Defina um valor padrão ou outro valor apropriado
                                                          }
                                                      @endphp
-
-                                                     <h6 class="card-subtitle mb-2 text-primary">Valor Total Médio: <b
-                                                             class="text-danger"> R$
-                                                             {{ number_format($valorTotalMedio, 2) }} </b>
-                                                     </h6>
+            
+                                                     <td> <a class="card-subtitle mb-2 text-primary">Valor Total
+                                                             Médio: <b class="text-danger"> R$
+                                                                 {{ number_format($valorTotalMedio, 2) }} </b>
+                                                         </a>
+                                                     </td>
                                                  </div>
                                              </div>
-
-                                         </div>
-                                     </div>
-                                     <!-- End Card with titles, buttons, and links -->
-
-                                     {{-- @include('trdigital.edit.questoes.12pesquisamercadologica.editarpesquisamercadologica') --}}
-
-                                 </div>
                      @endforeach
+
                  </div>
 
              </div>
-
          </div>
      </div>
+
+     <!-- End Card with titles, buttons, and links -->
+
+     {{-- @include('trdigital.edit.questoes.12pesquisamercadologica.editarpesquisamercadologica') --}}
+
+
+ </div>
+
+ </div>
+
+ </div>
+ </div>
  </div>
  </div>
  </div>
