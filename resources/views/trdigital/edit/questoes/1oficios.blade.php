@@ -15,6 +15,9 @@
                 </h5>
 
                 <div class="row mb-3">
+
+
+
                     <div class="col-sm-10">
                         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio)
                             <div class="icon">
@@ -28,31 +31,28 @@
                                     <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                 </a>
                             </div>
-                            <hr>
                         @else
                             <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                         @endif
-                        @if (Auth::check() && !Auth::user()->hasRole('Validador'))
-
+                        {{-- {!! Form::text('N_proposta', null, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingName']) !!} --}}
+                        {{-- {!! Form::label('Comp_Oficio', 'Documento de Ofício', ['class' => 'form-label']) !!} --}}
                         <br> {!! Form::file('Comp_Oficio', ['class' => 'form-control']) !!}
                         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == '')
-                        <!-- Conteúdo se Comp_Oficio_sit estiver vazio -->
+                            <!-- Conteúdo se Comp_Oficio_sit estiver vazio -->
                         @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == 1)
-                        <span class="badge bg-success">
-                            <i class="bi bi-check-circle me-1"></i> Validado</span>
-                            @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == 0)
+                            <span class="badge bg-success">
+                                <i class="bi bi-check-circle me-1"></i> Validado</span>
+                        @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == 0)
                             <span class="badge bg-warning text-dark">
                                 <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
-                                @endif
-                                
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-                        {!! Form::close() !!}
-
                         @endif
-                        @include('trdigital.edit.questoes.validar.1oficios_a')
+
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
             </div>
             <br>
         </div>
@@ -83,33 +83,25 @@
                         @else
                             <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                         @endif
-                        @if (Auth::check() && !Auth::user()->hasRole('Validador'))
                         <br> {!! Form::file('Comp_Assinado', ['class' => 'form-control']) !!}
                         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == '')
-                        <!-- Conteúdo se Comp_Assinado_sit estiver vazio -->
+                            <!-- Conteúdo se Comp_Assinado_sit estiver vazio -->
                         @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == 1)
-                        <span class="badge bg-success">
-                            <i class="bi bi-check-circle me-1"></i> Validado</span>
-                            @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == 0)
+                            <span class="badge bg-success">
+                                <i class="bi bi-check-circle me-1"></i> Validado</span>
+                        @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == 0)
                             <span class="badge bg-warning text-dark">
                                 <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
-                                @endif
-                                
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            
-                            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-                        </div>
                         @endif
 
+                    </div>
+                </div>
 
 
-                @include('trdigital.edit.questoes.validar.1oficios_b')
+                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+
 
             </div>
         </div>
     </div>
 </div>
-
