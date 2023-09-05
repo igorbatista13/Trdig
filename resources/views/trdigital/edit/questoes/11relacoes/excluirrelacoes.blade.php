@@ -1,4 +1,6 @@
     <!-- Modal excluir Relação de Obras e Equipamentos -->
+    @foreach ($obras_equipamento as $obras_equipamentos)
+
     <div class="modal fade" id="excluir_relacoes{{ $obras_equipamentos->id }}" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -25,3 +27,5 @@
             </div>
         </div>
     </div>
+
+    @endforeach

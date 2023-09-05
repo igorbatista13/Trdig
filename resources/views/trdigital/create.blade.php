@@ -64,12 +64,12 @@
                                                 </div>
                                             </div>
                                         </h5>
-                                        </div>
+<br>
                                         <div class="row">
                                             <div class="col-8 text-center">
 
                                             <select name="Orgao_Concedente" id="Orgao_Concedente"
-                                                class="form-control custom-select" required>
+                                                class="form-control custom-select text-center" required>
                                                 <option value="" disabled selected>Selecione o Órgão Concedente</option>
                                                 @foreach ($orgaos as $orgao)
                                                     <option value="{{ $orgao->id }}">
@@ -79,7 +79,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-lg-2 text-center">
+                                        <div class="col-lg-4 text-center">
                                             {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                             <button type="submit" class="btn btn-primary btn-lg">Criar TR</button>
                                         </div>

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('Email');
             $table->string('Horario_funcionamento');
             $table->string('Site');
+            $table->string('Telefone');
             $table->string('Outras_info');
 
             $table->foreignId('cidade_id')->constrained('cidade')->onDelete('cascade');

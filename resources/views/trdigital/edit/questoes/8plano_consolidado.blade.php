@@ -53,20 +53,20 @@
                                                       {{ $planos->Metas->Especificacao_metas }} </span> </h5>
                                           </td>
                                           <td>
-                                              <h5> <span class="badge bg-warning text-dark">R$
+                                             <span class="text-success">R$
                                                       {{ number_format($planos->Valor_concedente, 2, ',', '.') }}</span>
-                                              </h5>
-                                          </td>
+                                            
+                                                    </td>
                                           <td>
-                                              <h5><span class="badge bg-success">
+                                              <span class="text-danger">
                                                       R$
                                                       {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }}
-                                                      <br> <span></h5>
+                                                     <span>
                                           </td>
                                           <td>
-                                              <h5><span class="badge bg-dark">R$
+                                              <a><span class="text-danger">R$
                                                       {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
-                                              </h5>
+                          </a>
                                           </td>
                                           <td>
                                               <button type="button" class="btn btn-warning" data-bs-toggle="modal"

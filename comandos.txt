@@ -1,8 +1,22 @@
 php artisan migrate
 php artisan db:seed PermissionTableSeeder
 php artisan db:seed CreateAdminUserSeeder
-
 php artisan migrate:rollback
 php artisan optimize:clear
-
 php artisan storage:link
+
+
+
+
+
+/Applications/XAMPP/xamppfiles/bin/php artisan migrate
+/Applications/XAMPP/xamppfiles/bin/php artisan migrate:rollback
+/Applications/XAMPP/xamppfiles/bin/php artisan db:seed PermissionTableSeeder
+/Applications/XAMPP/xamppfiles/bin/php artisan db:seed CreateAdminUserSeeder
+/Applications/XAMPP/xamppfiles/bin/php artisan storage:link
+/Applications/XAMPP/xamppfiles/bin/php artisan optimize:clear
+/Applications/XAMPP/xamppfiles/bin/php artisan migrate:rollback
+
+
+/Applications/XAMPP/xamppfiles/bin/php nome-do-arquivo.php
+

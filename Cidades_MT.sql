@@ -141,8 +141,8 @@ INSERT INTO `cidade` (`id`, `Nome`, `estado_id`, `created_at`, `updated_at`) VAL
 INSERT INTO `cidade` (`id`, `Nome`, `estado_id`, `created_at`, `updated_at`) VALUES (NULL, 'VILA BELA DA SANTÍSSIMA TRINDADE', '1', NULL, NULL);
 INSERT INTO `cidade` (`id`, `Nome`, `estado_id`, `created_at`, `updated_at`) VALUES (NULL, 'VILA RICA', '1', NULL, NULL);
 
-INSERT INTO `orgaos` (`id`, `Nome`, `Sigla`, `image`, `cidade_id`, `created_at`, `updated_at`) VALUES (NULL, 'Sescretaria de Assistência Social', 'SETASC','', '37', NULL, NULL);
-INSERT INTO `orgaos` (`id`, `Nome`, `Sigla`, `image`, `cidade_id`, `created_at`, `updated_at`) VALUES (NULL, 'Sescretaria de Educação', 'SEDUC','', '37', NULL, NULL);
+INSERT INTO `orgaos` (`id`, `Nome`, `Sigla`, `image`,`Endereco`,`Cep`,`Mapa_Google`,`Email`,`Horario_funcionamento`, `Site`,`Outras_info`,`cidade_id`, `created_at`, `updated_at`) VALUES (NULL, 'Sescretaria de Assistência Social', 'SETASC','','','','','','','','', '37', NULL, NULL);
+INSERT INTO `orgaos` (`id`, `Nome`, `Sigla`, `image`,`Endereco`,`Cep`,`Mapa_Google`,`Email`,`Horario_funcionamento`, `Site`,`Outras_info`,`cidade_id`, `created_at`, `updated_at`) VALUES (NULL, 'Sescretaria de Educação', 'SEDUC','','','','','','','','', '37', NULL, NULL);
 
 -- SEAF - Secretaria de Estado de Agricultura Familiar e Assuntos Fundiários
 -- SECEL - Secretaria de Estado de Cultura

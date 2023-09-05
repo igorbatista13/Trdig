@@ -71,42 +71,42 @@
                                 <div class="info-box card">
                                     <i class="bi bi-geo-alt"></i>
                                     <h3>Endereço</h3>
-                                    <p>A108 Adam Street,<br>New York, NY 535022</p>
+                                    <p>{{$n_processo->Orgaos->Endereco}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="info-box card">
                                     <i class="bi bi-telephone"></i>
                                     <h3>Telefone</h3>
-                                    <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                                    <p>{{$n_processo->Orgaos->Telefone}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="info-box card">
                                     <i class="bi bi-envelope"></i>
                                     <h3>E-mail</h3>
-                                    <p>info@example.com<br>contact@example.com</p>
+                                    <p>{{$n_processo->Orgaos->Email}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="info-box card">
                                     <i class="bi bi-clock"></i>
                                     <h3>Horário de Funcionamento</h3>
-                                    <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                                    <p>{{$n_processo->Orgaos->Horario_funcionamento}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="info-box card">
                                     <i class="bi bi-clock"></i>
                                     <h3>Site</h3>
-                                    <p>http://www.setasc.mt.gov.br</p>
+                                    <p>{{$n_processo->Orgaos->Site}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="info-box card">
                                     <i class="bi bi-clock"></i>
                                     <h3>Outros</h3>
-                                    <p>http://www.setasc.mt.gov.br</p>
+                                    <p>{{$n_processo->Orgaos->Outras_info}}</p>
                                 </div>
                             </div>
                         </div>
