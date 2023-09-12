@@ -374,11 +374,21 @@ class TrdigitalController extends Controller
 
     public function planoconsolidado(Request $request, $id)
     {
- // Remove caracteres não numéricos e transforma vírgulas em pontos
- $valorConcedente = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_concedente')));
- $valorProponenteFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_financeira')));
- $valorProponenteNaoFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_nao_financeira')));
-
+        // Função para remover caracteres não numéricos e transformar vírgulas em pontos
+        function limparValor($valor)
+        {
+            return str_replace(',', '.', preg_replace('/[^0-9,]/', '', $valor));
+        }
+    
+        $valorConcedente = limparValor($request->input('Valor_concedente'));
+        $valorProponenteFinanceira = limparValor($request->input('Valor_proponente_financeira'));
+        $valorProponenteNaoFinanceira = limparValor($request->input('Valor_proponente_nao_financeira'));
+    
+        // Verificar se os valores são numéricos, senão definir como NULL
+        $valorConcedente = is_numeric($valorConcedente) ? $valorConcedente : null;
+        $valorProponenteFinanceira = is_numeric($valorProponenteFinanceira) ? $valorProponenteFinanceira : null;
+        $valorProponenteNaoFinanceira = is_numeric($valorProponenteNaoFinanceira) ? $valorProponenteNaoFinanceira : null;
+    
         $data = [
             'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
@@ -392,12 +402,11 @@ class TrdigitalController extends Controller
             'Valor_proponente_financeira' => $valorProponenteFinanceira,
             'Valor_proponente_nao_financeira' => $valorProponenteNaoFinanceira,
         ];
-
+    
         Plano_consolidado::create($data);
-       // return redirect()->route('trdigital.edit', ['trdigital' => $id, 'tab' => 'list-consolidado#list-pesquisa']);
-       
-      return redirect()->back();
+        return redirect()->back();
     }
+    
 
 
     public function planodetalhado(Request $request, $id)
@@ -885,15 +894,48 @@ class TrdigitalController extends Controller
             'Resp_instituicao',
             'Projeto_conteudo',
             'Resp_projeto',
+            'Orgaos',
+            'Metas',
+            'Plano_consolidado',
+            'Plano_detalhado',
+            'Cronograma_desembolso',
+            'Obras_equipamento',
+            'Pesquisa_mercadologica',
         ])->find($id);
 
         //   $n_processo = N_processo::find($id);
+        $biblioteca = Biblioteca::all();
+
+        $n_processo = N_processo::findOrFail($id);
+        $metas = Metas::where('n_processo_id', $id)->get();
+        $etapas = Metas::with('etapas')->get();
+        $planoconsolidado = Plano_consolidado::with(['Metas'])->where('n_processo_id', $id,)->get();
+        $planodetalhado = Plano_detalhado::with('Plano_consolidado')->where('n_processo_id', $id,)->get();
+        $cronograma_desembolso = Cronograma_desembolso::where('n_processo_id', $id,)->get();
+        $obras_equipamento = Obras_equipamento::where('n_processo_id', $id,)->get();
+        $cidade = Cidade::get();
+
+       // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
+        $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
 
         if (!$n_processo) {
             // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
             return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
         }
-        return view('trdigital.validar', compact('n_processo', 'orgaos'));
+        return view('trdigital.validar', compact( 
+        'cidade',
+        'n_processo',
+        'orgaos',
+        'metas',
+        'etapas',
+        'planoconsolidado',
+        'planodetalhado',
+        'cronograma_desembolso',
+        'obras_equipamento',
+        'pesquisa_mercadologica',
+        'biblioteca'
+    
+    ));
     }
 
 
@@ -987,10 +1029,10 @@ class TrdigitalController extends Controller
         }
 
         // Verifica se houve alteração no telefone
-        $telefoneAlterado = $request->Telefone_Instituicao != $nProcesso->instituicao->Telefone_Instituicao;
+    //    $telefoneAlterado = $request->Telefone_Instituicao != $nProcesso->instituicao->Telefone_Instituicao;
 
         // Atualiza o campo Telefone_Instituicao_sit de acordo com a alteração do telefone
-        $instituicao['Telefone_Instituicao_sit'] = $telefoneAlterado ? 0 : 1;
+      //  $instituicao['Telefone_Instituicao_sit'] = $telefoneAlterado ? 0 : 1;
 
         Instituicao::updateOrCreate(
             ['N_processo_id' => $nProcesso->id],
@@ -1306,26 +1348,93 @@ class TrdigitalController extends Controller
         return back();
     }
 
+
     public function projeto(Request $request, $id)
     {
         $projeto = Projeto_conteudo::findOrFail($id);
-
+        
+       // dd($request);
         $Titulo_Projeto_Conteudo = $request->input('Titulo_Projeto_Conteudo_sit');
         $projeto->Titulo_Projeto_Conteudo_sit = $Titulo_Projeto_Conteudo;
         $projeto->save();
 
-        $Objeto_Projeto_Conteudo_sit = $request->input('Objeto_Projeto_Conteudo_sit');
-        $projeto->Objeto_Projeto_Conteudo_sit = $Objeto_Projeto_Conteudo_sit;
+        $Objeto_Projeto_Conteudo = $request->input('Objeto_Projeto_Conteudo_sit');
+        $projeto->Objeto_Projeto_Conteudo_sit = $Objeto_Projeto_Conteudo;
+        $projeto->save();
+        
+        $Obj_Geral_Projeto_Conteudo = $request->input('Obj_Geral_Projeto_Conteudo_sit');
+        $projeto->Obj_Geral_Projeto_Conteudo_sit = $Obj_Geral_Projeto_Conteudo;
         $projeto->save();
 
+        $Obj_especifico_Projeto_Conteudo = $request->input('Obj_especifico_Projeto_Conteudo_sit');
+        $projeto->Obj_especifico_Projeto_Conteudo_sit = $Obj_especifico_Projeto_Conteudo;
+        $projeto->save();
 
+        $Justificativa_Projeto_Conteudo = $request->input('Justificativa_Projeto_Conteudo_sit');
+        $projeto->Justificativa_Projeto_Conteudo_sit = $Justificativa_Projeto_Conteudo;
+        $projeto->save();
 
+        $Contextualizacao_Projeto_Conteudo = $request->input('Contextualizacao_Projeto_Conteudo_sit');
+        $projeto->Contextualizacao_Projeto_Conteudo_sit = $Contextualizacao_Projeto_Conteudo;
+        $projeto->save();
 
+        $Diagnostico_Projeto_Conteudo = $request->input('Diagnostico_Projeto_Conteudo_sit');
+        $projeto->Diagnostico_Projeto_Conteudo_sit = $Diagnostico_Projeto_Conteudo;
+        $projeto->save();
+
+        $Importancia_Projeto_Conteudo = $request->input('Importancia_Projeto_Conteudo_sit');
+        $projeto->Importancia_Projeto_Conteudo_sit = $Importancia_Projeto_Conteudo;
+        $projeto->save();
+
+        $Caracterizacao_Projeto_Conteudo = $request->input('Caracterizacao_Projeto_Conteudo_sit');
+        $projeto->Caracterizacao_Projeto_Conteudo_sit = $Caracterizacao_Projeto_Conteudo;
+        $projeto->save();
+   
+        $Publico_Alvo_Interno_Projeto_Conteudo = $request->input('Publico_Alvo_Interno_Projeto_Conteudo_sit');
+        $projeto->Publico_Alvo_Interno_Projeto_Conteudo_sit = $Publico_Alvo_Interno_Projeto_Conteudo;
+        $projeto->save();
+      
+        $Publico_Alvo_Externo_Projeto_Conteudo = $request->input('Publico_Alvo_Externo_Projeto_Conteudo_sit');
+        $projeto->Publico_Alvo_Externo_Projeto_Conteudo_sit = $Publico_Alvo_Externo_Projeto_Conteudo;
+        $projeto->save();
+
+        $Problemas_Projeto_Conteudo = $request->input('Problemas_Projeto_Conteudo_sit');
+        $projeto->Problemas_Projeto_Conteudo_sit = $Problemas_Projeto_Conteudo;
+        $projeto->save();
+
+        $Resultados_Projeto_Conteudo = $request->input('Resultados_Projeto_Conteudo_sit');
+        $projeto->Resultados_Projeto_Conteudo_sit = $Resultados_Projeto_Conteudo;
+        $projeto->save();
+        
+        $Inicio_Projeto_Conteudo = $request->input('Inicio_Projeto_Conteudo_sit');
+        $projeto->Inicio_Projeto_Conteudo_sit = $Inicio_Projeto_Conteudo;
+        $projeto->save();
+        
+        $Fim_Projeto_Conteudo = $request->input('Fim_Projeto_Conteudo_sit');
+        $projeto->Fim_Projeto_Conteudo_sit = $Fim_Projeto_Conteudo;
+        $projeto->save();
+        
+        $N_Emenda_Projeto_Conteudo = $request->input('N_Emenda_Projeto_Conteudo_sit');
+        $projeto->N_Emenda_Projeto_Conteudo_sit = $N_Emenda_Projeto_Conteudo;
+        $projeto->save();
+
+        $Nome_Autor_Emenda_Projeto_Conteudo = $request->input('Nome_Autor_Emenda_Projeto_Conteudo_sit');
+        $projeto->Nome_Autor_Emenda_Projeto_Conteudo_sit = $Nome_Autor_Emenda_Projeto_Conteudo;
+        $projeto->save();
+     
+        $Valor_Repasse_Projeto_Conteudo = $request->input('Valor_Repasse_Projeto_Conteudo_sit');
+        $projeto->Valor_Repasse_Projeto_Conteudo_sit = $Valor_Repasse_Projeto_Conteudo;
+        $projeto->save();
+       
+        $Valor_Contrapartida_Projeto_Conteudo = $request->input('Valor_Contrapartida_Projeto_Conteudo_sit');
+        $projeto->Valor_Contrapartida_Projeto_Conteudo_sit = $Valor_Contrapartida_Projeto_Conteudo;
+        $projeto->save();
 
 
         return back();
     }
 
+    
 
     public function corrigir($id)
     {

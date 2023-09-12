@@ -64,8 +64,7 @@
                                                      <span>
                                           </td>
                                           <td>
-                                              <a><span class="text-danger">R$
-                                                      {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
+                                              <a><span class="text-danger">R$ {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
                           </a>
                                           </td>
                                           <td>

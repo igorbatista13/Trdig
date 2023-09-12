@@ -41,15 +41,20 @@
                             <h5 class="card-title">{{ $n_processo->Orgaos->Sigla }} - {{ $n_processo->Orgaos->Nome }}
                             </h5>
                             <small>
-                                <a href="{{ asset('/trdigital/proponente/') }}" class="">
+                                {{-- <a href="{{ asset('/trdigital/proponente/') }}" class="">
                                     Após enviar a sua TR Digital, você pode acompanhar o progresso em:
                                     <br><b> TR DIGITAL - Minhas TR </b>
-                                </a>
+                                </a> --}}
                             </small>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
                                 <label class="form-check-label" for="gridCheck2">
-                                    DEclaro que o documento acima é de responsabilidade bla bla bla </label>
+
+                                    Declaro que sou o responsável técnico pelo presente projeto,estou ciente das
+                                    responsabilidades assumidas no preenchimento das informações prestadas e documentos
+                                    apresentados na <b>TR-Digital</b>.
+
+                                </label>
                             </div>
                         </div>
                     </div>

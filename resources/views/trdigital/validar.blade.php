@@ -1,13 +1,13 @@
 @extends('base.novabase')
 @section('content')
-<?php 
-$processoCount = session()->get('processoCount'); 
-$processoCount_corrigir = session()->get('processoCount_corrigir'); 
-$processoCount_finalizado = session()->get('processoCount_finalizado'); 
-$processoCount_aguardando = session()->get('processoCount_aguardando'); 
-$processoCount_tramitada = session()->get('processoCount_tramitada'); 
-$processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada'); 
-?>
+    <?php
+    $processoCount = session()->get('processoCount');
+    $processoCount_corrigir = session()->get('processoCount_corrigir');
+    $processoCount_finalizado = session()->get('processoCount_finalizado');
+    $processoCount_aguardando = session()->get('processoCount_aguardando');
+    $processoCount_tramitada = session()->get('processoCount_tramitada');
+    $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
+    ?>
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
     <main id="main" class="main">
@@ -32,10 +32,12 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
 
 
                                             <div class="text-center mb-5">
-                                                <img src="{{ asset('/images/validate.png') }}" height="100px" class='mb-4'>
+                                                <img src="{{ asset('/images/validate.png') }}" height="100px"
+                                                    class='mb-4'>
                                                 <h3>TR DIGITAL - Validação</h3>
-                                                <h4 class="text-warning"> <b> {{$n_processo->Orgaos->Sigla }} -  {{$n_processo->Orgaos->Nome }} </b></h4>
-                                                
+                                                <h4 class="text-warning"> <b> {{ $n_processo->Orgaos->Sigla }} -
+                                                        {{ $n_processo->Orgaos->Nome }} </b></h4>
+
 
                                                 <div class="row">
 
@@ -87,10 +89,20 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                     data-bs-toggle="list" href="#list-atas" role="tab"
                                                     aria-controls="list-atas"><big> <b> 5. </b> </big></b> Atas, Certidões,
                                                     Comprovantes e Declarações </a>
+
                                                 <a class="list-group-item list-group-item-action" id="list-projeto-list"
                                                     data-bs-toggle="list" href="#list-projeto" role="tab"
                                                     aria-controls="list-projeto"> <b> <big> 6. </big> </b> Identificação do
                                                     Projeto </a>
+
+                                                <a class="list-group-item list-group-item-action" id="list-cronograma-list"
+                                                    data-bs-toggle="list" href="#list-cronograma" role="tab"
+                                                    aria-controls="list-cronograma"> <b> <big> 7. </big> </b> Cronograma de
+                                                    Execução </a>
+                                               
+                                                    <a class="list-group-item list-group-item-action" id="list-Plano_consolidado-list"
+                                                    data-bs-toggle="list" href="#list-Plano_consolidado" role="tab"
+                                                    aria-controls="list-Plano_consolidado"> <b> <big> 8. </big> </b> Plano Consolidado </a>
 
                                                 <a class="list-group-item list-group-item-action" id="list-projeto-tramitar"
                                                     data-bs-toggle="list" href="#list-tramitar" role="tab"
@@ -109,7 +121,12 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                 @include('trdigital.validar.questoes.4resp_projeto')
                                                 @include('trdigital.validar.questoes.5doc_anexos2')
                                                 @include('trdigital.validar.questoes.6projeto')
+                                                @include('trdigital.validar.questoes.7cronograma')
+                                                @include('trdigital.validar.questoes.8plano_consolidado')
                                                 @include('trdigital.validar.questoes.tramitar')
+
+                                            </div>
+                                        </div>
 
 
 

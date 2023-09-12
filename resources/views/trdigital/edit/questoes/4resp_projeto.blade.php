@@ -38,7 +38,7 @@
                                     'placeholder' => 'a',
                                     'class' => 'form-control',
                                     'oninput' => 'mascaraTelefone(this)',
-                                    'maxlength' => '14',
+                                    'maxlength' => '15',
                                 ]) !!}
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == 1)

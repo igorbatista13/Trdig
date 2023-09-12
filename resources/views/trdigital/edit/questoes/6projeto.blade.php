@@ -12,6 +12,7 @@
                            'class' => 'form-control',
                            'id' => 'floatingName',
                        ]) !!}
+                       
                        @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Titulo_Projeto_Conteudo_sit == '')
                        @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Titulo_Projeto_Conteudo_sit == 1)
                            <span class="badge bg-success">

@@ -603,6 +603,8 @@
         if (value.length === 11) { // Celular
             // Coloca a máscara do telefone celular (DDD 9XXXX-XXXX)
             value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+                    value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+
         } else if (value.length === 10) { // Telefone fixo
             // Coloca a máscara do telefone fixo (DDD XXXX-XXXX)
             value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');

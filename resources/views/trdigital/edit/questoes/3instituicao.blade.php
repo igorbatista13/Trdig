@@ -56,7 +56,7 @@
                                       'placeholder' => 'a',
                                       'class' => 'form-control',
                                       'oninput' => 'mascaraTelefone(this)',
-                                      'maxlength' => '14',
+                                      'maxlength' => '15',
                                   ]) !!}
                                   @if ($n_processo->instituicao && $n_processo->instituicao->Telefone_Instituicao_sit == '')
                                   @elseif ($n_processo->instituicao && $n_processo->instituicao->Telefone_Instituicao_sit == 1)
@@ -67,7 +67,7 @@
                                           <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
                                   @endif
                                   <label for="floatingName"></label>
-                                  <label for="floatingEmail">Telefone</label>
+                                  <label for="floatingEmail">Telefone com DDD</label>
                               </div>
                           </div>
 

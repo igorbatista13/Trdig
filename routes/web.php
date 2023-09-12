@@ -62,7 +62,7 @@ Route::delete('/trdigital/etapasstore/{id}', [TrdigitalController::class, 'etapa
 
 Route::get('/trdigital/proponente',   [TrdigitalController::class, 'proponente']);
 
-
+// VALIDAR
 Route::get('/trdigital/validar/{id}',     [TrdigitalController::class, 'validar']);
 Route::post('/trdigital/validar/oficio/{id}',    [TrdigitalController::class, 'oficio'])->name('trdigital.validar.oficio');
 Route::post('/trdigital/validar/resp_instituicao/{id}',    [TrdigitalController::class, 'resp_instituicao'])->name('trdigital.validar.resp_instituicao');

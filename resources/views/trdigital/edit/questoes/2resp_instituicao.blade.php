@@ -36,7 +36,7 @@
                                   'placeholder' => 'a',
                                   'class' => 'form-control',
                                   'oninput' => 'mascaraTelefone(this)',
-                                  'maxlength' => '14',
+                                  'maxlength' => '15',
                               ]) !!}
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == '')
                               @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Telefone_Resp_Instituicao_sit == 1)
@@ -270,7 +270,7 @@
                                   <div class="icon">
                                       <div class="col-md-12 iframe-container">
                                           <iframe
-                                              src="{{ asset('storage/' . $n_processo->Doc_anexo1->Comp_Oficio) }}"></iframe>
+                                              src="{{ asset('storage/' . $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao) }}"></iframe>
                                       </div>
                                       <a class="btn btn-primary"
                                           href="{{ asset('storage/' . $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao) }}"
