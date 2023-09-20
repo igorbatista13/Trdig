@@ -12,6 +12,7 @@
             <div class="row g-3">
                 <div class="col-md-12">
                     <h5 class="text"> Nome </h6>
+                        
                         {!! Form::text('Nome_Resp_Instituicao', $n_processo->Resp_instituicao->Nome_Resp_Instituicao, [
                             'class' => 'form-control',
                             'id' => 'floatingName',

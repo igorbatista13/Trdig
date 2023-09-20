@@ -99,15 +99,22 @@
                                                     data-bs-toggle="list" href="#list-cronograma" role="tab"
                                                     aria-controls="list-cronograma"> <b> <big> 7. </big> </b> Cronograma de
                                                     Execução </a>
-                                               
-                                                    <a class="list-group-item list-group-item-action" id="list-Plano_consolidado-list"
-                                                    data-bs-toggle="list" href="#list-Plano_consolidado" role="tab"
-                                                    aria-controls="list-Plano_consolidado"> <b> <big> 8. </big> </b> Plano Consolidado </a>
+
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-Plano_consolidado-list" data-bs-toggle="list"
+                                                    href="#list-Plano_consolidado" role="tab"
+                                                    aria-controls="list-Plano_consolidado"> <b> <big> 8. </big> </b> Plano
+                                                    Consolidado </a>
+
+                                                <a class="list-group-item list-group-item-action"
+                                                    id="list-Plano_detalhado-list" data-bs-toggle="list"
+                                                    href="#list-Plano_detalhado" role="tab"
+                                                    aria-controls="list-Plano_detalhado"> <b> <big> 9. </big> </b> Plano
+                                                    Detalhado </a>
 
                                                 <a class="list-group-item list-group-item-action" id="list-projeto-tramitar"
                                                     data-bs-toggle="list" href="#list-tramitar" role="tab"
-                                                    aria-controls="list-tramitar"> <b> <big> 7. </big> </b> Tramitar para o
-                                                    Concedente</a>
+                                                    aria-controls="list-tramitar"> <b> <big> 13. </big> </b> Finalizar</a>
 
                                             </div>
                                         </div>
@@ -123,6 +130,11 @@
                                                 @include('trdigital.validar.questoes.6projeto')
                                                 @include('trdigital.validar.questoes.7cronograma')
                                                 @include('trdigital.validar.questoes.8plano_consolidado')
+                                                @include('trdigital.validar.questoes.9plano_detalhado')
+
+
+
+
                                                 @include('trdigital.validar.questoes.tramitar')
 
                                             </div>

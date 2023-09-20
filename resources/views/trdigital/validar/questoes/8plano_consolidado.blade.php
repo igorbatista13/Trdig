@@ -25,8 +25,7 @@
                                     <th><small>Valor Prop. <br><small class="text-primary">(Financeira) </small></th>
                                     <th><small>Valor Prop. <br><small class="text-primary"> (Não Financeira) </small>
                                     </th>
-                                    <th><small>Editar</small></th>
-                                    <th><small>Excluir</small></th>
+                          
                                 </tr>
                             </thead>
                             <tbody>

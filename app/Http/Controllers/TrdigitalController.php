@@ -1434,6 +1434,23 @@ class TrdigitalController extends Controller
         return back();
     }
 
+    public function validar_planodetalhado(Request $request, $id)
+    {
+        $plano_detalhado_sit = $request->input('plano_detalhado_sit');
+    
+        foreach ($plano_detalhado_sit as $planodetalhadosId => $valor) {
+            // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+    
+            // Encontre o plano detalhado pelo ID
+            $planodetalhado = Plano_detalhado::findOrFail($planodetalhadosId);
+    
+            // Salve o valor no banco de dados
+            $planodetalhado->plano_detalhado_sit = $valor;
+            $planodetalhado->save();
+        }
+    
+        return back();
+    }
     
 
     public function corrigir($id)

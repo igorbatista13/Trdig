@@ -71,6 +71,13 @@ Route::post('/trdigital/validar/resp_projeto/{id}',    [TrdigitalController::cla
 Route::post('/trdigital/validar/documentos/{id}',    [TrdigitalController::class, 'documentos'])->name('trdigital.validar.documentos');
 Route::post('/trdigital/validar/projeto/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
 
+//
+Route::post('/trdigital/validar/cronogramaexecucao/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
+Route::post('/trdigital/validar/planoconsolidado/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
+
+//
+Route::post('/trdigital/validar/planodetalhado/{id}',    [TrdigitalController::class, 'validar_planodetalhado'])->name('trdigital.validar.planodetalhado');
+
 Route::get('/trdigital/corrigir/{id}',      [TrdigitalController::class, 'corrigir']);
 Route::get('/trdigital/aguardando_andamento/{id}',      [TrdigitalController::class, 'aguardando_andamento']);
 Route::get('/trdigital/finalizado/{id}',      [TrdigitalController::class, 'finalizado']);
