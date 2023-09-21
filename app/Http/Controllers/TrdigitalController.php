@@ -39,6 +39,7 @@ use App\Models\Pesquisa_mercadologica;
 use App\Models\Pesquisa_mercadologica_pivot;
 
 use App\Models\Anexo_sigcon;
+
 class TrdigitalController extends Controller
 {
     /**
@@ -80,7 +81,7 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('Orgao_Concedente','1')->get();
+        ])->where('Orgao_Concedente', '1')->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
@@ -94,9 +95,9 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-   ])->where('Status', '=', 'AGUARDANDO')
-      ->where('Orgao_Concedente', '=', 1)
-      ->get();
+        ])->where('Status', '=', 'AGUARDANDO')
+            ->where('Orgao_Concedente', '=', 1)
+            ->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
@@ -110,9 +111,9 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('Status','CORRIGIR')
-        ->where('Orgao_Concedente', '=', 1)
-        ->get();
+        ])->where('Status', 'CORRIGIR')
+            ->where('Orgao_Concedente', '=', 1)
+            ->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
@@ -127,20 +128,20 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('Status','FINALIZADO')
-        ->where('Orgao_Concedente', '=', 1)
-        ->get();
+        ])->where('Status', 'FINALIZADO')
+            ->where('Orgao_Concedente', '=', 1)
+            ->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
-    
+
 
     public function proponente()
     {
 
         $processoCount  =  N_processo::where('user_id', '=', auth()->id())
             ->count();
-            
+
         $nProcessos  =  N_processo::with([
             'Doc_anexo1',
             'Doc_anexo2',
@@ -150,8 +151,8 @@ class TrdigitalController extends Controller
             'Resp_projeto',
             'Orgaos',
             'anexo_sigcon'
-            
-            
+
+
         ])->where('user_id', '=', auth()->id())->orderby('id', 'DESC')->get();
 
         return view('trdigital.proponente.index', compact('nProcessos'));
@@ -196,7 +197,7 @@ class TrdigitalController extends Controller
             'End_Resp_Instituicao' => $request->End_Resp_Instituicao,
             'Telefone_Resp_Instituicao' => $request->Telefone_Resp_Instituicao,
             'Email_Resp_Instituicao' => $request->Email_Resp_Instituicao,
-        
+
         ];
 
 
@@ -219,7 +220,7 @@ class TrdigitalController extends Controller
             'Telefone_Instituicao' => $request->Telefone_Instituicao,
 
         ];
-       
+
         Instituicao::create($instituicao);
         //  // fim do 3
 
@@ -244,9 +245,9 @@ class TrdigitalController extends Controller
 
         ];
 
-    
 
-       // Doc_anexo2::create($doc_anexo2);
+
+        // Doc_anexo2::create($doc_anexo2);
 
         $projeto_conteudo = [
             'n_processo_id' => $nProcesso->id,
@@ -271,7 +272,7 @@ class TrdigitalController extends Controller
             'Valor_Contrapartida_Projeto_Conteudo' => $request->Valor_Contrapartida_Projeto_Conteudo,
 
         ];
-   //     dd($projeto_conteudo);
+        //     dd($projeto_conteudo);
 
         Projeto_conteudo::create($projeto_conteudo);
 
@@ -290,8 +291,7 @@ class TrdigitalController extends Controller
 
         Metas::create($metas);
 
-       return redirect()->route('trdigital.show', ['trdigital' => $nProcesso->id]);
-
+        return redirect()->route('trdigital.show', ['trdigital' => $nProcesso->id]);
     }
 
     public function metasstore(Request $request, $id)
@@ -379,16 +379,16 @@ class TrdigitalController extends Controller
         {
             return str_replace(',', '.', preg_replace('/[^0-9,]/', '', $valor));
         }
-    
+
         $valorConcedente = limparValor($request->input('Valor_concedente'));
         $valorProponenteFinanceira = limparValor($request->input('Valor_proponente_financeira'));
         $valorProponenteNaoFinanceira = limparValor($request->input('Valor_proponente_nao_financeira'));
-    
+
         // Verificar se os valores são numéricos, senão definir como NULL
         $valorConcedente = is_numeric($valorConcedente) ? $valorConcedente : null;
         $valorProponenteFinanceira = is_numeric($valorProponenteFinanceira) ? $valorProponenteFinanceira : null;
         $valorProponenteNaoFinanceira = is_numeric($valorProponenteNaoFinanceira) ? $valorProponenteNaoFinanceira : null;
-    
+
         $data = [
             'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
@@ -402,21 +402,21 @@ class TrdigitalController extends Controller
             'Valor_proponente_financeira' => $valorProponenteFinanceira,
             'Valor_proponente_nao_financeira' => $valorProponenteNaoFinanceira,
         ];
-    
+
         Plano_consolidado::create($data);
         return redirect()->back();
     }
-    
+
 
 
     public function planodetalhado(Request $request, $id)
     {
         // Remove caracteres não numéricos
         $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit_detalhado'));
-    
+
         // Converte para valor decimal
         $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
-    
+
         $data = [
             'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
@@ -427,12 +427,12 @@ class TrdigitalController extends Controller
             'Quantidade_detalhado' => $request->input('Quantidade_detalhado'),
             'Valor_unit_detalhado' => $valorDecimal,
         ];
-    
+
         Plano_detalhado::create($data);
-    
+
         return redirect()->back();
     }
-    
+
 
     public function planodetalhado_update(Request $request, $id)
     {
@@ -444,28 +444,29 @@ class TrdigitalController extends Controller
             'Quantidade_detalhado' => $request->input('Quantidade_detalhado'),
             'Valor_unit_detalhado' => $this->parseValorInput($request->input('Valor_unit_detalhado')),
         ];
-    
+
         Plano_detalhado::findOrFail($request->id)->update($data);
-    
+
         return redirect()->back();
     }
-    
-    private function parseValorInput($inputValue) {
+
+    private function parseValorInput($inputValue)
+    {
         $cleanValue = preg_replace('/[^\d,]/', '', $inputValue);
         $parsedValue = str_replace(',', '.', $cleanValue);
-        
+
         return $parsedValue;
     }
-    
+
     public function planoconsolidadoupdate(Request $request, $id)
     {
-       // Remove caracteres não numéricos e transforma vírgulas em pontos
-       $valorConcedente = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_concedente')));
-       $valorProponenteFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_financeira')));
-       $valorProponenteNaoFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_nao_financeira')));
-   
+        // Remove caracteres não numéricos e transforma vírgulas em pontos
+        $valorConcedente = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_concedente')));
+        $valorProponenteFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_financeira')));
+        $valorProponenteNaoFinanceira = str_replace(',', '.', preg_replace('/[^0-9,]/', '', $request->input('Valor_proponente_nao_financeira')));
+
         $data = [
-           // 'n_processo_id' => $id,
+            // 'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
             'Natureza' => $request->input('Natureza'),
             'OutrosNatureza' => $request->input('OutrosNatureza'),
@@ -532,10 +533,10 @@ class TrdigitalController extends Controller
     {
         // Remove caracteres não numéricos
         $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('valor_desembolso'));
-    
+
         // Converte para valor decimal
         $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
-    
+
         $etapas = [
             'n_processo_id' => $id,
             'metas_id' => $request->input('metas_id'),
@@ -544,22 +545,22 @@ class TrdigitalController extends Controller
             'fonte' => $request->input('fonte'),
             'valor_desembolso' => $valorDecimal,
         ];
-    
+
         Cronograma_desembolso::create($etapas);
-    
+
         return redirect()->back();
     }
-    
+
 
 
     public function cronograma_update(Request $request, $id)
     {
         // Remove caracteres não numéricos
         $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('valor_desembolso'));
-    
+
         // Converte para valor decimal
         $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
-    
+
         $data = [
             'metas_id' => $request->input('metas_id'),
             'ano' => $request->input('ano'),
@@ -567,12 +568,12 @@ class TrdigitalController extends Controller
             'fonte' => $request->input('fonte'),
             'valor_desembolso' => $valorDecimal,
         ];
-    
+
         Cronograma_desembolso::findOrFail($request->id)->update($data);
-    
+
         return redirect()->back();
     }
-    
+
 
     public function cronograma_destroy($id)
     {
@@ -589,11 +590,11 @@ class TrdigitalController extends Controller
 
     public function obras_equipamento(Request $request, $id)
     {
-    // Remove caracteres não numéricos
-    $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit'));
-    
-    // Converte para valor decimal
-    $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
+        // Remove caracteres não numéricos
+        $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit'));
+
+        // Converte para valor decimal
+        $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
 
         $data = [
             'n_processo_id' => $id,
@@ -613,14 +614,14 @@ class TrdigitalController extends Controller
     }
     public function obras_equipamento_update(Request $request, $id)
     {
-    // Remove caracteres não numéricos
-    $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit'));
+        // Remove caracteres não numéricos
+        $valorSemPontos = preg_replace('/[^0-9]/', '', $request->input('Valor_unit'));
 
-    // Converte para valor decimal
-    $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
+        // Converte para valor decimal
+        $valorDecimal = (float) substr_replace($valorSemPontos, '.', -2, 0);
 
         $data = [
-       //     'n_processo_id' => $id,
+            //     'n_processo_id' => $id,
             'Natureza_id' => $request->input('Natureza_id'),
             'Cidade_id' => $request->input('Cidade_id'),
             'Especificacao' => $request->input('Especificacao'),
@@ -655,13 +656,13 @@ class TrdigitalController extends Controller
             'Descricao_bem' => $request->Descricao_bem,
             'Qtd' => $request->Qtd,
         ]);
-    
+
         foreach ($request->Empresa as $key => $empresa) {
             $pivotData = [
                 'Empresa' => $empresa,
                 'Valor' => $request->Valor[$key],
             ];
-    
+
             if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
                 $file = $request->file('Anexo')[$key];
                 $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
@@ -669,13 +670,13 @@ class TrdigitalController extends Controller
             } else {
                 $pivotData['Anexo'] = null; // Valor padrão se não houver anexo
             }
-    
+
             $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->create($pivotData);
         }
-    
+
         return redirect()->back();
     }
-    
+
 
     public function pesquisa_nome_mercadologica_update(Request $request, $id)
     {
@@ -688,9 +689,9 @@ class TrdigitalController extends Controller
 
         //    $pesquisa_mercadologica->update($pivotData);
 
-      return redirect()->back();
+        return redirect()->back();
     }
-    
+
 
 
 
@@ -703,47 +704,47 @@ class TrdigitalController extends Controller
 
 
     public function pesquisa_mercadologica_update(Request $request, $pivotid)
-{
-    // Encontre o registro existente de Pesquisa_mercadologica a ser atualizado
-    $pesquisa_mercadologica = Pesquisa_mercadologica_pivot::findOrFail($pivotid);
+    {
+        // Encontre o registro existente de Pesquisa_mercadologica a ser atualizado
+        $pesquisa_mercadologica = Pesquisa_mercadologica_pivot::findOrFail($pivotid);
 
-    // Atualize os campos principais de Pesquisa_mercadologica
-    // $pesquisa_mercadologica->update([
-    //     'Descricao_bem' => $request->Descricao_bem,
-    //     'Qtd' => $request->Qtd,
-    // ]);
+        // Atualize os campos principais de Pesquisa_mercadologica
+        // $pesquisa_mercadologica->update([
+        //     'Descricao_bem' => $request->Descricao_bem,
+        //     'Qtd' => $request->Qtd,
+        // ]);
 
-        
-    if (is_array($request->Empresa)) {
-        foreach ($request->Empresa as $key => $empresa) {
+
+        if (is_array($request->Empresa)) {
+            foreach ($request->Empresa as $key => $empresa) {
+                $pivotData = [
+                    'Empresa' => $empresa,
+                    'Valor' => $request->Valor[$key],
+                ];
+
+                // Resto do seu código de processamento aqui...
+            }
+        } else {
+            // Se $request->Empresa não for um array, trate-o como um único valor
             $pivotData = [
-                'Empresa' => $empresa,
-                'Valor' => $request->Valor[$key],
+                'Empresa' => $request->Empresa,
+                'Valor' => $request->Valor, // Sem a necessidade de [$key] aqui
             ];
-    
+
             // Resto do seu código de processamento aqui...
         }
-    } else {
-        // Se $request->Empresa não for um array, trate-o como um único valor
-        $pivotData = [
-            'Empresa' => $request->Empresa,
-            'Valor' => $request->Valor, // Sem a necessidade de [$key] aqui
-        ];
-    
-        // Resto do seu código de processamento aqui...
-    }
-    
-    // Itere sobre os relacionamentos Pesquisa_mercadologica_pivot existentes
-    // foreach ($pesquisa_mercadologica->pesquisa_mercadologica_pivots as $key => $pivot) {
-    //     $pivotData = [
-    //         'Empresa' => $request->Empresa,
-    //         'Valor' => $request->Valor[$key],
-    //     ];
+
+        // Itere sobre os relacionamentos Pesquisa_mercadologica_pivot existentes
+        // foreach ($pesquisa_mercadologica->pesquisa_mercadologica_pivots as $key => $pivot) {
+        //     $pivotData = [
+        //         'Empresa' => $request->Empresa,
+        //         'Valor' => $request->Valor[$key],
+        //     ];
 
         // if (isset($request->Empresa[$key])) {
         //     // Acesse $request->Empresa[$key]
         // }
-        
+
         // if (isset($request->Valor[$key])) {
         //     // Acesse $request->Valor[$key]
         // }
@@ -752,7 +753,7 @@ class TrdigitalController extends Controller
             $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
             $pivotData['Anexo'] = $filePath;
         }
-        
+
         // // Verifique se um novo arquivo foi enviado e atualize o campo Anexo
         // if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
         //     $file = $request->file('Anexo')[$key];
@@ -761,10 +762,10 @@ class TrdigitalController extends Controller
         // }
 
         // Atualize o registro de pivot
-       // $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->update($pivotData);
+        // $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->update($pivotData);
 
         $pesquisa_mercadologica->update($pivotData);
-      return redirect()->back();
+        return redirect()->back();
     }
 
 
@@ -785,29 +786,29 @@ class TrdigitalController extends Controller
     public function pesquisa_mercadologica_destroy($pivotId)
     {
         $pivotItem = Pesquisa_mercadologica_pivot::find($pivotId);
-    
+
         if (!$pivotItem) {
             // Lógica de tratamento se o item do pivot não for encontrado
         }
-    
+
         $pivotItem->delete();
-    
+
         return redirect()->back(); // Ou redirecionar para qualquer outra página desejada após a exclusão
     }
 
     public function pesquisa_nome_mercadologica_destroy($pivotId)
     {
         $pesquisa_mercadologica = Pesquisa_mercadologica::find($pivotId);
-    
+
         if (!$pesquisa_mercadologica) {
             // Lógica de tratamento se o item do pivot não for encontrado
         }
-    
+
         $pesquisa_mercadologica->delete();
-    
+
         return redirect()->back(); // Ou redirecionar para qualquer outra página desejada após a exclusão
     }
-    
+
 
     public function show($id)
     {
@@ -821,10 +822,12 @@ class TrdigitalController extends Controller
             'Orgaos'
         ])->find($id);
 
-    $biblioteca = Biblioteca::get();
-        
-        return view('trdigital.trgerada', compact('n_processo','biblioteca'));
+        $biblioteca = Biblioteca::get();
+
+        return view('trdigital.trgerada', compact('n_processo', 'biblioteca'));
     }
+
+    // TUDO COMECA NESTE EDITAR AQUI
 
     public function edit(N_processo $n_processo, $id)
     {
@@ -856,7 +859,7 @@ class TrdigitalController extends Controller
         $obras_equipamento = Obras_equipamento::where('n_processo_id', $id,)->get();
         $cidade = Cidade::get();
 
-       // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
+        // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
         $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
 
         // $pesquisa_mercadologica_pivots = $pesquisa_mercadologica->Pesquisa_mercadologica_pivot;
@@ -879,7 +882,7 @@ class TrdigitalController extends Controller
             'obras_equipamento',
             'pesquisa_mercadologica',
             'biblioteca'
-            
+
         ));
     }
 
@@ -908,6 +911,7 @@ class TrdigitalController extends Controller
 
         $n_processo = N_processo::findOrFail($id);
         $metas = Metas::where('n_processo_id', $id)->get();
+        
         $etapas = Metas::with('etapas')->get();
         $planoconsolidado = Plano_consolidado::with(['Metas'])->where('n_processo_id', $id,)->get();
         $planodetalhado = Plano_detalhado::with('Plano_consolidado')->where('n_processo_id', $id,)->get();
@@ -915,27 +919,27 @@ class TrdigitalController extends Controller
         $obras_equipamento = Obras_equipamento::where('n_processo_id', $id,)->get();
         $cidade = Cidade::get();
 
-       // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
+        // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
         $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
 
         if (!$n_processo) {
             // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
             return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
         }
-        return view('trdigital.validar', compact( 
-        'cidade',
-        'n_processo',
-        'orgaos',
-        'metas',
-        'etapas',
-        'planoconsolidado',
-        'planodetalhado',
-        'cronograma_desembolso',
-        'obras_equipamento',
-        'pesquisa_mercadologica',
-        'biblioteca'
-    
-    ));
+        return view('trdigital.validar', compact(
+            'cidade',
+            'n_processo',
+            'orgaos',
+            'metas',
+            'etapas',
+            'planoconsolidado',
+            'planodetalhado',
+            'cronograma_desembolso',
+            'obras_equipamento',
+            'pesquisa_mercadologica',
+            'biblioteca'
+
+        ));
     }
 
 
@@ -983,7 +987,7 @@ class TrdigitalController extends Controller
             'Telefone_Resp_Instituicao' => $request->Telefone_Resp_Instituicao,
             'Email_Resp_Instituicao' => $request->Email_Resp_Instituicao,
         ];
-//dd($resp_instituicao);
+        //dd($resp_instituicao);
         if ($request->hasFile('Anexo1_Resp_Instituicao')) {
             $resp_instituicao['Anexo1_Resp_Instituicao'] = $request->file('Anexo1_Resp_Instituicao')->store('pdfs/resp_instituicao', 'public');
         }
@@ -1029,10 +1033,10 @@ class TrdigitalController extends Controller
         }
 
         // Verifica se houve alteração no telefone
-    //    $telefoneAlterado = $request->Telefone_Instituicao != $nProcesso->instituicao->Telefone_Instituicao;
+        //    $telefoneAlterado = $request->Telefone_Instituicao != $nProcesso->instituicao->Telefone_Instituicao;
 
         // Atualiza o campo Telefone_Instituicao_sit de acordo com a alteração do telefone
-      //  $instituicao['Telefone_Instituicao_sit'] = $telefoneAlterado ? 0 : 1;
+        //  $instituicao['Telefone_Instituicao_sit'] = $telefoneAlterado ? 0 : 1;
 
         Instituicao::updateOrCreate(
             ['N_processo_id' => $nProcesso->id],
@@ -1143,12 +1147,12 @@ class TrdigitalController extends Controller
             $projeto_conteudo
         );
 
-       
-        
+
+
         return back();
     }
 
-    public function anexo_sigcon (Request $request, $id)
+    public function anexo_sigcon(Request $request, $id)
     {
         $anexo_sigcon = [
             'n_processo_id' => $id
@@ -1173,7 +1177,7 @@ class TrdigitalController extends Controller
             ['N_processo_id' => $id],
             $anexo_sigcon
         );
-        
+
         return back();
     }
     public function oficio(Request $request, $id)
@@ -1352,8 +1356,8 @@ class TrdigitalController extends Controller
     public function projeto(Request $request, $id)
     {
         $projeto = Projeto_conteudo::findOrFail($id);
-        
-       // dd($request);
+
+        // dd($request);
         $Titulo_Projeto_Conteudo = $request->input('Titulo_Projeto_Conteudo_sit');
         $projeto->Titulo_Projeto_Conteudo_sit = $Titulo_Projeto_Conteudo;
         $projeto->save();
@@ -1361,7 +1365,7 @@ class TrdigitalController extends Controller
         $Objeto_Projeto_Conteudo = $request->input('Objeto_Projeto_Conteudo_sit');
         $projeto->Objeto_Projeto_Conteudo_sit = $Objeto_Projeto_Conteudo;
         $projeto->save();
-        
+
         $Obj_Geral_Projeto_Conteudo = $request->input('Obj_Geral_Projeto_Conteudo_sit');
         $projeto->Obj_Geral_Projeto_Conteudo_sit = $Obj_Geral_Projeto_Conteudo;
         $projeto->save();
@@ -1389,11 +1393,11 @@ class TrdigitalController extends Controller
         $Caracterizacao_Projeto_Conteudo = $request->input('Caracterizacao_Projeto_Conteudo_sit');
         $projeto->Caracterizacao_Projeto_Conteudo_sit = $Caracterizacao_Projeto_Conteudo;
         $projeto->save();
-   
+
         $Publico_Alvo_Interno_Projeto_Conteudo = $request->input('Publico_Alvo_Interno_Projeto_Conteudo_sit');
         $projeto->Publico_Alvo_Interno_Projeto_Conteudo_sit = $Publico_Alvo_Interno_Projeto_Conteudo;
         $projeto->save();
-      
+
         $Publico_Alvo_Externo_Projeto_Conteudo = $request->input('Publico_Alvo_Externo_Projeto_Conteudo_sit');
         $projeto->Publico_Alvo_Externo_Projeto_Conteudo_sit = $Publico_Alvo_Externo_Projeto_Conteudo;
         $projeto->save();
@@ -1405,15 +1409,15 @@ class TrdigitalController extends Controller
         $Resultados_Projeto_Conteudo = $request->input('Resultados_Projeto_Conteudo_sit');
         $projeto->Resultados_Projeto_Conteudo_sit = $Resultados_Projeto_Conteudo;
         $projeto->save();
-        
+
         $Inicio_Projeto_Conteudo = $request->input('Inicio_Projeto_Conteudo_sit');
         $projeto->Inicio_Projeto_Conteudo_sit = $Inicio_Projeto_Conteudo;
         $projeto->save();
-        
+
         $Fim_Projeto_Conteudo = $request->input('Fim_Projeto_Conteudo_sit');
         $projeto->Fim_Projeto_Conteudo_sit = $Fim_Projeto_Conteudo;
         $projeto->save();
-        
+
         $N_Emenda_Projeto_Conteudo = $request->input('N_Emenda_Projeto_Conteudo_sit');
         $projeto->N_Emenda_Projeto_Conteudo_sit = $N_Emenda_Projeto_Conteudo;
         $projeto->save();
@@ -1421,11 +1425,11 @@ class TrdigitalController extends Controller
         $Nome_Autor_Emenda_Projeto_Conteudo = $request->input('Nome_Autor_Emenda_Projeto_Conteudo_sit');
         $projeto->Nome_Autor_Emenda_Projeto_Conteudo_sit = $Nome_Autor_Emenda_Projeto_Conteudo;
         $projeto->save();
-     
+
         $Valor_Repasse_Projeto_Conteudo = $request->input('Valor_Repasse_Projeto_Conteudo_sit');
         $projeto->Valor_Repasse_Projeto_Conteudo_sit = $Valor_Repasse_Projeto_Conteudo;
         $projeto->save();
-       
+
         $Valor_Contrapartida_Projeto_Conteudo = $request->input('Valor_Contrapartida_Projeto_Conteudo_sit');
         $projeto->Valor_Contrapartida_Projeto_Conteudo_sit = $Valor_Contrapartida_Projeto_Conteudo;
         $projeto->save();
@@ -1434,24 +1438,154 @@ class TrdigitalController extends Controller
         return back();
     }
 
+
+    public function validar_cronogramaexecucao_metas(Request $request, $id)
+    {
+
+        $correcao_metas_sit = $request->input('Correcao_metas_sit');
+     //   dd($correcao_metas_sit);
+        foreach ($correcao_metas_sit as $correcao_metas_sitId => $valor) {
+            // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+
+            // Encontre o plano detalhado pelo ID
+            $correcao_metas = Metas::findOrFail($correcao_metas_sitId);
+
+            // Salve o valor no banco de dados
+            $correcao_metas->Correcao_metas_sit = $valor;
+            $correcao_metas->save();
+        }
+
+        $correcao_etapas_sit = $request->input('Correcao_etapas_sit');
+        //   dd($correcao_metas_sit);
+           foreach ($correcao_etapas_sit as $correcao_etapas_sitId => $valor_etapa) {
+               // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+   
+               // Encontre o plano detalhado pelo ID
+               $correcao_etapas = Etapas::findOrFail($correcao_etapas_sitId);
+   
+               // Salve o valor no banco de dados
+               $correcao_etapas->Correcao_etapas_sit = $valor_etapa;
+               $correcao_etapas->save();
+           }
+           
+        return back();
+    }
+
+    public function validar_cronogramaexecucao_etapas(Request $request, $id)
+    {
+        $correcao_etapas_sit = $request->input('Correcao_etapas_sit');
+     //   dd($correcao_metas_sit);
+        foreach ($correcao_etapas_sit as $correcao_etapas_sitId => $valor_etapa) {
+            // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+
+            // Encontre o plano detalhado pelo ID
+            $correcao_etapas = Etapas::findOrFail($correcao_etapas_sitId);
+
+            // Salve o valor no banco de dados
+            $correcao_etapas->Correcao_etapas_sit = $valor_etapa;
+            $correcao_etapas->save();
+        }
+
+        return back();
+    }
+
+
+
+
+    public function validar_cronograma_desembolso(Request $request, $id)
+    {
+
+        $cronograma_desembolso_sit = $request->input('cronograma_desembolso_sit');
+
+        foreach ($cronograma_desembolso_sit as $cronograma_desembolsoId => $valor) {
+            // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+
+            // Encontre o plano detalhado pelo ID
+            $cronograma_desembolso = Cronograma_desembolso::findOrFail($cronograma_desembolsoId);
+
+            // Salve o valor no banco de dados
+            $cronograma_desembolso->cronograma_desembolso_sit = $valor;
+            $cronograma_desembolso->save();
+        }
+
+        return back();
+    }
+
+    public function validar_planoconsolidado(Request $request, $id)
+    {
+
+        $plano_consolidado_sit = $request->input('plano_consolidado_sit');
+
+        foreach ($plano_consolidado_sit as $planoconsolidadoId => $valor) {
+            // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+
+            // Encontre o plano detalhado pelo ID
+            $planoconsolidado = Plano_consolidado::findOrFail($planoconsolidadoId);
+
+            // Salve o valor no banco de dados
+            $planoconsolidado->plano_consolidado_sit = $valor;
+            $planoconsolidado->save();
+        }
+
+        return back();
+    }
+
     public function validar_planodetalhado(Request $request, $id)
     {
         $plano_detalhado_sit = $request->input('plano_detalhado_sit');
-    
+
         foreach ($plano_detalhado_sit as $planodetalhadosId => $valor) {
             // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
-    
+
             // Encontre o plano detalhado pelo ID
             $planodetalhado = Plano_detalhado::findOrFail($planodetalhadosId);
-    
+
             // Salve o valor no banco de dados
             $planodetalhado->plano_detalhado_sit = $valor;
             $planodetalhado->save();
         }
-    
+
         return back();
     }
-    
+
+    public function validar_obras_equipamento(Request $request, $id)
+    {
+        $obras_equipamento_sit = $request->input('Correcao_obras_equipamentos_sit');
+
+        foreach ($obras_equipamento_sit as $obras_equipamentoId => $valor) {
+            // Suponha que $obras_equipamentoId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+
+            // Encontre o plano detalhado pelo ID
+            $obras_equipamento = Obras_equipamento::findOrFail($obras_equipamentoId);
+
+            // Salve o valor no banco de dados
+            $obras_equipamento->Correcao_obras_equipamentos_sit = $valor;
+            $obras_equipamento->save();
+        }
+
+        return back();
+    }
+
+    public function validar_pesquisa_mercadologica(Request $request, $id)
+    {
+
+        $pesquisa_mercadologica_sit = $request->input('Correcao_pesquisa_sit');
+
+        foreach ($pesquisa_mercadologica_sit as $pesquisa_mercadologicaId => $valor) {
+            // Suponha que $pesquisa_mercadologicaId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
+
+            // Encontre o plano detalhado pelo ID
+            $pesquisa_mercadologica = Pesquisa_mercadologica_pivot::findOrFail($pesquisa_mercadologicaId);
+
+            // Salve o valor no banco de dados
+            $pesquisa_mercadologica->Correcao_pesquisa_sit = $valor;
+            $pesquisa_mercadologica->save();
+        }
+
+        return back();
+    }
+
+
 
     public function corrigir($id)
     {
@@ -1499,13 +1633,13 @@ class TrdigitalController extends Controller
         $tramitado->save();
         //   dd($recibo);
         toast('Status do Orçamento alterado para <b> Venda Realizada! </b> ', 'success');
-     //   return view('trdigital.index');
-     return redirect('/trdigital/proponente')->with('success','Tramitado com sucesso!');
+        //   return view('trdigital.index');
+        return redirect('/trdigital/proponente')->with('success', 'Tramitado com sucesso!');
 
         // return redirect()->view('trdigital/proponente');
     }
 
-    
+
     public function imprimir($id)
     {
         $n_processo = N_processo::with([
@@ -1532,15 +1666,25 @@ class TrdigitalController extends Controller
         $cronograma_desembolso = Cronograma_desembolso::where('n_processo_id', $id,)->get();
         $obras_equipamento = Obras_equipamento::where('n_processo_id', $id,)->get();
 
-       // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
+        // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
         $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
 
-        
-        return view('trdigital.imprimir', 
-        compact('n_processo','biblioteca','metas','etapas','planoconsolidado',
-        'planodetalhado','cronograma_desembolso','obras_equipamento','pesquisa_mercadologica'
-    
-    ));
+
+        return view(
+            'trdigital.imprimir',
+            compact(
+                'n_processo',
+                'biblioteca',
+                'metas',
+                'etapas',
+                'planoconsolidado',
+                'planodetalhado',
+                'cronograma_desembolso',
+                'obras_equipamento',
+                'pesquisa_mercadologica'
+
+            )
+        );
     }
 
 

@@ -43,22 +43,18 @@
 
                                           <td>
 
+
+
                                               {!! Form::open([
                                                   'url' => route('trdigital.validar.planodetalhado', ['id' => $n_processo->Plano_detalhado->id]),
                                                   'method' => 'post',
                                               ]) !!}
 
 
-
-{!! Form::radio(
-    'plano_detalhado_sit[' . $planodetalhados->id . ']',
-    '1',
-    old('plano_detalhado_sit.' . $planodetalhados->id, $planodetalhados->Plano_consolidado->plano_detalhado_sit) == 1,
-    [
-        'class' => 'form-check-input',
-        'id' => 'gridRadios1_' . $planodetalhados->id,
-    ],
-) !!}
+                                              <input type="radio"
+                                                  name="plano_detalhado_sit[{{ $planodetalhados->id }}]" value="1"
+                                                  class="form-check-input" id="gridRadios1_{{ $planodetalhados->id }}"
+                                                  {{ old('plano_detalhado_sit.' . $planodetalhados->id, $planodetalhados->plano_detalhado_sit) == 1 ? 'checked' : '' }}>
 
                                               <label class="form-check-label"
                                                   for="gridRadios1_{{ $planodetalhados->id }}">
@@ -66,18 +62,12 @@
                                                       Validado</span>
                                               </label>
 
-                                              {!! Form::radio(
-                                                  'plano_detalhado_sit[' . $planodetalhados->id . ']', 
-                                                  '0',
-                                                  $planodetalhados->Plano_consolidado->plano_detalhado_sit == 0,
-                                                  [
-                                                      'class' => 'form-check-input',
-                                                      'id' => 'gridRadios2_' . $planodetalhados->id,
-                                                  ],
-                                              ) !!}
+                                              <input type="radio"
+                                                  name="plano_detalhado_sit[{{ $planodetalhados->id }}]" value="0"
+                                                  class="form-check-input" id="gridRadios1_{{ $planodetalhados->id }}"
+                                                  {{ old('plano_detalhado_sit.' . $planodetalhados->id, $planodetalhados->plano_detalhado_sit) == 0 ? 'checked' : '' }}>
 
-
-                                     <label class="form-check-label"
+                                              <label class="form-check-label"
                                                   for="gridRadios2_{{ $planodetalhados->id }}">
                                                   <span class="badge bg-warning text-dark"><i
                                                           class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
@@ -85,28 +75,17 @@
 
                                           </td>
 
-                                          <td>
-                                              <b>{{ $planodetalhados->Plano_consolidado->Natureza }}</b>
-
-
-                                          </td>
-                                          <td>
-                                              {{ $planodetalhados->Produto_Servico_detalhado }} </td>
-                                          <td>
-                                              <span class="badge bg-success">
+                                          <td> <b>{{ $planodetalhados->Plano_consolidado->Natureza }}</b> </td>
+                                          <td> {{ $planodetalhados->Produto_Servico_detalhado }} </td>
+                                          <td> <span class="badge bg-success">
                                                   {{ $planodetalhados->Unidade_medida_detalhado }}</span> </h5>
                                           </td>
-                                          <td>
-
-                                              <span
+                                          <td> <span
                                                   class="badge bg-success">{{ number_format($planodetalhados->Quantidade_detalhado, 0, ',', '.') }}
-                                              </span>
-                                              </h5>
+                                              </span> </h5>
                                           </td>
-
-                                          <td>
-                                              <span class="badge bg-primary">
-                                                  R$ {{ $planodetalhados->Valor_unit_detalhado }}</span></h5>
+                                          <td> <span class="badge bg-primary"> R$
+                                                  {{ $planodetalhados->Valor_unit_detalhado }}</span></h5>
                                           </td>
                                           <td>
 

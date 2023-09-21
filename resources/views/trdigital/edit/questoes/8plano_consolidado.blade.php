@@ -53,27 +53,37 @@
                                                       {{ $planos->Metas->Especificacao_metas }} </span> </h5>
                                           </td>
                                           <td>
-                                             <span class="text-success">R$
-                                                      {{ number_format($planos->Valor_concedente, 2, ',', '.') }}</span>
-                                            
-                                                    </td>
+                                              <span class="text-success">R$
+                                                  {{ number_format($planos->Valor_concedente, 2, ',', '.') }}</span>
+
+                                          </td>
                                           <td>
                                               <span class="text-danger">
-                                                      R$
-                                                      {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }}
-                                                     <span>
+                                                  R$
+                                                  {{ number_format($planos->Valor_proponente_financeira, 2, ',', '.') }}
+                                                  <span>
                                           </td>
                                           <td>
-                                              <a><span class="text-danger">R$ {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
-                          </a>
+                                              <a><span class="text-danger">R$
+                                                      {{ number_format($planos->Valor_proponente_nao_financeira, 2, ',', '.') }}</span>
+                                              </a>
                                           </td>
                                           <td>
-                                              <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                  data-bs-target="#editarplano{{ $planos->id }}Editar"
-                                                  data-bs-meta-id="{{ $planos->id }}">
-                                                  <i class="bi bi-pencil-square"></i>
 
-                                              </button>
+                                              @if ($planos->plano_consolidado_sit == 1)
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                      disabled data-bs-target="#editarplano{{ $planos->id }}Editar"
+                                                      data-bs-meta-id="{{ $planos->id }}">
+                                                      <i class="bi bi-pencil-square"></i>
+                                                  </button>
+                                              @else
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                      data-bs-target="#editarplano{{ $planos->id }}Editar"
+                                                      data-bs-meta-id="{{ $planos->id }}">
+                                                      <i class="bi bi-pencil-square"></i>
+
+                                                  </button>
+                                              @endif
                                           </td>
 
                                           <td>
@@ -214,14 +224,14 @@
                                       </div>
                                       <br>
 
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                <label for="floatingCity">Valor Proponente</label>
-                                                <small class="text-primary"> (Contrapartida Não Financeira) </small>
-                                                <div class="form-floating">
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-text" id="basic-addon1">R$</span>
-                                                                      {!! Form::text('Valor_proponente_nao_financeira', null, [
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <label for="floatingCity">Valor Proponente</label>
+                                              <small class="text-primary"> (Contrapartida Não Financeira) </small>
+                                              <div class="form-floating">
+                                                  <div class="input-group mb-3">
+                                                      <span class="input-group-text" id="basic-addon1">R$</span>
+                                                      {!! Form::text('Valor_proponente_nao_financeira', null, [
                                                           'placeholder' => '',
                                                           'class' => 'form-control',
                                                           'maxlength' => '15',
@@ -231,65 +241,65 @@
 
                                                       {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
                                                   </div>
-                                                  </div>
-                                                  </div>
                                               </div>
-
-
-                                              <div class="modal-footer">
-                                                  <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
-                                              </div>
-
-
-
-                                              <!-- End floating Labels Form -->
-
                                           </div>
                                       </div>
-                                  </div>
+
+
+                                      <div class="modal-footer">
+                                          <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                                      </div>
 
 
 
-                              {!! Form::close() !!}
-                          </div>
-                      </div>
-                  </div><!-- End Vertically centered Modal-->
+                                      <!-- End floating Labels Form -->
 
-
-                  {{-- Modais de Edição e Exclusão --}}
-                  @foreach ($planoconsolidado as $planos)
-                      {{-- Editar Plano --}}
-                      @include('trdigital.edit.questoes.planoconsolidado.editarplano')
-
-                      <!-- Modal excluir plano consolidado -->
-                      <div class="modal fade" id="excluirplano{{ $planos->id }}" tabindex="-1">
-                          <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h5 class="modal-title"> <i class="bi bi-check-circle me-1 text-danger"><b>
-                                                  Confirmar Exclusão </b> </i> </h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                          aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                      Tem certeza de que deseja excluir este <b> Plano Consolidado? </b>
-                                      {{-- - {{ $planos->id }} --}}
-                                  </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary"
-                                          data-bs-dismiss="modal">Cancelar</button>
-                                      {!! Form::open(['route' => ['trdigital.planoconsolidadodestroy', $planos->id], 'method' => 'delete']) !!}
-                                      <button type="submit" class="btn btn-danger">Excluir</button>
-                                      {!! Form::close() !!}
                                   </div>
                               </div>
                           </div>
-                      </div>
-                      {{-- @include('trdigital.edit.questoes.planoconsolidado.excluirplano', ['planos' => $planos]) --}}
-                  @endforeach
-              </div>
 
+
+
+                          {!! Form::close() !!}
+                      </div>
+                  </div>
+              </div><!-- End Vertically centered Modal-->
+
+
+              {{-- Modais de Edição e Exclusão --}}
+              @foreach ($planoconsolidado as $planos)
+                  {{-- Editar Plano --}}
+                  @include('trdigital.edit.questoes.planoconsolidado.editarplano')
+
+                  <!-- Modal excluir plano consolidado -->
+                  <div class="modal fade" id="excluirplano{{ $planos->id }}" tabindex="-1">
+                      <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title"> <i class="bi bi-check-circle me-1 text-danger"><b>
+                                              Confirmar Exclusão </b> </i> </h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  Tem certeza de que deseja excluir este <b> Plano Consolidado? </b>
+                                  {{-- - {{ $planos->id }} --}}
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Cancelar</button>
+                                  {!! Form::open(['route' => ['trdigital.planoconsolidadodestroy', $planos->id], 'method' => 'delete']) !!}
+                                  <button type="submit" class="btn btn-danger">Excluir</button>
+                                  {!! Form::close() !!}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {{-- @include('trdigital.edit.questoes.planoconsolidado.excluirplano', ['planos' => $planos]) --}}
+              @endforeach
           </div>
+
+      </div>
 
       <script>
           document.addEventListener("DOMContentLoaded", function() {

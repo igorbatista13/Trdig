@@ -70,11 +70,11 @@ return new class extends Migration
             $table->string('Resultados_Projeto_Conteudo_obs')->nullable();  
             
             $table->date('Inicio_Projeto_Conteudo')->nullable();  
-            $table->date('Inicio_Projeto_Conteudo_sit')->nullable();  
-            $table->date('Inicio_Projeto_Conteudo_obs')->nullable();  
+            $table->string('Inicio_Projeto_Conteudo_sit')->nullable();  
+            $table->string('Inicio_Projeto_Conteudo_obs')->nullable();  
             
             $table->date('Fim_Projeto_Conteudo')->nullable();  
-            $table->date('Fim_Projeto_Conteudo_sit')->nullable();  
+            $table->string('Fim_Projeto_Conteudo_sit')->nullable();  
             $table->string('Fim_Projeto_Conteudo_obs')->nullable();  
             
             $table->string('N_Emenda_Projeto_Conteudo')->nullable();  

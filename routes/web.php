@@ -71,12 +71,13 @@ Route::post('/trdigital/validar/resp_projeto/{id}',    [TrdigitalController::cla
 Route::post('/trdigital/validar/documentos/{id}',    [TrdigitalController::class, 'documentos'])->name('trdigital.validar.documentos');
 Route::post('/trdigital/validar/projeto/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
 
-//
-Route::post('/trdigital/validar/cronogramaexecucao/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
-Route::post('/trdigital/validar/planoconsolidado/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
-
-//
+Route::post('/trdigital/validar/validar_cronogramaexecucao_metas/{id}',    [TrdigitalController::class, 'validar_cronogramaexecucao_metas'])->name('trdigital.validar.validar_cronogramaexecucao_metas');
+Route::post('/trdigital/validar/validar_cronogramaexecucao_etapas/{id}',    [TrdigitalController::class, 'validar_cronogramaexecucao_etapas'])->name('trdigital.validar.validar_cronogramaexecucao_etapas');
+Route::post('/trdigital/validar/planoconsolidado/{id}',    [TrdigitalController::class, 'validar_planoconsolidado'])->name('trdigital.validar.planoconsolidado');
 Route::post('/trdigital/validar/planodetalhado/{id}',    [TrdigitalController::class, 'validar_planodetalhado'])->name('trdigital.validar.planodetalhado');
+Route::post('/trdigital/validar/cronograma_desembolso/{id}',    [TrdigitalController::class, 'validar_cronograma_desembolso'])->name('trdigital.validar.cronograma_desembolso');
+Route::post('/trdigital/validar/obras_equipamento/{id}',    [TrdigitalController::class, 'validar_obras_equipamento'])->name('trdigital.validar.obras_equipamento');
+Route::post('/trdigital/validar/pesquisa_mercadologica/{id}',    [TrdigitalController::class, 'validar_pesquisa_mercadologica'])->name('trdigital.validar.pesquisa_mercadologica');
 
 Route::get('/trdigital/corrigir/{id}',      [TrdigitalController::class, 'corrigir']);
 Route::get('/trdigital/aguardando_andamento/{id}',      [TrdigitalController::class, 'aguardando_andamento']);

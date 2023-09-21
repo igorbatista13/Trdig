@@ -13,11 +13,20 @@
                 <form class="row g-3">
                     <div class="col-md-12">
                         <div class="form-floating">
-                            {!! Form::text('Nome_Resp_projeto', $n_processo->Resp_projeto->Nome_Resp_projeto, [
-                                'placeholder' => 'a',
-                                'class' => 'form-control',
-                                'id' => 'floatingName',
-                            ]) !!}
+                            @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Nome_Resp_projeto_sit == 1)
+                                {!! Form::text('Nome_Resp_projeto', $n_processo->Resp_projeto->Nome_Resp_projeto, [
+                                    'placeholder' => 'a',
+                                    'class' => 'form-control',
+                                    'id' => 'floatingName',
+                                    'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                ]) !!}
+                            @else
+                                {!! Form::text('Nome_Resp_projeto', $n_processo->Resp_projeto->Nome_Resp_projeto, [
+                                    'placeholder' => 'a',
+                                    'class' => 'form-control',
+                                    'id' => 'floatingName',
+                                ]) !!}
+                            @endif
                             @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Nome_Resp_projeto_sit == '')
                             @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Nome_Resp_projeto_sit == 1)
                                 <span class="badge bg-success">
@@ -34,12 +43,22 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-floating">
-                                {!! Form::text('Telefone_Resp_projeto', $n_processo->Resp_projeto->Telefone_Resp_projeto, [
-                                    'placeholder' => 'a',
-                                    'class' => 'form-control',
-                                    'oninput' => 'mascaraTelefone(this)',
-                                    'maxlength' => '15',
-                                ]) !!}
+                                @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == 1)
+                                    {!! Form::text('Telefone_Resp_projeto', $n_processo->Resp_projeto->Telefone_Resp_projeto, [
+                                        'placeholder' => 'a',
+                                        'class' => 'form-control',
+                                        'oninput' => 'mascaraTelefone(this)',
+                                        'maxlength' => '15',
+                                        'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                    ]) !!}
+                                @else
+                                    {!! Form::text('Telefone_Resp_projeto', $n_processo->Resp_projeto->Telefone_Resp_projeto, [
+                                        'placeholder' => 'a',
+                                        'class' => 'form-control',
+                                        'oninput' => 'mascaraTelefone(this)',
+                                        'maxlength' => '15',
+                                    ]) !!}
+                                @endif
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Telefone_Resp_projeto_sit == 1)
                                     <span class="badge bg-success">
@@ -54,12 +73,22 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating">
-                                {!! Form::text('CPF_Resp_projeto', $n_processo->Resp_projeto->CPF_Resp_projeto, [
-                                    'placeholder' => 'CPF',
-                                    'class' => 'form-control',
-                                    'oninput' => 'mascaraCpfCnpj(this)',
-                                    'maxlength' => '14',
-                                ]) !!}
+                                @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->CPF_Resp_projeto_sit == 1)
+                                    {!! Form::text('CPF_Resp_projeto', $n_processo->Resp_projeto->CPF_Resp_projeto, [
+                                        'placeholder' => 'CPF',
+                                        'class' => 'form-control',
+                                        'oninput' => 'mascaraCpfCnpj(this)',
+                                        'maxlength' => '14',
+                                        'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                    ]) !!}
+                                @else
+                                    {!! Form::text('CPF_Resp_projeto', $n_processo->Resp_projeto->CPF_Resp_projeto, [
+                                        'placeholder' => 'CPF',
+                                        'class' => 'form-control',
+                                        'oninput' => 'mascaraCpfCnpj(this)',
+                                        'maxlength' => '14',
+                                    ]) !!}
+                                @endif
 
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->CPF_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->CPF_Resp_projeto_sit == 1)
@@ -75,11 +104,28 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating">
-                                {!! Form::text('RG_Resp_projeto', $n_processo->Resp_projeto->RG_Resp_projeto, [
-                                    'placeholder' => 'a',
-                                    'class' => 'form-control',
-                                    'id' => 'rg',
-                                ]) !!}
+                                @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->RG_Resp_projeto_sit == 1)
+                                    {!! Form::text('RG_Resp_projeto', $n_processo->Resp_projeto->RG_Resp_projeto, [
+                                        'placeholder' => 'a',
+                                        'class' => 'form-control',
+                                        'id' => 'rg',
+                                        'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                    ]) !!}
+                                @else
+                                    {!! Form::text('RG_Resp_projeto', $n_processo->Resp_projeto->RG_Resp_projeto, [
+                                        'placeholder' => 'a',
+                                        'class' => 'form-control',
+                                        'id' => 'rg',
+                                    ]) !!}
+                                @endif
+                                @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->RG_Resp_projeto_sit == '')
+                                @else
+                                    {!! Form::text('RG_Resp_projeto', $n_processo->Resp_projeto->RG_Resp_projeto, [
+                                        'placeholder' => 'a',
+                                        'class' => 'form-control',
+                                        'id' => 'rg',
+                                    ]) !!}
+                                @endif
                                 @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->RG_Resp_projeto_sit == '')
                                 @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->RG_Resp_projeto_sit == 1)
                                     <span class="badge bg-success">
@@ -97,11 +143,21 @@
 
                     <div class="col-12">
                         <div class="form-floating">
-                            {!! Form::textarea('Endereco_Resp_projeto', $n_processo->Resp_projeto->Endereco_Resp_projeto, [
-                                'placeholder' => 'a',
-                                'class' => 'form-control',
-                                'id' => 'floatingTextarea',
-                            ]) !!}
+                            @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Endereco_Resp_projeto_sit == 1)
+                                {!! Form::textarea('Endereco_Resp_projeto', $n_processo->Resp_projeto->Endereco_Resp_projeto, [
+                                    'placeholder' => 'a',
+                                    'class' => 'form-control',
+                                    'id' => 'floatingTextarea',
+                                    'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                ]) !!}
+                            @else
+                                {!! Form::textarea('Endereco_Resp_projeto', $n_processo->Resp_projeto->Endereco_Resp_projeto, [
+                                    'placeholder' => 'a',
+                                    'class' => 'form-control',
+                                    'id' => 'floatingTextarea',
+                                ]) !!}
+                            @endif
+
                             @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Endereco_Resp_projeto_sit == '')
                             @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Endereco_Resp_projeto_sit == 1)
                                 <span class="badge bg-success">
@@ -117,11 +173,21 @@
                             <div class="col-md-4">
                                 <div class="col-md-12">
                                     <div class="form-floating">
-                                        {!! Form::text('Cidade_Resp_projeto', $n_processo->Resp_projeto->Cidade_Resp_projeto, [
-                                            'placeholder' => 'a',
-                                            'class' => 'form-control',
-                                            'id' => 'floatingCity',
-                                        ]) !!}
+                                        @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cidade_Resp_projeto_sit == 1)
+                                            {!! Form::text('Cidade_Resp_projeto', $n_processo->Resp_projeto->Cidade_Resp_projeto, [
+                                                'placeholder' => 'a',
+                                                'class' => 'form-control',
+                                                'id' => 'floatingCity',
+                                                'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                            ]) !!}
+                                        @else
+                                            {!! Form::text('Cidade_Resp_projeto', $n_processo->Resp_projeto->Cidade_Resp_projeto, [
+                                                'placeholder' => 'a',
+                                                'class' => 'form-control',
+                                                'id' => 'floatingCity',
+                                            ]) !!}
+                                        @endif
+
                                         @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cidade_Resp_projeto_sit == '')
                                         @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cidade_Resp_projeto_sit == 1)
                                             <span class="badge bg-success">
@@ -236,13 +302,23 @@
 
                             <div class="col-md-4">
                                 <div class="form-floating" oninput="">
-                                    {!! Form::text('Cep_Resp_projeto', $n_processo->Resp_projeto->Cep_Resp_projeto, [
-                                        'placeholder' => 'a',
-                                        'class' => 'form-control',
-                                        'oninput' => 'mascaraCep(this)',
-                                        'maxlength' => '9',
-                                    ]) !!}
 
+                                    @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cep_Resp_projeto_sit == 1)
+                                        {!! Form::text('Cep_Resp_projeto', $n_processo->Resp_projeto->Cep_Resp_projeto, [
+                                            'placeholder' => 'a',
+                                            'class' => 'form-control',
+                                            'oninput' => 'mascaraCep(this)',
+                                            'maxlength' => '9',
+                                            'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                        ]) !!}
+                                    @else
+                                        {!! Form::text('Cep_Resp_projeto', $n_processo->Resp_projeto->Cep_Resp_projeto, [
+                                            'placeholder' => 'a',
+                                            'class' => 'form-control',
+                                            'oninput' => 'mascaraCep(this)',
+                                            'maxlength' => '9',
+                                        ]) !!}
+                                    @endif
 
                                     @if ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cep_Resp_projeto_sit == '')
                                     @elseif ($n_processo->Resp_projeto && $n_processo->Resp_projeto->Cep_Resp_projeto_sit == 1)

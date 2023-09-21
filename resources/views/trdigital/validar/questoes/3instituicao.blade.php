@@ -149,16 +149,18 @@ form-floating">
                         <div class="col-md-6">
                             <label>Comprovante de Endereço</label>
 
-                            @if ($n_processo->Anexo1_Instituicao && $n_processo->instituicao->Anexo1_Instituicao)
-                                <div class="icon">
-                                    <h6 class="text-success"> <b>Documento enviado.</b>
-                                        <a class="text-success small"
-                                            href="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}"
-                                            target="_blank">
-                                            <i class="bi bi-file-earmark-pdf-fill"> Ver arquivo</i>
-                                        </a>
-                                    </h6>
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao)
+                            <div class="icon">
+                                <div class="col-md-12 iframe-container">
+                                    <iframe
+                                        src="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}"></iframe>
                                 </div>
+                                <a class="btn btn-primary"
+                                    href="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}"
+                                    target="_blank">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                                </a>
+                            </div>
                             @else
                                 <h6 class="text-danger"> Documento não enviado </h6>
                             @endif
@@ -183,16 +185,18 @@ form-floating">
                         <div class="col-md-6">
                             <label>Comprovante de Endereço</label>
 
-                            @if ($n_processo->Anexo2_Instituicao && $n_processo->instituicao->Anexo2_Instituicao)
-                                <div class="icon">
-                                    <h6 class="text-success"> <b>Documento enviado.</b>
-                                        <a class="text-success small"
-                                            href="{{ asset('storage/' . $n_processo->instituicao->Anexo2_Instituicao) }}"
-                                            target="_blank">
-                                            <i class="bi bi-file-earmark-pdf-fill"> Ver arquivo</i>
-                                        </a>
-                                    </h6>
+                            @if ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao)
+                            <div class="icon">
+                                <div class="col-md-12 iframe-container">
+                                    <iframe
+                                        src="{{ asset('storage/' . $n_processo->instituicao->Anexo2_Instituicao) }}"></iframe>
                                 </div>
+                                <a class="btn btn-primary"
+                                    href="{{ asset('storage/' . $n_processo->instituicao->Anexo2_Instituicao) }}"
+                                    target="_blank">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                                </a>
+                            </div>
                             @else
                                 <h6 class="text-danger"> Documento não enviado </h6>
                             @endif

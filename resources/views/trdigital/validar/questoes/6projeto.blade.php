@@ -12,7 +12,7 @@
             <!-- General Form Elements -->
             <label for="inputText" class="col-sm-2 col-form-label"> <b> Título: </b> </label>
 
-            <div class="col-sm-6">
+            <div class="col-sm-10">
                 <div class="form-floating">
                     {!! Form::text('Titulo_Projeto_Conteudo', $n_processo->Projeto_conteudo->Titulo_Projeto_Conteudo, [
                         'class' => 'form-control',
@@ -53,7 +53,7 @@
 
 
             <label for="inputNumber" class="col-sm-2 col-form-label"> <b> Objeto:</b></label>
-            <div class="col-sm-6">
+            <div class="col-sm-10">
                 <div class="form-floating">
                     {!! Form::text('Objeto_Projeto_Conteudo', $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo, [
                         'class' => 'form-control',

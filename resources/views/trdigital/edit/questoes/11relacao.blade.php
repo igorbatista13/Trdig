@@ -84,11 +84,21 @@
                                      </td>
                                  @endif
                                  <td>
-                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+
+                                    @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
+
+                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" disabled
                                          data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
                                          data-bs-meta-id="{{ $obras_equipamentos->id }}">
                                          <i class="bi bi-pencil-square"></i>
                                      </button>
+
+                                     @else    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                     data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
+                                     data-bs-meta-id="{{ $obras_equipamentos->id }}">
+                                     <i class="bi bi-pencil-square"></i>
+                                 </button>
+                                 @endif
                                  <td>
                                      <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                          data-bs-target="#excluir_relacoes{{ $obras_equipamentos->id }}"

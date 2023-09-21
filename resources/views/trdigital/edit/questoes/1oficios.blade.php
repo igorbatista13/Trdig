@@ -34,9 +34,12 @@
                         @else
                             <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                         @endif
-                        {{-- {!! Form::text('N_proposta', null, ['placeholder'=> 'a','class' => 'form-control', 'id'=> 'floatingName']) !!} --}}
-                        {{-- {!! Form::label('Comp_Oficio', 'Documento de Ofício', ['class' => 'form-label']) !!} --}}
-                        <br> {!! Form::file('Comp_Oficio', ['class' => 'form-control']) !!}
+
+                        @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == 1)
+                        @else
+                            <br> {!! Form::file('Comp_Oficio', ['class' => 'form-control']) !!}
+                        @endif
+                        <br>
                         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == '')
                             <!-- Conteúdo se Comp_Oficio_sit estiver vazio -->
                         @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio_sit == 1)
@@ -83,7 +86,12 @@
                         @else
                             <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                         @endif
-                        <br> {!! Form::file('Comp_Assinado', ['class' => 'form-control']) !!}
+
+                        @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == 1)
+@else
+<br> {!! Form::file('Comp_Assinado', ['class' => 'form-control']) !!}
+@endif
+<br>
                         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == '')
                             <!-- Conteúdo se Comp_Assinado_sit estiver vazio -->
                         @elseif ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Assinado_sit == 1)

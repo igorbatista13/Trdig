@@ -77,11 +77,24 @@
                                       </td>
 
                                       <td>
+
+                                        @if ($cronograma_desembolsos->cronograma_desembolso_sit == 1)
+
+                                          <button type="button" class="btn btn-warning" data-bs-toggle="modal" disabled
+                                              data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
+                                              data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
+                                              <i class="bi bi-pencil-square"></i>
+                                          </button>
+
+                                          @else
+                                          
                                           <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                               data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
                                               data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
                                               <i class="bi bi-pencil-square"></i>
                                           </button>
+
+                                          @endif
                                       </td>
 
                                       <td>

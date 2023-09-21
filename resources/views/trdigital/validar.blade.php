@@ -66,7 +66,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <div class="list-group" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action active" id="list-home-list"
                                                     data-bs-toggle="list" href="#list-home" role="tab"
@@ -104,7 +104,7 @@
                                                     id="list-Plano_consolidado-list" data-bs-toggle="list"
                                                     href="#list-Plano_consolidado" role="tab"
                                                     aria-controls="list-Plano_consolidado"> <b> <big> 8. </big> </b> Plano
-                                                    Consolidado </a>
+                                                    Consolidado </a>                                                
 
                                                 <a class="list-group-item list-group-item-action"
                                                     id="list-Plano_detalhado-list" data-bs-toggle="list"
@@ -112,6 +112,28 @@
                                                     aria-controls="list-Plano_detalhado"> <b> <big> 9. </big> </b> Plano
                                                     Detalhado </a>
 
+                                                    <a class="list-group-item list-group-item-action"
+                                                    id="list-projeto-detalhado" data-bs-toggle="list"
+                                                    href="#list-desembolso" role="tab"
+                                                    aria-controls="list-desembolso">
+                                                    <b> <big> 10. </big> </b>Cronograma de Desembolso
+                                             
+                                                </a>
+
+                                                <a class="list-group-item list-group-item-action"
+                                                id="list-projeto-relacao" data-bs-toggle="list" href="#list-relacao"
+                                                role="tab" aria-controls="list-relacao">
+                                                <b> <big> 11. </big> </b>Relação de Obras e Equipamentos / Material
+                                                Permanente
+                                              
+                                            </a>
+
+                                            <a class="list-group-item list-group-item-action"
+                                                id="list-projeto-pesquisa" data-bs-toggle="list"
+                                                href="#list-pesquisa" role="tab" aria-controls="list-pesquisa">
+                                                <b> <big> 12. </big> </b> Pesquisa Mercadológica
+                                              
+                                            </a>
                                                 <a class="list-group-item list-group-item-action" id="list-projeto-tramitar"
                                                     data-bs-toggle="list" href="#list-tramitar" role="tab"
                                                     aria-controls="list-tramitar"> <b> <big> 13. </big> </b> Finalizar</a>
@@ -119,7 +141,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-8">
+                                        <div class="col-9">
                                             <div class="tab-content" id="nav-tabContent">
 
                                                 @include('trdigital.validar.questoes.1oficios')
@@ -131,6 +153,9 @@
                                                 @include('trdigital.validar.questoes.7cronograma')
                                                 @include('trdigital.validar.questoes.8plano_consolidado')
                                                 @include('trdigital.validar.questoes.9plano_detalhado')
+                                                @include('trdigital.validar.questoes.10cronograma_desembolso')
+                                                @include('trdigital.validar.questoes.11relacao')
+                                                @include('trdigital.validar.questoes.12pesquisa_mercadologica')
 
 
 

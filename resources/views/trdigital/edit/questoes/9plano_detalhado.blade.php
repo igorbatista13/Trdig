@@ -57,38 +57,51 @@
                                               {{ $planodetalhados->Produto_Servico_detalhado }} </td>
                                           <td>
                                               <span class="badge bg-success">
-                                                      {{ $planodetalhados->Unidade_medida_detalhado }}</span> </h5>
+                                                  {{ $planodetalhados->Unidade_medida_detalhado }}</span> </h5>
                                           </td>
                                           <td>
-                                             
-                                                  <span
-                                                      class="badge bg-success">{{ number_format($planodetalhados->Quantidade_detalhado, 0, ',', '.') }}
-                                                  </span>
+
+                                              <span
+                                                  class="badge bg-success">{{ number_format($planodetalhados->Quantidade_detalhado, 0, ',', '.') }}
+                                              </span>
                                               </h5>
                                           </td>
 
                                           <td>
-                                             <span class="badge bg-primary">
-                                                      R$ {{ $planodetalhados->Valor_unit_detalhado }}</span></h5>
+                                              <span class="badge bg-primary">
+                                                  R$ {{ $planodetalhados->Valor_unit_detalhado }}</span></h5>
                                           </td>
                                           <td>
-                                             
-                                                  @php
-                                                      $quantidade = floatval($planodetalhados->Quantidade_detalhado);
-                                                      $valorUnitario = floatval($planodetalhados->Valor_unit_detalhado);
-                                                      $valorTotal = $quantidade * $valorUnitario;
-                                                  @endphp
-                                                  <span class="badge bg-danger"> <h5>
+
+                                              @php
+                                                  $quantidade = floatval($planodetalhados->Quantidade_detalhado);
+                                                  $valorUnitario = floatval($planodetalhados->Valor_unit_detalhado);
+                                                  $valorTotal = $quantidade * $valorUnitario;
+                                              @endphp
+                                              <span class="badge bg-danger">
+                                                  <h5>
                                                       R$ {{ number_format($valorTotal, 2, ',', '.') }}
-                                              </h5></span>
+                                                  </h5>
+                                              </span>
                                           </td>
 
                                           <td>
-                                              <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                  data-bs-target="#editarplanodetalhado{{ $planodetalhados->id }}Editar"
-                                                  data-bs-meta-id="{{ $planodetalhados->id }}">
-                                                  <i class="bi bi-pencil-square"></i>
-                                              </button>
+
+                                              @if ($planodetalhados->plano_detalhado_sit == 1)
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                      disabled
+                                                      data-bs-target="#editarplanodetalhado{{ $planodetalhados->id }}Editar"
+                                                      data-bs-meta-id="{{ $planodetalhados->id }}">
+                                                      <i class="bi bi-pencil-square"></i>
+                                                  </button>
+                                              @else
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                      data-bs-target="#editarplanodetalhado{{ $planodetalhados->id }}Editar"
+                                                      data-bs-meta-id="{{ $planodetalhados->id }}">
+                                                      <i class="bi bi-pencil-square"></i>
+                                                  </button>
+                                              @endif
+
                                           </td>
 
                                           <td>
@@ -202,27 +215,27 @@
 
                                               </div>
                                               <br>
-                                              
+
                                               <div class="col-12">
                                                   <div class="row">
                                                       <label for="floatingZip">Valor Unit.</label>
-                                                      <div class="form-floating">                                    
+                                                      <div class="form-floating">
                                                           <div class="input-group mb-3">
                                                               <span class="input-group-text" id="basic-addon1">R$</span>
-                                                    
-                                                      <div class="col-md-6">
-                                                          <div class="form-floating">
-                                                              {!! Form::text('Valor_unit_detalhado', null, [
-                                                                  'placeholder' => 'a',
-                                                                  'class' => 'form-control',
-                                                                  'maxlength' => '15',
-                                                                  'oninput' => 'aplicarMascara(this)',
-                                                                  'onkeypress' => 'return validarValor(this, event)',
-                                                              ]) !!}
+
+                                                              <div class="col-md-6">
+                                                                  <div class="form-floating">
+                                                                      {!! Form::text('Valor_unit_detalhado', null, [
+                                                                          'placeholder' => 'a',
+                                                                          'class' => 'form-control',
+                                                                          'maxlength' => '15',
+                                                                          'oninput' => 'aplicarMascara(this)',
+                                                                          'onkeypress' => 'return validarValor(this, event)',
+                                                                      ]) !!}
+                                                                  </div>
+                                                                  {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
+                                                              </div>
                                                           </div>
-                                                              {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
-                                                          </div>
-                                                      </div>
                                                       </div>
 
 

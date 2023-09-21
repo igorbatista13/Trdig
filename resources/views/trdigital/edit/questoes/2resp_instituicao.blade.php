@@ -10,11 +10,20 @@
               <div class="row g-3">
                   <div class="col-md-12">
                       <div class="form-floating">
-                          {!! Form::text('Nome', $n_processo->Resp_instituicao->Nome_Resp_Instituicao, [
-                              'placeholder' => 'Nome_Resp_Instituicao',
-                              'class' => 'form-control',
-                              'id' => 'floatingName',
-                          ]) !!}
+                          @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Nome_Resp_Instituicao_sit == 1)
+                              {!! Form::text('Nome', $n_processo->Resp_instituicao->Nome_Resp_Instituicao, [
+                                  'placeholder' => 'Nome_Resp_Instituicao',
+                                  'class' => 'form-control',
+                                  'id' => 'floatingName',
+                                  'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                              ]) !!}
+                          @else
+                              {!! Form::text('Nome', $n_processo->Resp_instituicao->Nome_Resp_Instituicao, [
+                                  'placeholder' => 'Nome_Resp_Instituicao',
+                                  'class' => 'form-control',
+                                  'id' => 'floatingName',
+                              ]) !!}
+                          @endif
                           @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Nome_Resp_Instituicao_sit == '')
                               <!-- Conteúdo se Nome_Resp_Instituicao_sit estiver vazio -->
                           @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Nome_Resp_Instituicao_sit == 1)
@@ -32,12 +41,22 @@
                   <div class="row">
                       <div class="col-md-4">
                           <div class="form-floating">
-                              {!! Form::text('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
-                                  'placeholder' => 'a',
-                                  'class' => 'form-control',
-                                  'oninput' => 'mascaraTelefone(this)',
-                                  'maxlength' => '15',
-                              ]) !!}
+                              @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Telefone_Resp_Instituicao_sit == 1)
+                                  {!! Form::text('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
+                                      'placeholder' => 'a',
+                                      'class' => 'form-control',
+                                      'oninput' => 'mascaraTelefone(this)',
+                                      'maxlength' => '15',
+                                      'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                  ]) !!}
+                              @else
+                                  {!! Form::text('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
+                                      'placeholder' => 'a',
+                                      'class' => 'form-control',
+                                      'oninput' => 'mascaraTelefone(this)',
+                                      'maxlength' => '15',
+                                  ]) !!}
+                              @endif
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == '')
                               @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Telefone_Resp_Instituicao_sit == 1)
                                   <span class="badge bg-success">
@@ -52,11 +71,20 @@
 
                       <div class="col-md-4">
                           <div class="form-floating">
-                              {!! Form::email('Email_Resp_Instituicao', $n_processo->Resp_instituicao->Email_Resp_Instituicao, [
-                                  'placeholder' => 'a',
-                                  'class' => 'form-control',
-                                  'id' => 'floatingName',
-                              ]) !!}
+                              @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == 1)
+                                  {!! Form::email('Email_Resp_Instituicao', $n_processo->Resp_instituicao->Email_Resp_Instituicao, [
+                                      'placeholder' => 'a',
+                                      'class' => 'form-control',
+                                      'id' => 'floatingName',
+                                      'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                  ]) !!}
+                              @else
+                                  {!! Form::email('Email_Resp_Instituicao', $n_processo->Resp_instituicao->Email_Resp_Instituicao, [
+                                      'placeholder' => 'a',
+                                      'class' => 'form-control',
+                                      'id' => 'floatingName',
+                                  ]) !!}
+                              @endif
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == '')
                               @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == 1)
                                   <span class="badge bg-success">
@@ -70,11 +98,21 @@
                       </div>
                       <div class="col-md-4">
                           <div class="form-floating">
-                              {!! Form::text('Cargo_Resp_Instituicao', $n_processo->Resp_instituicao->Cargo_Resp_Instituicao, [
-                                  'placeholder' => 'a',
-                                  'class' => 'form-control',
-                                  'id' => 'floatingName',
-                              ]) !!}
+                              @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cargo_Resp_Instituicao_sit == 1)
+                                  {!! Form::text('Cargo_Resp_Instituicao', $n_processo->Resp_instituicao->Cargo_Resp_Instituicao, [
+                                      'placeholder' => 'a',
+                                      'class' => 'form-control',
+                                      'id' => 'floatingName',
+                                      'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                  ]) !!}
+                              @else
+                                  {!! Form::text('Cargo_Resp_Instituicao', $n_processo->Resp_instituicao->Cargo_Resp_Instituicao, [
+                                      'placeholder' => 'a',
+                                      'class' => 'form-control',
+                                      'id' => 'floatingName',
+                                  ]) !!}
+                              @endif
+
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cargo_Resp_Instituicao_sit == '')
                               @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cargo_Resp_Instituicao_sit == 1)
                                   <span class="badge bg-success">
@@ -91,11 +129,21 @@
 
                   <div class="col-12">
                       <div class="form-floating">
-                          {!! Form::textarea('End_Resp_Instituicao', $n_processo->Resp_instituicao->End_Resp_Instituicao, [
-                              'placeholder' => 'a',
-                              'class' => 'form-control',
-                              'id' => 'floatingTextarea',
-                          ]) !!}
+                          @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->End_Resp_Instituicao_sit == 1)
+                              {!! Form::textarea('End_Resp_Instituicao', $n_processo->Resp_instituicao->End_Resp_Instituicao, [
+                                  'placeholder' => 'a',
+                                  'class' => 'form-control',
+                                  'id' => 'floatingTextarea',
+                                  'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                              ]) !!}
+                          @else
+                              {!! Form::textarea('End_Resp_Instituicao', $n_processo->Resp_instituicao->End_Resp_Instituicao, [
+                                  'placeholder' => 'a',
+                                  'class' => 'form-control',
+                                  'id' => 'floatingTextarea',
+                              ]) !!}
+                          @endif
+
                           @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->End_Resp_Instituicao_sit == '')
                           @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->End_Resp_Instituicao_sit == 1)
                               <span class="badge bg-success">
@@ -111,11 +159,20 @@
                           <div class="col-md-4">
                               <div class="col-md-12">
                                   <div class="form-floating">
-                                      {!! Form::text('Cidade_Resp_Instituicao', $n_processo->Resp_instituicao->Cidade_Resp_Instituicao, [
-                                          'placeholder' => 'a',
-                                          'class' => 'form-control',
-                                          'id' => 'floatingCity',
-                                      ]) !!}
+                                      @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cidade_Resp_Instituicao_sit == 1)
+                                          {!! Form::text('Cidade_Resp_Instituicao', $n_processo->Resp_instituicao->Cidade_Resp_Instituicao, [
+                                              'placeholder' => 'a',
+                                              'class' => 'form-control',
+                                              'id' => 'floatingCity',
+                                              'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                          ]) !!}
+                                      @else
+                                          {!! Form::text('Cidade_Resp_Instituicao', $n_processo->Resp_instituicao->Cidade_Resp_Instituicao, [
+                                              'placeholder' => 'a',
+                                              'class' => 'form-control',
+                                              'id' => 'floatingCity',
+                                          ]) !!}
+                                      @endif
                                       @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cidade_Resp_Instituicao_sit == '')
                                       @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cidade_Resp_Instituicao_sit == 1)
                                           <span class="badge bg-success">
@@ -232,12 +289,22 @@
                           </div>
                           <div class="col-md-4">
                               <div class="form-floating">
-                                  {!! Form::text('Cep_Resp_Instituicao', $n_processo->Resp_instituicao->Cep_Resp_Instituicao, [
-                                      'placeholder' => 'a',
-                                      'class' => 'form-control',
-                                      'oninput' => 'mascaraCep(this)',
-                                      'maxlength' => '9',
-                                  ]) !!}
+                                  @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cep_Resp_Instituicao_sit == 1)
+                                      {!! Form::text('Cep_Resp_Instituicao', $n_processo->Resp_instituicao->Cep_Resp_Instituicao, [
+                                          'placeholder' => 'a',
+                                          'class' => 'form-control',
+                                          'oninput' => 'mascaraCep(this)',
+                                          'maxlength' => '9',
+                                          'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                      ]) !!}
+                                  @else
+                                      {!! Form::text('Cep_Resp_Instituicao', $n_processo->Resp_instituicao->Cep_Resp_Instituicao, [
+                                          'placeholder' => 'a',
+                                          'class' => 'form-control',
+                                          'oninput' => 'mascaraCep(this)',
+                                          'maxlength' => '9',
+                                      ]) !!}
+                                  @endif
 
                                   @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cep_Resp_Instituicao_sit == '')
                                   @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Cep_Resp_Instituicao_sit == 1)
@@ -252,18 +319,22 @@
                           </div>
                           <div class="col-md-6">
                               <div class="form-floating">
-
-
-                                  {!! Form::file('Anexo1_Resp_Instituicao', ['class' => 'form-control']) !!}
-                                  @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == '')
-                                  @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == 1)
+                                  @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == 1)
                                       <span class="badge bg-success">
                                           <i class="bi bi-check-circle me-1"></i> Validado</span>
-                                  @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == 0)
-                                      <span class="badge bg-warning text-dark">
-                                          <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                  @else
+                                      {!! Form::file('Anexo1_Resp_Instituicao', ['class' => 'form-control']) !!}
+
+                                      @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == '')
+                                      @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == 1)
+                                          <span class="badge bg-success">
+                                              <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                      @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao_sit == 0)
+                                          <span class="badge bg-warning text-dark">
+                                              <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                      @endif
+                                      <label for="floatingZip">Anexar RG ou CPF</label>
                                   @endif
-                                  <label for="floatingZip">Anexar RG ou CPF</label>
                               </div>
                               <br>
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao)
@@ -284,17 +355,21 @@
                           </div>
                           <div class="col-md-6">
                               <div class="form-floating">
-
-                                  {!! Form::file('Anexo2_Resp_Instituicao', ['class' => 'form-control']) !!}
-                                  @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == '')
-                                  @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 1)
+                                  @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 1)
                                       <span class="badge bg-success">
                                           <i class="bi bi-check-circle me-1"></i> Validado</span>
-                                  @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 0)
-                                      <span class="badge bg-warning text-dark">
-                                          <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                  @else
+                                      {!! Form::file('Anexo2_Resp_Instituicao', ['class' => 'form-control']) !!}
+                                      @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == '')
+                                      @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 1)
+                                          <span class="badge bg-success">
+                                              <i class="bi bi-check-circle me-1"></i> Validado</span>
+                                      @elseif ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao_sit == 0)
+                                          <span class="badge bg-warning text-dark">
+                                              <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
+                                      @endif
+                                      <label for="floatingZip">Anexar Comprovante de Endereço</label>
                                   @endif
-                                  <label for="floatingZip">Anexar Comprovante de Endereço</label>
                               </div><br>
                               @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao)
                                   <div class="icon">

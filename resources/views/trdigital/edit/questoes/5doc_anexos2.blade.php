@@ -1,7 +1,11 @@
 <div class="tab-pane fade" id="list-atas" role="tabpanel" aria-labelledby="list-atas-list">
     <div class="card-body">
         <h5 class="card-title"><b> <big> 5. </b> </big> Atas, Certidões, Comprovantes e Declarações (Anexar):</h5>
-        {!! Form::model($n_processo, ['method' => 'PATCH', 'route' => ['trdigital.update', $n_processo->id], 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::model($n_processo, [
+            'method' => 'PATCH',
+            'route' => ['trdigital.update', $n_processo->id],
+            'enctype' => 'multipart/form-data',
+        ]) !!}
 
         <!-- Default Accordion -->
         <div class="accordion" id="accordionExample">
@@ -25,29 +29,33 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo1', ['placeholder' => 'a', 'class' => 'form-control', 'id' => 'formFile']) !!}
-                  
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo1', ['placeholder' => 'a', 'class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <strong> <big> B) </strong> </big> Certidão de Habilitação Plena  @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2_sit == '')
+                        <strong> <big> B) </strong> </big> Certidão de Habilitação Plena @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2_sit == '')
                         @elseif ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2_sit == 1)
                             <span class="badge bg-success">
                                 <i class="bi bi-check-circle me-1"></i> Validado</span>
@@ -60,22 +68,26 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo2', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                      
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo2', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -98,25 +110,29 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo3', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                       
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo3', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo3) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
-            
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -137,22 +153,26 @@
                 <div id="e" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo5', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                      
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo5', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo5) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -174,22 +194,26 @@
                 <div id="f" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo6', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                      
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo6', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo6) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -211,22 +235,26 @@
                 <div id="g" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo7', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                      
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo7', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo7) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -248,22 +276,26 @@
                 <div id="h" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo8', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                     
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo8', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo8) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -286,22 +318,26 @@
                 <div id="i" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo9', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                     
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo9', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo9) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -325,22 +361,26 @@
                 <div id="j" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo10', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                      
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo10', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo10) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -362,22 +402,26 @@
                 <div id="k" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo11', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                      
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo11_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo11', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo11)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo11) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo11) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo11) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo11) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
             <div class="accordion-item">
@@ -400,22 +444,26 @@
                 <div id="l" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {!! Form::file('Doc_Anexo2_Anexo12', ['class' => 'form-control', 'id' => 'formFile']) !!}
-                    
+                        @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12_sit == 1)
+                        @else
+                            {!! Form::file('Doc_Anexo2_Anexo12', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                        @endif
                     </div>
                     @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12)
-                    <div class="icon">
-                        <div class="col-md-12 iframe-container">
-                            <iframe src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12) }}"></iframe>
+                        <div class="icon">
+                            <div class="col-md-12 iframe-container">
+                                <iframe
+                                    src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12) }}"></iframe>
+                            </div>
+                            <a class="btn btn-primary"
+                                href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12) }}"
+                                target="_blank">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
+                            </a>
                         </div>
-                        <a class="btn btn-primary" href="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo12) }}"
-                            target="_blank">
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                        </a>
-                    </div>
-                @else
-                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                @endif
+                    @else
+                        <h4 class="text-danger"> <b> Documento não enviado </b></h4>
+                    @endif
                 </div>
             </div>
         </div><!-- End Default Accordion Example -->
