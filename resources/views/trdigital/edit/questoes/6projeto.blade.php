@@ -401,7 +401,7 @@
                                'id' => 'floatingTextarea',
                            ]) !!}
                        @endif
-                       
+
                        @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo_sit == '')
                        @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Inicio_Projeto_Conteudo_sit == 1)
                            <span class="badge bg-success">
@@ -414,7 +414,7 @@
 
                    <div class="col-sm-4">
                        <label for="inputNumber" class=""><b>Término:</b></label>
-                       @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo == 1)
+                       @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo_sit == 1)
                            {!! Form::date('Fim_Projeto_Conteudo', $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo, [
                                'class' => 'form-control',
                                'id' => 'floatingTextarea',
@@ -426,11 +426,12 @@
                                'id' => 'floatingTextarea',
                            ]) !!}
                        @endif
-                       @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo == '')
-                       @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo == 1)
+
+                       @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo_sit == '')
+                       @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo_sit == 1)
                            <span class="badge bg-success">
                                <i class="bi bi-check-circle me-1"></i> Validado</span>
-                       @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo == 0)
+                       @elseif ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Fim_Projeto_Conteudo_sit == 0)
                            <span class="badge bg-warning text-dark">
                                <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
                        @endif

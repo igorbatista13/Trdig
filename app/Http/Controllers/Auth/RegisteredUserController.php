@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Roles;
+use App\Models\Perfil;
+
 use Spatie\Permission\Models\Role;
 
 use App\Providers\RouteServiceProvider;
@@ -38,7 +40,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -53,7 +55,29 @@ class RegisteredUserController extends Controller
             $user->assignRole($basicRole);
         }
 
-      //  event(new Registered($user));
+        // Criar um perfil associado a esse usuário com campos vazios
+        $perfil = new Perfil();
+        $perfil->user_id = $user->id; // Associe o perfil ao usuário recém-criado
+        $perfil->Sobre_mim = '';
+        $perfil->Orgao = '';
+        $perfil->Cargo = '';
+        $perfil->Endereco = '';
+        $perfil->Cidade = '';
+        $perfil->Estado = '';
+        $perfil->CEP = '';
+        $perfil->Telefone = '';
+        $perfil->Facebook = '';
+        $perfil->Instagram = '';
+        $perfil->Linkedin = '';
+        $perfil->Site = '';
+        $perfil->image = ''; // Ou defina como null, dependendo do tipo de campo
+        $perfil->Tipo = '';
+
+        // Salvar o perfil associado ao usuário
+        $user->perfil()->save($perfil);
+
+
+        //  event(new Registered($user));
 
         Auth::login($user);
 

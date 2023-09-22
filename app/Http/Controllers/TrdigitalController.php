@@ -1454,20 +1454,7 @@ class TrdigitalController extends Controller
             $correcao_metas->Correcao_metas_sit = $valor;
             $correcao_metas->save();
         }
-
-        $correcao_etapas_sit = $request->input('Correcao_etapas_sit');
-        //   dd($correcao_metas_sit);
-           foreach ($correcao_etapas_sit as $correcao_etapas_sitId => $valor_etapa) {
-               // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
-   
-               // Encontre o plano detalhado pelo ID
-               $correcao_etapas = Etapas::findOrFail($correcao_etapas_sitId);
-   
-               // Salve o valor no banco de dados
-               $correcao_etapas->Correcao_etapas_sit = $valor_etapa;
-               $correcao_etapas->save();
-           }
-           
+        
         return back();
     }
 

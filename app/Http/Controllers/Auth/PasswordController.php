@@ -17,15 +17,25 @@ class PasswordController extends Controller
      */
     public function update(Request $request)
     {
+        $customMessages = [
+            'current_password.current_password' => 'A senha atual está incorreta.',
+            'password.required' => 'O campo de nova senha é obrigatório.',
+            'password.min' => 'A nova senha deve ter pelo menos :min caracteres.',
+            'password.confirmed' => 'A confirmação da nova senha não corresponde.',
+        ];
+        
         $validated = $request->validateWithBag('updatePassword', [
             'current_password' => ['required', 'current_password'],
             'password' => ['required', Password::defaults(), 'confirmed'],
-        ]);
+        ], $customMessages);
+
+        
 
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('status', 'password-updated');
+
+        return back()->with('update', 'Senha alterada com sucesso!');
     }
 }

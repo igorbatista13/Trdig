@@ -57,16 +57,23 @@ class User extends Authenticatable
     //     return $this->belongsToMany(Product::class);
     // }
 
-    public function Agenda() {
+    public function Agenda()
+    {
         return $this->belongsTo(Agenda::class);
-        }   
-    
-    public function FICHA() {
-        return $this->belongsTo(FICHA::class);
-        }   
+    }
 
-        public function forms()
-        {
-            return $this->hasMany(Form::class);
-        }
+    public function FICHA()
+    {
+        return $this->belongsTo(FICHA::class);
+    }
+
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
+    }
+
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class);
+    }
 }

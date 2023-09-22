@@ -76,10 +76,13 @@
                                                   <span class="badge bg-warning text-dark"><i
                                                           class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
                                               </label>
+                                              <button type="submit" class="btn btn-primary">Salvar</button>
 
                                           </div>
                                       </div>
                                   </td>
+
+                                  {!! Form::close() !!}
 
                                   <!-- Foreach das etapas -->
                                   @foreach ($meta->etapas as $etapa)
@@ -119,10 +122,10 @@
                                                       <hr>
 
 
-                                                       {{-- {!! Form::open([
+                                                       {!! Form::open([
                                                         'url' => route('trdigital.validar.validar_cronogramaexecucao_etapas', ['id' => $meta->id]),
                                                         'method' => 'post',
-                                                    ]) !!}  --}}
+                                                    ]) !!}  
 
                                                       <input type="hidden"
                                                           name="etapas[{{ $etapa->id }}][Correcao_etapas_sit]"
@@ -153,6 +156,7 @@
                                                                   class="bi bi-exclamation-triangle me-1"></i>
                                                               Corrigir</span>
                                                       </label>
+                                                      <button type="submit" class="btn btn-primary btn">Salvar</button>
 
 
 
@@ -167,7 +171,6 @@
 
                               </tbody>
                           </table>
-                          <button type="submit" class="btn btn-primary">Enviar</button>
                       </div>
                   </div>
               </div>

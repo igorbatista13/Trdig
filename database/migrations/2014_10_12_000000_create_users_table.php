@@ -20,8 +20,23 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('telefone')->nullable();
-            $table->string('endereco')->nullable();
+
+            // $table->string('Sobre_mim')->nullable();
+            // $table->string('Orgao')->nullable();
+            // $table->string('Cargo')->nullable();
+            // $table->string('Endereco')->nullable();
+            // $table->string('Cidade')->nullable();
+            // $table->string('Estado')->nullable();
+            // $table->string('CEP')->nullable();
+            // $table->string('Telefone')->nullable();
+            // $table->string('Facebook')->nullable();
+            // $table->string('Instagram')->nullable();
+            // $table->string('Linkedin')->nullable();
+            // $table->string('Site')->nullable();
+            // $table->string('image')->nullable();
+            // $table->string('Status')->nullable();
+
+
             // $table->unsignedInteger('perfil_id');
             // $table->foreign('perfil_id')->references('id')->on('perfil');
             

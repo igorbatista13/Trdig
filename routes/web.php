@@ -15,9 +15,10 @@ use App\Http\Controllers\{
   OrgaosController,   PessoaController,   PainelGerencialController,
 
   // TR DGITIAL
-  TrdigitalController, QuestoesController, MetasController, BibliotecaController
+  TrdigitalController, QuestoesController, MetasController, BibliotecaController, 
 
-
+  // PEFIL USUARIO
+  PerfilController, 
 };
 
 Route::patch('/trdigital/metasstore/{id}',  [TrdigitalController::class, 'metasstore'])->name('trdigital.metasstore');
@@ -92,18 +93,8 @@ Route::get('trdigital/finalizadas', [TrdigitalController::class, 'tr_finalizada'
 Route::get('biblioteca/biblioteca', [BibliotecaController::class, 'biblioteca'])->name('biblioteca.biblioteca');
 Route::get('trdigital/imprimir/{id}', [TrdigitalController::class, 'imprimir'])->name('trdigital.imprimir');
 
-// Route::get('/trdigital/validar/ava/{id}',     [TrdigitalController::class, 'avaliar_update']);
-
 
 Route::post('/salvar_resp_instituicao/{id}', 'SuaController@salvarRespInstituicao')->name('salvar_resp_instituicao');
-
-
-//  Route::post('/trdigital/avaliar_update/{id}', 'TrdigitalController@avaliar_update')->name('avaliar_update');
-
-
-// Route::get('/painel', function () {
-//     return view('painel');
-// })->middleware(['auth', 'verified'])->name('painel');
 
 
 Route::resource('roles',                     RoleController::class);
@@ -121,20 +112,25 @@ Route::resource('inscricao',                 ReciboController::class);
 Route::resource('trdigital',                 TrdigitalController::class);
 Route::resource('biblioteca',                BibliotecaController::class);
 
+
+
 ////// PAINEL GERENCIAL (DASHBOARD)
 Route::get('/painel', [PainelGerencialController::class, 'dashboard']);
 
 Route::get('/painel/index', [PainelGerencialController::class, 'index']);
 
+Route::get('/perfil', [PerfilController::class, 'edit'])->name('profile.edit');
+Route::get('/perfil', [PerfilController::class, 'index'])->name('profile.index');
+//Route::put('/perfil/update', 'PerfilController@update')->name('perfil.update');
+Route::put('perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
+Route::post('perfil/change-password', [PerfilController::class, 'changePassword'])->name('perfil.changePassword');
 
-Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
 
 Route::middleware('auth')->group(function () {
 
-  Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+  // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 
@@ -160,7 +156,6 @@ Route::middleware('auth')->group(function () {
   Route::get('/Objetos/teclado2',              [ObjetosController::class, 'teclado2']);
   Route::get('/Escolas/index',                 [ObjetosController::class, 'Escolas']);
   Route::get('/suporte',                       [ObjetosController::class, 'suporte']);
-
 
 
   // SAIR - LOGOUT
