@@ -1,4 +1,5 @@
       {{-- ITEM 3 --}}
+      {!! Form::close() !!}
 
       <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
 
@@ -6,7 +7,18 @@
               <div class="card-body">
                   <h5 class="card-title"> <big> <b> 3. </b> </big>Identificação da <b> Instituição
                           Proponente </b></h5>
+                  {!! Form::model($n_processo, [
+                      'method' => 'PUT',
+                      'route' => ['trdigital.update_instituicao', $n_processo->id],
+                      'enctype' => 'multipart/form-data',
+                  ]) !!}
 
+                  @if (auth()->check())
+                      <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                  @endif
+
+                  <input type="hidden" name="Orgao_Concedente" id="Orgao_Concedente"
+                      value="{{ $n_processo->Orgao_Concedente }}">
                   <!-- Floating Labels Form -->
                   <div class="row g-3">
                       <div class="col-md-12">
@@ -380,4 +392,6 @@
                   </div>
               </div>
           </div>
+          {!! Form::close() !!}
+
       </div>

@@ -1,13 +1,21 @@
     {{-- ITEM 4 --}}
+    {!! Form::close() !!}
+
     <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title"> <big> <b> 4. </b> </big>Identificação do <b> Responsável pelo Projeto </b></h5>
                 {!! Form::model($n_processo, [
-                    'method' => 'PATCH',
-                    'route' => ['trdigital.update', $n_processo->id],
+                    'method' => 'PUT',
+                    'route' => ['trdigital.update_resp_projeto', $n_processo->id],
                     'enctype' => 'multipart/form-data',
                 ]) !!}
+
+                @if (auth()->check())
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                @endif
+                <input type="hidden" name="Orgao_Concedente" id="Orgao_Concedente"
+                value="{{ $n_processo->Orgao_Concedente }}">
 
                 <!-- Floating Labels Form -->
                 <form class="row g-3">
@@ -345,4 +353,6 @@
                     </div>
             </div>
         </div>
+        {!! Form::close() !!}
+
     </div>

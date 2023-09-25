@@ -1,11 +1,20 @@
+{!! Form::close() !!}
+
 <div class="tab-pane fade" id="list-atas" role="tabpanel" aria-labelledby="list-atas-list">
     <div class="card-body">
         <h5 class="card-title"><b> <big> 5. </b> </big> Atas, Certidões, Comprovantes e Declarações (Anexar):</h5>
         {!! Form::model($n_processo, [
-            'method' => 'PATCH',
-            'route' => ['trdigital.update', $n_processo->id],
+            'method' => 'PUT',
+            'route' => ['trdigital.update_doc_anexo2', $n_processo->id],
             'enctype' => 'multipart/form-data',
         ]) !!}
+
+        @if (auth()->check())
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+        @endif
+        <input type="hidden" name="Orgao_Concedente" id="Orgao_Concedente"
+        value="{{ $n_processo->Orgao_Concedente }}">
+
 
         <!-- Default Accordion -->
         <div class="accordion" id="accordionExample">
@@ -472,4 +481,6 @@
         <button type="submit" class="btn btn-primary">Enviar</button>
 
     </div>
+    {!! Form::close() !!}
+
 </div>

@@ -308,7 +308,14 @@ class TrdigitalController extends Controller
 
         Metas::create($data);
 
-        return redirect()->back();
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($data) {
+            return back()->with('create', '7. Meta Criada com sucesso!');
+        } else {
+            return back()->with('error', '7. Erro ao criar Meta.');
+        }
+
+        // return redirect()->back();
     }
 
     public function metasupdate(Request $request, Metas $meta)
@@ -325,8 +332,14 @@ class TrdigitalController extends Controller
         //  $meta->update($data);
         Metas::findOrFail($request->id)->update($data);
 
+        if ($data) {
+            return back()->with('edit', '7. Meta: - Atualizada com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Meta.');
+        }
+
         //  dd($data); 
-        return redirect()->back();
+        //  return redirect()->back();
     }
     public function etapaupdate(Request $request)
     {
@@ -343,8 +356,12 @@ class TrdigitalController extends Controller
         //  $meta->update($data);
         Etapas::findOrFail($request->id)->update($data);
 
-        //  dd($data); 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('edit', '7. Etapa: - Atualizada com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Etapa.');
+        }
+     //   return redirect()->back();
     }
 
     public function metasstoredestroy($id)
@@ -356,7 +373,13 @@ class TrdigitalController extends Controller
 
         $metas->delete();
 
-        return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+        if ($metas) {
+            return back()->with('delete', '7. Meta: - Deletada com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Meta.');
+        }
+
+    //    return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
     }
 
 
@@ -369,7 +392,13 @@ class TrdigitalController extends Controller
         }
 
         $etapas->delete();
-        return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+
+        if ($etapas) {
+            return back()->with('delete', '7. Etapa: - Deletada com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Etapa.');
+        }
+     //   return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
     }
 
     public function planoconsolidado(Request $request, $id)
@@ -911,7 +940,7 @@ class TrdigitalController extends Controller
 
         $n_processo = N_processo::findOrFail($id);
         $metas = Metas::where('n_processo_id', $id)->get();
-        
+
         $etapas = Metas::with('etapas')->get();
         $planoconsolidado = Plano_consolidado::with(['Metas'])->where('n_processo_id', $id,)->get();
         $planodetalhado = Plano_detalhado::with('Plano_consolidado')->where('n_processo_id', $id,)->get();
@@ -944,6 +973,7 @@ class TrdigitalController extends Controller
 
     public function update_oficio(Request $request, $id)
     {
+
         // Encontra o registro que deseja atualizar pelo ID
         $nProcesso = N_processo::find($id);
 
@@ -975,14 +1005,294 @@ class TrdigitalController extends Controller
             $anexo1Data
         );
 
-                    // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
-         if ($anexo1Data) {
-             return back()->with('create', 'Ofício criado com sucesso!');
-         } else {
-             return back()->with('error', 'Erro ao criar o ofício.');
-         }
-
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($anexo1Data) {
+            return back()->with('create', ' 1. Ofício Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
     }
+    public function update_resp_instituicao(Request $request, $id)
+    {
+
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+
+        $resp_instituicao = [
+            'N_processo_id' => $nProcesso->id,
+            'Nome_Resp_Instituicao' => $request->Nome,
+            'Cargo_Resp_Instituicao' => $request->Cargo_Resp_Instituicao,
+            'Cidade_Resp_Instituicao' => $request->Cidade_Resp_Instituicao,
+            'Estado_Resp_Instituicao' => $request->Estado_Resp_Instituicao,
+            'Cep_Resp_Instituicao' => $request->Cep_Resp_Instituicao,
+            'End_Resp_Instituicao' => $request->End_Resp_Instituicao,
+            'Telefone_Resp_Instituicao' => $request->Telefone_Resp_Instituicao,
+            'Email_Resp_Instituicao' => $request->Email_Resp_Instituicao,
+        ];
+
+
+        // dd($resp_instituicao);
+
+        //dd($resp_instituicao);
+        if ($request->hasFile('Anexo1_Resp_Instituicao')) {
+            $resp_instituicao['Anexo1_Resp_Instituicao'] = $request->file('Anexo1_Resp_Instituicao')->store('pdfs/resp_instituicao', 'public');
+        }
+        if ($request->hasFile('Anexo2_Resp_Instituicao')) {
+            $resp_instituicao['Anexo2_Resp_Instituicao'] = $request->file('Anexo2_Resp_Instituicao')->store('pdfs/resp_instituicao', 'public');
+        }
+
+        Resp_instituicao::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $resp_instituicao
+        );
+
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($resp_instituicao) {
+            return back()->with('create', ' 2. Identificação do Responsável pela Instituição.
+-            Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
+    }
+    public function update_instituicao(Request $request, $id)
+    {
+
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+
+        $instituicao = [
+            'n_processo_id' => $nProcesso->id,
+            'Nome_Instituicao' => $request->Nome_Instituicao,
+            'CNPJ_Instituicao' => $request->CNPJ_Instituicao,
+            'Telefone_Instituicao' => $request->Telefone_Instituicao,
+            'Endereco_Instituicao' => $request->Endereco_Instituicao,
+            'Cidade_Instituicao' => $request->Cidade_Instituicao,
+            'Estado_Instituicao' => $request->Estado_Instituicao,
+            'Cep_Instituicao' => $request->Cep_Instituicao,
+            'Email_Instituicao' => $request->Email_Instituicao,
+            'Telefone_Instituicao' => $request->Telefone_Instituicao,
+        ];
+
+        if ($request->hasFile('Anexo1_Instituicao')) {
+            $instituicao['Anexo1_Instituicao'] = $request->file('Anexo1_Instituicao')->store('pdfs/instituicao', 'public');
+        }
+
+        if ($request->hasFile('Anexo2_Instituicao')) {
+            $instituicao['Anexo2_Instituicao'] = $request->file('Anexo2_Instituicao')->store('pdfs/instituicao', 'public');
+        }
+
+        Instituicao::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $instituicao
+        );
+
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($instituicao) {
+            return back()->with('create', ' 3. Identificação da Instituição Proponente.
+-            Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
+    }
+    public function update_resp_projeto(Request $request, $id)
+    {
+
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+
+        $resp_projeto = [
+            'n_processo_id' => $nProcesso->id,
+            'Nome_Resp_projeto' => $request->Nome_Resp_projeto,
+            'CPF_Resp_projeto' => $request->CPF_Resp_projeto,
+            'RG_Resp_projeto' => $request->RG_Resp_projeto,
+            'Cidade_Resp_projeto' => $request->Cidade_Resp_projeto,
+            'Estado_Resp_projeto' => $request->Estado_Resp_projeto,
+            'Cep_Resp_projeto' => $request->Cep_Resp_projeto,
+            'Endereco_Resp_projeto' => $request->Endereco_Resp_projeto,
+            'Telefone_Resp_projeto' => $request->Telefone_Resp_projeto,
+            'Email_Resp_projeto' => $request->Email_Resp_projeto,
+
+        ];
+        if ($request->hasFile('Anexo1_Resp_projeto')) {
+            $resp_projeto['Anexo1_Resp_projeto'] = $request->file('Anexo1_Resp_projeto')->store('pdfs/resp_projeto', 'public');
+        }
+        if ($request->hasFile('Anexo2_Resp_projeto')) {
+            $resp_projeto['Anexo2_Resp_projeto'] = $request->file('Anexo2_Resp_projeto')->store('pdfs/resp_projeto', 'public');
+        }
+        Resp_projeto::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $resp_projeto
+        );
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($resp_projeto) {
+            return back()->with('create', '4. Identificação do Responsável pelo Projeto - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
+    }
+
+    public function update_doc_anexo2(Request $request, $id)
+    {
+
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+
+        $doc_anexo2 = [
+            'n_processo_id' => $nProcesso->id,
+
+        ];
+
+        if ($request->hasFile('Doc_Anexo2_Anexo1')) {
+            $doc_anexo2['Doc_Anexo2_Anexo1'] = $request->file('Doc_Anexo2_Anexo1')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo2')) {
+            $doc_anexo2['Doc_Anexo2_Anexo2'] = $request->file('Doc_Anexo2_Anexo2')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo3')) {
+            $doc_anexo2['Doc_Anexo2_Anexo3'] = $request->file('Doc_Anexo2_Anexo3')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo4')) {
+            $doc_anexo2['Doc_Anexo2_Anexo4'] = $request->file('Doc_Anexo2_Anexo4')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo5')) {
+            $doc_anexo2['Doc_Anexo2_Anexo5'] = $request->file('Doc_Anexo2_Anexo5')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo6')) {
+            $doc_anexo2['Doc_Anexo2_Anexo6'] = $request->file('Doc_Anexo2_Anexo6')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo7')) {
+            $doc_anexo2['Doc_Anexo2_Anexo7'] = $request->file('Doc_Anexo2_Anexo7')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo8')) {
+            $doc_anexo2['Doc_Anexo2_Anexo8'] = $request->file('Doc_Anexo2_Anexo8')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo9')) {
+            $doc_anexo2['Doc_Anexo2_Anexo9'] = $request->file('Doc_Anexo2_Anexo9')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo10')) {
+            $doc_anexo2['Doc_Anexo2_Anexo10'] = $request->file('Doc_Anexo2_Anexo10')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo11')) {
+            $doc_anexo2['Doc_Anexo2_Anexo11'] = $request->file('Doc_Anexo2_Anexo11')->store('pdfs/doc_anexo2', 'public');
+        }
+        if ($request->hasFile('Doc_Anexo2_Anexo12')) {
+            $doc_anexo2['Doc_Anexo2_Anexo12'] = $request->file('Doc_Anexo2_Anexo12')->store('pdfs/doc_anexo2', 'public');
+        }
+        Doc_anexo2::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $doc_anexo2
+        );
+
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($doc_anexo2) {
+            return back()->with('create', '5. Atas, Certidões, Comprovantes e Declarações: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
+    }
+
+    public function update_id_projeto(Request $request, $id)
+    {
+
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+        $projeto_conteudo = [
+            'n_processo_id' => $nProcesso->id,
+            'Titulo_Projeto_Conteudo' => $request->Titulo_Projeto_Conteudo,
+            'Objeto_Projeto_Conteudo' => $request->Objeto_Projeto_Conteudo,
+            'Obj_Geral_Projeto_Conteudo' => $request->Obj_Geral_Projeto_Conteudo,
+            'Obj_especifico_Projeto_Conteudo' => $request->Obj_especifico_Projeto_Conteudo,
+            'Justificativa_Projeto_Conteudo' => $request->Justificativa_Projeto_Conteudo,
+            'Contextualizacao_Projeto_Conteudo' => $request->Contextualizacao_Projeto_Conteudo,
+            'Diagnostico_Projeto_Conteudo' => $request->Diagnostico_Projeto_Conteudo,
+            'Importancia_Projeto_Conteudo' => $request->Importancia_Projeto_Conteudo,
+            'Caracterizacao_Projeto_Conteudo' => $request->Caracterizacao_Projeto_Conteudo,
+            'Publico_Alvo_Interno_Projeto_Conteudo' => $request->Publico_Alvo_Interno_Projeto_Conteudo,
+            'Publico_Alvo_Externo_Projeto_Conteudo' => $request->Publico_Alvo_Externo_Projeto_Conteudo,
+            'Problemas_Projeto_Conteudo' => $request->Problemas_Projeto_Conteudo,
+            'Resultados_Projeto_Conteudo' => $request->Resultados_Projeto_Conteudo,
+            'Inicio_Projeto_Conteudo' => $request->Inicio_Projeto_Conteudo,
+            'Fim_Projeto_Conteudo' => $request->Fim_Projeto_Conteudo,
+            'N_Emenda_Projeto_Conteudo' => $request->N_Emenda_Projeto_Conteudo,
+            'Nome_Autor_Emenda_Projeto_Conteudo' => $request->Nome_Autor_Emenda_Projeto_Conteudo,
+            'Valor_Repasse_Projeto_Conteudo' => $request->Valor_Repasse_Projeto_Conteudo,
+            'Valor_Contrapartida_Projeto_Conteudo' => $request->Valor_Contrapartida_Projeto_Conteudo,
+
+        ];
+        Projeto_conteudo::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $projeto_conteudo
+        );
+
+
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($projeto_conteudo) {
+            return back()->with('create', '6. Identificação do Projeto: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -1016,12 +1326,7 @@ class TrdigitalController extends Controller
             ['N_processo_id' => $nProcesso->id],
             $anexo1Data
         );
-            // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
-        // if ($anexo1Data) {
-        //     return back()->with('create', 'Ofício criado com sucesso!');
-        // } else {
-        //     return back()->with('error', 'Erro ao criar o ofício.');
-        // }
+
 
 
         $resp_instituicao = [
@@ -1048,12 +1353,12 @@ class TrdigitalController extends Controller
             $resp_instituicao
         );
 
-            // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
-            if ($resp_instituicao) {
-                return back()->with('create', 'Item 2 Atualizado com sucesso!');
-            } else {
-                return back()->with('error', 'Erro! tente novamente.');
-            }
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($resp_instituicao) {
+            return back()->with('create', 'Item 2 Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro! tente novamente.');
+        }
 
 
         // Atualiza os dados do N_processo com base nos dados do formulário
@@ -1496,7 +1801,7 @@ class TrdigitalController extends Controller
     {
 
         $correcao_metas_sit = $request->input('Correcao_metas_sit');
-     //   dd($correcao_metas_sit);
+        //   dd($correcao_metas_sit);
         foreach ($correcao_metas_sit as $correcao_metas_sitId => $valor) {
             // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
 
@@ -1507,14 +1812,14 @@ class TrdigitalController extends Controller
             $correcao_metas->Correcao_metas_sit = $valor;
             $correcao_metas->save();
         }
-        
+
         return back();
     }
 
     public function validar_cronogramaexecucao_etapas(Request $request, $id)
     {
         $correcao_etapas_sit = $request->input('Correcao_etapas_sit');
-     //   dd($correcao_metas_sit);
+        //   dd($correcao_metas_sit);
         foreach ($correcao_etapas_sit as $correcao_etapas_sitId => $valor_etapa) {
             // Suponha que $planodetalhadosId seja o ID da linha e $valor seja o valor do botão de rádio para essa linha
 

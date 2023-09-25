@@ -1,8 +1,21 @@
-   <div class="tab-pane fade" id="list-projeto" role="tabpanel" aria-labelledby="list-projeto-list">
+{!! Form::close() !!}
+
+  <div class="tab-pane fade" id="list-projeto" role="tabpanel" aria-labelledby="list-projeto-list">
        <div class="card">
            <div class="card-body">
                <h5 class="card-title"> <b> <big> 6. </b> </big> Identificação do Projeto </h5>
+               {!! Form::model($n_processo, [
+                'method' => 'PUT',
+                'route' => ['trdigital.update_id_projeto', $n_processo->id],
+                'enctype' => 'multipart/form-data',
+            ]) !!}
 
+            @if (auth()->check())
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+            @endif
+
+            <input type="hidden" name="Orgao_Concedente" id="Orgao_Concedente"
+                value="{{ $n_processo->Orgao_Concedente }}">
                <!-- General Form Elements -->
                <label for="inputText" class="col-sm-2 col-form-label"> <b> Título: </b> </label>
 
@@ -566,5 +579,6 @@
 
            </div>
        </div>
+       {!! Form::close() !!}
 
    </div>

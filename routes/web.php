@@ -22,7 +22,12 @@ use App\Http\Controllers\{
 };
 
 // EDIT - UPDATE TR
-Route::post('/trdigital/update_oficio/{id}',    [TrdigitalController::class, 'update_oficio'])->name('trdigital.update_oficio');
+Route::put('/trdigital/update_oficio/{id}',              [TrdigitalController::class, 'update_oficio'])->name('trdigital.update_oficio');
+Route::put('/trdigital/update_resp_instituicao/{id}',    [TrdigitalController::class, 'update_resp_instituicao'])->name('trdigital.update_resp_instituicao');
+Route::put('/trdigital/update_instituicao/{id}',    [TrdigitalController::class, 'update_instituicao'])->name('trdigital.update_instituicao');
+Route::put('/trdigital/update_resp_projeto/{id}',    [TrdigitalController::class, 'update_resp_projeto'])->name('trdigital.update_resp_projeto');
+Route::put('/trdigital/update_doc_anexo2/{id}',    [TrdigitalController::class, 'update_doc_anexo2'])->name('trdigital.update_doc_anexo2');
+Route::put('/trdigital/update_id_projeto/{id}',    [TrdigitalController::class, 'update_id_projeto'])->name('trdigital.update_id_projeto');
 
 
 Route::patch('/trdigital/metasstore/{id}',  [TrdigitalController::class, 'metasstore'])->name('trdigital.metasstore');

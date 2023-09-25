@@ -1,8 +1,4 @@
-{!! Form::model($n_processo, [
-    'method' => 'PATCH',
-    'route' => ['trdigital.update_oficio', $n_processo->id],
-    'enctype' => 'multipart/form-data',
-]) !!}
+
 {{-- ITEM 1 --}}
 <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 
@@ -13,9 +9,18 @@
                 <h5 class="card-title"> <big><b> A. </b> </big> Ofício de encaminhamento com o
                     <b>número da nova proposta </b>
                 </h5>
-
+                {!! Form::model($n_processo, [
+                    'method' => 'PUT',
+                    'route' => ['trdigital.update_oficio', $n_processo->id],
+                    'enctype' => 'multipart/form-data',
+                ]) !!}
                 <div class="row mb-3">
+                    @if (auth()->check())
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                @endif
 
+                <input type="hidden" name="Orgao_Concedente" id="Orgao_Concedente"
+                    value="{{ $n_processo->Orgao_Concedente }}">
 
 
                     <div class="col-sm-10">
