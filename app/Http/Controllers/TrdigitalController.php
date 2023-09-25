@@ -361,7 +361,7 @@ class TrdigitalController extends Controller
         } else {
             return back()->with('error', 'Erro ao Atualizar Etapa.');
         }
-     //   return redirect()->back();
+        //   return redirect()->back();
     }
 
     public function metasstoredestroy($id)
@@ -379,7 +379,7 @@ class TrdigitalController extends Controller
             return back()->with('error', 'Erro ao Deletar Meta.');
         }
 
-    //    return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+        //    return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
     }
 
 
@@ -398,7 +398,7 @@ class TrdigitalController extends Controller
         } else {
             return back()->with('error', 'Erro ao Deletar Etapa.');
         }
-     //   return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+        //   return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
     }
 
     public function planoconsolidado(Request $request, $id)
@@ -433,7 +433,11 @@ class TrdigitalController extends Controller
         ];
 
         Plano_consolidado::create($data);
-        return redirect()->back();
+        if ($data) {
+            return back()->with('create', '8. Plano de Aplicação Consolidado: - Criado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Criar Plano de Aplicação Consolidado.');
+        }
     }
 
 
@@ -459,7 +463,11 @@ class TrdigitalController extends Controller
 
         Plano_detalhado::create($data);
 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('create', '9. Plano de Aplicação Detalhado - Memória de Cálculo: - Criado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Criar Plano de Aplicação Detalhado.');
+        }
     }
 
 
@@ -476,7 +484,11 @@ class TrdigitalController extends Controller
 
         Plano_detalhado::findOrFail($request->id)->update($data);
 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('edit', '9. Plano de Aplicação Detalhado - Memória de Cálculo: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Plano de Aplicação Detalhado.');
+        }
     }
 
     private function parseValorInput($inputValue)
@@ -510,7 +522,11 @@ class TrdigitalController extends Controller
 
         Plano_consolidado::findOrFail($request->id)->update($data);
 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('edit', '8. Plano de Aplicação Consolidado: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Plano de Aplicação Consolidado.');
+        }
     }
 
     public function planoconsolidadodestroy($id)
@@ -522,7 +538,12 @@ class TrdigitalController extends Controller
         }
 
         $planoconsolidado->delete();
-        return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+
+        if ($planoconsolidado) {
+            return back()->with('delete', '8. Plano de Aplicação Consolidado: - Deletado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Plano de Aplicação Consolidado.');
+        }
     }
 
 
@@ -535,7 +556,11 @@ class TrdigitalController extends Controller
         }
 
         $planodetalhado->delete();
-        return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+        if ($planodetalhado) {
+            return back()->with('delete', '9. Plano de Aplicação Detalhado - Memória de Cálculo: - Deletado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao deletar Plano de Aplicação Detalhado.');
+        }
     }
 
     public function etapasstore(Request $request, $id)
@@ -554,9 +579,11 @@ class TrdigitalController extends Controller
 
         Etapas::create($etapas);
 
-        //   dd($etapas);
-
-        return redirect()->back();
+        if ($etapas) {
+            return back()->with('create', '7. Etapa: - Criada com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Criar Etapa.');
+        }
     }
     public function cronograma_store(Request $request, $id)
     {
@@ -577,7 +604,11 @@ class TrdigitalController extends Controller
 
         Cronograma_desembolso::create($etapas);
 
-        return redirect()->back();
+        if ($etapas) {
+            return back()->with('create', '10. Cronograma de Desembolso: - Criado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Criar Cronograma de Desembolso.');
+        }
     }
 
 
@@ -600,7 +631,11 @@ class TrdigitalController extends Controller
 
         Cronograma_desembolso::findOrFail($request->id)->update($data);
 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('edit', '10. Cronograma de Desembolso: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Cronograma de Desembolso.');
+        }
     }
 
 
@@ -613,7 +648,12 @@ class TrdigitalController extends Controller
         }
 
         $cronograma_desembolso->delete();
-        return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+
+        if ($cronograma_desembolso) {
+            return back()->with('delete', '10. Cronograma de Desembolso: - Deletado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Cronograma de Desembolso.');
+        }
     }
 
 
@@ -639,8 +679,13 @@ class TrdigitalController extends Controller
 
         Obras_equipamento::create($data);
 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('create', '11. Relação de Obras e Equipamentos / Material Permanente: - Criado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Criar Relação de Obras e Equipamentos / Material Permanente.');
+        }
     }
+
     public function obras_equipamento_update(Request $request, $id)
     {
         // Remove caracteres não numéricos
@@ -663,7 +708,11 @@ class TrdigitalController extends Controller
 
         Obras_equipamento::findOrFail($request->id)->update($data);
 
-        return redirect()->back();
+        if ($data) {
+            return back()->with('edit', '11. Relação de Obras e Equipamentos / Material Permanente: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Relação de Obras e Equipamentos / Material Permanente.');
+        }
     }
 
 
@@ -675,7 +724,12 @@ class TrdigitalController extends Controller
         }
 
         $obras_equipamento->delete();
-        return redirect()->back()->with('delete', 'Meta excluída com sucesso!');
+
+        if ($obras_equipamento) {
+            return back()->with('delete', '11. Relação de Obras e Equipamentos / Material Permanente: - Deletado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Relação de Obras e Equipamentos / Material Permanente.');
+        }
     }
 
     public function pesquisa_mercadologica(Request $request, $id)
@@ -703,7 +757,12 @@ class TrdigitalController extends Controller
             $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->create($pivotData);
         }
 
-        return redirect()->back();
+
+        if ($pesquisa_mercadologica) {
+            return back()->with('create', '12. Pesquisa Mercadológica: - Criado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Criar Pesquisa Mercadológica');
+        }
     }
 
 
@@ -718,8 +777,11 @@ class TrdigitalController extends Controller
 
         //    $pesquisa_mercadologica->update($pivotData);
 
-        return redirect()->back();
-    }
+        if ($pesquisa_mercadologica) {
+            return back()->with('edit', '12. Pesquisa Mercadológica -  Descrição do Bem: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Pesquisa Mercadológica');
+        }      }
 
 
 
@@ -760,53 +822,24 @@ class TrdigitalController extends Controller
                 'Valor' => $request->Valor, // Sem a necessidade de [$key] aqui
             ];
 
-            // Resto do seu código de processamento aqui...
         }
 
-        // Itere sobre os relacionamentos Pesquisa_mercadologica_pivot existentes
-        // foreach ($pesquisa_mercadologica->pesquisa_mercadologica_pivots as $key => $pivot) {
-        //     $pivotData = [
-        //         'Empresa' => $request->Empresa,
-        //         'Valor' => $request->Valor[$key],
-        //     ];
-
-        // if (isset($request->Empresa[$key])) {
-        //     // Acesse $request->Empresa[$key]
-        // }
-
-        // if (isset($request->Valor[$key])) {
-        //     // Acesse $request->Valor[$key]
-        // }
+    
         if ($request->hasFile('Anexo') && $request->file('Anexo')->isValid()) {
             $file = $request->file('Anexo');
             $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
             $pivotData['Anexo'] = $filePath;
         }
 
-        // // Verifique se um novo arquivo foi enviado e atualize o campo Anexo
-        // if ($request->hasFile('Anexo') && isset($request->file('Anexo')[$key]) && $request->file('Anexo')[$key]->isValid()) {
-        //     $file = $request->file('Anexo')[$key];
-        //     $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
-        //     $pivotData['Anexo'] = $filePath;
-        // }
-
-        // Atualize o registro de pivot
-        // $pesquisa_mercadologica->pesquisa_mercadologica_pivots()->update($pivotData);
-
         $pesquisa_mercadologica->update($pivotData);
-        return redirect()->back();
+
+        if ($pesquisa_mercadologica) {
+            return back()->with('edit', '12. Pesquisa Mercadológica - Dados da Empresa: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Atualizar Pesquisa Mercadológica');
+        } 
+    
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -822,8 +855,11 @@ class TrdigitalController extends Controller
 
         $pivotItem->delete();
 
-        return redirect()->back(); // Ou redirecionar para qualquer outra página desejada após a exclusão
-    }
+        if ($pivotItem) {
+            return back()->with('delete', '12. Pesquisa Mercadológica - Dados da Empresa: - Deletado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Pesquisa Mercadológica');
+        }     }
 
     public function pesquisa_nome_mercadologica_destroy($pivotId)
     {
@@ -835,8 +871,11 @@ class TrdigitalController extends Controller
 
         $pesquisa_mercadologica->delete();
 
-        return redirect()->back(); // Ou redirecionar para qualquer outra página desejada após a exclusão
-    }
+        if ($pesquisa_mercadologica) {
+            return back()->with('delete', '12. Pesquisa Mercadológica: - Deletado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao Deletar Pesquisa Mercadológica');
+        }      }
 
 
     public function show($id)

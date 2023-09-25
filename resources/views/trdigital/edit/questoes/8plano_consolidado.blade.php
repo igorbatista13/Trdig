@@ -1,4 +1,5 @@
       {{-- ITEM 7 --}}
+      
       <div class="tab-pane fade" id="list-consolidado" role="tabpanel" aria-labelledby="list-consolidado">
           {{-- {!! Form::open(['route' => 'metas.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} --}}
 

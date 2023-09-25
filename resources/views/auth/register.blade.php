@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+    
     <div id="auth">
         
 <div class="container">
@@ -107,6 +109,9 @@
                             <button class="btn btn-block mb-2 btn-secondary"><i data-feather="github"></i> Sobre o projeto TR DIGITAL</button>
                         </div>
                     </div>
+
+
+                    ''
                 </div>
             </div>
         </div>

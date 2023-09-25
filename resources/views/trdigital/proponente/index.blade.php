@@ -28,63 +28,41 @@
             </nav>
         </div><!-- End Page Title -->
 
-        <div class="card">
-            <div class="card-body">
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>{{ $message }}</strong>
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Minhas TR</h5>
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($nProcessos as $n_processo)
+                                        <tr>
+                                            <td>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @include('alertas.alertas-validar')
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                @elseif ($message = Session::get('edit'))
-                    <div class="alert alert-warning alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @elseif ($message = Session::get('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
+                </div></div></section></main>
 
-                @if (session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                @endif
-
-                <section class="section">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Minhas TR</h5>
-                                    <!-- Table with stripped rows -->
-                                    <table class="table datatable">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($nProcessos as $n_processo)
-                                                <tr>
-                                                    <td>
-
-                                                        <div class="row">
-
-
-                                                            {{-- <div class="row g-0">
-                                                                <div class="col-md-4 position-relative"> --}}
-                                                            {{-- <img src="{{ asset('images/samples/trproponente.jpg') }}"
-                                                                        class="img-fluid rounded card-img-top"
-                                                                        alt="..."> --}}
-
-
-
-                                                            <div class="col-md-6">
-                                                                <div class="card">
-                                                                    @if ($n_processo->Status == 'CORRIGIR')
+@endsection
+                    {{-- @if ($n_processo->Status == 'CORRIGIR')
                                                                         <a
                                                                             href="{{ route('trdigital.edit', $n_processo->id) }}">
                                                                             <span
@@ -130,8 +108,11 @@
                                                                                 </i></span>
 
                                                                         </center>
-                                                                    @endif
-                                                                    <div class="card-body">
+                                                                    @endif --}}
+
+
+
+                    {{-- <div class="card-body">
                                                                         <h5 class="card-title">
 
 
@@ -229,137 +210,4 @@
                                                                                     </center>
                                                                                     <br>
                                                                                 @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-                                                            @if ($n_processo->Status == 'FINALIZADO')
-                                                                <div class="col-md-6">
-                                                                    <div class="card">
-                                                                        <div class="card-body">
-                                                                            <h5 class="card-title"> Anexar os documentos
-                                                                                do SIGCON aqui:
-                                                                                <br>
-                                                                                <br>
-
-                                                                                {!! Form::open([
-                                                                                    'method' => 'POST',
-                                                                                    'route' => ['trdigital.anexo_sigcon', $n_processo->id],
-                                                                                    'enctype' => 'multipart/form-data',
-                                                                                ]) !!}
-                                                                                @method('PUT')
-                                                                                <!-- Resto do seu formulário -->
-
-                                                                                <small>
-                                                                                    <label>Anexo I: cadastro de Órgãos ou
-                                                                                        Entidades Dirigentes </label>
-                                                                                        @if ($n_processo->Anexo_sigcon && $n_processo->Anexo_sigcon->anexo1 == '')
-                                                                                        <span
-                                                                                            class="badge bg-danger custom-badge position-absolute">
-                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
-                                                                                        </span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge bg-success custom-badge position-absolute">
-                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
-                                                                                        </span>
-                                                                                    @endif
-                                                                                    {!! Form::file('anexo1', ['class' => 'form-control']) !!}
-                                                                                    
-                                                                                    <label> Anexo II: Dados do
-                                                                                        Projeto</label>
-                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo2 == '')
-                                                                                        <span class="badge bg-danger custom-badge position-absolute">
-                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
-                                                                                        </span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge bg-success custom-badge position-absolute">
-                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
-                                                                                        </span>
-                                                                                    @endif
-                                                                                    {!! Form::file('anexo2', ['class' => 'form-control']) !!}
-
-
-                                                                                    <label> Anexo III: Cronograma de
-                                                                                        Execução Física de Plano de
-                                                                                        Aplicação de Recursos</label>
-                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo3 == '')
-                                                                                        <span class="badge bg-danger custom-badge position-absolute">
-                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
-                                                                                        </span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge bg-success custom-badge position-absolute">
-                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
-                                                                                        </span>
-                                                                                    @endif
-                                                                                    {!! Form::file('anexo3', ['class' => 'form-control']) !!}
-
-
-                                                                                    <label> Anexo IV: Cronograma de
-                                                                                        Desembolso</label>
-                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo4 == '')
-                                                                                        <span class="badge bg-danger custom-badge position-absolute">
-                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
-                                                                                        </span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge bg-success custom-badge position-absolute">
-                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
-                                                                                        </span>
-                                                                                    @endif
-                                                                                    {!! Form::file('anexo4', ['class' => 'form-control']) !!}
-
-
-                                                                                    <label> Anexo V: Relação de Equipamentos
-                                                                                        e Material Permanente</label>
-                                                                                        @if ($n_processo->anexo_sigcon && $n_processo->anexo_sigcon->anexo5 == '')
-                                                                                        <span class="badge bg-danger custom-badge position-absolute">
-                                                                                            <i class="bi bi-x-circle me-1 text-light"> Não enviado </i>
-                                                                                        </span>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge bg-success custom-badge position-absolute">
-                                                                                            <i class="bi bi-check-circle me-1 text-light"> Enviado </i>
-                                                                                        </span>
-                                                                                    @endif
-                                                                                    {!! Form::file('anexo5', ['class' => 'form-control']) !!}
-                                                                            
-                                                                                    <br>
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-primary"> Enviar
-                                                                                        Anexos</button>
-                                                                                    {!! Form::close() !!}
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-
-
-
-
-
-                                                        </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            </td>
-            </tr>
-            @endforeach
-            </tbody>
-            </table>
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>
-        </div>
-        </div>
-    </main>
-@endsection
+                                                                    </div> --}}
