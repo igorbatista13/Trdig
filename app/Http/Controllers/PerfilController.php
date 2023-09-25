@@ -94,9 +94,9 @@ public function changePassword(Request $request)
     $user->password = Hash::make($request->newpassword);
     $user->save();
 
-    dd($user);
+    //dd($user);
 
-    return redirect()->back()->with('success', 'Senha alterada com sucesso.');
+    return redirect()->back()->with('edit', 'Senha atualizada com sucesso.');
 }
 
 

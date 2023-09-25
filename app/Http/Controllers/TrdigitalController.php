@@ -942,6 +942,47 @@ class TrdigitalController extends Controller
         ));
     }
 
+    public function update_oficio(Request $request, $id)
+    {
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+        // Atualiza ou cria o registro do Doc_anexo1 correspondente ao N_processo atual
+        $anexo1Data = [
+            'N_proposta' => $request->N_proposta,
+        ];
+
+        if ($request->hasFile('Comp_Oficio')) {
+            $anexo1Data['Comp_Oficio'] = $request->file('Comp_Oficio')->store('pdfs/doc_anexo1', 'public');
+        }
+        if ($request->hasFile('Comp_Assinado')) {
+            $anexo1Data['Comp_Assinado'] = $request->file('Comp_Assinado')->store('pdfs/doc_anexo1', 'public');
+        }
+
+        Doc_anexo1::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $anexo1Data
+        );
+
+                    // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+         if ($anexo1Data) {
+             return back()->with('create', 'Ofício criado com sucesso!');
+         } else {
+             return back()->with('error', 'Erro ao criar o ofício.');
+         }
+
+    }
 
     public function update(Request $request, $id)
     {
@@ -975,6 +1016,13 @@ class TrdigitalController extends Controller
             ['N_processo_id' => $nProcesso->id],
             $anexo1Data
         );
+            // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        // if ($anexo1Data) {
+        //     return back()->with('create', 'Ofício criado com sucesso!');
+        // } else {
+        //     return back()->with('error', 'Erro ao criar o ofício.');
+        // }
+
 
         $resp_instituicao = [
             'N_processo_id' => $nProcesso->id,
@@ -1000,7 +1048,12 @@ class TrdigitalController extends Controller
             $resp_instituicao
         );
 
-
+            // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+            if ($resp_instituicao) {
+                return back()->with('create', 'Item 2 Atualizado com sucesso!');
+            } else {
+                return back()->with('error', 'Erro! tente novamente.');
+            }
 
 
         // Atualiza os dados do N_processo com base nos dados do formulário

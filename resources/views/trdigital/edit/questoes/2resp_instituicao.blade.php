@@ -1,4 +1,28 @@
-  {{-- ITEM 2 --}}
+{!! Form::close() !!}
+
+{{-- ITEM 2 --}}
+  {!! Form::model($n_processo, [
+    'method' => 'PATCH',
+    'route' => ['trdigital.update', $n_processo->id],
+    'enctype' => 'multipart/form-data',
+]) !!}
+
+
+@if (auth()->check())
+<input type="hidden" name="user_id"
+    value="{{ auth()->user()->id }}">
+@endif
+
+<select name="Orgao_Concedente" id="Orgao_Concedente"
+class="form-control custom-select" required>
+Selecione o Orgão Concedente
+</option>
+<option value="{{ $n_processo->Orgao_Concedente }}">
+    <img src="" width="20px">
+    {{ $n_processo->Orgaos->Sigla }} -
+    {{ $n_processo->Orgaos->Nome }}
+</option>
+</select>
   <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 
       <div class="card">

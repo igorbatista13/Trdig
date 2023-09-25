@@ -21,6 +21,10 @@ use App\Http\Controllers\{
   PerfilController, 
 };
 
+// EDIT - UPDATE TR
+Route::post('/trdigital/update_oficio/{id}',    [TrdigitalController::class, 'update_oficio'])->name('trdigital.update_oficio');
+
+
 Route::patch('/trdigital/metasstore/{id}',  [TrdigitalController::class, 'metasstore'])->name('trdigital.metasstore');
 Route::delete('/trdigital/metasstore/{id}', [TrdigitalController::class, 'metasstoredestroy'])->name('trdigital.metasstoredestroy');
 Route::put('/trdigital/metasstore/{id}',    [TrdigitalController::class, 'metasupdate'])->name('trdigital.metasupdate');

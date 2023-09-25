@@ -1,5 +1,6 @@
 @extends('base.novabase')
 @section('content')
+
     <?php
     $processoCount = session()->get('processoCount');
     $processoCount_corrigir = session()->get('processoCount_corrigir');
@@ -14,6 +15,9 @@
 
     <!-- Adicione esses links no cabeçalho do seu HTML -->
     <!-- Adicione esses links no cabeçalho do seu HTML -->
+    @include('alertas.index')
+
+    
 
     <main id="main" class="main">
 
@@ -42,11 +46,11 @@
                                                 <div class="row">
 
                                                     <div class="col-lg-12">
-                                                        {!! Form::model($n_processo, [
+                                                        {{-- {!! Form::model($n_processo, [
                                                             'method' => 'PATCH',
                                                             'route' => ['trdigital.update', $n_processo->id],
                                                             'enctype' => 'multipart/form-data',
-                                                        ]) !!}
+                                                        ]) !!} --}}
 
                                                         @if (auth()->check())
                                                             <input type="hidden" name="user_id"
@@ -519,7 +523,7 @@
 
                                         <div class="col-9">
                                             <div class="tab-content" id="nav-tabContent">
-                                                {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                                {{-- {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} --}}
 
                                                 @include('trdigital.edit.questoes.1oficios')
                                                 @include('trdigital.edit.questoes.2resp_instituicao')
@@ -668,3 +672,21 @@
         });
     });
 </script>
+<script>
+    setTimeout(function() {
+        var alert = document.getElementById('myAlert');
+        alert.style.display = 'none';
+    }, 7000); // 5000ms (5 segundos)
+  </script>
+  <script>
+    setTimeout(function() {
+        var alert = document.getElementById('myAlert2');
+        alert.style.display = 'none';
+    }, 7000); // 5000ms (5 segundos)
+  </script>
+  <script>
+    setTimeout(function() {
+        var alert = document.getElementById('myAlert3');
+        alert.style.display = 'none';
+    }, 7000); // 5000ms (5 segundos)
+  </script>

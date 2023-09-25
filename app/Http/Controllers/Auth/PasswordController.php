@@ -36,6 +36,6 @@ class PasswordController extends Controller
         ]);
 
 
-        return back()->with('update', 'Senha alterada com sucesso!');
+        return back()->with('edit', 'Senha atualizada com sucesso!');
     }
 }

@@ -23,55 +23,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
     </div><!-- End Page Title -->
 
 
-<style>
-.alert-dismissible.fade.show {
-    max-width: 600px;
-    margin: 60px auto 0 auto;
-    position: fixed;
-    top: 20px;
-    right: 10px;
-    z-index: 9999;
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        display: none;
-    }
-}
-
-.fadeOut {
-    animation: fadeOut 0.5s ease 1 forwards;
-}
-
-</style>
-
-@if (session('update'))
-
-  <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" id="myAlert" role="alert">
-
-  <i class="bi bi-check-circle me-1 text-light"></i>
-  {{session('update')}} 
-    <button type="button" class="btn-close text-light" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-@endif
-{{-- 
-  <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" id="myAlert2" role="alert">
-  <i class="bi bi-exclamation-octagon me-1"></i>
-  {{session('msg')}} 
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-  <div class="alert alert-warning bg-warning border-0  alert-dismissible fade show" id="myAlert3" role="alert">
-  <i class="bi bi-exclamation-triangle me-1"></i>
-  {{session('msg')}} 
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> --}}
-
+    @include('alertas.index')
 
     <section class="section profile">
       <div class="row">
@@ -91,11 +43,36 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
               @foreach(auth()->user()->roles as $role)
                  <h3> {{ $role->name }}</h3>
           @endforeach
+
+          @if (Auth::user()->perfil && Auth::user()->perfil->Tipo)
+          <h3> <b> {{Auth::user()->perfil->Tipo }} </b></h3>
+
+          @endif
               <div class="social-links mt-2">
-                {{-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> --}}
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                 {{-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>  --}}
+                 @if (Auth::user()->perfil && Auth::user()->perfil->Facebook)
+                    <a href="https://facebook.com/{{Auth::user()->perfil->Facebook}}" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                 @else
+                    <a href="" class="facebook"><i class="bi bi-facebook"></i></a>
+                 @endif
+
+                 @if (Auth::user()->perfil && Auth::user()->perfil->Instagram)
+                    <a href="https://instagram.com/{{Auth::user()->perfil->Instagram}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                 @else
+                    <a href="" class="instagram"><i class="bi bi-instagram"></i></a>
+                 @endif
+
+                 @if (Auth::user()->perfil && Auth::user()->perfil->Linkedin)
+                    <a href="https://linkedin.com/{{Auth::user()->perfil->Linkedin}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                 @else
+                    <a href="" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                 @endif
+
+
+
+
+                {{-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> --}}
+                {{-- <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> --}}
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ php artisan migrate:rollback
 php artisan optimize:clear
 php artisan storage:link
 
+composer require doctrine/dbal
 
 
 

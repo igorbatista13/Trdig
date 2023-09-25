@@ -1,6 +1,6 @@
 {!! Form::model($n_processo, [
     'method' => 'PATCH',
-    'route' => ['trdigital.update', $n_processo->id],
+    'route' => ['trdigital.update_oficio', $n_processo->id],
     'enctype' => 'multipart/form-data',
 ]) !!}
 {{-- ITEM 1 --}}
@@ -112,4 +112,6 @@
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
+
 </div>
