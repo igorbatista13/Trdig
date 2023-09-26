@@ -27,6 +27,10 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+    public function registrartipo()
+    {
+        return view('auth.registrartipo');
+    }
 
     /**
      * Handle an incoming registration request.
@@ -71,7 +75,7 @@ class RegisteredUserController extends Controller
         $perfil->Linkedin = '';
         $perfil->Site = '';
         $perfil->image = ''; // Ou defina como null, dependendo do tipo de campo
-        $perfil->Tipo = '';
+        $perfil->Tipo = '$request->Tipo,';
 
         // Salvar o perfil associado ao usuário
         $user->perfil()->save($perfil);

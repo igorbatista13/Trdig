@@ -59,20 +59,6 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                           <!-- Email Address -->
-                                           <div>
-                                                <x-input-label for="email" :value="__('Tipo')" />
-                                                <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required />
-                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                            </div>
-
-                                    {{-- <label for="last-name-column">Last Name</label>
-                                    <input type="text" id="last-name-column" class="form-control"  name="lname-column">
-                                    --}}
-                                </div> 
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group">
 
                                      <!-- Password -->
                                     <div>

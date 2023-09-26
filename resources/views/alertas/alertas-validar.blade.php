@@ -217,8 +217,10 @@
 
 
                 <!-- Modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sigcon_anexos"
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sigcon_anexos"
                     data-bs-meta-id="sigcon_anexos">
+                    <i class="bi bi-exclamation-triangle me-1"></i>
+
                     Enviar arquivos do SIGCON
                 </button>
 
