@@ -81,7 +81,7 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('Orgao_Concedente', '1')->get();
+        ])->where('Orgao_Concedente', '1')->where('Status', '=', 'FINALIZADO')->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
