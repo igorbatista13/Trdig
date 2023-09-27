@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use PDF;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -10,12 +11,18 @@ use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 
+
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+
+
+use Illuminate\Support\Facades\Response;
+use setasign\Fpdi\Fpdi;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\View;
+
 
 use App\Models\N_processo;
 use App\Models\Orgaos;
@@ -2053,23 +2060,41 @@ class TrdigitalController extends Controller
         // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
         $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
 
+        $view = view('trdigital.imprimir')->with(compact
+        (
+            'n_processo',
+            'biblioteca',
+            'metas',
+            'etapas',
+            'planoconsolidado',
+            'planodetalhado',
+            'cronograma_desembolso',
+            'obras_equipamento',
+            'pesquisa_mercadologica'
 
-        return view(
-            'trdigital.imprimir',
-            compact(
-                'n_processo',
-                'biblioteca',
-                'metas',
-                'etapas',
-                'planoconsolidado',
-                'planodetalhado',
-                'cronograma_desembolso',
-                'obras_equipamento',
-                'pesquisa_mercadologica'
+        ));
+        
+        $html = $view->render();
+    $pdf = PDF::loadHTML($html);            
+    $sheet = $pdf->setPaper('a4', 'landscape');
+    return $sheet->download('download.pdf');  // $hours can not be accessed outside foreach. So changed the file name to `download.pdf`.
+}
+    //     return view(
+    //         'trdigital.imprimir',
+    //         compact(
+    //             'n_processo',
+    //             'biblioteca',
+    //             'metas',
+    //             'etapas',
+    //             'planoconsolidado',
+    //             'planodetalhado',
+    //             'cronograma_desembolso',
+    //             'obras_equipamento',
+    //             'pesquisa_mercadologica'
 
-            )
-        );
-    }
+    //         )
+    //     );
+    // }
 
 
     public function destroy($id)

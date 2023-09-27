@@ -81,7 +81,7 @@
                         <div class="col-sm-12">
                             <button class="btn btn-block mb-2 btn-primary"><i data-feather="link"></i> </button>
                         </div>
-                        <center><h6> Não possui acesso? <a href="{{asset('/registrar-tipo')}}">Faça o registro aqui </a> </h6></center> 
+                        <center><h6> Não possui acesso? <a href="{{asset('/registrartipo')}}">Faça o registro aqui </a> </h6></center> 
                       
                     </div>
                 </div>
