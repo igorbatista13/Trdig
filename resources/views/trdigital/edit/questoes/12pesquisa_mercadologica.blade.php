@@ -11,10 +11,13 @@
                  <div class="card-body">
 
                      <h5 class="card-title text-center">CADASTRO DE PESQUISA MERCADOLÓGICA</h5>
+                     @if ($n_processo->Status == 'CORRIGIR')
+                     @else
                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                          data-bs-target="#novo_pesquisa_mercadologica">
                          + Novo Registro
                      </button>
+                     @endif
                      @include('trdigital.edit.questoes.12pesquisamercadologica.criarpesquisamercadologica')
 
                      @foreach ($pesquisa_mercadologica as $pesquisa)
@@ -40,6 +43,8 @@
                                                          <br>
                                                          <b>Qtd.</b> <small>{{ $pesquisa->Qtd ?? '' }}<br>
 
+                                                            @if ($n_processo->Status == 'CORRIGIR')
+                                                            @else
                                                              <span class="badge bg-warning" data-bs-toggle="modal"
                                                                  data-bs-target="#editar_pesquisanomemercadologica{{ $pesquisa->id }}"
                                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
@@ -49,6 +54,7 @@
                                                                  data-bs-target="#excluir_pesquisanomemercadologica{{ $pesquisa->id }}"
                                                                  data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
                                                                  <i class="bi bi-x-square text-light"></i></span>
+                                                                 @endif 
                                                      </a>
 
                                              </h2>
@@ -157,13 +163,23 @@
 
                                                                  @include('trdigital.edit.questoes.12pesquisamercadologica.editarpesquisamercadologica')
                                                              </td>
-                                                             <td> <button type="button" class="btn btn-danger"
+                                                             <td> 
+                                                                @if ($pivot->Correcao_pesquisa_sit == 1)
+
+                                                                <button type="button" class="btn btn-danger"
                                                                      data-bs-toggle="modal"
                                                                      data-bs-target="#excluir_pesquisamercadologica{{ $pivot->id ?? '' }}Excluir"
-                                                                     data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
+                                                                     data-bs-meta-id="{{ $pesquisa->id ?? '' }}"disabled>
                                                                      <i class="bi bi-x-square"></i>
-
                                                                  </button>
+                                                                 @else
+                                                                 <button type="button" class="btn btn-danger"
+                                                                      data-bs-toggle="modal"
+                                                                      data-bs-target="#excluir_pesquisamercadologica{{ $pivot->id ?? '' }}Excluir"
+                                                                      data-bs-meta-id="{{ $pesquisa->id ?? '' }}">
+                                                                      <i class="bi bi-x-square"></i>
+                                                                  </button>
+                                                                 @endif
 
                                                                  @include('trdigital.edit.questoes.12pesquisamercadologica.excluirpesquisamercadologica')
                                                              </td>

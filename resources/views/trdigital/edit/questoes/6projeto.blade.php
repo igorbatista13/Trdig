@@ -335,7 +335,6 @@
                            [
                                'class' => 'form-control',
                                'id' => 'floatingTextarea',
-                               'readonly' => 'readonly', // Adiciona o atributo 'readonly'
                            ],
                        ) !!}
                    @endif
@@ -556,7 +555,6 @@
                                        'class' => 'form-control',
                                        'maxlength' => '15',
                                        'oninput' => 'aplicarMascara(this)',
-                                       'readonly' => 'readonly', // Adiciona o atributo 'readonly'
                                    ],
                                ) !!}
                            @endif

@@ -150,11 +150,17 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            @if (Auth::user()->perfil && Auth::user()->perfil->image)
-            <img src="{{asset('/images/perfil/'. Auth::user()->perfil->image)}}" class="rounded-circle">
-            @else
-            <img src="{{ asset('images/brasao_mt.png') }}" alt="Profile" class="rounded-circle">
+        @if (Auth::check())
+        @if (Auth::user()->perfil && Auth::user()->perfil->image)
+        <img src="{{asset('/images/perfil/'. Auth::user()->perfil->image)}}" class="rounded-circle">
+        @else
+        <img src="{{ asset('images/brasao_mt.png') }}" alt="Profile" class="rounded-circle">
+    @endif
+        @else
+            <script>window.location = "{{asset('/')}}";</script>
         @endif
+
+    
 
             {{-- <img src="{{asset('/images/brasao_mt.png')}}" alt="Profile" class="rounded-circle"> --}}
             @if (Auth::check())

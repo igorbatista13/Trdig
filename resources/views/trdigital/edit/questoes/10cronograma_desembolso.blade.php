@@ -14,11 +14,13 @@
                       <div class="card-body">
 
                           <h5 class="card-title text-center">CADASTRO DO CRONOGRAMA DE DESEMBOLSO</h5>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                              data-bs-target="#cronograma_desembolso">
-                              + Novo Registro
-                          </button>
-
+                          @if ($n_processo->Status == 'CORRIGIR')
+                          @else
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                  data-bs-target="#cronograma_desembolso">
+                                  + Novo Registro
+                              </button>
+                          @endif
 
                           {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
                               the modal.</p> --}}
@@ -78,31 +80,36 @@
 
                                       <td>
 
-                                        @if ($cronograma_desembolsos->cronograma_desembolso_sit == 1)
-
-                                          <button type="button" class="btn btn-warning" data-bs-toggle="modal" disabled
-                                              data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
-                                              data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
-                                              <i class="bi bi-pencil-square"></i>
-                                          </button>
-
+                                          @if ($cronograma_desembolsos->cronograma_desembolso_sit == 1)
+                                              <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                  disabled
+                                                  data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
+                                                  data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
+                                                  <i class="bi bi-pencil-square"></i>
+                                              </button>
                                           @else
-                                          
-                                          <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                              data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
-                                              data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
-                                              <i class="bi bi-pencil-square"></i>
-                                          </button>
-
+                                              <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                  data-bs-target="#editar_cronograma{{ $cronograma_desembolsos->id }}Editar"
+                                                  data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
+                                                  <i class="bi bi-pencil-square"></i>
+                                              </button>
                                           @endif
                                       </td>
 
                                       <td>
-                                          <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                              data-bs-target="#excluir_cronograma{{ $cronograma_desembolsos->id }}"
-                                              data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
-                                              <i class="bi bi-x-square"></i>
-                                          </button>
+                                          @if ($cronograma_desembolsos->cronograma_desembolso_sit == 1)
+                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                  data-bs-target="#excluir_cronograma{{ $cronograma_desembolsos->id }}"
+                                                  data-bs-meta-id="{{ $cronograma_desembolsos->id }}"disabled>
+                                                  <i class="bi bi-x-square"></i>
+                                              </button>
+                                          @else
+                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                  data-bs-target="#excluir_cronograma{{ $cronograma_desembolsos->id }}"
+                                                  data-bs-meta-id="{{ $cronograma_desembolsos->id }}">
+                                                  <i class="bi bi-x-square"></i>
+                                              </button>
+                                          @endif
                                       </td>
                                   </tr>
                               @endforeach

@@ -15,11 +15,13 @@
                       <div class="card-body">
 
                           <h5 class="card-title text-center">MEMÓRIA DE CÁLCULO</h5>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                              data-bs-target="#novoregistro-memoriacalculo">
-                              + Novo Registro
-                          </button>
-
+                          @if ($n_processo->Status == 'CORRIGIR')
+                          @else
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                  data-bs-target="#novoregistro-memoriacalculo">
+                                  + Novo Registro
+                              </button>
+                          @endif
 
                           {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
                               the modal.</p> --}}
@@ -105,11 +107,19 @@
                                           </td>
 
                                           <td>
-                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                  data-bs-target="#excluirmemoria{{ $planodetalhados->id }}"
-                                                  data-bs-meta-id="{{ $planodetalhados->id }}">
-                                                  <i class="bi bi-x-square"></i>
-                                              </button>
+                                              @if ($planodetalhados->plano_detalhado_sit == 1)
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                      data-bs-target="#excluirmemoria{{ $planodetalhados->id }}"
+                                                      data-bs-meta-id="{{ $planodetalhados->id }}"disabled>
+                                                      <i class="bi bi-x-square"></i>
+                                                  </button>
+                                              @else
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                      data-bs-target="#excluirmemoria{{ $planodetalhados->id }}"
+                                                      data-bs-meta-id="{{ $planodetalhados->id }}">
+                                                      <i class="bi bi-x-square"></i>
+                                                  </button>
+                                              @endif
                                           </td>
                                       </tr>
                                   @endforeach
@@ -270,7 +280,8 @@
                                       <div class="modal-content">
                                           <div class="modal-header">
                                               <h5 class="modal-title"> <i
-                                                      class="bi bi-check-circle me-1 text-danger"><b> Confirmar Exclusão
+                                                      class="bi bi-check-circle me-1 text-danger"><b> Confirmar
+                                                          Exclusão
                                                       </b> </i></h5>
                                               <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                   aria-label="Close"></button>

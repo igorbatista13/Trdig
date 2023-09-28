@@ -2,7 +2,7 @@
 <html lang="pt-br" >
 <head>
   <meta charset="UTF-8">
-  <title>TITULO</title>
+  <title>TR - Digital MT</title>
   <link rel="stylesheet" href="{{asset('css/register/style.css')}}">
     
 

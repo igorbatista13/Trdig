@@ -14,11 +14,13 @@
                  <div class="card-body">
 
                      <h5 class="card-title text-center">CADASTRO DE OBRAS E EQUIPAMENTOS / MATERIAL PERMANENTE</h5>
-                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                         data-bs-target="#obras_euipamentos">
-                         + Novo Registro
-                     </button>
-
+                     @if ($n_processo->Status == 'CORRIGIR')
+                     @else
+                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                             data-bs-target="#obras_euipamentos">
+                             + Novo Registro
+                         </button>
+                     @endif
 
                      {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
                          the modal.</p> --}}
@@ -85,27 +87,33 @@
                                  @endif
                                  <td>
 
-                                    @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
-
-                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" disabled
-                                         data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
-                                         data-bs-meta-id="{{ $obras_equipamentos->id }}">
-                                         <i class="bi bi-pencil-square"></i>
-                                     </button>
-
-                                     @else    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                     data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
-                                     data-bs-meta-id="{{ $obras_equipamentos->id }}">
-                                     <i class="bi bi-pencil-square"></i>
-                                 </button>
-                                 @endif
+                                     @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
+                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" disabled
+                                             data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
+                                             data-bs-meta-id="{{ $obras_equipamentos->id }}">
+                                             <i class="bi bi-pencil-square"></i>
+                                         </button>
+                                     @else
+                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                             data-bs-target="#editar_relacoes{{ $obras_equipamentos->id }}Editar"
+                                             data-bs-meta-id="{{ $obras_equipamentos->id }}">
+                                             <i class="bi bi-pencil-square"></i>
+                                         </button>
+                                     @endif
                                  <td>
-                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                         data-bs-target="#excluir_relacoes{{ $obras_equipamentos->id }}"
-                                         data-bs-meta-id="{{ $obras_equipamentos->id }}">
-                                         <i class="bi bi-x-square"></i>
-
-                                     </button>
+                                     @if ($obras_equipamentos->Correcao_obras_equipamentos_sit == 1)
+                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                             data-bs-target="#excluir_relacoes{{ $obras_equipamentos->id }}"
+                                             data-bs-meta-id="{{ $obras_equipamentos->id }}"disabled>
+                                             <i class="bi bi-x-square"></i>
+                                         </button>
+                                     @else
+                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                             data-bs-target="#excluir_relacoes{{ $obras_equipamentos->id }}"
+                                             data-bs-meta-id="{{ $obras_equipamentos->id }}">
+                                             <i class="bi bi-x-square"></i>
+                                         </button>
+                                     @endif
                                  </td>
                              </tr>
                          @endforeach

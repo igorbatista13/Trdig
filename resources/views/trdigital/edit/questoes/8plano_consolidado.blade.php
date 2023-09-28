@@ -1,5 +1,5 @@
       {{-- ITEM 7 --}}
-      
+
       <div class="tab-pane fade" id="list-consolidado" role="tabpanel" aria-labelledby="list-consolidado">
           {{-- {!! Form::open(['route' => 'metas.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!} --}}
 
@@ -12,11 +12,13 @@
                       <div class="card-body">
 
                           <h5 class="card-title text-center">CADASTROS DE PLANO DE APLICAÇÃO CONSOLIDADO </h5>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                              data-bs-target="#verticalycentered">
-                              + Novo Registro
-                          </button>
-
+                          @if ($n_processo->Status == 'CORRIGIR')
+                          @else
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                  data-bs-target="#verticalycentered">
+                                  + Novo Registro
+                              </button>
+                          @endif
 
                           {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
                               the modal.</p> --}}
@@ -88,11 +90,19 @@
                                           </td>
 
                                           <td>
-                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                  data-bs-target="#excluirplano{{ $planos->id }}"
-                                                  data-bs-meta-id="{{ $planos->id }}">
-                                                  <i class="bi bi-x-square"></i>
-                                              </button>
+                                              @if ($planos->plano_consolidado_sit == 1)
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                      data-bs-target="#excluirplano{{ $planos->id }}"
+                                                      data-bs-meta-id="{{ $planos->id }}"disabled>
+                                                      <i class="bi bi-x-square"></i>
+                                                  </button>
+                                              @else
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                      data-bs-target="#excluirplano{{ $planos->id }}"
+                                                      data-bs-meta-id="{{ $planos->id }}">
+                                                      <i class="bi bi-x-square"></i>
+                                                  </button>
+                                              @endif
                                           </td>
                                       </tr>
                                   @endforeach

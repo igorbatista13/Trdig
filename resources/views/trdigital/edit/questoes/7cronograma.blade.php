@@ -16,11 +16,13 @@
                       <div class="card-body">
 
                           <h5 class="card-title text-center">CADASTROS DE METAS E ETAPAS</h5>
+                          @if ($n_processo->Status == 'CORRIGIR')
+@else
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                               data-bs-target="#criarmeta">
                               + Criar Nova Meta
                           </button>
-
+                          @endif
 
 
                           {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
@@ -61,25 +63,46 @@
                                                   {{ $meta->Termino_metas ?? 'Não informado' }} </i> <br>
                                               <br>
                                               <hr>
-                                              <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                  data-bs-target="#editarmeta{{ $meta->id }}"
-                                                  data-bs-meta-id="{{ $meta->id }}">
-                                                  Editar Meta
-                                              </button>
+
+                                              @if ($meta->Correcao_metas_sit == '1')
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                      data-bs-target="#editarmeta{{ $meta->id }}"
+                                                      data-bs-meta-id="{{ $meta->id }}" disabled="disabled">
+                                                      Editar Meta
+                                                  </button>
+
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                      data-bs-target="#excluirmeta"data-bs-meta-id="{{ $meta->id }}"
+                                                      disabled>
+                                                      Excluir meta
+                                                  </button>
+
+                                                  <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                      data-bs-target="#novaetapa{{ $meta->id }}"
+                                                      data-meta-id="{{ $meta->id }}" disabled>
+                                                      Criar Etapa
+                                                  </button>
+                                              @else
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                      data-bs-target="#editarmeta{{ $meta->id }}"
+                                                      data-bs-meta-id="{{ $meta->id }}">
+                                                      Editar Meta
+                                                  </button>
 
 
-                                              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                  data-bs-target="#excluirmeta"data-bs-meta-id="{{ $meta->id }}">
-                                                  Excluir meta
-                                              </button>
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                      data-bs-target="#excluirmeta"data-bs-meta-id="{{ $meta->id }}">
+                                                      Excluir meta
+                                                  </button>
 
-                                              <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                  data-bs-target="#novaetapa{{ $meta->id }}"
-                                                  data-meta-id="{{ $meta->id }}">
-                                                  Criar Etapa
-                                              </button>
+                                                  <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                      data-bs-target="#novaetapa{{ $meta->id }}"
+                                                      data-meta-id="{{ $meta->id }}">
+                                                      Criar Etapa
+                                                  </button>
+                                              @endif
 
-                                              </small>
+
                                           </div>
                                       </div>
                                   </td>
@@ -123,18 +146,36 @@
                                                       </small>
                                                       <hr>
 
-                                                      <button type="button" class="btn btn-warning"
-                                                          data-bs-toggle="modal"
-                                                          data-bs-target="#editaretapa{{ $etapa->id }}"data-bs-meta-id="{{ $etapa->id }}">
-                                                          Editar etapa
-                                                      </button>
+                                                      @if ($etapa->Correcao_etapas_sit == '1')
+                                                          <button type="button" class="btn btn-warning"
+                                                              data-bs-toggle="modal"
+                                                              data-bs-target="#editaretapa{{ $etapa->id }}"data-bs-meta-id="{{ $etapa->id }}"
+                                                              disabled>
+                                                              Editar etapa
+                                                          </button>
+                                                      @else
+                                                          <button type="button" class="btn btn-warning"
+                                                              data-bs-toggle="modal"
+                                                              data-bs-target="#editaretapa{{ $etapa->id }}"data-bs-meta-id="{{ $etapa->id }}">
+                                                              Editar etapa
+                                                          </button>
+                                                      @endif
 
-                                                      <button type="button" class="btn btn-danger"
-                                                          data-bs-toggle="modal"
-                                                          data-bs-target="#excluiretapa{{ $etapa->id }}"
-                                                          data-meta-id="{{ $etapa->id }}">
-                                                          Excluir etapa
-                                                      </button>
+                                                      @if ($etapa->Correcao_etapas_sit == '1')
+                                                          <button type="button" class="btn btn-danger"
+                                                              data-bs-toggle="modal"
+                                                              data-bs-target="#excluiretapa{{ $etapa->id }}"
+                                                              data-meta-id="{{ $etapa->id }}"disabled>
+                                                              Excluir etapa
+                                                          </button>
+                                                      @else
+                                                          <button type="button" class="btn btn-danger"
+                                                              data-bs-toggle="modal"
+                                                              data-bs-target="#excluiretapa{{ $etapa->id }}"
+                                                              data-meta-id="{{ $etapa->id }}">
+                                                              Excluir etapa
+                                                          </button>
+                                                      @endif
 
 
                                               </div>
