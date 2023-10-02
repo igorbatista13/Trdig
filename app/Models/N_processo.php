@@ -30,6 +30,10 @@ class N_processo extends Model
         return $this->hasOne(Doc_anexo2::class, 'n_processo_id');
 
       }
+    public function Doc_prefeitura() {
+        return $this->hasOne(Doc_prefeitura::class, 'n_processo_id');
+
+      }
     public function Projeto_conteudo() {
         return $this->hasOne(Projeto_conteudo::class,'n_processo_id');
 
@@ -51,7 +55,7 @@ class N_processo extends Model
   // }   
 
        public function Metas() {
-         return $this->hasMany(Metas::class, 'n_processo_id', 'id', 'Especificacao_metas');
+         return $this->hasOne(Metas::class, 'n_processo_id', 'id', 'Especificacao_metas');
        }
       public function Etapas() {
         return $this->hasOne(Etapas::class, 'n_processo_id', 'id');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('n_processo_id');
             
-            $table->string('Especificacao_metas')->nullable();
+            $table->longText('Especificacao_metas')->nullable();
             $table->string('Quantidade_metas')->nullable();
             $table->string('Unidade_medida_metas')->nullable();
             

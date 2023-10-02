@@ -27,6 +27,7 @@ Route::put('/trdigital/update_resp_instituicao/{id}',    [TrdigitalController::c
 Route::put('/trdigital/update_instituicao/{id}',    [TrdigitalController::class, 'update_instituicao'])->name('trdigital.update_instituicao');
 Route::put('/trdigital/update_resp_projeto/{id}',    [TrdigitalController::class, 'update_resp_projeto'])->name('trdigital.update_resp_projeto');
 Route::put('/trdigital/update_doc_anexo2/{id}',    [TrdigitalController::class, 'update_doc_anexo2'])->name('trdigital.update_doc_anexo2');
+Route::put('/trdigital/update_Doc_prefeitura/{id}',    [TrdigitalController::class, 'update_Doc_prefeitura'])->name('trdigital.update_Doc_prefeitura');
 Route::put('/trdigital/update_id_projeto/{id}',    [TrdigitalController::class, 'update_id_projeto'])->name('trdigital.update_id_projeto');
 
 
@@ -79,6 +80,7 @@ Route::post('/trdigital/validar/resp_instituicao/{id}',    [TrdigitalController:
 Route::post('/trdigital/validar/instituicao/{id}',    [TrdigitalController::class, 'instituicao'])->name('trdigital.validar.instituicao');
 Route::post('/trdigital/validar/resp_projeto/{id}',    [TrdigitalController::class, 'resp_projeto'])->name('trdigital.validar.resp_projeto');
 Route::post('/trdigital/validar/documentos/{id}',    [TrdigitalController::class, 'documentos'])->name('trdigital.validar.documentos');
+Route::post('/trdigital/validar/doc_prefeitura/{id}',    [TrdigitalController::class, 'doc_prefeitura'])->name('trdigital.validar.doc_prefeitura');
 Route::post('/trdigital/validar/projeto/{id}',    [TrdigitalController::class, 'projeto'])->name('trdigital.validar.projeto');
 
 Route::post('/trdigital/validar/validar_cronogramaexecucao_metas/{id}',    [TrdigitalController::class, 'validar_cronogramaexecucao_metas'])->name('trdigital.validar.validar_cronogramaexecucao_metas');

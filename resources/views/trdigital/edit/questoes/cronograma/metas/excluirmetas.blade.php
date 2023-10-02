@@ -1,4 +1,4 @@
-<div class="modal fade" id="excluirmeta" tabindex="-1">
+<div class="modal fade" id="excluirmeta{{ $meta->id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,8 +14,9 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
                     data-bs-dismiss="modal">Cancelar</button>
+
                 {!! Form::open([
-                    'route' => ['trdigital.metasstoredestroy', '__META_ID__'],
+                    'route' => ['trdigital.metasstoredestroy', $meta->id ],
                     'method' => 'delete',
                     'id' => 'delete-form',
                 ]) !!}

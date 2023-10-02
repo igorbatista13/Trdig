@@ -1,5 +1,8 @@
       {{-- ITEM 7 --}}
       {!! Form::close() !!}
+
+
+      
       <div class="tab-pane fade" id="list-Cronograma" role="tabpanel" aria-labelledby="list-Cronograma-list">
           {!! Form::model($n_processo, ['method' => 'PATCH', 'route' => ['trdigital.store', $n_processo->id]]) !!}
 
@@ -17,12 +20,13 @@
 
                           <h5 class="card-title text-center">CADASTROS DE METAS E ETAPAS</h5>
                           @if ($n_processo->Status == 'CORRIGIR')
-@else
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                              data-bs-target="#criarmeta">
-                              + Criar Nova Meta
-                          </button>
+                          @else
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                  data-bs-target="#criarmeta">
+                                  + Criar Nova Meta
+                              </button>
                           @endif
+                                      {{-- Criar Metas --}} @include('trdigital.edit.questoes.cronograma.metas.criarmetas')
 
 
                           {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
@@ -36,7 +40,6 @@
                               </thead>
                               @foreach ($metas as $meta)
                                   <td>
-                                      {{-- Criar Metas --}} @include('trdigital.edit.questoes.cronograma.metas.criarmetas')
 
                                       <div class="card ">
                                           <div class="card-body text-primary">
@@ -65,7 +68,8 @@
                                               <hr>
 
                                               @if ($meta->Correcao_metas_sit == '1')
-                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                  <button type="button" class="btn btn-warning"
+                                                      data-bs-toggle="modal"
                                                       data-bs-target="#editarmeta{{ $meta->id }}"
                                                       data-bs-meta-id="{{ $meta->id }}" disabled="disabled">
                                                       Editar Meta
@@ -73,6 +77,7 @@
 
                                                   <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                       data-bs-target="#excluirmeta"data-bs-meta-id="{{ $meta->id }}"
+                                                      data-bs-meta-id="{{ $meta->id }}" 
                                                       disabled>
                                                       Excluir meta
                                                   </button>
@@ -83,15 +88,18 @@
                                                       Criar Etapa
                                                   </button>
                                               @else
-                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                  <button type="button" class="btn btn-warning"
+                                                      data-bs-toggle="modal"
                                                       data-bs-target="#editarmeta{{ $meta->id }}"
                                                       data-bs-meta-id="{{ $meta->id }}">
                                                       Editar Meta
                                                   </button>
 
 
-                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                      data-bs-target="#excluirmeta"data-bs-meta-id="{{ $meta->id }}">
+                                                  <button type="button" class="btn btn-danger"
+                                                      data-bs-toggle="modal"
+                                                      data-bs-target="#excluirmeta{{ $meta->id }}"
+                                                      data-bs-meta-id="{{ $meta->id }}">
                                                       Excluir meta
                                                   </button>
 

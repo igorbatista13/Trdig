@@ -40,7 +40,7 @@
                                             <div class="text-center mb-5">
                                                 <img src="{{ asset('/images/createform.png') }}" height="88"
                                                     class='mb-4'>
-                                                <h3><b> TR DIGITAL </b> - Editar TR</h3>
+                                                <h3><b> TR DIGITAL </b></h3>
                                                 <p> Preencha as informações da sua TR DIGITAL </p>
 
                                                 <div class="row">
@@ -409,7 +409,8 @@
                                                     aria-controls="list-Cronograma">
                                                     <b> <big> 7. </big> </b> Cronograma de Execução - <b> (Metas e
                                                         Etapas) </b>
-                                                    @if ($n_processo->Metas)
+                                                        @if ($n_processo->Metas && $n_processo->Metas->Unidade_medida_metas)
+
                                                         <span
                                                             class="badge bg-success custom-badge position-absolute top-0 end-0">
                                                             <i class="bi bi-pencil me-1 text-light"> </i>
@@ -529,7 +530,11 @@
                                                 @include('trdigital.edit.questoes.2resp_instituicao')
                                                 @include('trdigital.edit.questoes.3instituicao')
                                                 @include('trdigital.edit.questoes.4resp_projeto')
+                                                @if (Auth::user()->perfil->Tipo == 'Prefeitura' )
+                                                @include('trdigital.edit.questoes.5doc_anexos_prefeitura')
+                                                @else
                                                 @include('trdigital.edit.questoes.5doc_anexos2')
+                                                @endif
                                                 @include('trdigital.edit.questoes.6projeto')
                                                 @include('trdigital.edit.questoes.7cronograma')
                                                 @include('trdigital.edit.questoes.8plano_consolidado')

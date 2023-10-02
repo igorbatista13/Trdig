@@ -148,6 +148,10 @@
                                                 @include('trdigital.validar.questoes.2resp_instituicao')
                                                 @include('trdigital.validar.questoes.3instituicao')
                                                 @include('trdigital.validar.questoes.4resp_projeto')
+                                                @if (Auth::user()->perfil->Tipo == 'Prefeitura' )    
+                                                @include('trdigital.validar.questoes.5doc_anexos2_prefeitura')
+                                                @else
+                                                @endif                                    
                                                 @include('trdigital.validar.questoes.5doc_anexos2')
                                                 @include('trdigital.validar.questoes.6projeto')
                                                 @include('trdigital.validar.questoes.7cronograma')

@@ -46,6 +46,7 @@ use App\Models\Pesquisa_mercadologica;
 use App\Models\Pesquisa_mercadologica_pivot;
 
 use App\Models\Anexo_sigcon;
+use App\Models\Doc_prefeitura;
 
 class TrdigitalController extends Controller
 {
@@ -283,20 +284,20 @@ class TrdigitalController extends Controller
 
         Projeto_conteudo::create($projeto_conteudo);
 
-        $metas = [
-            'n_processo_id' => $nProcesso->id,
-            'Especificacao_metas' => 'Meta 01',
-            'Quantidade_metas' => $request->Quantidade_metas,
-            'Unidade_medida_metas' => $request->Unidade_medida_metas,
-            'Inicio_metas' => $request->Inicio_metas,
-            'Termino_metas' => $request->Termino_metas,
-            // 'Correcao_metas_sit' => $request->Correcao_metas_sit,
-            // 'Obs_metas' => $request->Obs_metas,
-        ];
+        // $metas = [
+        //     'n_processo_id' => $nProcesso->id,
+        //     'Especificacao_metas' => $request->Especificacao_metas,
+        //     'Quantidade_metas' => $request->Quantidade_metas,
+        //     'Unidade_medida_metas' => $request->Unidade_medida_metas,
+        //     'Inicio_metas' => $request->Inicio_metas,
+        //     'Termino_metas' => $request->Termino_metas,
+        //     // 'Correcao_metas_sit' => $request->Correcao_metas_sit,
+        //     // 'Obs_metas' => $request->Obs_metas,
+        // ];
 
-        //   dd($metas);
+        // //   dd($metas);
 
-        Metas::create($metas);
+        // Metas::create($metas);
 
         return redirect()->route('trdigital.show', ['trdigital' => $nProcesso->id]);
     }
@@ -910,6 +911,7 @@ class TrdigitalController extends Controller
         $n_processo = N_processo::with([
             'Doc_anexo1',
             'Doc_anexo2',
+            'Doc_prefeitura',
             'instituicao',
             'Resp_instituicao',
             'Projeto_conteudo',
@@ -968,6 +970,7 @@ class TrdigitalController extends Controller
         $n_processo = N_processo::with([
             'Doc_anexo1',
             'Doc_anexo2',
+            'Doc_prefeitura',
             'instituicao',
             'Resp_instituicao',
             'Projeto_conteudo',
@@ -1012,7 +1015,8 @@ class TrdigitalController extends Controller
             'cronograma_desembolso',
             'obras_equipamento',
             'pesquisa_mercadologica',
-            'biblioteca'
+            'biblioteca',
+
 
         ));
     }
@@ -1279,6 +1283,66 @@ class TrdigitalController extends Controller
 
         // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
         if ($doc_anexo2) {
+            return back()->with('create', '5. Atas, Certidões, Comprovantes e Declarações: - Atualizado com sucesso!');
+        } else {
+            return back()->with('error', 'Erro ao criar o ofício.');
+        }
+    }
+    public function update_Doc_prefeitura(Request $request, $id)
+    {
+
+        // Encontra o registro que deseja atualizar pelo ID
+        $nProcesso = N_processo::find($id);
+
+        if (!$nProcesso) {
+            // Caso não encontre o registro com o ID especificado, você pode redirecionar para uma página de erro ou retornar uma mensagem de erro.
+            return redirect()->route('trdigital.index')->with('error', 'O registro não foi encontrado.');
+        }
+
+        // Atualiza os dados do N_processo com base nos dados do formulário
+        $nProcesso->user_id = $request->user_id;
+        $nProcesso->Orgao_Concedente = $request->Orgao_Concedente;
+        // Salva o registro atualizado no banco de dados
+        $nProcesso->save();
+
+
+        $doc_prefeitura = [
+            'n_processo_id' => $nProcesso->id,
+
+        ];
+
+        if ($request->hasFile('Oficios_proposta')) {
+            $doc_prefeitura['Oficios_proposta'] = $request->file('Oficios_proposta')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Oficio_emenda')) {
+            $doc_prefeitura['Oficio_emenda'] = $request->file('Oficio_emenda')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Declaracao_contrapartida')) {
+            $doc_prefeitura['Declaracao_contrapartida'] = $request->file('Declaracao_contrapartida')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Comprovante_abertura_conta')) {
+            $doc_prefeitura['Comprovante_abertura_conta'] = $request->file('Comprovante_abertura_conta')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Comprovante_qualif_tecnica')) {
+            $doc_prefeitura['Comprovante_qualif_tecnica'] = $request->file('Comprovante_qualif_tecnica')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Diploma_nomeacao')) {
+            $doc_prefeitura['Diploma_nomeacao'] = $request->file('Diploma_nomeacao')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Ata_eleicao')) {
+            $doc_prefeitura['Ata_eleicao'] = $request->file('Ata_eleicao')->store('pdfs/doc_prefeitura', 'public');
+        }
+        if ($request->hasFile('Doc_posse')) {
+            $doc_prefeitura['Doc_posse'] = $request->file('Doc_posse')->store('pdfs/doc_prefeitura', 'public');
+        }
+       
+        Doc_prefeitura::updateOrCreate(
+            ['N_processo_id' => $nProcesso->id],
+            $doc_prefeitura
+        );
+
+        // Adicione uma mensagem de alerta após a criação ou atualização bem-sucedida do Doc_anexo1
+        if ($doc_prefeitura) {
             return back()->with('create', '5. Atas, Certidões, Comprovantes e Declarações: - Atualizado com sucesso!');
         } else {
             return back()->with('error', 'Erro ao criar o ofício.');

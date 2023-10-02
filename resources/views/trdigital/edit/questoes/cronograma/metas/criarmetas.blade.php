@@ -13,8 +13,8 @@
 
                     {!! Form::model($n_processo, ['method' => 'patch', 'route' => ['trdigital.metasstore', $n_processo->id]]) !!}
 
-                    <input type="hidden" class="form-control" id="metas_id"
-                        name="metas_id" value="{{ $meta->id }}">
+                    {{-- <input type="hidden" class="form-control" id="metas_id"
+                        name="metas_id" value="{{ $meta->id }}"> --}}
                 <div class="row g-3">
                     <div class="col-md-12">
                         <div class="form-floating">

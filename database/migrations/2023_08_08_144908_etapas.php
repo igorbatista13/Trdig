@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('metas_id');
             
-            $table->string('Especificacao_etapa')->nullable();
+            $table->longText('Especificacao_etapa')->nullable();
             $table->string('Quantidade_etapa')->nullable();
             $table->string('Unidade_medida_etapa')->nullable();
 
