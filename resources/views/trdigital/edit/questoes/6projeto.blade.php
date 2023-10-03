@@ -51,16 +51,25 @@
 
 
                <label for="inputNumber" class="col-sm-2 col-form-label"> <b> Objeto:</b></label>
-               <div class="col-sm-6">
-                   <div class="form-floating">
+               <div class="col-sm-10">
                        @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo_sit == 1)
-                           {!! Form::text('Objeto_Projeto_Conteudo', $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo, [
+                           {!! Form::textarea('Objeto_Projeto_Conteudo', $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo, [
                                'class' => 'form-control',
                                'id' => 'floatingName',
                                'readonly' => 'readonly', // Adiciona o atributo 'readonly'
                            ]) !!}
+                              {!! Form::textarea(
+                                'Obj_especifico_Projeto_Conteudo',
+                                $n_processo->Projeto_conteudo->Obj_especifico_Projeto_Conteudo,
+                                [
+                                    'class' => 'form-control',
+                                    'id' => 'floatingTextarea',
+                                    'readonly' => 'readonly', // Adiciona o atributo 'readonly'
+                                ],
+                            ) !!}
+                           
                        @else
-                           {!! Form::text('Objeto_Projeto_Conteudo', $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo, [
+                           {!! Form::textarea('Objeto_Projeto_Conteudo', $n_processo->Projeto_conteudo->Objeto_Projeto_Conteudo, [
                                'class' => 'form-control',
                                'id' => 'floatingName',
                            ]) !!}
@@ -77,21 +86,19 @@
                    </div>
 
 
-               </div>
 
                <label for="inputNumber" class="col-sm-2 col-form-label"><b> Objetivo Geral: </b></label>
                <div class="col-sm-10">
-                   <div class="form-floating">
                        @if ($n_processo->Projeto_conteudo && $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo_sit == 1)
-                           {!! Form::text('Obj_Geral_Projeto_Conteudo', $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo, [
+                           {!! Form::textarea('Obj_Geral_Projeto_Conteudo', $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo, [
                                'class' => 'form-control',
-                               'id' => 'floatingName',
+                               'id' => 'floatingTextarea',
                                'readonly' => 'readonly', // Adiciona o atributo 'readonly'
                            ]) !!}
                        @else
-                           {!! Form::text('Obj_Geral_Projeto_Conteudo', $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo, [
+                           {!! Form::textarea('Obj_Geral_Projeto_Conteudo', $n_processo->Projeto_conteudo->Obj_Geral_Projeto_Conteudo, [
                                'class' => 'form-control',
-                               'id' => 'floatingName',
+                               'id' => 'floatingTextarea',
                            ]) !!}
                        @endif
 
@@ -103,7 +110,6 @@
                            <span class="badge bg-warning text-dark">
                                <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
                        @endif
-                   </div>
                </div>
 
                {{-- <p class="small"> <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#dica1">

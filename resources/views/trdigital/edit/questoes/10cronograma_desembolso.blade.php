@@ -236,20 +236,20 @@
                                                       </div>
 
                                                       <div class="col-md-6">
-                                                          <label for="floatingZip">Valor</label>
+                                                          <label for="floatingZip">Valor error</label>
                                                           <div class="form-floating">
                                                               <div class="input-group mb-3">
                                                                   <span class="input-group-text"
                                                                       id="basic-addon1">R$</span>
 
                                                                   {!! Form::text('valor_desembolso', null, [
-                                                                      'placeholder' => 'R$',
+                                                                      'placeholder' => '',
                                                                       'class' => 'form-control',
-                                                                      'maxlength' => '15',
-                                                                  
+                                                                      'maxlength' => '15',                                                                  
                                                                       'oninput' => 'aplicarMascara(this)',
                                                                       'onkeypress' => 'return validarValor(this, event)',
                                                                   ]) !!}
+
                                                               </div>
                                                           </div>
 

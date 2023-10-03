@@ -68,7 +68,7 @@
 
                                           <td>
                                               <span class="badge bg-primary">
-                                                  R$ {{ $planodetalhados->Valor_unit_detalhado }}</span></h5>
+                                                  R$ {{ number_format($planodetalhados->Valor_unit_detalhado, 2, ',', '.')}}</span></h5>
                                           </td>
                                           <td>
 
@@ -233,7 +233,7 @@
                                                               <div class="col-md-6">
                                                                   <div class="form-floating">
                                                                       {!! Form::text('Valor_unit_detalhado', null, [
-                                                                          'placeholder' => 'a',
+                                                                          'placeholder' => 'R$',
                                                                           'class' => 'form-control',
                                                                           'maxlength' => '15',
                                                                           'oninput' => 'aplicarMascara(this)',
