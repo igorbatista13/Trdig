@@ -19,13 +19,10 @@
                       <div class="card-body">
 
                           <h5 class="card-title text-center">CADASTROS DE METAS E ETAPAS</h5>
-                          @if ($n_processo->Status == 'CORRIGIR')
-                          @else
                               <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                   data-bs-target="#criarmeta">
                                   + Criar Nova Meta
                               </button>
-                          @endif
                                       {{-- Criar Metas --}} @include('trdigital.edit.questoes.cronograma.metas.criarmetas')
 
 

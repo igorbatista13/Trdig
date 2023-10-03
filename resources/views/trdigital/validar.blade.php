@@ -151,8 +151,8 @@
                                                 @if (Auth::user()->perfil->Tipo == 'Prefeitura' )    
                                                 @include('trdigital.validar.questoes.5doc_anexos2_prefeitura')
                                                 @else
-                                                @endif                                    
                                                 @include('trdigital.validar.questoes.5doc_anexos2')
+                                                @endif                                    
                                                 @include('trdigital.validar.questoes.6projeto')
                                                 @include('trdigital.validar.questoes.7cronograma')
                                                 @include('trdigital.validar.questoes.8plano_consolidado')

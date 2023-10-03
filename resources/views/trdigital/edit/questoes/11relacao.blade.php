@@ -14,13 +14,10 @@
                  <div class="card-body">
 
                      <h5 class="card-title text-center">CADASTRO DE OBRAS E EQUIPAMENTOS / MATERIAL PERMANENTE</h5>
-                     @if ($n_processo->Status == 'CORRIGIR')
-                     @else
                          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                              data-bs-target="#obras_euipamentos">
                              + Novo Registro
                          </button>
-                     @endif
 
                      {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
                          the modal.</p> --}}

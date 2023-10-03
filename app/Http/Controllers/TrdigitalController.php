@@ -1819,7 +1819,45 @@ class TrdigitalController extends Controller
 
         return back();
     }
+    public function doc_prefeitura(Request $request, $id)
+    {
+        $doc_prefeitura = Doc_prefeitura::findOrFail($id);
 
+        $Oficios_proposta = $request->input('Oficios_proposta_sit');
+        $doc_prefeitura->Oficios_proposta_sit = $Oficios_proposta;
+        $doc_prefeitura->save();
+
+        $Oficio_emenda = $request->input('Oficio_emenda_sit');
+        $doc_prefeitura->Oficio_emenda_sit = $Oficio_emenda;
+        $doc_prefeitura->save();
+
+        $Declaracao_contrapartida = $request->input('Declaracao_contrapartida_sit');
+        $doc_prefeitura->Declaracao_contrapartida_sit = $Declaracao_contrapartida;
+        $doc_prefeitura->save();
+
+        $Comprovante_abertura_conta = $request->input('Comprovante_abertura_conta_sit');
+        $doc_prefeitura->Comprovante_abertura_conta_sit = $Comprovante_abertura_conta;
+        $doc_prefeitura->save();
+
+        $Comprovante_qualif_tecnica = $request->input('Comprovante_qualif_tecnica_sit');
+        $doc_prefeitura->Comprovante_qualif_tecnica_sit = $Comprovante_qualif_tecnica;
+        $doc_prefeitura->save();
+
+        $Diploma_nomeacao = $request->input('Diploma_nomeacao_sit');
+        $doc_prefeitura->Diploma_nomeacao_sit = $Diploma_nomeacao;
+        $doc_prefeitura->save();
+
+        $Ata_eleicao = $request->input('Ata_eleicao_sit');
+        $doc_prefeitura->Ata_eleicao_sit = $Ata_eleicao;
+        $doc_prefeitura->save();
+
+        $Doc_posse = $request->input('Doc_posse_sit');
+        $doc_prefeitura->Doc_posse_sit = $Doc_posse;
+        $doc_prefeitura->save();
+
+
+        return back();
+    }
 
     public function projeto(Request $request, $id)
     {

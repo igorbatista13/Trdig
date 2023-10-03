@@ -130,25 +130,22 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <strong> <big> C) </strong> </big>
-                            Certidão
-                            de ausência de irregularidades /
-                            impedimentos perante TCU / TCE e
-                            CGE;
+                            <strong> <big> C) </strong> </big> Declaração de Contrapartida, deverão informar a previsão
+                            orçamentária publicada e atualizada, inclusive os dados da publicação.
                         </button>
 
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Declaracao_contrapartida) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Declaracao_contrapartida) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -157,7 +154,7 @@
                                     <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                             @endif
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo3_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3_sit == 1, [
+                        {!! Form::radio('Declaracao_contrapartida_sit', '1', $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -166,7 +163,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo3_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo3_sit == 0, [
+                        {!! Form::radio('Declaracao_contrapartida_sit', '0', $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -180,26 +177,23 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#d" aria-expanded="false" aria-controls="d">
-                            <strong> <big> D) </strong> </big>
-                            Cópia da
-                            Ata da Assembleia de Fundação ou
-                            Constituição ou do Estatuto Social,
-                            ou
-                            Regimento Interno, conforme o caso.
+                            <strong> <big> D) </strong> </big> • Comprovante de Abertura de Conta e Extrato de Conta
+                            Bancária zerada e específica para a formalização do Convênio (Conta não poderá ser no CNPJ dos
+                            FUNDOS).
 
                         </button>
                     </h2>
                     <div id="d" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo4)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Comprovante_abertura_conta)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo4) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Comprovante_abertura_conta) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo4) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Comprovante_abertura_conta) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -208,7 +202,7 @@
                                     <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                             @endif
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo4_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo4_sit == 1, [
+                        {!! Form::radio('Comprovante_abertura_conta_sit', '1', $n_processo->Doc_prefeitura->Comprovante_abertura_conta_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -217,7 +211,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo4_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo4_sit == 0, [
+                        {!! Form::radio('Comprovante_abertura_conta_sit', '0', $n_processo->Doc_prefeitura->Comprovante_abertura_conta_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -231,27 +225,21 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#e" aria-expanded="false" aria-controls="e">
-                            <strong> <big> E) </strong> </big>
-                            Cópia do
-                            Ato de Eleição de nomeação ou posse
-                            da Mesa
-                            Diretora e Dirigente, conforme o
-                            caso.
-
-
+                            <strong> <big> E) </strong> </big>Comprovação da qualificação técnica e da capacidade
+                            operacional, mediante comprovação de funcionamento regular.
                         </button>
                     </h2>
                     <div id="e" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo5)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Comprovante_qualif_tecnica)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo5) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Comprovante_qualif_tecnica) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo5) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Comprovante_qualif_tecnica) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -260,7 +248,7 @@
                                     <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                             @endif
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo5_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo5_sit == 1, [
+                        {!! Form::radio('Comprovante_qualif_tecnica_sit', '1', $n_processo->Doc_prefeitura->Comprovante_qualif_tecnica_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -269,7 +257,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo5_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo5_sit == 0, [
+                        {!! Form::radio('Comprovante_qualif_tecnica_sit', '0', $n_processo->Doc_prefeitura->Comprovante_qualif_tecnica_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -283,12 +271,8 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#f" aria-expanded="false" aria-controls="f">
-                            <strong> <big> F) </strong> </big>
-                            Comprovante de Abertura de Conta e
-                            Extrato
-                            de Conta Bancária zerada e
-                            específica para a
-                            formalização do Instrumento.
+                            <strong> <big> F) </strong> </big> Cópia do Diploma do Ato de nomeação ou posse, emitido pelo
+                            Cartório Eleitoral.
 
                         </button>
                     </h2>
@@ -296,14 +280,14 @@
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
 
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo6)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Diploma_nomeacao)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo6) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Diploma_nomeacao) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo6) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Diploma_nomeacao) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -313,7 +297,7 @@
                             @endif
 
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo6_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo6_sit == 1, [
+                        {!! Form::radio('Diploma_nomeacao_sit', '1', $n_processo->Doc_prefeitura->Diploma_nomeacao_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -322,7 +306,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo6_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo6_sit == 0, [
+                        {!! Form::radio('Diploma_nomeacao_sit', '0', $n_processo->Doc_prefeitura->Diploma_nomeacao_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -336,26 +320,20 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#g" aria-expanded="false" aria-controls="g">
-                            <strong> <big> G) </strong>
-                            </big>Comprovação da qualificação
-                            técnica e
-                            da capacidade operacional, mediante
-                            comprovação de funcionamento
-                            regular.
-
+                            <strong> <big> G) </strong> </big> Cópia da Ata de sessão solene de Eleição.
                         </button>
                     </h2>
                     <div id="g" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo7)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Ata_eleicao)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo7) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Ata_eleicao) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo7) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Ata_eleicao) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -364,7 +342,7 @@
                                     <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                             @endif
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo7_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo7_sit == 1, [
+                        {!! Form::radio('Ata_eleicao_sit', '1', $n_processo->Doc_prefeitura->Ata_eleicao_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -373,7 +351,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo7_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo7_sit == 0, [
+                        {!! Form::radio('Ata_eleicao_sit', '0', $n_processo->Doc_prefeitura->Ata_eleicao_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -387,27 +365,20 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#h" aria-expanded="false" aria-controls="h">
-                            <strong> <big> H) </strong> </big>
-                            Comprovação de Experiência Prévia na
-                            Realização de Parcerias com objetos
-                            semelhantes – (Anexar Cópia de
-                            Publicações e
-                            Parcerias executadas ou em
-                            andamento).
-
+                            <strong> <big> H) </strong> </big> Cópia Posse emitida pela Câmara Municipal.
                         </button>
                     </h2>
                     <div id="h" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo8)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Doc_posse)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo8) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Doc_posse) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo8) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Doc_posse) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -417,7 +388,7 @@
                             @endif
 
                         </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo8_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo8_sit == 1, [
+                        {!! Form::radio('Doc_posse_sit', '1', $n_processo->Doc_prefeitura->Doc_posse_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -426,7 +397,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Doc_Anexo2_Anexo8_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo8_sit == 0, [
+                        {!! Form::radio('Doc_posse_sit', '0', $n_processo->Doc_prefeitura->Doc_posse_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -436,210 +407,8 @@
                         </label>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#i" aria-expanded="false" aria-controls="i">
-                            <strong> <big> I) </strong> </big>
-                            Declaração que comprove a
-                            regularidade do
-                            mandato de sua diretoria, da
-                            realização de
-                            assembleias ordinárias e da
-                            atividade
-                            regular, com validade restrita ao
-                            exercício
-                            de sua emissão, quando for o caso.
-
-                        </button>
-                    </h2>
-                    <div id="i" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo9)
-                                <div class="icon">
-                                    <div class="col-md-12 iframe-container">
-                                        <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo9) }}"></iframe>
-                                    </div>
-                                    <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo9) }}"
-                                        target="_blank">
-                                        <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                                    </a>
-                                </div>
-                                @else
-                                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                            @endif
-                        </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo9_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo9_sit == 1, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios1',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios1">
-                            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>
-                                Validado</span>
-                        </label>
-
-                        {!! Form::radio('Doc_Anexo2_Anexo9_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo9_sit == 0, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios2',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios2">
-                            <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>
-                                Corrigir</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#j" aria-expanded="false" aria-controls="j">
-                            <strong> <big> J) </strong> </big>
-                            Declaração de Capacidade
-                            Administrativa,
-                            Técnica e Gerencial Para a Execução
-                            do Plano
-                            De Trabalho (modelo em anexo);
-
-
-                        </button>
-                    </h2>
-                    <div id="j" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo10)
-                                <div class="icon">
-                                    <div class="col-md-12 iframe-container">
-                                        <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo10) }}"></iframe>
-                                    </div>
-                                    <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo10) }}"
-                                        target="_blank">
-                                        <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                                    </a>
-                                </div>
-                                @else
-                                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                            @endif
-                        </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo10_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo10_sit == 1, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios1',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios1">
-                            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>
-                                Validado</span>
-                        </label>
-
-                        {!! Form::radio('Doc_Anexo2_Anexo10_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo10_sit == 0, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios2',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios2">
-                            <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>
-                                Corrigir</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#k" aria-expanded="false" aria-controls="k">
-                            <strong> <big> K) </strong> </big>
-                            Declaração de Contrapartida – quando
-                            for o
-                            caso (modelo em anexo);
-                        </button>
-                    </h2>
-                    <div id="k" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11)
-                                <div class="icon">
-                                    <div class="col-md-12 iframe-container">
-                                        <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11) }}"></iframe>
-                                    </div>
-                                    <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11) }}"
-                                        target="_blank">
-                                        <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                                    </a>
-                                </div>
-                                @else
-                                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                            @endif
-                        </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo11_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11_sit == 1, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios1',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios1">
-                            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>
-                                Validado</span>
-                        </label>
-
-                        {!! Form::radio('Doc_Anexo2_Anexo11_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo11_sit == 0, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios2',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios2">
-                            <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>
-                                Corrigir</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#l" aria-expanded="false" aria-controls="l">
-                            <strong> <big> L) </strong> </big>
-                            Declaração da Não Ocorrência de
-                            Impedimentos
-                            (modelo em anexo);
-
-                        </button>
-                    </h2>
-                    <div id="l" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            @if ($n_processo->Doc_anexo2 && $n_processo->Doc_anexo2->Doc_Anexo2_Anexo12)
-                                <div class="icon">
-                                    <div class="col-md-12 iframe-container">
-                                        <iframe
-                                            src="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo12) }}"></iframe>
-                                    </div>
-                                    <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->Doc_anexo2->Doc_Anexo2_Anexo12) }}"
-                                        target="_blank">
-                                        <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
-                                    </a>
-                                </div>
-                                @else
-                                    <h4 class="text-danger"> <b> Documento não enviado </b></h4>
-                            @endif
-                        </div>
-                        {!! Form::radio('Doc_Anexo2_Anexo12_sit', '1', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo12_sit == 1, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios1',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios1">
-                            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>
-                                Validado</span>
-                        </label>
-
-                        {!! Form::radio('Doc_Anexo2_Anexo12_sit', '0', $n_processo->Doc_anexo2->Doc_Anexo2_Anexo12_sit == 0, [
-                            'class' => 'form-check-input',
-                            'id' => 'gridRadios2',
-                        ]) !!}
-                        <label class="form-check-label" for="gridRadios2">
-                            <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>
-                                Corrigir</span>
-                        </label>
-                    </div>
-                </div>
+             
+              
             </div><!-- End Default Accordion Example -->
 
 

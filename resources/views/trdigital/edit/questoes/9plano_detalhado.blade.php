@@ -15,13 +15,10 @@
                       <div class="card-body">
 
                           <h5 class="card-title text-center">MEMÓRIA DE CÁLCULO</h5>
-                          @if ($n_processo->Status == 'CORRIGIR')
-                          @else
                               <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                   data-bs-target="#novoregistro-memoriacalculo">
                                   + Novo Registro
                               </button>
-                          @endif
 
                           {{-- <p>Add <code>.modal-dialog-centered</code> to <code>.modal-dialog</code> to vertically center
                               the modal.</p> --}}

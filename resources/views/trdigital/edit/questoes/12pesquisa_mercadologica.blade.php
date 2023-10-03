@@ -11,13 +11,12 @@
                  <div class="card-body">
 
                      <h5 class="card-title text-center">CADASTRO DE PESQUISA MERCADOLÓGICA</h5>
-                     @if ($n_processo->Status == 'CORRIGIR')
-                     @else
+                     
                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                          data-bs-target="#novo_pesquisa_mercadologica">
                          + Novo Registro
                      </button>
-                     @endif
+                     
                      @include('trdigital.edit.questoes.12pesquisamercadologica.criarpesquisamercadologica')
 
                      @foreach ($pesquisa_mercadologica as $pesquisa)
