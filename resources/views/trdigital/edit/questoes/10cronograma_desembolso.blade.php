@@ -236,7 +236,7 @@
                                                       </div>
 
                                                       <div class="col-md-6">
-                                                          <label for="floatingZip">Valor error</label>
+                                                          <label for="floatingZip">Valor</label>
                                                           <div class="form-floating">
                                                               <div class="input-group mb-3">
                                                                   <span class="input-group-text"

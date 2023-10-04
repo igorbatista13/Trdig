@@ -466,7 +466,9 @@ class TrdigitalController extends Controller
             'Produto_Servico_detalhado' => $request->input('Produto_Servico_detalhado'),
             'Unidade_medida_detalhado' => $request->input('Unidade_medida_detalhado'),
             'Quantidade_detalhado' => $request->input('Quantidade_detalhado'),
-            'Valor_unit_detalhado' => $valorDecimal,
+         //   'Valor_unit_detalhado' => $valorDecimal,
+            'Valor_unit_detalhado' => $this->parseValorInput($request->input('Valor_unit_detalhado')),
+
         ];
 
         Plano_detalhado::create($data);
@@ -607,7 +609,9 @@ class TrdigitalController extends Controller
             'ano' => $request->input('ano'),
             'mes' => $request->input('mes'),
             'fonte' => $request->input('fonte'),
-            'valor_desembolso' => $valorDecimal,
+          //  'valor_desembolso' => $valorDecimal,
+            'valor_desembolso' => $this->parseValorInput($request->input('valor_desembolso')),
+
         ];
 
         Cronograma_desembolso::create($etapas);
@@ -634,7 +638,9 @@ class TrdigitalController extends Controller
             'ano' => $request->input('ano'),
             'mes' => $request->input('mes'),
             'fonte' => $request->input('fonte'),
-            'valor_desembolso' => $valorDecimal,
+            'valor_desembolso' => $this->parseValorInput($request->input('valor_desembolso')),
+
+          //  'valor_desembolso' => $valorDecimal,
         ];
 
         Cronograma_desembolso::findOrFail($request->id)->update($data);
@@ -680,9 +686,11 @@ class TrdigitalController extends Controller
             'Especificacao' => $request->input('Especificacao'),
             'Unidade' => $request->input('Unidade'),
             'Qtd' => $request->input('Qtd'),
-            'Valor_unit' => $valorDecimal,
+            'Valor_unit' => $this->parseValorInput($request->input('Valor_unit')),
+          //  'Valor_unit' => $valorDecimal,
             'Local_destino' => $request->input('Local_destino'),
             'Propriedade' => $request->input('Propriedade'),
+
         ];
 
         Obras_equipamento::create($data);
@@ -709,7 +717,9 @@ class TrdigitalController extends Controller
             'Especificacao' => $request->input('Especificacao'),
             'Unidade' => $request->input('Unidade'),
             'Qtd' => $request->input('Qtd'),
-            'Valor_unit' => $valorDecimal,
+          //  'Valor_unit' => $valorDecimal,
+            'Valor_unit' => $this->parseValorInput($request->input('Valor_unit')),
+
             'Local_destino' => $request->input('Local_destino'),
             'Propriedade' => $request->input('Propriedade'),
         ];
