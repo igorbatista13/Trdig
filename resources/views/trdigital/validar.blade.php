@@ -68,7 +68,7 @@
                                                           </div>
                                                           <div class="col-lg-6">
                                                             <div class="info-box card">
-                                                              <i class="bi bi-caret-down-square-fill"></i>
+                                                              <i class="bi bi-chat-left-text"></i>
                                                               <h3>Status</h3>
                                                               @if ($n_processo->Status == 'CORRIGIR')
                                                               <p><b class="text-warning">{{ $n_processo->Status }} </b> </p>
@@ -92,9 +92,8 @@
                                                       </div>
                                               
                                                       
-                                                      <div class="col-xl-2">
-                                                        <div class="card p-2">
-                                                            <img src="https://avatars.mds.yandex.net/i?id=f04ece67d94a9c68aeb1a319d437d2e3f23068ae-5394611-images-thumbs&n=13">
+                                                      <div class="col-lg-2">
+                                                            <img src="{{asset('images/manual.jpg')}}">
                                                             <button type="button" class="btn btn-primary"
                                                             data-bs-toggle="modal" data-bs-target="#basicModal">
                                                             Ajuda <i class="bx bx-help-circle"></i>
@@ -193,7 +192,6 @@
 
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
 
 
 
@@ -234,36 +232,9 @@
                                                                 value="{{ auth()->user()->id }}">
                                                         @endif
 
-                                                        <div class="row">
-                                                        
-                                            
-                                                            <div class="col-lg-4">
-                                                        
-                                                            </div>
-
-
-
-                                                        </div>
-
-
-                                                        <!-- Seu código HTML do select -->
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                  
-                                         
-
-                                                            </div>
-                                                            <div class="col-lg-6">
-
-                                                            </div>
-                                                            <div class="col-lg-2">
-
+                                        
                                                         
 
-                                                            </div>
-
-
-                                                        </div>
                                                     </div>
 
 
@@ -274,10 +245,8 @@
 
 
 
-                                            </div>
-                                        </div>
 
-                                    </div>
+                              
                    
 
                                     <div class="row">
