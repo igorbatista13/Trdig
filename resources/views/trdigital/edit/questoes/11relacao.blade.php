@@ -208,6 +208,7 @@
                                                      'placeholder' => 'Quantidade',
                                                      'class' => 'form-control',
                                                      'max' => '999999999999',
+                                                     'required' => true,
                                                  ]) !!}
                                                  <label for="floatingCity">Quantidade</label>
                                              </div>
@@ -219,6 +220,7 @@
                                                      'placeholder' => 'Valor',
                                                      'class' => 'form-control',
                                                      'maxlength' => '15',
+                                                     'required' => true,
                                                      'oninput' => 'aplicarMascara(this)',
                                                      'onkeypress' => 'return validarValor(this, event)',
                                                  ]) !!}
@@ -246,7 +248,7 @@
                                          <div class="col-md-6">
                                              <div class="form-floating">
                                                  <div class="form-check">
-                                                     {!! Form::radio('Propriedade', 'Concedente', false, ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
+                                                     {!! Form::radio('Propriedade', 'Concedente', false, ['class' => 'form-check-input', 'required' => true, 'id' => 'radioOpcao1']) !!}
                                                      <label class="form-check-label"
                                                          for="radioOpcao1">Concedente</label>
                                                  </div>

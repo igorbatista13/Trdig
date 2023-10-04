@@ -90,6 +90,7 @@
                                         'placeholder' => 'Quantidade',
                                         'class' => 'form-control',
                                         'max' => '999999999999',
+                                        'required' => true,
                                     ]) !!}
                                     <label for="floatingCity">Quantidade</label>
                                 </div>
@@ -101,7 +102,7 @@
                                         'placeholder' => '',
                                         'class' => 'form-control',
                                         'maxlength' => '15',
-                                    
+                                        'required' => true,
                                         'oninput' => 'aplicarMascara(this)',
                                     ]) !!}
                                     <label for="floatingZip">Valor</label>
@@ -130,6 +131,7 @@
                                         {!! Form::radio('Propriedade', 'Concedente', $obras_equipamentos->Propriedade == 'Concedente', [
                                             'class' => 'form-check-input',
                                             'id' => 'radioOpcao1',
+                                            'required' => true,
                                         ]) !!}
                                         <label class="form-check-label" for="radioOpcao1">Concedente</label>
                                     </div>

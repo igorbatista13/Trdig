@@ -74,6 +74,7 @@
                                     'placeholder' => '',
                                     'class' => 'form-control',
                                     'max' => '999999999999',
+                                    'required' => true,
                                 ]) !!}
                                 <label for="floatingName"></label>
                                 <label for="floatingEmail">Quantidade</label>
@@ -96,7 +97,7 @@
                                                 'placeholder' => 'a',
                                                 'class' => 'form-control',
                                                 'maxlength' => '15',
-                                            
+                                                'required' => true,
                                                 'oninput' => 'aplicarMascara(this)',
                                                 'onkeypress' => 'return validarValor(this, event)',
                                             ]) !!}

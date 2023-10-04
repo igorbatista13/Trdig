@@ -100,7 +100,7 @@
                                     <h5> Fonte:</h5>
 
                                     <div class="form-check">
-                                        {!! Form::radio('fonte', 'Concedente', $cronograma_desembolsos->fonte === 'Concedente', ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
+                                        {!! Form::radio('fonte', 'Concedente', $cronograma_desembolsos->fonte === 'Concedente', ['class' => 'form-check-input', 'required' => true, 'id' => 'radioOpcao1']) !!}
                                         <label class="form-check-label" for="radioOpcao1">Concedente</label>
                                     </div>
                                     
@@ -123,6 +123,7 @@
                                         'placeholder' => 'a',
                                         'class' => 'form-control',
                                         'class' => 'form-control',
+                                        'required' => true,
                                         'maxlength' => '15',
                                         
                                         'oninput' => 'aplicarMascara(this)',

@@ -221,7 +221,7 @@
                                                           <div class="form-floating">
                                                               <h5> Fonte:</h5>
                                                               <div class="form-check">
-                                                                  {!! Form::radio('fonte', 'Concedente', false, ['class' => 'form-check-input', 'id' => 'radioOpcao1']) !!}
+                                                                  {!! Form::radio('fonte', 'Concedente', false, ['class' => 'form-check-input', 'required' => true, 'id' => 'radioOpcao1']) !!}
                                                                   <label class="form-check-label"
                                                                       for="radioOpcao1">Concedente</label>
                                                               </div>
@@ -245,7 +245,8 @@
                                                                   {!! Form::text('valor_desembolso', null, [
                                                                       'placeholder' => '',
                                                                       'class' => 'form-control',
-                                                                      'maxlength' => '15',                                                                  
+                                                                      'maxlength' => '15',            
+                                                                      'required' => true,                                                      
                                                                       'oninput' => 'aplicarMascara(this)',
                                                                       'onkeypress' => 'return validarValor(this, event)',
                                                                   ]) !!}

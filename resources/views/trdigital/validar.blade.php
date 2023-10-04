@@ -23,47 +23,262 @@
 
                                 <!--//row-->
 
+             
                                 <section id="multiple-column-form">
                                     <div class="row match-height">
                                         <div class="col-12">
 
-                                            <br>
-
-
 
                                             <div class="text-center mb-5">
-                                                <img src="{{ asset('/images/validate.png') }}" height="100px"
+                                                <img src="{{ asset('/images/createform.png') }}" height="88"
                                                     class='mb-4'>
-                                                <h3>TR DIGITAL - Validação</h3>
-                                                <h4 class="text-warning"> <b> {{ $n_processo->Orgaos->Sigla }} -
-                                                        {{ $n_processo->Orgaos->Nome }} </b></h4>
+                                                <h3><b> TR DIGITAL - </b> <span class="text-warning"> (Validação) </span></h3>
+                                                    <br>
+                                                <section class="section contact">
 
+                                                    <div class="row gy-4">
+                                              
+                                                      <div class="col-xl-8">
+                                              
+                                                        <div class="row">
+                                                          <div class="col-lg-6">
+                                                            <div class="info-box card">
+                                                              <i class="bi bi-file-earmark-text"></i>
+                                                              <h3>N° da TR Digital</h3>
+                                                              <p> <big> <b class="text-danger"> <u> {{$n_processo->id}} </u></b </b></big></p>
+                                                              <p> - </p>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg-6">
+                                                            <div class="info-box card"><center>
+                                                                <img src="{{ asset('/images/brasao_mt.png') }}" class="rounded" width="38">
+                                                                <h3>Órgão Concedente:</h3>
+                                                            <b>  {{ $n_processo->Orgaos->Sigla }} </b> - 
+                                                             {{ $n_processo->Orgaos->Nome }} </p><br>
+
+                                                                          </div>
+                                                          </div>
+                                                          <div class="col-lg-6">
+                                                            <div class="info-box card">
+                                                              <i class="bi bi-person-circle"></i>
+                                                              <h3>Autor da TR</h3>
+                                                              <p><b>{{Auth::user()->name}} </b></p>
+                                                              <p> <span class="text-primary"> {{Auth::user()->perfil->Tipo }} </span></p>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg-6">
+                                                            <div class="info-box card">
+                                                              <i class="bi bi-caret-down-square-fill"></i>
+                                                              <h3>Status</h3>
+                                                              @if ($n_processo->Status == 'CORRIGIR')
+                                                              <p><b class="text-warning">{{ $n_processo->Status }} </b> </p>
+                                                              @endif
+                                                              
+                                                              @if ($n_processo->Status == 'FINALIZADO')
+                                                              <p><b class="text-success">{{ $n_processo->Status }} </b> </p>
+                                                              @endif
+                                                              @if ($n_processo->Status == 'AGUARDANDO')
+                                                              <p><b class="text-primary">{{ $n_processo->Status }} </b> </p>
+                                                              @endif
+                                                              @if ($n_processo->Status == '')
+                                                              <p><b class="text-primary"> EM CONSTRUÇÃO </b> </p>
+                                                              @endif
+
+                                                              <p> - </p>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                              
+                                                      </div>
+                                              
+                                                      
+                                                      <div class="col-xl-2">
+                                                        <div class="card p-2">
+                                                            <img src="https://avatars.mds.yandex.net/i?id=f04ece67d94a9c68aeb1a319d437d2e3f23068ae-5394611-images-thumbs&n=13">
+                                                            <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#basicModal">
+                                                            Ajuda <i class="bx bx-help-circle"></i>
+                                                        </button>
+                                                        <div class="modal fade" id="basicModal" tabindex="-1">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-primary">Ajuda,
+                                                                            Links, Documentos</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="col-xl-12">
+
+                                                                            @foreach ($biblioteca as $bibliotecas)
+                                                                                <!-- Default Accordion -->
+                                                                                <div class="accordion"
+                                                                                    id="accordionExample">
+                                                                                    <div class="accordion-item">
+                                                                                        <h2 class="accordion-header"
+                                                                                            id="headingOne">
+
+                                                                                            <button
+                                                                                                class="accordion-button"
+                                                                                                type="button"
+                                                                                                data-bs-toggle="collapse"
+                                                                                                data-bs-target="#collapseOne"
+                                                                                                aria-expanded="true"
+                                                                                                aria-controls="collapseOne">
+                                                                                                @if ($bibliotecas->Tipo == 'PDF')
+                                                                                                    <img src="{{ asset('images/pdf.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                        
+                                                                                                    @elseif ($bibliotecas->Tipo == 'Excel')
+                                                                                                    <img src="{{ asset('images/excel.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                    @elseif ($bibliotecas->Tipo == 'Imagem')
+                                                                                                    <img src="{{ asset('images/imagem_logo.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                    @elseif ($bibliotecas->Tipo == 'Video')
+                                                                                                    <img src="{{ asset('images/video_logo.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                    @elseif ($bibliotecas->Tipo == 'Word')
+                                                                                                    <img src="{{ asset('images/word.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                    @elseif ($bibliotecas->Tipo == 'Outros')
+                                                                                                    <img src="{{ asset('images/biblioteca-ico.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                    @elseif ($bibliotecas->Tipo == 'Link')
+                                                                                                    <img src="{{ asset('images/link.png') }}"
+                                                                                                        width="40px"
+                                                                                                        class="img-fluid rounded-start">
+                                                                                                @else
+                                                                                                @endif
+                                                                                                {{ $bibliotecas->Nome }}
+                                                                                            </button>
+                                                                                        </h2>
+                                                                                        <div id="collapseOne"
+                                                                                            class="accordion-collapse collapse show"
+                                                                                            aria-labelledby="headingOne"
+                                                                                            data-bs-parent="#accordionExample">
+                                                                                            <div
+                                                                                                class="accordion-body">
+                                                                                                @if ($bibliotecas->Descricao)
+                                                                                                    Sobre: <strong>
+                                                                                                        {{ $bibliotecas->Descricao }}
+                                                                                                    </strong><br>
+                                                                                                @else
+                                                                                                @endif
+                                                                                                @if ($bibliotecas->Link)
+                                                                                                    Link: <strong>
+                                                                                                        <a href="{{ $bibliotecas->Link }}"
+                                                                                                            target="_blank">{{ $bibliotecas->Link }}</a>
+                                                                                                    </strong> <br>
+                                                                                                @else
+                                                                                                @endif
+                                                                                                @if ($bibliotecas->Anexo)
+                                                                                                    <a class="btn btn-primary"
+                                                                                                        href="{{ asset('storage/' . $bibliotecas->Anexo) }}"
+                                                                                                        target="_blank">
+                                                                                                        <i
+                                                                                                            class="bi bi-file-earmark-pdf-fill"></i>
+                                                                                                        Ver arquivo
+                                                                                                    </a>
+                                                                                                @else
+                                                                                                @endif
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
+
+                                                                                </div>
+                                                                                <!-- End Default Accordion Example -->
+                                                                            @endforeach
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+
+                                                                        <button type="button"
+                                                                            class="btn btn-primary"
+                                                                            data-bs-dismiss="modal">Fechar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- End Basic Modal-->
+                                                        </div>
+                                              
+                                                      </div>
+                                              
+                                                    </div>
+                                              
+                                                  </section>
 
                                                 <div class="row">
 
-                                                    <div class="col-lg-6">
-                                                        {{-- 
-                                                      {!! Form::model($n_processo, [
+                                                    <div class="col-lg-12">
+                                                        {{-- {!! Form::model($n_processo, [
                                                             'method' => 'PATCH',
-                                                            'route' => ['trdigital.validar', $n_processo->id],
+                                                            'route' => ['trdigital.update', $n_processo->id],
                                                             'enctype' => 'multipart/form-data',
                                                         ]) !!} --}}
-
-
 
                                                         @if (auth()->check())
                                                             <input type="hidden" name="user_id"
                                                                 value="{{ auth()->user()->id }}">
                                                         @endif
 
+                                                        <div class="row">
+                                                        
+                                            
+                                                            <div class="col-lg-4">
+                                                        
+                                                            </div>
 
 
+
+                                                        </div>
+
+
+                                                        <!-- Seu código HTML do select -->
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                  
+                                         
+
+                                                            </div>
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                            <div class="col-lg-2">
+
+                                                        
+
+                                                            </div>
+
+
+                                                        </div>
                                                     </div>
+
+
+
                                                 </div>
+
+
+
+
+
                                             </div>
                                         </div>
 
                                     </div>
+                   
 
                                     <div class="row">
                                         <div class="col-3">
