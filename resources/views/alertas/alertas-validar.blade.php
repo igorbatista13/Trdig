@@ -137,6 +137,10 @@
         <div class="card-pic-finalizado">
     @endif
 
+    @if ($n_processo->Status == 'TRAMITADO')
+        <div class="card-pic-aguardando">
+    @endif
+
     <img src="https://st.hzcdn.com/simgs/1cc1ba0602975e66_16-7271/preparation.jpg">
 </div>
 
@@ -158,6 +162,12 @@
         <i class="bi bi-check-circle me-1"></i> FINALIZADO </span>
 @endif
 @if ($n_processo->Status == 'AGUARDANDO')
+    <!-- Button trigger modal -->
+    <span class="badge bg-primary position-absolute">
+        <i class="bi bi-check-circle me-1"></i> AGUARDANDO ANÁLISE </span>
+@endif
+
+@if ($n_processo->Status == 'TRAMITADO')
     <!-- Button trigger modal -->
     <span class="badge bg-primary position-absolute">
         <i class="bi bi-check-circle me-1"></i> AGUARDANDO ANÁLISE </span>
@@ -211,6 +221,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+           
+  
 
             @if ($n_processo->Status == 'FINALIZADO')
                 <!-- Button trigger modal -->
