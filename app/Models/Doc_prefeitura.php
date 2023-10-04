@@ -19,7 +19,6 @@ class Doc_prefeitura extends Model
    'Diploma_nomeacao', 'Diploma_nomeacao_sit','Diploma_nomeacao_obs',
    'Ata_eleicao', 'Ata_eleicao_sit','Ata_eleicao_obs',
    'Doc_posse', 'Doc_posse_sit','Doc_posse_obs',
-
      
  ];
 

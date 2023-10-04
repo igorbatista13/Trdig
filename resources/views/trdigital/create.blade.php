@@ -81,7 +81,8 @@
                                         </div>
                                         <div class="col-lg-4 text-center">
                                             {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                                            <button type="submit" class="btn btn-primary btn-lg">Criar TR</button>
+                                            <button type="submit" class="btn btn-primary btn-lg"> <i class="bi bi-file-earmark-text me-1"></i>
+                                                Criar Nova TR</button>
                                         </div>
                                       </div>
                                       

@@ -111,11 +111,11 @@
                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         <strong> <big> C) </strong> </big> Declaração de Contrapartida, deverão informar a previsão
                         orçamentária publicada e atualizada, inclusive os dados da publicação.
-                        @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == '')
-                        @elseif ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 1)
+                        @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Delcaracao_contrapartida_sit == '')
+                        @elseif ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Delcaracao_contrapartida_sit == 1)
                             <span class="badge bg-success">
                                 <i class="bi bi-check-circle me-1"></i> Validado</span>
-                        @elseif ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 0)
+                        @elseif ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Delcaracao_contrapartida_sit == 0)
                             <span class="badge bg-warning text-dark">
                                 <i class="bi bi-exclamation-triangle me-1"></i> Corrigir</span>
                         @endif
@@ -125,19 +125,19 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 1)
+                        @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Delcaracao_contrapartida_sit == 1)
                         @else
-                            {!! Form::file('Declaracao_contrapartida', ['class' => 'form-control', 'id' => 'formFile']) !!}
+                            {!! Form::file('Delcaracao_contrapartida', ['class' => 'form-control', 'id' => 'formFile']) !!}
                         @endif
                     </div>
-                    @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida)
+                    @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Delcaracao_contrapartida)
                         <div class="icon">
                             <div class="col-md-12 iframe-container">
                                 <iframe
-                                    src="{{ asset('storage/' . $n_processo->doc_prefeitura->Declaracao_contrapartida) }}"></iframe>
+                                    src="{{ asset('storage/' . $n_processo->doc_prefeitura->Delcaracao_contrapartida) }}"></iframe>
                             </div>
                             <a class="btn btn-primary"
-                                href="{{ asset('storage/' . $n_processo->doc_prefeitura->Declaracao_contrapartida) }}"
+                                href="{{ asset('storage/' . $n_processo->doc_prefeitura->Delcaracao_contrapartida) }}"
                                 target="_blank">
                                 <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                             </a>
