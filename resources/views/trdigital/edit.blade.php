@@ -59,15 +59,50 @@
 
                                                         <div class="row">
                                                             <div class="col-lg-4">
+
+                                                                <div class="col-xl-6">
+
+                                                                    <div class="card">
+                                                                      <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                                          
+                                                                        
+                                                                        <img src="{{ asset('images/brasao_mt.png') }}" width="50px" alt="Profile" class="rounded">
+                                                                       <br>
+                                                                        <h5>  <code>  <b> Órgão Concedente:  </b> </code> 
+                                                                            
+                                                                            <b> {{ $n_processo->Orgaos->Sigla }} - </b>
+                                                                            <i>  {{ $n_processo->Orgaos->Nome }} </i>
+                                                                        </h5>
+                                                                        
+                                                                    @if (Auth::user()->perfil && Auth::user()->perfil->Tipo)
+                                                                    <h5>  <code>  <b> N° da TR:  </b> </code> {{$n_processo->id }}</h5>
+                                                                    <h5>  <code>  <b> Autor:  </b> </code> {{Auth::user()->name}}</h5>
+                                                                    <h5>  <code>  <b> Perfil:  </b> </code> {{Auth::user()->perfil->Tipo }}</h5>
+                                                          
+                                                                    @endif
+                                                                    
+                                                                      </div>
+                                                                    </div>
+                                                          
+                                                                  </div>
+
+                             
+                                                            </div>
+                                                            <div class="col-lg-4">
                                                                 <div class="list-group" id="list-tab" role="tablist">
                                                                     <a class="list-group-item list-group-item-action active"
                                                                         id="list-home-list" data-bs-toggle="list"
                                                                         href="#list-home" role="tab"
-                                                                        aria-controls="list-home"><big><b> Órgão Concedente
-                                                                            </b></big>
+                                                                        aria-controls="list-home"><big><b> {{ $n_processo->Orgaos->Sigla }} -
+                                                                            {{ $n_processo->Orgaos->Nome }}
+                                                                        </b></big>
+                                                                        <br>
                                                                     </a>
 
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                        
                                                             </div>
 
 
@@ -78,16 +113,8 @@
                                                         <!-- Seu código HTML do select -->
                                                         <div class="row">
                                                             <div class="col-lg-4">
-                                                                <select name="Orgao_Concedente" id="Orgao_Concedente"
-                                                                    class="form-control custom-select" required>
-                                                                    Selecione o Orgão Concedente
-                                                                    </option>
-                                                                    <option value="{{ $n_processo->Orgao_Concedente }}">
-                                                                        <img src="" width="20px">
-                                                                        {{ $n_processo->Orgaos->Sigla }} -
-                                                                        {{ $n_processo->Orgaos->Nome }}
-                                                                    </option>
-                                                                </select>
+                                                  
+                                         
 
                                                             </div>
                                                             <div class="col-lg-6">
@@ -232,7 +259,18 @@
                                         </div>
 
                                     </div>
+                                    <small>
+                                       <b> Legenda: </b>
+                                                Falta a preencher <span
+                                                class="badge bg-warning custom-badge ">
+                                                <i class="bi bi-pencil me-1 text-dark"></i>
+                                            </span>
+                                           Preenchido <span
+                                            class="badge bg-success custom-badge">
+                                            <i class="bi bi-pencil me-1 text-light"> </i>
+                                        </span>
 
+                                                        </small>
                                     <div class="row">
                                         <div class="col-3">
                                             <div class="list-group" id="list-tab" role="tablist">

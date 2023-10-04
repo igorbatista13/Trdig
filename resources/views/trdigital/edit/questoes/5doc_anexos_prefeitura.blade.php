@@ -2,8 +2,10 @@
 
 <div class="tab-pane fade" id="list-atas" role="tabpanel" aria-labelledby="list-atas-list">
     <div class="card-body">
-        <h5 class="card-title"><b> <big> 5. </b> </big> Atas, Certidões, Comprovantes e Declarações (Anexar): <b>
-                Prefeitura </b> </h5>
+
+        <h5 class="card-title">
+            <b> <big> 5. </b> </big> Atas, Certidões, Comprovantes e Declarações (Anexar): <b>
+                </b> </h5>
         {!! Form::model($n_processo, [
             'method' => 'PUT',
             'route' => ['trdigital.update_Doc_prefeitura', $n_processo->id],
@@ -151,7 +153,7 @@
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#d" aria-expanded="false" aria-controls="f">
-                        <strong> <big> D) </strong> </big> • Comprovante de Abertura de Conta e Extrato de Conta
+                        <strong> <big> D) </strong> </big> Comprovante de Abertura de Conta e Extrato de Conta
                         Bancária zerada e específica para a formalização do Convênio (Conta não poderá ser no CNPJ dos
                         FUNDOS).
                         @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Comprovante_abertura_conta_sit == '')

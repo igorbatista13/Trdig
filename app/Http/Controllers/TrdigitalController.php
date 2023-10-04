@@ -1327,8 +1327,8 @@ class TrdigitalController extends Controller
         if ($request->hasFile('Oficio_emenda')) {
             $doc_prefeitura['Oficio_emenda'] = $request->file('Oficio_emenda')->store('pdfs/doc_prefeitura', 'public');
         }
-        if ($request->hasFile('Declaracao_contrapartida')) {
-            $doc_prefeitura['Declaracao_contrapartida'] = $request->file('Declaracao_contrapartida')->store('pdfs/doc_prefeitura', 'public');
+        if ($request->hasFile('Delcaracao_contrapartida')) {
+            $doc_prefeitura['Delcaracao_contrapartida'] = $request->file('Delcaracao_contrapartida')->store('pdfs/doc_prefeitura', 'public');
         }
         if ($request->hasFile('Comprovante_abertura_conta')) {
             $doc_prefeitura['Comprovante_abertura_conta'] = $request->file('Comprovante_abertura_conta')->store('pdfs/doc_prefeitura', 'public');
@@ -1841,8 +1841,8 @@ class TrdigitalController extends Controller
         $doc_prefeitura->Oficio_emenda_sit = $Oficio_emenda;
         $doc_prefeitura->save();
 
-        $Declaracao_contrapartida = $request->input('Declaracao_contrapartida_sit');
-        $doc_prefeitura->Declaracao_contrapartida_sit = $Declaracao_contrapartida;
+        $Delcaracao_contrapartida = $request->input('Delcaracao_contrapartida_sit');
+        $doc_prefeitura->Delcaracao_contrapartida_sit = $Delcaracao_contrapartida;
         $doc_prefeitura->save();
 
         $Comprovante_abertura_conta = $request->input('Comprovante_abertura_conta_sit');
