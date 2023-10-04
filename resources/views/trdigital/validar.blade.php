@@ -10,7 +10,10 @@
     ?>
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
+    @include('alertas.index')
+
     <main id="main" class="main">
+
 
 
         <div class="content">

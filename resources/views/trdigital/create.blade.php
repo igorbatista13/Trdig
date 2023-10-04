@@ -49,58 +49,65 @@
 
                                 <div class="card mb-3">
                                     <div class="row g-0">
-                                      <div class="col-md-2">
-                                        <img src="{{ asset('images/brasao_mt.png') }}" class="img-fluid rounded-start" alt="...">
-                                      </div>
-                                      <div class="col-md-8">
-                                        <div class="card-body">
-                                            <BR>
-                                            <div class="col-8 text-center">
-                                                <div class="list-group" id="list-tab" role="tablist">
-                                                    <a class="list-group-item list-group-item-action active" id="list-home-list"
-                                                        data-bs-toggle="list" role="tab" aria-controls="list-home">
-                                                        <big><b>Selecione o Órgão Concedente</b></big>
-                                                    </a>
+                                        <div class="col-md-2">
+                                            <img src="{{ asset('images/brasao_mt.png') }}" class="img-fluid rounded-start"
+                                                alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <BR>
+                                                <div class="col-8 text-center">
+                                                    <div class="list-group" id="list-tab" role="tablist">
+                                                        <a class="list-group-item list-group-item-action active"
+                                                            id="list-home-list" data-bs-toggle="list" role="tab"
+                                                            aria-controls="list-home">
+                                                            <big><b>Selecione o Órgão Concedente</b></big>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </h5>
-<br>
-                                        <div class="row">
-                                            <div class="col-8 text-center">
+                                                </h5>
 
-                                            <select name="Orgao_Concedente" id="Orgao_Concedente"
-                                                class="form-control custom-select text-center" required>
-                                                <option value="" disabled selected>Selecione o Órgão Concedente</option>
-                                                @foreach ($orgaos as $orgao)
-                                                    <option value="{{ $orgao->id }}">
-                                                        <img src="{{ asset('images/brasao_mt.png') }}" width="20px">
-                                                        {{ $orgao->Sigla }} - {{ $orgao->Nome }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-4 text-center">
-                                            {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                                            <button type="submit" class="btn btn-primary btn-lg"> <i class="bi bi-file-earmark-text me-1"></i>
-                                                Criar Nova TR</button>
-                                        </div>
-                                      </div>
-                                      
+                                                <br>
+                                                
+                                                <div class="row">
+                                                    <div class="col-8 text-center">
+
+                                                        <select name="Orgao_Concedente" id="Orgao_Concedente"
+                                                            class="form-control custom-select text-center" required>
+                                                            <option value="" disabled selected>Selecione o Órgão
+                                                                Concedente</option>
+                                                            @foreach ($orgaos as $orgao)
+                                                                <option value="{{ $orgao->id }}">
+                                                                    <img src="{{ asset('images/brasao_mt.png') }}"
+                                                                        width="20px">
+                                                                    {{ $orgao->Sigla }} - {{ $orgao->Nome }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 text-center">
+                                                        {!! Form::open(['route' => 'trdigital.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                                        <button type="submit" class="btn btn-primary btn-lg"> <i
+                                                                class="bi bi-file-earmark-text me-1"></i>
+                                                            Criar Nova TR</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div><!-- End Card with an image on left -->
+
                                     </div>
-                                  </div><!-- End Card with an image on left -->
+                                </div>
+
+                            </div>
+
+
+
 
                         </div>
                     </div>
-
                 </div>
 
-               
-
-
-            </div>
-        </div>
-        </div>
-   
     </main>
     <script>
         $(document).ready(function() {
@@ -110,7 +117,7 @@
                 select.find('option').each(function() {
                     var option = $(this);
                     var imageSrc =
-                    '{{ asset('images/brasao_mt.png') }}'; // Substitua pelo caminho correto da imagem
+                        '{{ asset('images/brasao_mt.png') }}'; // Substitua pelo caminho correto da imagem
                     var imgElement = $('<img>').attr('src', imageSrc).css({
                         width: '20px', // Defina o tamanho da imagem aqui
                         marginRight: '5px' // Defina a margem direita para ajustar o espaçamento

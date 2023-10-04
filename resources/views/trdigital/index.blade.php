@@ -69,7 +69,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                             <th>Instituição</th>
                                             <th>Titulo do Projeto</th>
                                             <th>Concedente</th>
-                                            <th>Validar</th>
+                                            {{-- <th>Validar</th> --}}
                                             <th>Status</th>
                                             <th>Imprimir</th>
 
@@ -98,11 +98,11 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                 </i> </small></td>
 
 
-
+{{-- 
                                         <td> <a button type="button" class="btn btn-outline-success"
                                                 href="{{ asset('trdigital/validar/' . $n_processo->id) }}">
                                                 <i class="bi bi-ui-checks me-1"> Validar</i>
-                                            </a> </td>
+                                            </a> </td> --}}
 
                                         {{-- <td> <a class="btn btn-warning"
                                                 href="{{ route('trdigital.edit', $n_processo->id) }}">Editar</a> </td> --}}
@@ -131,7 +131,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                                     <center> <a class="dropdown-item bg-primary text-white"
                                                                             href="{{ asset('trdigital/aguardando_andamento') }}/{{ $n_processo->id }}">
                                                                             <i class="bi bi-alarm me-1"></i>
-                                                                            <b> Aguardando </b></a>
+                                                                            <b> Em Análise </b></a>
 
 
                                                             </ul>
@@ -159,7 +159,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                                     <center> <a class="dropdown-item bg-primary text-white"
                                                                             href="{{ asset('trdigital/aguardando_andamento') }}/{{ $n_processo->id }}">
                                                                             <i class="bi bi-alarm me-1"></i>
-                                                                            Aguardando</a>
+                                                                            Em Análise</a>
                                                             </ul>
                                                     </div>
                                                 @break
@@ -169,7 +169,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                         <center> <a class="btn btn-primary btn-sm " href="#" role="button"
                                                                 id="dropdownMenuLink" data-bs-toggle="dropdown"
                                                                 aria-expanded="false"> <i class="bi bi-alarm me-1"> <span>
-                                                                        <b> Aguardando </b> </span> </i>
+                                                                        <b> Em Análise </b> </span> </i>
                                                             </a>
 
 
@@ -210,7 +210,7 @@ $processoCount_nao_finalizada = session()->get('processoCount_nao_finalizada');
                                                                 <center> <a class="dropdown-item bg-primary text-white"
                                                                         href="{{ asset('trdigital/aguardando_andamento') }}/{{ $n_processo->id }}">
                                                                         <i class="bi bi-alarm me-1"></i>
-                                                                        Aguardando</a>
+                                                                        Em Análise</a>
                                                             </ul>
                                                           </td>
 

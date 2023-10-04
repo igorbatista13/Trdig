@@ -89,7 +89,10 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('Orgao_Concedente', '1')->where('Status', '=', 'FINALIZADO')->get();
+        ])
+        ->whereIn('Status', ['TRAMITADO', 'CORRIGIR', 'AGUARDANDO', 'FINALIZADO'])
+        ->where('Orgao_Concedente', '=', 1)
+        ->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
@@ -103,7 +106,7 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-        ])->where('Status', '=', 'AGUARDANDO')
+            ])->whereIn('Status', ['TRAMITADO', 'AGUARDANDO'])
             ->where('Orgao_Concedente', '=', 1)
             ->get();
 
@@ -466,7 +469,7 @@ class TrdigitalController extends Controller
             'Produto_Servico_detalhado' => $request->input('Produto_Servico_detalhado'),
             'Unidade_medida_detalhado' => $request->input('Unidade_medida_detalhado'),
             'Quantidade_detalhado' => $request->input('Quantidade_detalhado'),
-         //   'Valor_unit_detalhado' => $valorDecimal,
+            //   'Valor_unit_detalhado' => $valorDecimal,
             'Valor_unit_detalhado' => $this->parseValorInput($request->input('Valor_unit_detalhado')),
 
         ];
@@ -609,7 +612,7 @@ class TrdigitalController extends Controller
             'ano' => $request->input('ano'),
             'mes' => $request->input('mes'),
             'fonte' => $request->input('fonte'),
-          //  'valor_desembolso' => $valorDecimal,
+            //  'valor_desembolso' => $valorDecimal,
             'valor_desembolso' => $this->parseValorInput($request->input('valor_desembolso')),
 
         ];
@@ -640,7 +643,7 @@ class TrdigitalController extends Controller
             'fonte' => $request->input('fonte'),
             'valor_desembolso' => $this->parseValorInput($request->input('valor_desembolso')),
 
-          //  'valor_desembolso' => $valorDecimal,
+            //  'valor_desembolso' => $valorDecimal,
         ];
 
         Cronograma_desembolso::findOrFail($request->id)->update($data);
@@ -687,7 +690,7 @@ class TrdigitalController extends Controller
             'Unidade' => $request->input('Unidade'),
             'Qtd' => $request->input('Qtd'),
             'Valor_unit' => $this->parseValorInput($request->input('Valor_unit')),
-          //  'Valor_unit' => $valorDecimal,
+            //  'Valor_unit' => $valorDecimal,
             'Local_destino' => $request->input('Local_destino'),
             'Propriedade' => $request->input('Propriedade'),
 
@@ -717,7 +720,7 @@ class TrdigitalController extends Controller
             'Especificacao' => $request->input('Especificacao'),
             'Unidade' => $request->input('Unidade'),
             'Qtd' => $request->input('Qtd'),
-          //  'Valor_unit' => $valorDecimal,
+            //  'Valor_unit' => $valorDecimal,
             'Valor_unit' => $this->parseValorInput($request->input('Valor_unit')),
 
             'Local_destino' => $request->input('Local_destino'),
@@ -799,7 +802,8 @@ class TrdigitalController extends Controller
             return back()->with('edit', '12. Pesquisa Mercadológica -  Descrição do Bem: - Atualizado com sucesso!');
         } else {
             return back()->with('error', 'Erro ao Atualizar Pesquisa Mercadológica');
-        }      }
+        }
+    }
 
 
 
@@ -839,10 +843,9 @@ class TrdigitalController extends Controller
                 'Empresa' => $request->Empresa,
                 'Valor' => $request->Valor, // Sem a necessidade de [$key] aqui
             ];
-
         }
 
-    
+
         if ($request->hasFile('Anexo') && $request->file('Anexo')->isValid()) {
             $file = $request->file('Anexo');
             $filePath = $file->store('pdfs/pesquisa_mercadologica', 'public');
@@ -855,8 +858,7 @@ class TrdigitalController extends Controller
             return back()->with('edit', '12. Pesquisa Mercadológica - Dados da Empresa: - Atualizado com sucesso!');
         } else {
             return back()->with('error', 'Erro ao Atualizar Pesquisa Mercadológica');
-        } 
-    
+        }
     }
 
 
@@ -877,7 +879,8 @@ class TrdigitalController extends Controller
             return back()->with('delete', '12. Pesquisa Mercadológica - Dados da Empresa: - Deletado com sucesso!');
         } else {
             return back()->with('error', 'Erro ao Deletar Pesquisa Mercadológica');
-        }     }
+        }
+    }
 
     public function pesquisa_nome_mercadologica_destroy($pivotId)
     {
@@ -893,7 +896,8 @@ class TrdigitalController extends Controller
             return back()->with('delete', '12. Pesquisa Mercadológica: - Deletado com sucesso!');
         } else {
             return back()->with('error', 'Erro ao Deletar Pesquisa Mercadológica');
-        }      }
+        }
+    }
 
 
     public function show($id)
@@ -1345,7 +1349,7 @@ class TrdigitalController extends Controller
         if ($request->hasFile('Doc_posse')) {
             $doc_prefeitura['Doc_posse'] = $request->file('Doc_posse')->store('pdfs/doc_prefeitura', 'public');
         }
-       
+
         Doc_prefeitura::updateOrCreate(
             ['N_processo_id' => $nProcesso->id],
             $doc_prefeitura
@@ -2097,9 +2101,8 @@ class TrdigitalController extends Controller
         $tramitar->Status = $acao;
         $tramitar->save();
         //   dd($recibo);
-        toast('Status do Orçamento alterado para <b> Venda Realizada! </b> ', 'success');
 
-        return redirect()->route('trdigital.index');
+        return back();
     }
 
 
@@ -2111,7 +2114,6 @@ class TrdigitalController extends Controller
         $aguardando_andamento->Status = $acao;
         $aguardando_andamento->save();
         //   dd($recibo);
-        toast('Status do Orçamento alterado para <b> Venda Realizada! </b> ', 'success');
 
         return back();
     }
@@ -2123,7 +2125,6 @@ class TrdigitalController extends Controller
         $finalizado->Status = $acao;
         $finalizado->save();
         //   dd($recibo);
-        toast('Status do Orçamento alterado para <b> Venda Realizada! </b> ', 'success');
 
         return back();
     }
@@ -2135,7 +2136,6 @@ class TrdigitalController extends Controller
         $tramitado->Status = $acao;
         $tramitado->save();
         //   dd($recibo);
-        toast('Status do Orçamento alterado para <b> Venda Realizada! </b> ', 'success');
         //   return view('trdigital.index');
         return redirect('/trdigital/proponente')->with('success', 'Tramitado com sucesso!');
 
@@ -2172,8 +2172,7 @@ class TrdigitalController extends Controller
         // $pesquisa_mercadologica = Pesquisa_mercadologica::with('Pesquisa_mercadologica_pivot')->get();
         $pesquisa_mercadologica = Pesquisa_mercadologica::with('pesquisa_mercadologica_pivots')->where('n_processo_id', $id)->get();
 
-        $view = view('trdigital.imprimir')->with(compact
-        (
+        $view = view('trdigital.imprimir')->with(compact(
             'n_processo',
             'biblioteca',
             'metas',
@@ -2185,12 +2184,12 @@ class TrdigitalController extends Controller
             'pesquisa_mercadologica'
 
         ));
-        
+
         $html = $view->render();
-    $pdf = PDF::loadHTML($html);            
-    $sheet = $pdf->setPaper('a4', 'landscape');
-    return $sheet->download('download.pdf');  // $hours can not be accessed outside foreach. So changed the file name to `download.pdf`.
-}
+        $pdf = PDF::loadHTML($html);
+        $sheet = $pdf->setPaper('a4', 'landscape');
+        return $sheet->download('download.pdf');  // $hours can not be accessed outside foreach. So changed the file name to `download.pdf`.
+    }
     //     return view(
     //         'trdigital.imprimir',
     //         compact(

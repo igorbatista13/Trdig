@@ -258,7 +258,7 @@
           @if (Auth::check() && Auth::user()->hasRole('Admin'))
            <li>
             <a href="{{asset('/trdigital')}}">
-              <i class="bi bi-circle"></i><span>  Ver Todas  <small class="text-primary"> Apenas Admin </small>  </span>
+              <i class="bi bi-circle"></i><span>  Ver Todas  <small class="text-primary"> (Apenas Admin)  </small>  </span>
             </a>
           </li>
           @endif
@@ -270,7 +270,7 @@
      
           <li>
             <a class="text-primary" href="{{asset('/trdigital/aguardando')}}">
-              <i class="bi bi-circle"></i><span>    Aguardando    </span>
+              <i class="bi bi-circle"></i><span>    Validar <small class="text-dark"> </small>   </span>
             </a>
           </li>
           <li>

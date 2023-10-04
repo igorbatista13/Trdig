@@ -5,10 +5,14 @@
                 Atas,
                 Certidões, Comprovantes e Declarações (Anexar): <b> PREFEITURA </b>
             </h5>
+            @if ($n_processo->Doc_prefeitura)
+
             {!! Form::open([
                 'url' => route('trdigital.validar.doc_prefeitura', ['id' => $n_processo->Doc_prefeitura->id]),
                 'method' => 'post',
             ]) !!}
+
+     
             <!-- Default Accordion -->
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
@@ -138,14 +142,14 @@
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Declaracao_contrapartida)
+                            @if ($n_processo->Doc_prefeitura && $n_processo->Doc_prefeitura->Delcaracao_contrapartida)
                                 <div class="icon">
                                     <div class="col-md-12 iframe-container">
                                         <iframe
-                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Declaracao_contrapartida) }}"></iframe>
+                                            src="{{ asset('storage/' . $n_processo->doc_prefeitura->Delcaracao_contrapartida) }}"></iframe>
                                     </div>
                                     <a class="btn btn-primary"
-                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Declaracao_contrapartida) }}"
+                                        href="{{ asset('storage/' . $n_processo->doc_prefeitura->Delcaracao_contrapartida) }}"
                                         target="_blank">
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Ver arquivo
                                     </a>
@@ -154,7 +158,7 @@
                                     <h4 class="text-danger"> <b> Documento não enviado </b></h4>
                             @endif
                         </div>
-                        {!! Form::radio('Declaracao_contrapartida_sit', '1', $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 1, [
+                        {!! Form::radio('Delcaracao_contrapartida_sit', '1', $n_processo->Doc_prefeitura->Delcaracao_contrapartida_sit == 1, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios1',
                         ]) !!}
@@ -163,7 +167,7 @@
                                 Validado</span>
                         </label>
 
-                        {!! Form::radio('Declaracao_contrapartida_sit', '0', $n_processo->Doc_prefeitura->Declaracao_contrapartida_sit == 0, [
+                        {!! Form::radio('Delcaracao_contrapartida_sit', '0', $n_processo->Doc_prefeitura->Delcaracao_contrapartida_sit == 0, [
                             'class' => 'form-check-input',
                             'id' => 'gridRadios2',
                         ]) !!}
@@ -177,7 +181,7 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#d" aria-expanded="false" aria-controls="d">
-                            <strong> <big> D) </strong> </big> • Comprovante de Abertura de Conta e Extrato de Conta
+                            <strong> <big> D) </strong> </big> Comprovante de Abertura de Conta e Extrato de Conta
                             Bancária zerada e específica para a formalização do Convênio (Conta não poderá ser no CNPJ dos
                             FUNDOS).
 
@@ -414,11 +418,12 @@
 
             <button type="submit" class="btn btn-primary">Enviar</button>
 
+            @endif
         </div>
     </div>
     </div>
 
-
+ 
 
 
 {!! Form::close() !!}

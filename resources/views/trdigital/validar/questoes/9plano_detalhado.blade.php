@@ -3,10 +3,12 @@
 
       <div class="tab-pane fade" id="list-Plano_detalhado" role="tabpanel" aria-labelledby="list-detalhado">
           {{-- {!! Form::open(['route' => ['trdigital.planodetalhado', $n_processo->id], 'method' => 'patch']) !!} --}}
+          @if ($n_processo->Plano_detalhado)
           {!! Form::open([
               'url' => route('trdigital.validar.planodetalhado', ['id' => $n_processo->Plano_detalhado->id]),
               'method' => 'post',
           ]) !!}
+        @endif
 
 
           <div class="card">
