@@ -51,8 +51,8 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-     Desenvolvido pela  Equipe de TI  da<p>  <strong>
-      <span> <big> ---- </span></strong>
+     Desenvolvido pela SETASC - MT <p>  <strong>
+      <span> <big> www.setasc.mt.gov.br </span></strong>
     </div>
 
     <div class="credits">
@@ -60,7 +60,7 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      <a href="#"> Igor </a>
+      <a href="#">  </a>
     </div>
   </footer><!-- End Footer -->
 

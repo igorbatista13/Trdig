@@ -28,7 +28,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Especificação</th>
                     <th>Quantidade</th>
                     <th>Unidade de Medida</th>
@@ -38,51 +37,34 @@
                 </tr>
             </thead>
             <tbody>
+                
                 @foreach ($metas as $meta)
                     <tr>
-                        <td>{{ $meta->id }}</td>
-                        <td class="table-success">{{ $meta->Especificacao_metas }}</td>
-                        <td>{{ $meta->Quantidade_metas }}</td>
-                        <td>{{ $meta->Unidade_medida_metas }}</td>
-                        <td>{{ $meta->Inicio_metas }}</td>
-                        <td>{{ $meta->Termino_metas }}</td>
+                        <td class="table-primary">
+                            {{ $meta->Especificacao_metas }}
+                            <td class="table-primary">{{ $meta->Quantidade_metas }}</td>
+                            <td class="table-primary">{{ $meta->Unidade_medida_metas }}</td>
+                            <td class="table-primary">{{ $meta->Inicio_metas }}</td>
+                            <td class="table-primary">{{ $meta->Termino_metas }}</td>
+                            <tr>  
+                            @foreach ($meta->etapas as $etapa)</tr>
+
+                            <td  class="table-light"> {{ $etapa->Especificacao_etapa }} </td>
+                            <td>{{ $etapa->Quantidade_etapa }}</td>
+                            <td>{{ $etapa->Unidade_medida_etapa }}</td>
+                            <td>{{ $etapa->Inicio_etapa }}</td>
+                            <td>{{ $etapa->Termino_etapa }}</td>
+                        </td>
+                        
+                      
+                        @endforeach
+                        @endforeach
 
                     </tr>
-                @endforeach
             </tbody>
         </table>
 
-        <h2 class="info-box text-dark">
-            Etapas </h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Meta ID</th>
-                    <th>Especificação</th>
-                    <th>Quantidade</th>
-                    <th>Unidade de Medida</th>
-                    <th>Início</th>
-                    <th>Término</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($meta->etapas as $etapa)
-                    <tr>
-                        <td>{{ $etapa->id }}</td>
-                        <td class="table-success">{{ $etapa->metas_id }} - {{ $meta->Especificacao_metas }}</td>
-                        <td>{{ $etapa->Especificacao_etapa }}</td>
-                        <td>{{ $etapa->Quantidade_etapa }}</td>
-                        <td>{{ $etapa->Unidade_medida_etapa }}</td>
-                        <td>{{ $etapa->Inicio_etapa }}</td>
-                        <td>{{ $etapa->Termino_etapa }}</td>
-
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
+       
 
     </div>
 </div>

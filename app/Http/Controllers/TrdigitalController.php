@@ -2185,27 +2185,27 @@ class TrdigitalController extends Controller
 
         ));
 
-        $html = $view->render();
-        $pdf = PDF::loadHTML($html);
-        $sheet = $pdf->setPaper('a4', 'landscape');
-        return $sheet->download('download.pdf');  // $hours can not be accessed outside foreach. So changed the file name to `download.pdf`.
-    }
-    //     return view(
-    //         'trdigital.imprimir',
-    //         compact(
-    //             'n_processo',
-    //             'biblioteca',
-    //             'metas',
-    //             'etapas',
-    //             'planoconsolidado',
-    //             'planodetalhado',
-    //             'cronograma_desembolso',
-    //             'obras_equipamento',
-    //             'pesquisa_mercadologica'
+        // $html = $view->render();
+        // $pdf = PDF::loadHTML($html);
+        // $sheet = $pdf->setPaper('a4', 'landscape');
+        // return $sheet->download('download.pdf');  // $hours can not be accessed outside foreach. So changed the file name to `download.pdf`.
+    
+        return view(
+            'trdigital.imprimir',
+            compact(
+                'n_processo',
+                'biblioteca',
+                'metas',
+                'etapas',
+                'planoconsolidado',
+                'planodetalhado',
+                'cronograma_desembolso',
+                'obras_equipamento',
+                'pesquisa_mercadologica'
 
-    //         )
-    //     );
-    // }
+            )
+        );
+    }
 
 
     public function destroy($id)
