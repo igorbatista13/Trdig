@@ -169,12 +169,14 @@
                                                               'id' => 'floatingName',
                                                           ]) !!}
 
-                                                          <label for="floatingName"></label>
-                                                          <label for="floatingEmail">Produto ou Serviço</label>
+                                                          <label for="floatingEmail"><b class="text-primary"> Produto ou Serviço </b></label>
+                                                          <br>
+
                                                       </div>
                                                   </div>
 
                                               </div>
+
                                               <div class="row">
                                                   <div class="col-md-6">
                                                       <div class="form-floating">
