@@ -706,49 +706,32 @@
         if (valor.length == 5) i.value += "-";
     }
 </script>
-<script>
-    function validarValor(input, event) {
-        const keyCode = event.which || event.keyCode;
-        const currentValue = input.value.replace(/[^\d,]/g, '');
-        const newValue = currentValue + String.fromCharCode(keyCode);
 
-        if (parseFloat(newValue.replace(',', '.')) > 1000000000) {
-            event.preventDefault();
-            return false;
+
+
+<script>
+    function formatarValorMonetario(input) {
+        // Remove todos os caracteres não numéricos, exceto o ponto decimal
+        const valor = input.value.replace(/[^\d.]/g, '');
+
+        // Divida o valor em parte inteira e decimal
+        const partes = valor.split('.');
+        let parteInteira = partes[0] || '';
+        let parteDecimal = partes[1] || '';
+
+        // Adicione a máscara de milhares à parte inteira
+        parteInteira = parteInteira.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+        // Formate o valor com a máscara e mantenha até 2 casas decimais
+        let valorFormatado = 'R$ ' + parteInteira;
+        if (parteDecimal) {
+            valorFormatado += ',' + parteDecimal.slice(0, 2);
         }
 
-        return true;
-    }
-
-    function aplicarMascara(input) {
-        const valor = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-        const valorFormatado = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-        input.value = 'R$ ' + valorFormatado;
-    }
-</script>
-
-<script>
-    function aplicarMascara(input) {
-        const valor = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-        const valorFormatado = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
         input.value = valorFormatado;
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const valorInputs = document.querySelectorAll('.valor-monetario');
-        valorInputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                const valorSemPontos = this.value.replace(/\D/g,
-                    ''); // Remove todos os caracteres não numéricos
-                const valorSemDecimais = valorSemPontos.split('.')[0]; // Remove a parte decimal
-                const valorDecimal = parseFloat(valorSemDecimais.replace(',',
-                    '.')); // Substitui a vírgula por ponto (caso haja)
-                this.value = valorDecimal.toFixed(2); // Formata o valor com duas casas decimais
-            });
-        });
-    });
 </script>
+
 <script>
     setTimeout(function() {
         var alert = document.getElementById('myAlert');

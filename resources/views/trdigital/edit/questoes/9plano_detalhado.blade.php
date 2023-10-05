@@ -236,12 +236,11 @@
                                                                   <div class="form-floating">
                                                                       {!! Form::text('Valor_unit_detalhado', null, [
                                                                           'placeholder' => 'a',
-                                                                          'class' => 'form-control',
-                                                                          'maxlength' => '15',
+                                                                          'class' => 'form-control', // Adicione a classe 'valor-monetario'
                                                                           'required' => true,
-                                                                          'oninput' => 'aplicarMascara(this)',
-                                                                          'onkeypress' => 'return validarValor(this, event)',
                                                                       ]) !!}
+
+
                                                                   </div>
                                                                   {{-- <label for="floatingCity">Valor Proponente - (Contrapartida Financeira)</label> --}}
                                                               </div>
