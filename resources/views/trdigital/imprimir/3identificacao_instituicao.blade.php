@@ -4,6 +4,54 @@
         <h3>3. Identificação da Instituição Proponente </h3>
 
 
+
+        @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao)
+
+            <h5 class="info-box text-primary">Comprovante de Endereço</h5>
+        <?php
+     
+     $pdfPath = ('storage/' . $n_processo->instituicao->Anexo1_Instituicao);
+    
+    // $variavelParaDepurar = $pdfPath;
+    // dd($variavelParaDepurar);
+    // href="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}"
+
+
+        if (file_exists($pdfPath)) {
+            $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
+            $totalPages = $pdf->getNumberOfPages();
+    
+        
+
+            // Loop para converter cada página em uma imagem e exibi-la
+            for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                $imagePath = asset('storage/imagem/' . 'imagem_' . $pageNumber . '.png');
+                $pdf->setPage($pageNumber)
+                    ->setOutputFormat('png')
+                    ->saveImage($imagePath);
+    
+                // Exiba a imagem
+                echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+            }
+    
+            
+        } else {
+            // Arquivo PDF não existe ou não é acessível
+            echo 'Arquivo PDF não encontrado.';
+        }
+        
+        $variavelParaDepurar = $pdfPath;
+        dd($variavelParaDepurar);
+        
+            ?>
+    
+    @endif
+
+
+        <hr>
+
+
+
         <h5 class="info-box text-primary">
             Nome da Instituição:<a class="text-dark">
                 {{ $n_processo->instituicao->Nome_Instituicao }}<br> </a>
@@ -21,6 +69,7 @@
         </h5>
         <h3>Anexos</h3>
 
+        
         @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao)
             <h5 class="info-box text-primary"> Comprovante de Endereço</h5>
             <embed src="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}" width="100%"
@@ -28,50 +77,13 @@
             <embed {{ $n_processo->instituicao->Nome_Instituicao }} width="100%" height="800px" />
         @endif
 
-        <?php
-    
-        // Caminho para o arquivo PDF que deseja converter
-        $pdfFilePath = public_path('storage/' . $n_processo->instituicao->Anexo1_Instituicao);
-    
-        // Caminho para onde você deseja salvar a imagem
-        $imageFilePath = public_path('storage/imagem_convertida/' . $n_processo->instituicao->Anexo1_Instituicao);
-    
-        $pdf = new Pdf($pdfFilePath);
-        $pdf->setOutputFormat('jpg')->saveImage($imageFilePath);
-    
-        // Verificar se a conversão foi bem-sucedida
-        if (file_exists($imageFilePath)) {
-            // Exibir a imagem na view
-            echo "<img src='" . asset('storage/imagem_convertida/converted_image.jpg') . "' alt='PDF to Image'>";
-        } else {
-            echo 'Falha na conversão do PDF para imagem.';
-        }
-        ?>
-    </p>
 
-    <?php
-    // Caminho para o arquivo PDF que deseja converter
-    $pdfFilePath = public_path('storage/' . $n_processo->instituicao->Anexo1_Instituicao);
-    
-    // Caminho para onde você deseja salvar a imagem
-    $imageFilePath = public_path('storage/imagem_convertida/' . $n_processo->instituicao->Anexo1_Instituicao);
 
     
-    // Comando Ghostscript para converter o PDF em imagem (JPEG)
-    $command = "gs -dNOPAUSE -sDEVICE=jpeg -dJPEGQ=100 -r300 -sOutputFile={$imageFilePath} {$pdfFilePath} -c quit";
     
-    // Executar o comando
-    exec($command);
     
-    // Verificar se a conversão foi bem-sucedida
-    if (file_exists($imageFilePath)) {
-        // Exibir a imagem na view
-        echo "<img src='" . asset('storage/converted_image.jpg') . "' alt='PDF to Image'>";
-    } else {
-        echo "Falha na conversão do PDF para imagem.";
-    }
-    ?>
-    
+
+
 
         @if ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao)
             <h5 class="info-box text-primary"> Cartão CNPJ </h5>
@@ -82,3 +94,4 @@
 
     </div>
 </div>
+
