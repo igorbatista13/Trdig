@@ -78,7 +78,14 @@
                             @include('trdigital.imprimir.2identificacao_resp')
                             @include('trdigital.imprimir.3identificacao_instituicao')
                             @include('trdigital.imprimir.4identificacao_resp_projeto')
-                            @include('trdigital.imprimir.5anexos2')
+                            
+                            @if (Auth::user()->perfil->Tipo == 'Prefeitura')
+                            @include('trdigital.imprimir.5anexos2_prefeitura')
+                        @else
+                        @include('trdigital.imprimir.5anexos2')
+                        @endif
+
+
                             @include('trdigital.imprimir.6identificacao_projeto')
                             @include('trdigital.imprimir.7cronograma')
                             @include('trdigital.imprimir.8plano_consolidado')
