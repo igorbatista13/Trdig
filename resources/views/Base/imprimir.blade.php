@@ -30,7 +30,7 @@
 
 
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('/assets/css/style_imprimir.css')}}">
 
   <!-- =======================================================
   * Template Name: NiceAdmin

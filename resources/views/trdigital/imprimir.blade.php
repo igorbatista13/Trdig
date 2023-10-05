@@ -1,6 +1,6 @@
 @extends('base.imprimir')
 @section('content')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 
     <style>
         body,
@@ -44,19 +44,26 @@
                                             <hr>
                                             <div class="col-md-12 text-center">
                                                 <h5 class="card-title justify-content-md-center">
-                                                    Concedente: <a class="text-primary"> {{ $n_processo->Orgaos->Nome }}
+                                                  <b>   Concedente: </b> <a class="text-primary"> {{ $n_processo->Orgaos->Nome }}
                                                     </a><br>
-                                                    Proponente: <a class="text-primary">
-                                                        {{ $n_processo->instituicao->Nome_Instituicao }} <br>
-                                                        <small> CNPJ: <a class="text-dark">
+                                                    <b>  Autor da TR: </b> <a> 
+                                                        {{ Auth::user()->name }} -  {{ Auth::user()->perfil->Tipo }} </a><br>
+                                                        <b>   Proponente: </b> <a>
+                                                        {{ $n_processo->instituicao->Nome_Instituicao }} </a> <br>
+                                                        <small>   <b> CNPJ: </b> <a class="text-dark">
                                                                 {{ $n_processo->instituicao->CNPJ_Instituicao }} </a>
-                                                            <a class="text-primary"> Telefone: </a>
+                                                                <br>
+                                                            <a class="text-dark"> <b> Telefone: </b> </a>
                                                             <a class="text-dark">
                                                                 {{ $n_processo->instituicao->Telefone_Instituicao }}<br>
+                                                                <a class="text-dark">  <b>  Endereço: </b> </a>
                                                                 {{ $n_processo->instituicao->Endereco_Instituicao }} <br>
-                                                                {{ $n_processo->instituicao->Cidade_Instituicao }} |
+                                                                {{ $n_processo->instituicao->Cidade_Instituicao }} -
                                                                 {{ $n_processo->instituicao->Estado_Instituicao }} <br>
-                                                            </a></small>
+                                                            </a>
+                                                            Data: {{ \Carbon\Carbon::now()->format('d/m/Y') }}
+
+                                                        </small>
                                             </div>
                                         </div>
 
@@ -78,14 +85,13 @@
                             @include('trdigital.imprimir.2identificacao_resp')
                             @include('trdigital.imprimir.3identificacao_instituicao')
                             @include('trdigital.imprimir.4identificacao_resp_projeto')
-                            
+
                             @if (Auth::user()->perfil->Tipo == 'Prefeitura')
-                            @include('trdigital.imprimir.5anexos2_prefeitura')
-                        @else
-                        @include('trdigital.imprimir.5anexos2')
-                        @endif
-
-
+                                @include('trdigital.imprimir.5anexos2_prefeitura')
+                            @else
+                                @include('trdigital.imprimir.5anexos2')
+                            @endif
+                            
                             @include('trdigital.imprimir.6identificacao_projeto')
                             @include('trdigital.imprimir.7cronograma')
                             @include('trdigital.imprimir.8plano_consolidado')
@@ -93,16 +99,15 @@
                             @include('trdigital.imprimir.10cronograma_desembolso')
                             @include('trdigital.imprimir.11relacao')
                             @include('trdigital.imprimir.12pesquisa_mercadologica')
-                            @include('trdigital.imprimir.assinaturas')
-                        
-                </div>
+                            @include('trdigital.imprimir.arq_sigcon')
+                            {{-- @include('trdigital.imprimir.assinaturas') --}}
+
+                        </div>
 
             </section>
-            
 
-                </section>
     </main>
 
+
     <script src="{{ asset('/js/pages/form-editor.js') }}"></script>
-    
-    @endsection
+@endsection

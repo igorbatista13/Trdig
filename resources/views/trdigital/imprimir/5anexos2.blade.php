@@ -12,7 +12,7 @@
             <embed src="{{ asset('storage/' . $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo1) }}" width="100%"
                 height="800px" />
             <embed {{ $n_processo->Doc_Anexo2->Nome_Instituicao }} width="100%" height="800px" />
-        @endif
+        @endif        
 
         @if ($n_processo->Doc_Anexo2 && $n_processo->Doc_Anexo2->Doc_Anexo2_Anexo2)
             <h5 class="info-box text-primary"> B. Cópia da Ata da Assembleia de Fundação ou Constituição ou do

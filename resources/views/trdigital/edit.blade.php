@@ -37,7 +37,6 @@
                                     <div class="row match-height">
                                         <div class="col-12">
 
-
                                             <div class="text-center mb-5">
                                                 <img src="{{ asset('/images/createform.png') }}" height="88"
                                                     class='mb-4'>
