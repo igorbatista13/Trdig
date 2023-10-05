@@ -37,7 +37,22 @@
                         </div>
                         <br>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-floating">
 
+                                {!! Form::text('Produto_Servico_detalhado', $planodetalhados->Produto_Servico_detalhado, [
+                                    'placeholder' => 'Produto ou Serviço',
+                                    'class' => 'form-control',
+                                    'id' => 'floatingName',
+                                ]) !!}
+
+                                <label for="floatingName"></label>
+                                <label for="floatingEmail">Produto ou Serviço</label>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="row">
                         <div class="col-md-6">
