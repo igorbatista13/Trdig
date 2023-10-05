@@ -708,14 +708,13 @@
 </script>
 
 
-
 <script>
-    function formatarValorMonetario(input) {
-        // Remove todos os caracteres não numéricos, exceto o ponto decimal
-        const valor = input.value.replace(/[^\d.]/g, '');
+    function (input) {
+        // Remove todos os caracteres não numéricos, exceto o ponto decimal e a vírgula
+        const valor = input.value.replace(/[^\d,.]/g, '');
 
         // Divida o valor em parte inteira e decimal
-        const partes = valor.split('.');
+        const partes = valor.split(/[,\.]/);
         let parteInteira = partes[0] || '';
         let parteDecimal = partes[1] || '';
 
@@ -729,6 +728,20 @@
         }
 
         input.value = valorFormatado;
+    }
+</script>
+<script>
+    function formatarValorMonetario(input, event) {
+        const keyCode = event.which || event.keyCode;
+        const currentValue = input.value.replace(/[^\d,]/g, '');
+        const newValue = currentValue + String.fromCharCode(keyCode);
+
+        if (parseFloat(newValue.replace(',', '.')) > 1000000000 || isNaN(newValue.replace(',', '.'))) {
+            event.preventDefault();
+            return false;
+        }
+
+        return true;
     }
 </script>
 

@@ -204,9 +204,8 @@
                                                       {!! Form::text('Valor_concedente', null, [
                                                           'placeholder' => '',
                                                           'class' => 'form-control',
-                                                          'maxlength' => '15',
-                                                          'oninput' => 'aplicarMascara(this)',
-                                                          'onkeypress' => 'return validarValor(this, event)',
+                                                          'id' => 'valor-monetario',
+                                                          'oninput' => 'formatarValorMonetario(this)',
                                                       ]) !!}
 
                                                   </div>
