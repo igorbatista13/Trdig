@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use PDF;
-
+use Imagick;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
@@ -90,9 +90,9 @@ class TrdigitalController extends Controller
             'Resp_projeto',
             'Orgaos'
         ])
-        ->whereIn('Status', ['TRAMITADO', 'CORRIGIR', 'AGUARDANDO', 'FINALIZADO'])
-        ->where('Orgao_Concedente', '=', 1)
-        ->get();
+            ->whereIn('Status', ['TRAMITADO', 'CORRIGIR', 'AGUARDANDO', 'FINALIZADO'])
+            ->where('Orgao_Concedente', '=', 1)
+            ->get();
 
         return view('trdigital.tr', compact('nProcessos'));
     }
@@ -106,7 +106,7 @@ class TrdigitalController extends Controller
             'Projeto_conteudo',
             'Resp_projeto',
             'Orgaos'
-            ])->whereIn('Status', ['TRAMITADO', 'AGUARDANDO'])
+        ])->whereIn('Status', ['TRAMITADO', 'AGUARDANDO'])
             ->where('Orgao_Concedente', '=', 1)
             ->get();
 
@@ -2185,11 +2185,6 @@ class TrdigitalController extends Controller
 
         ));
 
-        // $html = $view->render();
-        // $pdf = PDF::loadHTML($html);
-        // $sheet = $pdf->setPaper('a4', 'landscape');
-        // return $sheet->download('download.pdf');  // $hours can not be accessed outside foreach. So changed the file name to `download.pdf`.
-    
         return view(
             'trdigital.imprimir',
             compact(
