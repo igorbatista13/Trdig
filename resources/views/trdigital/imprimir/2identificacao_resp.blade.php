@@ -62,13 +62,13 @@
             
                 // Loop para converter cada página em uma imagem e exibi-la
                 for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-                    $imagePath = 'storage/imagem/' . 'imagem_' . $pageNumber . '.png';
+                    $imagePath = 'storage/imagem/Resp_instituicao/' . 'imagem_' . $pageNumber . '.png';
                     $pdf->setPage($pageNumber)
                         ->setOutputFormat('png')
                         ->saveImage($imagePath);
             
                     // Exiba a imagem
-                    echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                    echo '<img src="' . asset('storage/imagem/Resp_instituicao/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
                 }
             } else {
                 // Arquivo PDF não existe ou não é acessível

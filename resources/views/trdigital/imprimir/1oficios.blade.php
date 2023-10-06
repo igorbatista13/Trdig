@@ -5,7 +5,8 @@
 
 
         @if ($n_processo->Doc_anexo1 && $n_processo->Doc_anexo1->Comp_Oficio)
-            <h5 class="info-box text-primary"> A. Ofício de encaminhamento com o número da nova
+           
+        <h5 class="info-box text-primary"> A. Ofício de encaminhamento com o número da nova
                 proposta</h5>
 
             <?php
@@ -18,13 +19,13 @@
             
                 // Loop para converter cada página em uma imagem e exibi-la
                 for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-                    $imagePath = 'storage/imagem/' . 'imagem_' . $pageNumber . '.png';
+                    $imagePath = 'storage/imagem/doc_anexo1/' . 'imagem_' . $pageNumber . '.png';
                     $pdf->setPage($pageNumber)
                         ->setOutputFormat('png')
                         ->saveImage($imagePath);
             
                     // Exiba a imagem
-                    echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                    echo '<img src="' . asset('storage/imagem/doc_anexo1/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
                 }
             } else {
                 // Arquivo PDF não existe ou não é acessível
@@ -46,13 +47,13 @@
         
             // Loop para converter cada página em uma imagem e exibi-la
             for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-                $imagePath = 'storage/imagem/' . 'imagem_' . $pageNumber . '.png';
+                $imagePath = 'storage/imagem/doc_anexo1/' . 'imagem_' . $pageNumber . '.png';
                 $pdf->setPage($pageNumber)
                     ->setOutputFormat('png')
                     ->saveImage($imagePath);
         
                 // Exiba a imagem
-                echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                echo '<img src="' . asset('storage/imagem/doc_anexo1/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
             }
         } else {
             // Arquivo PDF não existe ou não é acessível
