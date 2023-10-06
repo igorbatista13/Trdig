@@ -47,7 +47,9 @@
             ?>
         @endif
 
+
         @if ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao)
+            <h5 class="info-box text-primary"> Cartão CNPJ </h5>
             <?php
             
             $pdfPath = 'storage/' . $n_processo->instituicao->Anexo2_Instituicao;
