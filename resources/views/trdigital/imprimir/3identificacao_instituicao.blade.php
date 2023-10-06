@@ -5,11 +5,10 @@
 
 
 
-        @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao)
 
             <h5 class="info-box text-primary">Comprovante de Endereço</h5>
         <?php
-     
+
      $pdfPath = ('storage/' . $n_processo->instituicao->Anexo1_Instituicao);
     
     // $variavelParaDepurar = $pdfPath;
@@ -45,7 +44,6 @@
         
             ?>
     
-    @endif
 
 
         <hr>
