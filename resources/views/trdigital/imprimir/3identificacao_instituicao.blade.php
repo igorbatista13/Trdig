@@ -4,52 +4,6 @@
         <h3>3. Identificação da Instituição Proponente </h3>
 
 
-
-
-            <h5 class="info-box text-primary">Comprovante de Endereço</h5>
-        <?php
-
-     $pdfPath = ('storage/' . $n_processo->instituicao->Anexo1_Instituicao);
-    
-    // $variavelParaDepurar = $pdfPath;
-    // dd($variavelParaDepurar);
-    // href="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}"
-
-
-        if (file_exists($pdfPath)) {
-            $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
-            $totalPages = $pdf->getNumberOfPages();
-    
-        
-
-            // Loop para converter cada página em uma imagem e exibi-la
-            for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-                $imagePath = asset('storage/imagem/' . 'imagem_' . $pageNumber . '.png');
-                $pdf->setPage($pageNumber)
-                    ->setOutputFormat('png')
-                    ->saveImage($imagePath);
-    
-                // Exiba a imagem
-                echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
-            }
-    
-            
-        } else {
-            // Arquivo PDF não existe ou não é acessível
-            echo 'Arquivo PDF não encontrado.';
-        }
-        
-        $variavelParaDepurar = $pdfPath;
-        dd($variavelParaDepurar);
-        
-            ?>
-    
-
-
-        <hr>
-
-
-
         <h5 class="info-box text-primary">
             Nome da Instituição:<a class="text-dark">
                 {{ $n_processo->instituicao->Nome_Instituicao }}<br> </a>
@@ -67,29 +21,58 @@
         </h5>
         <h3>Anexos</h3>
 
-        
         @if ($n_processo->instituicao && $n_processo->instituicao->Anexo1_Instituicao)
-            <h5 class="info-box text-primary"> Comprovante de Endereço</h5>
-            <embed src="{{ asset('storage/' . $n_processo->instituicao->Anexo1_Instituicao) }}" width="100%"
-                height="800px" />
-            <embed {{ $n_processo->instituicao->Nome_Instituicao }} width="100%" height="800px" />
+            <?php
+            
+            $pdfPath = 'storage/' . $n_processo->instituicao->Anexo1_Instituicao;
+            
+            if (file_exists($pdfPath)) {
+                $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
+                $totalPages = $pdf->getNumberOfPages();
+            
+                // Loop para converter cada página em uma imagem e exibi-la
+                for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                    $imagePath = 'storage/imagem/' . 'imagem_' . $pageNumber . '.png';
+                    $pdf->setPage($pageNumber)
+                        ->setOutputFormat('png')
+                        ->saveImage($imagePath);
+            
+                    // Exiba a imagem
+                    echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                }
+            } else {
+                // Arquivo PDF não existe ou não é acessível
+                echo 'Arquivo PDF não encontrado.';
+            }
+            ?>
         @endif
 
-
-
-    
-    
-    
-
-
-
         @if ($n_processo->instituicao && $n_processo->instituicao->Anexo2_Instituicao)
-            <h5 class="info-box text-primary"> Cartão CNPJ </h5>
-            <embed src="{{ asset('storage/' . $n_processo->instituicao->Anexo2_Instituicao) }}" width="100%"
-                height="800px" />
-            <embed {{ $n_processo->instituicao->Nome_Instituicao }} width="100%" height="800px" />
+            <?php
+            
+            $pdfPath = 'storage/' . $n_processo->instituicao->Anexo2_Instituicao;
+            
+            if (file_exists($pdfPath)) {
+                $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
+                $totalPages = $pdf->getNumberOfPages();
+            
+                // Loop para converter cada página em uma imagem e exibi-la
+                for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                    $imagePath = 'storage/imagem/' . 'imagem_' . $pageNumber . '.png';
+                    $pdf->setPage($pageNumber)
+                        ->setOutputFormat('png')
+                        ->saveImage($imagePath);
+            
+                    // Exiba a imagem
+                    echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                }
+            } else {
+                // Arquivo PDF não existe ou não é acessível
+                echo 'Arquivo PDF não encontrado.';
+            }
+            
+            ?>
         @endif
 
     </div>
 </div>
-
