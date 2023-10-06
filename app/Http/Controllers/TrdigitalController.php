@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use PDF;
-use Imagick;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Maatwebsite\Excel\Facades\Excel;
@@ -2185,6 +2185,22 @@ class TrdigitalController extends Controller
 
         ));
 
+        $pdf = PDF::loadView(
+            'trdigital.imprimir',
+            compact(
+                'n_processo',
+                'biblioteca',
+                'metas',
+                'etapas',
+                'planoconsolidado',
+                'planodetalhado',
+                'cronograma_desembolso',
+                'obras_equipamento',
+                'pesquisa_mercadologica'
+
+            )
+        );
+
         return view(
             'trdigital.imprimir',
             compact(
@@ -2200,6 +2216,14 @@ class TrdigitalController extends Controller
 
             )
         );
+
+    //  //   $pdf = PDF::loadView('trdigital.imprimir');
+    //     $pdf->setPaper('A4', 'portrait');
+    //   //  dd($pdf);
+    //     return $pdf->stream();
+    //    return $pdf->download();
+
+     //   return $view;
     }
 
 

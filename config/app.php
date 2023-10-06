@@ -192,9 +192,10 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+       //PDF
         Barryvdh\DomPDF\ServiceProvider::class,
 
-
+        
     ],
 
     /*
@@ -211,6 +212,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
 
+
+        
     ])->toArray(),
 
     'DomPDF' => Barryvdh\DomPDF\Facade::class,
