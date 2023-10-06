@@ -21,3 +21,14 @@ composer require doctrine/dbal
 
 /Applications/XAMPP/xamppfiles/bin/php nome-do-arquivo.php
 
+
+
+Env
+
+PUSHER_APP_ID=1683194
+PUSHER_APP_KEY=e410feec985102431a9c
+PUSHER_APP_SECRET=87851cdf8b8e0ad6483f
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=sa1
