@@ -14,6 +14,7 @@
             #printButton {
                 display: none;
             }
+        }
 
             @media print {
                 #pdfButton {
@@ -38,9 +39,18 @@
                     <div class="col-xl-12">
                         <div class="card p-4">
 
-                            <form action="forms/contact.php" method="post" class="php-email-form">
-                                <button id="printButton">Imprimir</button>
-                                <button id="pdfButton">Salvar em PDF</button>
+                            <form>
+                                {{-- <button id="printButton">Imprimir</button> --}}
+
+                                <a button id="printButton" type="button" class="btn btn-success">
+                                                    <i class="bi bi-printer-fill me-1"> Imprimir</i>
+                                                </a>
+
+
+
+                                {{-- <button id="pdfButton">Salvar em PDF</button> --}}
+
+
                                 <div class="row gy-4">
                                     <div class="d-flex justify-content-center">
                                         {{-- comecei aqui --}}
