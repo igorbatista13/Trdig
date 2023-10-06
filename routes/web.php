@@ -169,6 +169,10 @@ Route::middleware('auth')->group(function () {
   Route::get('/suporte',                       [ObjetosController::class, 'suporte']);
 
 
+
+
+
+  
   // SAIR - LOGOUT
   Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');

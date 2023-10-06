@@ -360,6 +360,12 @@
           <span>Suporte</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{asset('/chatify')}}">
+          <i class="bi bi-chat-dots"></i>
+          <span>Chat</span>
+        </a>
+      </li>
 
     </ul>
 
