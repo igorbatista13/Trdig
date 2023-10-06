@@ -86,8 +86,35 @@
         @foreach ($pesquisa->pesquisa_mercadologica_pivots as $pivot)                         
         @if ($pivot->Anexo)
             <h5 class="info-box text-primary">Anexos {{ $pivot->Empresa }}</h5>
-            <embed src="{{ asset('storage/' . $pivot->Anexo) }}" width="100%" height="800px" />
-            <embed {{ $pivot->Anexo }} width="100%" height="800px" />
+
+            <?php
+            $pdfPath = 'storage/' . $pivot->Anexo;
+            
+            if (file_exists($pdfPath)) {
+                $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
+                $totalPages = $pdf->getNumberOfPages();
+            
+                // Gere um identificador único (timestamp) para cada conjunto de imagens
+                $uniqueIdentifier = time();
+            
+                // Loop para converter cada página em uma imagem e exibi-la
+                for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                    // Adicione o identificador único ao nome da imagem
+                    $imagePath = 'storage/imagem/Pesquisa_Mercadologica/' . 'imagem_' . $pageNumber . '_' . $uniqueIdentifier . '.png';
+                    $pdf->setPage($pageNumber)
+                        ->setOutputFormat('png')
+                        ->saveImage($imagePath);
+            
+                    // Exiba a imagem
+                    echo '<img src="' . asset('storage/imagem/Pesquisa_Mercadologica/imagem_' . $pageNumber . '_' . $uniqueIdentifier . '.png') . '" width="100%" height="800px" />';
+                }
+            } else {
+                // Arquivo PDF não existe ou não é acessível
+                echo 'Arquivo PDF não encontrado.';
+            }
+            ?>
+            {{-- <embed src="{{ asset('storage/' . $pivot->Anexo) }}" width="100%" height="800px" />
+            <embed {{ $pivot->Anexo }} width="100%" height="800px" /> --}}
         @endif
         @endforeach
         @endforeach

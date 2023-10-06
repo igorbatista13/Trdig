@@ -26,56 +26,64 @@
             <h5 class="info-box text-primary"> Anexo CPF/RG </h5>
             
             <?php
-            $pdfPath = 'storage/' . $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao;
-            
-            if (file_exists($pdfPath)) {
-                $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
-                $totalPages = $pdf->getNumberOfPages();
-            
-                // Loop para converter cada página em uma imagem e exibi-la
-                for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-                    $imagePath = 'storage/imagem/' . 'imagem_' . $pageNumber . '.png';
-                    $pdf->setPage($pageNumber)
-                        ->setOutputFormat('png')
-                        ->saveImage($imagePath);
-            
-                    // Exiba a imagem
-                    echo '<img src="' . asset('storage/imagem/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                $pdfPath = 'storage/' . $n_processo->Resp_instituicao->Anexo1_Resp_Instituicao;
+                
+                if (file_exists($pdfPath)) {
+                    $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
+                    $totalPages = $pdf->getNumberOfPages();
+                
+                    // Gere um identificador único (timestamp) para cada conjunto de imagens
+                    $uniqueIdentifier = time();
+                
+                    // Loop para converter cada página em uma imagem e exibi-la
+                    for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                        // Adicione o identificador único ao nome da imagem
+                        $imagePath = 'storage/imagem/Resp_instituicao/' . 'imagem_' . $pageNumber . '_' . $uniqueIdentifier . '.png';
+                        $pdf->setPage($pageNumber)
+                            ->setOutputFormat('png')
+                            ->saveImage($imagePath);
+                
+                        // Exiba a imagem
+                        echo '<img src="' . asset('storage/imagem/Resp_instituicao/imagem_' . $pageNumber . '_' . $uniqueIdentifier . '.png') . '" width="100%" height="800px" />';
+                    }
+                } else {
+                    // Arquivo PDF não existe ou não é acessível
+                    echo 'Arquivo PDF não encontrado.';
                 }
-            } else {
-                // Arquivo PDF não existe ou não é acessível
-                echo 'Arquivo PDF não encontrado.';
-            }
-            
-            ?>
+                ?>
+
+
         @endif
 
         @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao)
             <h5 class="info-box text-primary"> Anexo Comprovante de Endereço </h5>
            
             <?php
-            $pdfPath = 'storage/' . $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao;
-            
-            if (file_exists($pdfPath)) {
-                $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
-                $totalPages = $pdf->getNumberOfPages();
-            
-                // Loop para converter cada página em uma imagem e exibi-la
-                for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
-                    $imagePath = 'storage/imagem/Resp_instituicao/' . 'imagem_' . $pageNumber . '.png';
-                    $pdf->setPage($pageNumber)
-                        ->setOutputFormat('png')
-                        ->saveImage($imagePath);
-            
-                    // Exiba a imagem
-                    echo '<img src="' . asset('storage/imagem/Resp_instituicao/imagem_' . $pageNumber . '.png') . '" width="100%" height="800px" />';
+                $pdfPath = 'storage/' . $n_processo->Resp_instituicao->Anexo2_Resp_Instituicao;
+                
+                if (file_exists($pdfPath)) {
+                    $pdf = new Spatie\PdfToImage\Pdf($pdfPath);
+                    $totalPages = $pdf->getNumberOfPages();
+                
+                    // Gere um identificador único (timestamp) para cada conjunto de imagens
+                    $uniqueIdentifier = time();
+                
+                    // Loop para converter cada página em uma imagem e exibi-la
+                    for ($pageNumber = 1; $pageNumber <= $totalPages; $pageNumber++) {
+                        // Adicione o identificador único ao nome da imagem
+                        $imagePath = 'storage/imagem/Resp_instituicao/' . 'imagem_' . $pageNumber . '_' . $uniqueIdentifier . '.png';
+                        $pdf->setPage($pageNumber)
+                            ->setOutputFormat('png')
+                            ->saveImage($imagePath);
+                
+                        // Exiba a imagem
+                        echo '<img src="' . asset('storage/imagem/Resp_instituicao/imagem_' . $pageNumber . '_' . $uniqueIdentifier . '.png') . '" width="100%" height="800px" />';
+                    }
+                } else {
+                    // Arquivo PDF não existe ou não é acessível
+                    echo 'Arquivo PDF não encontrado.';
                 }
-            } else {
-                // Arquivo PDF não existe ou não é acessível
-                echo 'Arquivo PDF não encontrado.';
-            }
-            
-            ?>
+                ?>
 
 
         @endif
