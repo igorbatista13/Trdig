@@ -72,6 +72,7 @@
                                     'class' => 'form-control',
                                     'oninput' => 'mascaraTelefone(this)',
                                     'maxlength' => '15',
+                                    
                                 ]) !!}
                             @endif
                             @if ($n_processo->Resp_instituicao && $n_processo->Resp_instituicao->Email_Resp_Instituicao_sit == '')

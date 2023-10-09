@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-floating">
-                        {!! Form::number('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
+                        {!! Form::text('Telefone_Resp_Instituicao', $n_processo->Resp_instituicao->Telefone_Resp_Instituicao, [
                             'placeholder' => 'a',
                             'class' => 'form-control',
                             'id' => 'floatingName',
